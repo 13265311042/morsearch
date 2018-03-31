@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.HomeV_PageMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.HomeV_Page" >
+    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="userqty" property="userqty" jdbcType="BIGINT" />
+    <result column="countneed" property="countneed" jdbcType="DECIMAL" />
+    <result column="countorder" property="countorder" jdbcType="DECIMAL" />
+    <result column="companyaddr" property="companyaddr" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.morsearch.model.HomeV_Page" extends="BaseResultMap" >
+    <result column="groupid" property="groupid" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    longitude, latitude, userqty, countneed, countorder, companyaddr
+  </sql>
+  <sql id="Blob_Column_List" >
+    groupid
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.morsearch.model.HomeV_PageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from HomeV_Page
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.HomeV_PageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from HomeV_Page
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.HomeV_PageExample" >
+    delete from HomeV_Page
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.HomeV_Page" >
+    insert into HomeV_Page (longitude, latitude, userqty, 
+      countneed, countorder, companyaddr, 
+      groupid)
+    values (#{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{userqty,jdbcType=BIGINT}, 
+      #{countneed,jdbcType=DECIMAL}, #{countorder,jdbcType=DECIMAL}, #{companyaddr,jdbcType=VARCHAR}, 
+      #{groupid,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.HomeV_Page" >
+    insert into HomeV_Page
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="userqty != null" >
+        userqty,
+      </if>
+      <if test="countneed != null" >
+        countneed,
+      </if>
+      <if test="countorder != null" >
+        countorder,
+      </if>
+      <if test="companyaddr != null" >
+        companyaddr,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="userqty != null" >
+        #{userqty,jdbcType=BIGINT},
+      </if>
+      <if test="countneed != null" >
+        #{countneed,jdbcType=DECIMAL},
+      </if>
+      <if test="countorder != null" >
+        #{countorder,jdbcType=DECIMAL},
+      </if>
+      <if test="companyaddr != null" >
+        #{companyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.HomeV_PageExample" resultType="java.lang.Integer" >
+    select count(*) from HomeV_Page
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update HomeV_Page
+    <set >
+      <if test="record.longitude != null" >
+        longitude = #{record.longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latitude != null" >
+        latitude = #{record.latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userqty != null" >
+        userqty = #{record.userqty,jdbcType=BIGINT},
+      </if>
+      <if test="record.countneed != null" >
+        countneed = #{record.countneed,jdbcType=DECIMAL},
+      </if>
+      <if test="record.countorder != null" >
+        countorder = #{record.countorder,jdbcType=DECIMAL},
+      </if>
+      <if test="record.companyaddr != null" >
+        companyaddr = #{record.companyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupid != null" >
+        groupid = #{record.groupid,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update HomeV_Page
+    set longitude = #{record.longitude,jdbcType=VARCHAR},
+      latitude = #{record.latitude,jdbcType=VARCHAR},
+      userqty = #{record.userqty,jdbcType=BIGINT},
+      countneed = #{record.countneed,jdbcType=DECIMAL},
+      countorder = #{record.countorder,jdbcType=DECIMAL},
+      companyaddr = #{record.companyaddr,jdbcType=VARCHAR},
+      groupid = #{record.groupid,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update HomeV_Page
+    set longitude = #{record.longitude,jdbcType=VARCHAR},
+      latitude = #{record.latitude,jdbcType=VARCHAR},
+      userqty = #{record.userqty,jdbcType=BIGINT},
+      countneed = #{record.countneed,jdbcType=DECIMAL},
+      countorder = #{record.countorder,jdbcType=DECIMAL},
+      companyaddr = #{record.companyaddr,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  
+  <!--自定义!-->
+  <!--获取明细!-->
+  <select id="getHomePageDetail" resultMap="ResultMapWithBLOBs" parameterType="String" >
+    select * from HomeV_Page  where
+    longitude = #{lng,jdbcType=VARCHAR}
+    and latitude = #{lat,jdbcType=VARCHAR}
+  </select>
+
+  <!--获取列表!-->
+  <select id="getHomePagelist" resultType="String" parameterType="String" >
+    select group_concat(groupid separator ',') AS `groupid` from HomeV_Page
+  </select>
+
+
+  <!--获取首页查询!-->
+  <select id="getHomeSearch" resultMap="ResultMapWithBLOBs" parameterType="String" >
+    select * from HomeV_Page m
+    where
+    <!--calc_distance(#{lng,jdbcType=VARCHAR},#{lat,jdbcType=VARCHAR},longitude,latitude)&lt;10000 and --> <!-- 定位查询距离 -->
+     m.companyaddr like concat(concat('%',#{keyword}),'%') <!-- 模糊查询 -->
+  </select>
+
+  
+</mapper>

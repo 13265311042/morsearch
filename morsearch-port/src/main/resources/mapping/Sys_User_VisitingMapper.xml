@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sys_User_VisitingMapper" >
+    <resultMap id="BaseResultMap" type="com.morsearch.model.Sys_User_Visiting" >
+        <id column="uv_id" property="uv_id" jdbcType="BIGINT" />
+        <result column="uv_image" property="uv_image" jdbcType="VARCHAR" />
+        <result column="uv_body" property="uv_body" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select * from Sys_User_Visiting
+        WHERE uv_id =#{uv_id,jdbcType=BIGINT}
+    </select>
+
+    <insert id="insertSelective" parameterType="com.morsearch.model.Sys_User_Visiting" >
+        insert into Sys_User_Visiting
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="uv_id != null" >
+                uv_id,
+            </if>
+            <if test="uv_image != null" >
+                uv_image,
+            </if>
+            <if test="uv_body != null" >
+                uv_body,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="uv_id != null" >
+                #{uv_id,jdbcType=BIGINT},
+            </if>
+            <if test="uv_image != null" >
+                #{uv_image,jdbcType=VARCHAR},
+            </if>
+            <if test="uv_body != null" >
+                #{uv_body,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

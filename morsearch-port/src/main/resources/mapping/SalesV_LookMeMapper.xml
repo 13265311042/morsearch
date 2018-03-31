@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.SalesV_LookMeMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.SalesV_LookMe" >
+    <result column="sl_id" property="sl_id" jdbcType="BIGINT" />
+    <result column="sl_salesmanid" property="sl_salesmanid" jdbcType="BIGINT" />
+    <result column="sl_desginerid" property="sl_desginerid" jdbcType="BIGINT" />
+    <result column="sl_createdate" property="sl_createdate" jdbcType="TIMESTAMP" />
+    <result column="desginer_name" property="desginer_name" jdbcType="VARCHAR" />
+    <result column="desginer_job" property="desginer_job" jdbcType="VARCHAR" />
+    <result column="desginer_message" property="desginer_message" jdbcType="VARCHAR" />
+    <result column="desginer_imageurl" property="desginer_imageurl" jdbcType="VARCHAR" />
+    <result column="dateshort" property="dateshort" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sl_id, sl_salesmanid, sl_desginerid, sl_createdate, desginer_name, desginer_job,
+    desginer_message, desginer_imageurl, dateshort
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.SalesV_LookMeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SalesV_LookMe
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.SalesV_LookMeExample" >
+    delete from SalesV_LookMe
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.SalesV_LookMe" >
+    insert into SalesV_LookMe (sl_id, sl_salesmanid, sl_desginerid,
+    sl_createdate, desginer_name, desginer_job,
+    desginer_message, desginer_imageurl, dateshort
+    )
+    values (#{sl_id,jdbcType=BIGINT}, #{sl_salesmanid,jdbcType=BIGINT}, #{sl_desginerid,jdbcType=BIGINT},
+    #{sl_createdate,jdbcType=TIMESTAMP}, #{desginer_name,jdbcType=VARCHAR}, #{desginer_job,jdbcType=VARCHAR},
+    #{desginer_message,jdbcType=VARCHAR}, #{desginer_imageurl,jdbcType=VARCHAR}, #{dateshort,jdbcType=VARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.SalesV_LookMe" >
+    insert into SalesV_LookMe
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sl_id != null" >
+        sl_id,
+      </if>
+      <if test="sl_salesmanid != null" >
+        sl_salesmanid,
+      </if>
+      <if test="sl_desginerid != null" >
+        sl_desginerid,
+      </if>
+      <if test="sl_createdate != null" >
+        sl_createdate,
+      </if>
+      <if test="desginer_name != null" >
+        desginer_name,
+      </if>
+      <if test="desginer_job != null" >
+        desginer_job,
+      </if>
+      <if test="desginer_message != null" >
+        desginer_message,
+      </if>
+      <if test="desginer_imageurl != null" >
+        desginer_imageurl,
+      </if>
+      <if test="dateshort != null" >
+        dateshort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sl_id != null" >
+        #{sl_id,jdbcType=BIGINT},
+      </if>
+      <if test="sl_salesmanid != null" >
+        #{sl_salesmanid,jdbcType=BIGINT},
+      </if>
+      <if test="sl_desginerid != null" >
+        #{sl_desginerid,jdbcType=BIGINT},
+      </if>
+      <if test="sl_createdate != null" >
+        #{sl_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="desginer_name != null" >
+        #{desginer_name,jdbcType=VARCHAR},
+      </if>
+      <if test="desginer_job != null" >
+        #{desginer_job,jdbcType=VARCHAR},
+      </if>
+      <if test="desginer_message != null" >
+        #{desginer_message,jdbcType=VARCHAR},
+      </if>
+      <if test="desginer_imageurl != null" >
+        #{desginer_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="dateshort != null" >
+        #{dateshort,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.SalesV_LookMeExample" resultType="java.lang.Integer" >
+    select count(*) from SalesV_LookMe
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SalesV_LookMe
+    <set >
+      <if test="record.sl_id != null" >
+        sl_id = #{record.sl_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sl_salesmanid != null" >
+        sl_salesmanid = #{record.sl_salesmanid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sl_desginerid != null" >
+        sl_desginerid = #{record.sl_desginerid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sl_createdate != null" >
+        sl_createdate = #{record.sl_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.desginer_name != null" >
+        desginer_name = #{record.desginer_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desginer_job != null" >
+        desginer_job = #{record.desginer_job,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desginer_message != null" >
+        desginer_message = #{record.desginer_message,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desginer_imageurl != null" >
+        desginer_imageurl = #{record.desginer_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateshort != null" >
+        dateshort = #{record.dateshort,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SalesV_LookMe
+    set sl_id = #{record.sl_id,jdbcType=BIGINT},
+    sl_salesmanid = #{record.sl_salesmanid,jdbcType=BIGINT},
+    sl_desginerid = #{record.sl_desginerid,jdbcType=BIGINT},
+    sl_createdate = #{record.sl_createdate,jdbcType=TIMESTAMP},
+    desginer_name = #{record.desginer_name,jdbcType=VARCHAR},
+    desginer_job = #{record.desginer_job,jdbcType=VARCHAR},
+    desginer_message = #{record.desginer_message,jdbcType=VARCHAR},
+    desginer_imageurl = #{record.desginer_imageurl,jdbcType=VARCHAR},
+    dateshort = #{record.dateshort,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <!--自定义-->
+  <sql id="wherelist" >
+    <if test="desginer_job != null and desginer_job != ''" >
+      and desginer_job like concat(concat('%',#{desginer_job}),'%')
+    </if>
+    <if test="desginer_message != null and desginer_message != ''" >
+      and desginer_message like concat(concat('%',#{desginer_message}),'%')
+    </if>
+    <if test="sl_createdate != null and sl_createdate != ''" >
+      and sl_createdate like concat(concat('%',#{sl_createdate}),'%')
+    </if>
+    <if test="desginer_imageurl != null and desginer_imageurl != ''" >
+      and sl_createdate like concat(concat('%',#{sl_createdate}),'%')
+    </if>
+    <if test="desginer_name != null and desginer_name != ''" >
+      and desginer_name like concat(concat('%',#{desginer_name}),'%')
+    </if>
+  </sql>
+
+  <select id="getLookList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    desginer_name,desginer_job,desginer_message,sl_createdate,desginer_imageurl,sl_desginerid
+    from SalesV_LookMe  where
+    sl_salesmanid =#{sl_salesmanid,jdbcType=BIGINT}
+    <include refid="wherelist" />
+    ORDER BY sl_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getLookListCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+    select count(*) from SalesV_LookMe WHERE 1=1
+    <include refid="wherelist" />
+  </select>
+
+
+
+</mapper>

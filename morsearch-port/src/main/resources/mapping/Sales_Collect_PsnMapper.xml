@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sales_Collect_PsnMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sales_Collect_Psn" >
+    <id column="ss_id" property="ss_id" jdbcType="BIGINT" />
+    <result column="ss_designerid" property="ss_designerid" jdbcType="BIGINT" />
+    <result column="ss_createid" property="ss_createid" jdbcType="BIGINT" />
+    <result column="ss_createno" property="ss_createno" jdbcType="VARCHAR" />
+    <result column="ss_createdate" property="ss_createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ss_id, ss_designerid, ss_createid, ss_createno, ss_createdate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sales_Collect_PsnExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sales_Collect_Psn
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Sales_Collect_Psn
+    where ss_id = #{ss_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Sales_Collect_Psn
+    where ss_id = #{ss_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sales_Collect_PsnExample" >
+    delete from Sales_Collect_Psn
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sales_Collect_Psn" >
+    insert into Sales_Collect_Psn (ss_id, ss_designerid, ss_createid, 
+      ss_createno, ss_createdate)
+    values (#{ss_id,jdbcType=BIGINT}, #{ss_designerid,jdbcType=BIGINT}, #{ss_createid,jdbcType=BIGINT}, 
+      #{ss_createno,jdbcType=VARCHAR}, #{ss_createdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sales_Collect_Psn" >
+    insert into Sales_Collect_Psn
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ss_id != null" >
+        ss_id,
+      </if>
+      <if test="ss_designerid != null" >
+        ss_designerid,
+      </if>
+      <if test="ss_createid != null" >
+        ss_createid,
+      </if>
+      <if test="ss_createno != null" >
+        ss_createno,
+      </if>
+      <if test="ss_createdate != null" >
+        ss_createdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ss_id != null" >
+        #{ss_id,jdbcType=BIGINT},
+      </if>
+      <if test="ss_designerid != null" >
+        #{ss_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="ss_createid != null" >
+        #{ss_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ss_createno != null" >
+        #{ss_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ss_createdate != null" >
+        #{ss_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sales_Collect_PsnExample" resultType="java.lang.Integer" >
+    select count(*) from Sales_Collect_Psn
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sales_Collect_Psn
+    <set >
+      <if test="record.ss_id != null" >
+        ss_id = #{record.ss_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ss_designerid != null" >
+        ss_designerid = #{record.ss_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ss_createid != null" >
+        ss_createid = #{record.ss_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ss_createno != null" >
+        ss_createno = #{record.ss_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ss_createdate != null" >
+        ss_createdate = #{record.ss_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sales_Collect_Psn
+    set ss_id = #{record.ss_id,jdbcType=BIGINT},
+      ss_designerid = #{record.ss_designerid,jdbcType=BIGINT},
+      ss_createid = #{record.ss_createid,jdbcType=BIGINT},
+      ss_createno = #{record.ss_createno,jdbcType=VARCHAR},
+      ss_createdate = #{record.ss_createdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sales_Collect_Psn" >
+    update Sales_Collect_Psn
+    <set >
+      <if test="ss_designerid != null" >
+        ss_designerid = #{ss_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="ss_createid != null" >
+        ss_createid = #{ss_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ss_createno != null" >
+        ss_createno = #{ss_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ss_createdate != null" >
+        ss_createdate = #{ss_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ss_id = #{ss_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sales_Collect_Psn" >
+    update Sales_Collect_Psn
+    set ss_designerid = #{ss_designerid,jdbcType=BIGINT},
+      ss_createid = #{ss_createid,jdbcType=BIGINT},
+      ss_createno = #{ss_createno,jdbcType=VARCHAR},
+      ss_createdate = #{ss_createdate,jdbcType=TIMESTAMP}
+    where ss_id = #{ss_id,jdbcType=BIGINT}
+  </update>
+
+  <!-- 分页 -->
+  <select id="getSales_Collect_Psn" parameterType="java.util.Map" resultMap="BaseResultMap" >
+    select * from Sales_Collect_Psn
+    WHERE
+    ss_designerid =#{ss_designerid,jdbcType=BIGINT}
+    AND
+    ss_createid =#{ss_createid,jdbcType=BIGINT}
+  </select>
+
+
+</mapper>

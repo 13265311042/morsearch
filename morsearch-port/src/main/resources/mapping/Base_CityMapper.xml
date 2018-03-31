@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Base_CityMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Base_City" >
+    <id column="bc_cityid" property="bc_cityid" jdbcType="INTEGER" />
+    <result column="bc_cityname" property="bc_cityname" jdbcType="VARCHAR" />
+    <result column="bc_prvid" property="bc_prvid" jdbcType="INTEGER" />
+    <result column="bc_prvname" property="bc_prvname" jdbcType="VARCHAR" />
+    <result column="bc_code" property="bc_code" jdbcType="VARCHAR" />
+    <result column="bc_delflag" property="bc_delflag" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    bc_cityid, bc_cityname, bc_prvid, bc_prvname, bc_code, bc_delflag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Base_CityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Base_City
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Base_City
+    where bc_cityid = #{bc_cityid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Base_City
+    where bc_cityid = #{bc_cityid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Base_CityExample" >
+    delete from Base_City
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Base_City" >
+    insert into Base_City (bc_cityid, bc_cityname, bc_prvid, 
+      bc_prvname, bc_code, bc_delflag
+      )
+    values (#{bc_cityid,jdbcType=INTEGER}, #{bc_cityname,jdbcType=VARCHAR}, #{bc_prvid,jdbcType=INTEGER}, 
+      #{bc_prvname,jdbcType=VARCHAR}, #{bc_code,jdbcType=VARCHAR}, #{bc_delflag,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Base_City" >
+    insert into Base_City
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bc_cityid != null" >
+        bc_cityid,
+      </if>
+      <if test="bc_cityname != null" >
+        bc_cityname,
+      </if>
+      <if test="bc_prvid != null" >
+        bc_prvid,
+      </if>
+      <if test="bc_prvname != null" >
+        bc_prvname,
+      </if>
+      <if test="bc_code != null" >
+        bc_code,
+      </if>
+      <if test="bc_delflag != null" >
+        bc_delflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bc_cityid != null" >
+        #{bc_cityid,jdbcType=INTEGER},
+      </if>
+      <if test="bc_cityname != null" >
+        #{bc_cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="bc_prvid != null" >
+        #{bc_prvid,jdbcType=INTEGER},
+      </if>
+      <if test="bc_prvname != null" >
+        #{bc_prvname,jdbcType=VARCHAR},
+      </if>
+      <if test="bc_code != null" >
+        #{bc_code,jdbcType=VARCHAR},
+      </if>
+      <if test="bc_delflag != null" >
+        #{bc_delflag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Base_CityExample" resultType="java.lang.Integer" >
+    select count(*) from Base_City
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Base_City
+    <set >
+      <if test="record.bc_cityid != null" >
+        bc_cityid = #{record.bc_cityid,jdbcType=INTEGER},
+      </if>
+      <if test="record.bc_cityname != null" >
+        bc_cityname = #{record.bc_cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bc_prvid != null" >
+        bc_prvid = #{record.bc_prvid,jdbcType=INTEGER},
+      </if>
+      <if test="record.bc_prvname != null" >
+        bc_prvname = #{record.bc_prvname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bc_code != null" >
+        bc_code = #{record.bc_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bc_delflag != null" >
+        bc_delflag = #{record.bc_delflag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Base_City
+    set bc_cityid = #{record.bc_cityid,jdbcType=INTEGER},
+      bc_cityname = #{record.bc_cityname,jdbcType=VARCHAR},
+      bc_prvid = #{record.bc_prvid,jdbcType=INTEGER},
+      bc_prvname = #{record.bc_prvname,jdbcType=VARCHAR},
+      bc_code = #{record.bc_code,jdbcType=VARCHAR},
+      bc_delflag = #{record.bc_delflag,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Base_City" >
+    update Base_City
+    <set >
+      <if test="bc_cityname != null" >
+        bc_cityname = #{bc_cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="bc_prvid != null" >
+        bc_prvid = #{bc_prvid,jdbcType=INTEGER},
+      </if>
+      <if test="bc_prvname != null" >
+        bc_prvname = #{bc_prvname,jdbcType=VARCHAR},
+      </if>
+      <if test="bc_code != null" >
+        bc_code = #{bc_code,jdbcType=VARCHAR},
+      </if>
+      <if test="bc_delflag != null" >
+        bc_delflag = #{bc_delflag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where bc_cityid = #{bc_cityid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Base_City" >
+    update Base_City
+    set bc_cityname = #{bc_cityname,jdbcType=VARCHAR},
+      bc_prvid = #{bc_prvid,jdbcType=INTEGER},
+      bc_prvname = #{bc_prvname,jdbcType=VARCHAR},
+      bc_code = #{bc_code,jdbcType=VARCHAR},
+      bc_delflag = #{bc_delflag,jdbcType=TINYINT}
+    where bc_cityid = #{bc_cityid,jdbcType=INTEGER}
+  </update>
+</mapper>

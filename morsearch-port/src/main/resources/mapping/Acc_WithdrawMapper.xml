@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Acc_WithdrawMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Acc_Withdraw" >
+    <id column="aw_id" property="aw_id" jdbcType="BIGINT" />
+    <result column="aw_no" property="aw_no" jdbcType="VARCHAR" />
+    <result column="aw_account" property="aw_account" jdbcType="DECIMAL" />
+    <result column="aw_integral" property="aw_integral" jdbcType="DECIMAL" />
+    <result column="aw_userfull" property="aw_userfull" jdbcType="VARCHAR" />
+    <result column="aw_userphone" property="aw_userphone" jdbcType="VARCHAR" />
+    <result column="aw_userverify" property="aw_userverify" jdbcType="VARCHAR" />
+    <result column="aw_typecode" property="aw_typecode" jdbcType="VARCHAR" />
+    <result column="aw_typename" property="aw_typename" jdbcType="VARCHAR" />
+    <result column="aw_acctype" property="aw_acctype" jdbcType="TINYINT" />
+    <result column="aw_accweixin" property="aw_accweixin" jdbcType="VARCHAR" />
+    <result column="aw_accalipay" property="aw_accalipay" jdbcType="VARCHAR" />
+    <result column="aw_accbankname" property="aw_accbankname" jdbcType="VARCHAR" />
+    <result column="aw_accbankcard" property="aw_accbankcard" jdbcType="VARCHAR" />
+    <result column="aw_createid" property="aw_createid" jdbcType="BIGINT" />
+    <result column="aw_createno" property="aw_createno" jdbcType="VARCHAR" />
+    <result column="aw_createdate" property="aw_createdate" jdbcType="TIMESTAMP" />
+    <result column="aw_completedate" property="aw_completedate" jdbcType="TIMESTAMP" />
+    <result column="aw_status" property="aw_status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    aw_id, aw_no, aw_account, aw_integral, aw_userfull, aw_userphone, aw_userverify,
+    aw_typecode, aw_typename, aw_acctype, aw_accweixin, aw_accalipay, aw_accbankname,
+    aw_accbankcard, aw_createid, aw_createno, aw_createdate, aw_completedate, aw_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Acc_WithdrawExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Acc_Withdraw
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Acc_Withdraw
+    where aw_id = #{aw_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Acc_Withdraw
+    where aw_id = #{aw_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Acc_WithdrawExample" >
+    delete from Acc_Withdraw
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Acc_Withdraw" >
+    insert into Acc_Withdraw (aw_id, aw_no, aw_account,
+    aw_integral, aw_userfull, aw_userphone,
+    aw_userverify, aw_typecode, aw_typename,
+    aw_acctype, aw_accweixin, aw_accalipay,
+    aw_accbankname, aw_accbankcard, aw_createid,
+    aw_createno, aw_createdate, aw_completedate,
+    aw_status)
+    values (#{aw_id,jdbcType=BIGINT}, #{aw_no,jdbcType=VARCHAR}, #{aw_account,jdbcType=DECIMAL},
+    #{aw_integral,jdbcType=DECIMAL}, #{aw_userfull,jdbcType=VARCHAR}, #{aw_userphone,jdbcType=VARCHAR},
+    #{aw_userverify,jdbcType=VARCHAR}, #{aw_typecode,jdbcType=VARCHAR}, #{aw_typename,jdbcType=VARCHAR},
+    #{aw_acctype,jdbcType=TINYINT}, #{aw_accweixin,jdbcType=VARCHAR}, #{aw_accalipay,jdbcType=VARCHAR},
+    #{aw_accbankname,jdbcType=VARCHAR}, #{aw_accbankcard,jdbcType=VARCHAR}, #{aw_createid,jdbcType=BIGINT},
+    #{aw_createno,jdbcType=VARCHAR}, #{aw_createdate,jdbcType=TIMESTAMP}, #{aw_completedate,jdbcType=TIMESTAMP},
+    #{aw_status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Acc_Withdraw" >
+    insert into Acc_Withdraw
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aw_id != null" >
+        aw_id,
+      </if>
+      <if test="aw_no != null" >
+        aw_no,
+      </if>
+      <if test="aw_account != null" >
+        aw_account,
+      </if>
+      <if test="aw_integral != null" >
+        aw_integral,
+      </if>
+      <if test="aw_userfull != null" >
+        aw_userfull,
+      </if>
+      <if test="aw_userphone != null" >
+        aw_userphone,
+      </if>
+      <if test="aw_userverify != null" >
+        aw_userverify,
+      </if>
+      <if test="aw_typecode != null" >
+        aw_typecode,
+      </if>
+      <if test="aw_typename != null" >
+        aw_typename,
+      </if>
+      <if test="aw_acctype != null" >
+        aw_acctype,
+      </if>
+      <if test="aw_accweixin != null" >
+        aw_accweixin,
+      </if>
+      <if test="aw_accalipay != null" >
+        aw_accalipay,
+      </if>
+      <if test="aw_accbankname != null" >
+        aw_accbankname,
+      </if>
+      <if test="aw_accbankcard != null" >
+        aw_accbankcard,
+      </if>
+      <if test="aw_createid != null" >
+        aw_createid,
+      </if>
+      <if test="aw_createno != null" >
+        aw_createno,
+      </if>
+      <if test="aw_createdate != null" >
+        aw_createdate,
+      </if>
+      <if test="aw_completedate != null" >
+        aw_completedate,
+      </if>
+      <if test="aw_status != null" >
+        aw_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aw_id != null" >
+        #{aw_id,jdbcType=BIGINT},
+      </if>
+      <if test="aw_no != null" >
+        #{aw_no,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_account != null" >
+        #{aw_account,jdbcType=DECIMAL},
+      </if>
+      <if test="aw_integral != null" >
+        #{aw_integral,jdbcType=DECIMAL},
+      </if>
+      <if test="aw_userfull != null" >
+        #{aw_userfull,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_userphone != null" >
+        #{aw_userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_userverify != null" >
+        #{aw_userverify,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_typecode != null" >
+        #{aw_typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_typename != null" >
+        #{aw_typename,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_acctype != null" >
+        #{aw_acctype,jdbcType=TINYINT},
+      </if>
+      <if test="aw_accweixin != null" >
+        #{aw_accweixin,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_accalipay != null" >
+        #{aw_accalipay,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_accbankname != null" >
+        #{aw_accbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_accbankcard != null" >
+        #{aw_accbankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_createid != null" >
+        #{aw_createid,jdbcType=BIGINT},
+      </if>
+      <if test="aw_createno != null" >
+        #{aw_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_createdate != null" >
+        #{aw_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aw_completedate != null" >
+        #{aw_completedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aw_status != null" >
+        #{aw_status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Acc_WithdrawExample" resultType="java.lang.Integer" >
+    select count(*) from Acc_Withdraw
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Acc_Withdraw
+    <set >
+      <if test="record.aw_id != null" >
+        aw_id = #{record.aw_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.aw_no != null" >
+        aw_no = #{record.aw_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aw_account != null" >
+        aw_account = #{record.aw_account,jdbcType=DECIMAL},
+      </if>
+      <if test="record.aw_integral != null" >
+        aw_integral = #{record.aw_integral,jdbcType=DECIMAL},
+      </if>
+      <if test="record.aw_userfull != null" >
+        aw_userfull = #{record.aw_userfull,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aw_userphone != null" >
+        aw_userphone = #{record.aw_userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aw_userverify != null" >
+        aw_userverify = #{record.aw_userverify,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aw_typecode != null" >
+        aw_typecode = #{record.aw_typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aw_typename != null" >
+        aw_typename = #{record.aw_typename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aw_acctype != null" >
+        aw_acctype = #{record.aw_acctype,jdbcType=TINYINT},
+      </if>
+      <if test="record.aw_accweixin != null" >
+        aw_accweixin = #{record.aw_accweixin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aw_accalipay != null" >
+        aw_accalipay = #{record.aw_accalipay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aw_accbankname != null" >
+        aw_accbankname = #{record.aw_accbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aw_accbankcard != null" >
+        aw_accbankcard = #{record.aw_accbankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aw_createid != null" >
+        aw_createid = #{record.aw_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.aw_createno != null" >
+        aw_createno = #{record.aw_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aw_createdate != null" >
+        aw_createdate = #{record.aw_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.aw_completedate != null" >
+        aw_completedate = #{record.aw_completedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.aw_status != null" >
+        aw_status = #{record.aw_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Acc_Withdraw
+    set aw_id = #{record.aw_id,jdbcType=BIGINT},
+    aw_no = #{record.aw_no,jdbcType=VARCHAR},
+    aw_account = #{record.aw_account,jdbcType=DECIMAL},
+    aw_integral = #{record.aw_integral,jdbcType=DECIMAL},
+    aw_userfull = #{record.aw_userfull,jdbcType=VARCHAR},
+    aw_userphone = #{record.aw_userphone,jdbcType=VARCHAR},
+    aw_userverify = #{record.aw_userverify,jdbcType=VARCHAR},
+    aw_typecode = #{record.aw_typecode,jdbcType=VARCHAR},
+    aw_typename = #{record.aw_typename,jdbcType=VARCHAR},
+    aw_acctype = #{record.aw_acctype,jdbcType=TINYINT},
+    aw_accweixin = #{record.aw_accweixin,jdbcType=VARCHAR},
+    aw_accalipay = #{record.aw_accalipay,jdbcType=VARCHAR},
+    aw_accbankname = #{record.aw_accbankname,jdbcType=VARCHAR},
+    aw_accbankcard = #{record.aw_accbankcard,jdbcType=VARCHAR},
+    aw_createid = #{record.aw_createid,jdbcType=BIGINT},
+    aw_createno = #{record.aw_createno,jdbcType=VARCHAR},
+    aw_createdate = #{record.aw_createdate,jdbcType=TIMESTAMP},
+    aw_completedate = #{record.aw_completedate,jdbcType=TIMESTAMP},
+    aw_status = #{record.aw_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Acc_Withdraw" >
+    update Acc_Withdraw
+    <set >
+      <if test="aw_no != null" >
+        aw_no = #{aw_no,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_account != null" >
+        aw_account = #{aw_account,jdbcType=DECIMAL},
+      </if>
+      <if test="aw_integral != null" >
+        aw_integral = #{aw_integral,jdbcType=DECIMAL},
+      </if>
+      <if test="aw_userfull != null" >
+        aw_userfull = #{aw_userfull,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_userphone != null" >
+        aw_userphone = #{aw_userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_userverify != null" >
+        aw_userverify = #{aw_userverify,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_typecode != null" >
+        aw_typecode = #{aw_typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_typename != null" >
+        aw_typename = #{aw_typename,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_acctype != null" >
+        aw_acctype = #{aw_acctype,jdbcType=TINYINT},
+      </if>
+      <if test="aw_accweixin != null" >
+        aw_accweixin = #{aw_accweixin,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_accalipay != null" >
+        aw_accalipay = #{aw_accalipay,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_accbankname != null" >
+        aw_accbankname = #{aw_accbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_accbankcard != null" >
+        aw_accbankcard = #{aw_accbankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_createid != null" >
+        aw_createid = #{aw_createid,jdbcType=BIGINT},
+      </if>
+      <if test="aw_createno != null" >
+        aw_createno = #{aw_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="aw_createdate != null" >
+        aw_createdate = #{aw_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aw_completedate != null" >
+        aw_completedate = #{aw_completedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aw_status != null" >
+        aw_status = #{aw_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where aw_id = #{aw_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Acc_Withdraw" >
+    update Acc_Withdraw
+    set aw_no = #{aw_no,jdbcType=VARCHAR},
+      aw_account = #{aw_account,jdbcType=DECIMAL},
+      aw_integral = #{aw_integral,jdbcType=DECIMAL},
+      aw_userfull = #{aw_userfull,jdbcType=VARCHAR},
+      aw_userphone = #{aw_userphone,jdbcType=VARCHAR},
+      aw_userverify = #{aw_userverify,jdbcType=VARCHAR},
+      aw_typecode = #{aw_typecode,jdbcType=VARCHAR},
+      aw_typename = #{aw_typename,jdbcType=VARCHAR},
+      aw_acctype = #{aw_acctype,jdbcType=TINYINT},
+      aw_accweixin = #{aw_accweixin,jdbcType=VARCHAR},
+      aw_accalipay = #{aw_accalipay,jdbcType=VARCHAR},
+      aw_accbankname = #{aw_accbankname,jdbcType=VARCHAR},
+      aw_accbankcard = #{aw_accbankcard,jdbcType=VARCHAR},
+      aw_createid = #{aw_createid,jdbcType=BIGINT},
+      aw_createno = #{aw_createno,jdbcType=VARCHAR},
+      aw_createdate = #{aw_createdate,jdbcType=TIMESTAMP},
+      aw_completedate = #{aw_completedate,jdbcType=TIMESTAMP},
+      aw_status = #{aw_status,jdbcType=TINYINT}
+    where aw_id = #{aw_id,jdbcType=BIGINT}
+  </update>
+</mapper>

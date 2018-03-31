@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Acc_AdditionalMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Acc_Additional" >
+    <id column="aa_id" property="aa_id" jdbcType="BIGINT" />
+    <result column="aa_no" property="aa_no" jdbcType="VARCHAR" />
+    <result column="aa_type" property="aa_type" jdbcType="SMALLINT" />
+    <result column="aa_userid" property="aa_userid" jdbcType="BIGINT" />
+    <result column="aa_useraccount" property="aa_useraccount" jdbcType="VARCHAR" />
+    <result column="aa_username" property="aa_username" jdbcType="VARCHAR" />
+    <result column="aa_account" property="aa_account" jdbcType="DECIMAL" />
+    <result column="aa_integral" property="aa_integral" jdbcType="DECIMAL" />
+    <result column="aa_createno" property="aa_createno" jdbcType="VARCHAR" />
+    <result column="aa_createname" property="aa_createname" jdbcType="VARCHAR" />
+    <result column="aa_createdate" property="aa_createdate" jdbcType="TIMESTAMP" />
+    <result column="aa_confirmno" property="aa_confirmno" jdbcType="VARCHAR" />
+    <result column="aa_confirmname" property="aa_confirmname" jdbcType="VARCHAR" />
+    <result column="aa_confirmdate" property="aa_confirmdate" jdbcType="TIMESTAMP" />
+    <result column="aa_status" property="aa_status" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    aa_id, aa_no, aa_type, aa_userid, aa_useraccount, aa_username, aa_account, aa_integral,
+    aa_createno, aa_createname, aa_createdate, aa_confirmno, aa_confirmname, aa_confirmdate,
+    aa_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Acc_AdditionalExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Acc_Additional
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Acc_Additional
+    where aa_id = #{aa_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Acc_Additional
+    where aa_id = #{aa_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Acc_AdditionalExample" >
+    delete from Acc_Additional
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Acc_Additional" >
+    insert into Acc_Additional (aa_id, aa_no, aa_type,
+    aa_userid, aa_useraccount, aa_username,
+    aa_account, aa_integral, aa_createno,
+    aa_createname, aa_createdate, aa_confirmno,
+    aa_confirmname, aa_confirmdate, aa_status
+    )
+    values (#{aa_id,jdbcType=BIGINT}, #{aa_no,jdbcType=VARCHAR}, #{aa_type,jdbcType=SMALLINT},
+    #{aa_userid,jdbcType=BIGINT}, #{aa_useraccount,jdbcType=VARCHAR}, #{aa_username,jdbcType=VARCHAR},
+    #{aa_account,jdbcType=DECIMAL}, #{aa_integral,jdbcType=DECIMAL}, #{aa_createno,jdbcType=VARCHAR},
+    #{aa_createname,jdbcType=VARCHAR}, #{aa_createdate,jdbcType=TIMESTAMP}, #{aa_confirmno,jdbcType=VARCHAR},
+    #{aa_confirmname,jdbcType=VARCHAR}, #{aa_confirmdate,jdbcType=TIMESTAMP}, #{aa_status,jdbcType=SMALLINT}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Acc_Additional" >
+    insert into Acc_Additional
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aa_id != null" >
+        aa_id,
+      </if>
+      <if test="aa_no != null" >
+        aa_no,
+      </if>
+      <if test="aa_type != null" >
+        aa_type,
+      </if>
+      <if test="aa_userid != null" >
+        aa_userid,
+      </if>
+      <if test="aa_useraccount != null" >
+        aa_useraccount,
+      </if>
+      <if test="aa_username != null" >
+        aa_username,
+      </if>
+      <if test="aa_account != null" >
+        aa_account,
+      </if>
+      <if test="aa_integral != null" >
+        aa_integral,
+      </if>
+      <if test="aa_createno != null" >
+        aa_createno,
+      </if>
+      <if test="aa_createname != null" >
+        aa_createname,
+      </if>
+      <if test="aa_createdate != null" >
+        aa_createdate,
+      </if>
+      <if test="aa_confirmno != null" >
+        aa_confirmno,
+      </if>
+      <if test="aa_confirmname != null" >
+        aa_confirmname,
+      </if>
+      <if test="aa_confirmdate != null" >
+        aa_confirmdate,
+      </if>
+      <if test="aa_status != null" >
+        aa_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aa_id != null" >
+        #{aa_id,jdbcType=BIGINT},
+      </if>
+      <if test="aa_no != null" >
+        #{aa_no,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_type != null" >
+        #{aa_type,jdbcType=SMALLINT},
+      </if>
+      <if test="aa_userid != null" >
+        #{aa_userid,jdbcType=BIGINT},
+      </if>
+      <if test="aa_useraccount != null" >
+        #{aa_useraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_username != null" >
+        #{aa_username,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_account != null" >
+        #{aa_account,jdbcType=DECIMAL},
+      </if>
+      <if test="aa_integral != null" >
+        #{aa_integral,jdbcType=DECIMAL},
+      </if>
+      <if test="aa_createno != null" >
+        #{aa_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_createname != null" >
+        #{aa_createname,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_createdate != null" >
+        #{aa_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aa_confirmno != null" >
+        #{aa_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_confirmname != null" >
+        #{aa_confirmname,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_confirmdate != null" >
+        #{aa_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aa_status != null" >
+        #{aa_status,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Acc_AdditionalExample" resultType="java.lang.Integer" >
+    select count(*) from Acc_Additional
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Acc_Additional
+    <set >
+      <if test="record.aa_id != null" >
+        aa_id = #{record.aa_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.aa_no != null" >
+        aa_no = #{record.aa_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aa_type != null" >
+        aa_type = #{record.aa_type,jdbcType=SMALLINT},
+      </if>
+      <if test="record.aa_userid != null" >
+        aa_userid = #{record.aa_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.aa_useraccount != null" >
+        aa_useraccount = #{record.aa_useraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aa_username != null" >
+        aa_username = #{record.aa_username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aa_account != null" >
+        aa_account = #{record.aa_account,jdbcType=DECIMAL},
+      </if>
+      <if test="record.aa_integral != null" >
+        aa_integral = #{record.aa_integral,jdbcType=DECIMAL},
+      </if>
+      <if test="record.aa_createno != null" >
+        aa_createno = #{record.aa_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aa_createname != null" >
+        aa_createname = #{record.aa_createname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aa_createdate != null" >
+        aa_createdate = #{record.aa_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.aa_confirmno != null" >
+        aa_confirmno = #{record.aa_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aa_confirmname != null" >
+        aa_confirmname = #{record.aa_confirmname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aa_confirmdate != null" >
+        aa_confirmdate = #{record.aa_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.aa_status != null" >
+        aa_status = #{record.aa_status,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Acc_Additional
+    set aa_id = #{record.aa_id,jdbcType=BIGINT},
+    aa_no = #{record.aa_no,jdbcType=VARCHAR},
+    aa_type = #{record.aa_type,jdbcType=SMALLINT},
+    aa_userid = #{record.aa_userid,jdbcType=BIGINT},
+    aa_useraccount = #{record.aa_useraccount,jdbcType=VARCHAR},
+    aa_username = #{record.aa_username,jdbcType=VARCHAR},
+    aa_account = #{record.aa_account,jdbcType=DECIMAL},
+    aa_integral = #{record.aa_integral,jdbcType=DECIMAL},
+    aa_createno = #{record.aa_createno,jdbcType=VARCHAR},
+    aa_createname = #{record.aa_createname,jdbcType=VARCHAR},
+    aa_createdate = #{record.aa_createdate,jdbcType=TIMESTAMP},
+    aa_confirmno = #{record.aa_confirmno,jdbcType=VARCHAR},
+    aa_confirmname = #{record.aa_confirmname,jdbcType=VARCHAR},
+    aa_confirmdate = #{record.aa_confirmdate,jdbcType=TIMESTAMP},
+    aa_status = #{record.aa_status,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Acc_Additional" >
+    update Acc_Additional
+    <set >
+      <if test="aa_no != null" >
+        aa_no = #{aa_no,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_type != null" >
+        aa_type = #{aa_type,jdbcType=SMALLINT},
+      </if>
+      <if test="aa_userid != null" >
+        aa_userid = #{aa_userid,jdbcType=BIGINT},
+      </if>
+      <if test="aa_useraccount != null" >
+        aa_useraccount = #{aa_useraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_username != null" >
+        aa_username = #{aa_username,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_account != null" >
+        aa_account = #{aa_account,jdbcType=DECIMAL},
+      </if>
+      <if test="aa_integral != null" >
+        aa_integral = #{aa_integral,jdbcType=DECIMAL},
+      </if>
+      <if test="aa_createno != null" >
+        aa_createno = #{aa_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_createname != null" >
+        aa_createname = #{aa_createname,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_createdate != null" >
+        aa_createdate = #{aa_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aa_confirmno != null" >
+        aa_confirmno = #{aa_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_confirmname != null" >
+        aa_confirmname = #{aa_confirmname,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_confirmdate != null" >
+        aa_confirmdate = #{aa_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aa_status != null" >
+        aa_status = #{aa_status,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where aa_id = #{aa_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Acc_Additional" >
+    update Acc_Additional
+    set aa_no = #{aa_no,jdbcType=VARCHAR},
+    aa_type = #{aa_type,jdbcType=SMALLINT},
+    aa_userid = #{aa_userid,jdbcType=BIGINT},
+    aa_useraccount = #{aa_useraccount,jdbcType=VARCHAR},
+    aa_username = #{aa_username,jdbcType=VARCHAR},
+    aa_account = #{aa_account,jdbcType=DECIMAL},
+    aa_integral = #{aa_integral,jdbcType=DECIMAL},
+    aa_createno = #{aa_createno,jdbcType=VARCHAR},
+    aa_createname = #{aa_createname,jdbcType=VARCHAR},
+    aa_createdate = #{aa_createdate,jdbcType=TIMESTAMP},
+    aa_confirmno = #{aa_confirmno,jdbcType=VARCHAR},
+    aa_confirmname = #{aa_confirmname,jdbcType=VARCHAR},
+    aa_confirmdate = #{aa_confirmdate,jdbcType=TIMESTAMP},
+    aa_status = #{aa_status,jdbcType=SMALLINT}
+    where aa_id = #{aa_id,jdbcType=BIGINT}
+  </update>
+
+
+
+  <!--自定义-->
+
+  <!-- <select id="getAcc_AdditionalList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+     select *  from  Acc_Additional where aa_type=1
+     ORDER BY aa_id DESC
+     limit #{pagestart},#{pagesize}
+   </select>
+
+   &lt;!&ndash;得到总数&ndash;&gt;
+   <select id="getCountAcc_Additional" resultType="java.lang.Integer" parameterType="java.util.Map">
+     select count(aa_id) from Acc_Additional WHERE aa_type=1
+   </select>
+ -->
+
+
+
+  <!--自定义-->
+  <sql id="wherelist" >
+    <if test="aa_createno != null and aa_createno != ''" >
+      and aa_createno like concat(concat('%',#{aa_createno}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="aa_useraccount != null and aa_useraccount != ''" >
+      and aa_useraccount like concat(concat('%',#{aa_useraccount}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="aa_username != null and aa_username != ''" >
+      and aa_username like concat(concat('%',#{aa_username}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="aa_status != null" >
+      and aa_status=#{aa_status}
+    </if>
+    <if test="aa_type != null" >
+      and aa_type=#{aa_type}
+    </if>
+    <if test="aa_createdate1 != null and aa_createdate2 !=null" >
+      and aa_createdate  between #{aa_createdate1} and #{aa_createdate2}
+    </if>
+    <if test="aa_confirmdate1 != null and aa_confirmdate2 !=null" >
+      and aa_confirmdate  between #{aa_confirmdate1} and #{aa_confirmdate2}
+    </if>
+  </sql>
+  <!-- 分页 -->
+  <select id="getAcc_AdditionalList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from Acc_Additional  where 1=1
+    <include refid="wherelist" />
+    ORDER BY aa_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountAcc_Additional" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(*) from Acc_Additional where 1=1
+    <include refid="wherelist" />
+  </select>
+
+  <select id="getAcc_AdditionalDesignDetail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <if test="type==1" >
+      aa_id ,aa_account,aa_integral,aa_status,aa_useraccount,aa_userid,aa_no
+    </if>
+    from Acc_Additional  where aa_id = #{aa_id,jdbcType=BIGINT}
+  </select>
+
+
+
+</mapper>

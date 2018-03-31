@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.AA_CommMapper" >
+
+  <!-- shirt登录  begin-->
+  <select id="LoginUser" resultType="String" parameterType="String" >
+    select userno from SysV_Login
+    where 1=1
+    and  userno=#{userno,jdbcType=VARCHAR}
+    and  password=#{password,jdbcType=VARCHAR}
+    limit 1
+  </select>
+
+  <select id="getPermission" parameterType="String" resultType="String">
+    select GROUP_CONCAT(rp.rp_menuno) from Sys_Manager sm,Sys_MenuRolePower rp
+    where sm_roleid=rp.rp_roleid and sm.sm_no=#{sm_no}
+  </select>
+
+  <select id="getRole" parameterType="String" resultType="String">
+    select GROUP_CONCAT(r.rl_name) from Sys_Manager sm,Sys_MenuRole r
+    where sm_roleid=r.rl_id and sm.sm_no=#{sm_no}
+  </select>
+  <!-- shirt登录   end-->
+
+  <!-- 钱包明细-->
+
+  <select id="getAcc_Wallet_Memo_Amt_list" parameterType="java.util.Map" resultType="java.util.Map">
+    select * from Acc_MemoAmt
+    where createid=#{userid,jdbcType=BIGINT}
+    ORDER BY orderdate DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getAcc_Wallet_Memo_Amt_count" parameterType="java.util.Map" resultType="java.lang.Integer"  >
+    select count(*) from Acc_MemoAmt where createid=#{userid,jdbcType=BIGINT}
+  </select>
+
+  <!-- 魔币明细-->
+
+  <select id="getAcc_Wallet_Memo_Coin_list" parameterType="java.util.Map" resultType="java.util.Map">
+    select * from Acc_MemoCoin
+    where createid=#{userid,jdbcType=BIGINT}
+    ORDER BY orderdate DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getAcc_Wallet_Memo_Coin_count" parameterType="java.util.Map" resultType="java.lang.Integer"  >
+    select count(*) from Acc_MemoCoin where createid=#{userid,jdbcType=BIGINT}
+  </select>
+
+
+  <!-- 设计师 我的访客-->
+
+  <select id="getDesOrderGuestList" parameterType="java.util.Map" resultType="java.util.Map">
+    select * from SalesV_Order_Guest
+    where of_custid=#{userid,jdbcType=BIGINT}
+    ORDER BY of_dateupdate DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getDesOrderGuestCount" parameterType="java.util.Map" resultType="java.lang.Integer"  >
+    select count(*) from SalesV_Order_Guest where of_custid=#{userid,jdbcType=BIGINT}
+  </select>
+
+  <!-- 设计师 拜贴消息-->
+
+  <select id="getDesMsgOrderList" parameterType="java.util.Map" resultType="java.util.Map">
+    select * from MsgV_Order_List
+    where mo_desigid=#{userid,jdbcType=BIGINT}
+    ORDER BY mo_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getDesMsgOrderCount" parameterType="java.util.Map" resultType="java.lang.Integer"  >
+    select count(*) from MsgV_Order_List where mo_desigid=#{userid,jdbcType=BIGINT}
+  </select>
+
+
+  <!-- 获取产品标题-->
+  <select id="getPmArchivesTitle" parameterType="Long" resultType="String">
+    select pa_title from Pm_Archives
+    where pa_id=#{pmid}
+  </select>
+
+
+  <!-- 订单消息列表-->
+  <select id="getSales_Order_Msg_list" parameterType="java.util.Map" resultType="java.util.Map">
+    select * from SalesV_Order_Msg
+    where of_createid=#{userid,jdbcType=BIGINT}
+    order by of_dateupdate DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getSales_Order_Msg_count" parameterType="java.util.Map" resultType="java.lang.Integer" >
+    select count(*) from SalesV_Order_Msg where of_createid=#{userid,jdbcType=BIGINT}
+  </select>
+
+
+
+
+  <!-- 业务员状态列表查询  begin-->
+  <sql id="orderstatuslist" >
+    <!-- 判断业务员查询 -->
+    <if test="type==1 or type==2 or type==3 or type==4 or type==5 or type==6" >
+      and of_createid=#{userid,jdbcType=BIGINT}
+    </if>
+
+    <if test="type==1" > <!-- /*申述* -->
+      and ifnull(of_appealstatus,0)>0
+      and ifnull(of_flagfinish,0)=1
+      and ifnull(of_flagsuccess,0)=1
+      and DATE_ADD(of_datemeet,INTERVAL 7 DAY)>=NOW()
+    </if>
+    <if test="type==2" > <!-- 待接贴 -->
+     and Of_status=1
+     and ifnull(Of_flagfinish,0)=0
+   </if>
+   <if test="type==3" ><!-- 待拜访 -->
+     <!--and Appealstatus=0-->
+      and Of_status=2
+      and ifnull(Of_flagfinish,0)=0
+    </if>
+    <if test="type==4" ><!-- 待评价 -->
+      and ifnull(of_flagappraisesale,0)=0
+      and ifnull(Of_flagfinish,0)=1
+      and ifnull(of_flagsuccess,0)=1
+     </if>
+     <if test="type==5" ><!-- 已完成 -->
+      and ifnull(of_flagappraisesale,0)=1
+      and ifnull(Of_flagfinish,0)=1
+      and ifnull(of_appealstatus,0)!=2
+    </if>
+
+
+    <!-- 判断设计师查询 -->
+    <if test="type==11 or type==12 or type==13 or type==14 or type==15 or type==16" >
+      and of_custid=#{userid,jdbcType=BIGINT}
+    </if>
+
+    <if test="type==11" > <!-- /*设计师待接贴* -->
+      and Of_status=1
+      and ifnull(Of_flagfinish,0)=0
+    </if>
+    <if test="type==12" > <!-- 设计师待确认 -->
+      and Of_status=2
+      and ifnull(Of_adjdateread,0)=0
+      and ifnull(Of_flagfinish,0)=0
+    </if>
+    <if test="type==13" ><!-- 设计师待接见 -->
+      and Of_status=2
+      and ifnull(Of_adjdateread,0)=1
+      and ifnull(Of_flagfinish,0)=0
+    </if>
+    <if test="type==14" ><!-- 设计师待评价 -->
+      and ifnull(of_flagappraisedesi,0)=0
+      and ifnull(Of_flagfinish,0)=1
+      and ifnull(of_flagsuccess,0)=1
+    </if>
+    <if test="type==15" ><!-- 已完成 -->
+      and ifnull(of_flagappraisedesi,0)=1
+      and ifnull(Of_flagfinish,0)=1
+    </if>
+
+
+  </sql>
+
+  <select id="getOrderstatuslist" resultType="java.util.Map" parameterType="java.util.Map" >
+    select sm.* from SalesV_Order_List sm  where 1=1
+    <include refid="orderstatuslist" />
+    ORDER BY of_dateorder DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getOrderstatusCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(*) from SalesV_Order_List where 1=1
+    <include refid="orderstatuslist" />
+  </select>
+  <!-- 业务员状态列表查询  end-->
+
+  <!-- 查公司坐标相同的小组 leoli 100米内-->
+
+  <select id="getUserPosTeam"   resultType="java.util.Map" statementType="CALLABLE">
+    <![CDATA[
+    {call User_PosTeam(#{lng,mode=IN,jdbcType=VARCHAR},#{lat,mode=IN,jdbcType=VARCHAR})}
+    ]]>
+  </select>
+
+
+  <!-- 获取充值赠送 leoli -->
+  <select id="getFn_Award_Recharge"   resultType="java.util.Map" statementType="CALLABLE">
+    <![CDATA[
+    {call Fn_Award_Recharge(#{type,mode=IN,jdbcType=VARCHAR},#{baid,mode=IN,jdbcType=BIGINT}
+    ,#{lvalue,mode=IN,jdbcType=INTEGER},#{isdefault,mode=IN,jdbcType=INTEGER})}
+    ]]>
+  </select>
+
+  <!-- 获取查赠送资料多个 leoli -->
+  <select id="getFn_Award_Share"   resultType="java.util.Map" statementType="CALLABLE">
+    <![CDATA[
+    {call Fn_Award_Share(#{task,mode=IN,jdbcType=VARCHAR},#{userid,mode=IN,jdbcType=BIGINT},#{yqm,mode=IN,jdbcType=VARCHAR})}
+    ]]>
+  </select>
+
+  <!-- 获取评价赠送资料 leoli -->
+  <select id="getFn_Award_Evaluate"   resultType="java.util.Map" statementType="CALLABLE">
+    <![CDATA[
+    {call Fn_Award_Evaluate(#{userid,mode=IN,jdbcType=BIGINT})}
+    ]]>
+  </select>
+
+  <!-- 统计设计师未读拜贴数量  -->
+  <select id="getDesMsgOrder" resultType="java.lang.Integer" parameterType="java.lang.Long" >
+    select count(*) as tc from Msg_Order
+    where IFNULL(mo_flagread,0)=0 and mo_desigid=#{userid,jdbcType=BIGINT}
+  </select>
+
+
+  <!-- 统计设计师未读审核数量  -->
+  <select id="getDesMsgAudit" resultType="java.lang.Integer" parameterType="java.lang.Long" >
+    select count(*) as tc from MsgV_Audit_List
+    where ifnull(sp_flag_auditread,0)=0
+    and sp_createid=#{userid,jdbcType=BIGINT}
+  </select>
+
+  <!-- 统计设计师未读投诉数量  -->
+  <select id="getDesMsgAppeal" resultType="java.lang.Integer" parameterType="java.lang.Long" >
+    select count(*) as tc from Sales_Appeal
+    where ifnull(sp_status,0) = 2 and ifnull(sp_flagdesread,0)=0
+    and sp_designerid=#{userid,jdbcType=BIGINT}
+  </select>
+
+
+  <!-- 获取个人相关企业的余额帐户 leoli -->
+  <select id="getAccCompanyAccount"   resultType="java.util.Map" parameterType="java.lang.Long">
+    select w.wl_userid,wl_account,wl_integral,wl_deposit
+    from Acc_Wallet w,Base_Company_User uc,Sys_User ur
+    where uc.bcu_userid=w.wl_userid and w.wl_userid=uc.bcu_userid and ifnull(ur.ur_stopflag,0)=0
+    and uc.bcu_type=1 and uc.bcu_listuserid=#{userid,jdbcType=BIGINT}
+    limit 1
+  </select>
+
+  <!-- 获取公司列表 leoli -->
+  <select id="getCompanyNameList"   resultType="java.util.Map" parameterType="java.lang.String">
+  select ue_companyname as companyname FROM Sys_User_Ext where
+  ue_companyname like concat(concat('%',#{keyword}),'%')
+  group by ue_companyname order by ue_companyname  limit 10
+  </select>
+
+  <!-- 查询日期转换 leoli -->
+  <select id="getDateToShortStr"   resultType="java.lang.String" parameterType="java.util.Date">
+    select datetostr(#{dt,mode=IN,jdbcType=TIMESTAMP}) as dt
+  </select>
+
+
+    <select id="getPmArchivesfilename" parameterType="Long" resultType="String">
+        select pa_filename from Pm_Archives
+        where pa_id=#{pmid}
+    </select>
+
+
+  <!-- 更新设计师未读信息，改为已读 -->
+  <update id="updatemsg_Order"  parameterType="Long">
+    update Msg_Order set mo_flagread=0 where mo_desigid=#{userid,jdbcType=BIGINT};
+  </update>
+  <!-- 更新设计师未读信息，改为已读 -->
+  <update id="updatemsg_Project"  parameterType="Long">
+    update Desig_Project set sp_flag_auditread=0 where sp_createid=#{userid,jdbcType=BIGINT};
+  </update>
+  <!-- 更新设计师未读信息，改为已读 -->
+  <update id="updatemsg_Demand"  parameterType="Long">
+    update Desig_Demand set dd_flag_auditread=0 where dd_createid=#{userid,jdbcType=BIGINT};
+  </update>
+  <!-- 更新设计师未读信息，改为已读 -->
+  <update id="updatemsg_Appeal"  parameterType="Long">
+    update Sales_Appeal set sp_flagdesread=0  where ifnull(sp_status,0)= 2  and sp_designerid=#{userid,jdbcType=BIGINT};
+  </update>
+
+  <!-- 更新对话信息图片 -->
+  <update id="update_Message_image_saler" >
+    update Sales_Message set sm_salerimage=#{filename,jdbcType=VARCHAR} where sm_salerid=#{userid,jdbcType=BIGINT};
+  </update>
+  <update id="update_Message_image_desig" >
+    update Sales_Message set sm_designerimage=#{filename,jdbcType=VARCHAR} where sm_designerid=#{userid,jdbcType=BIGINT};
+  </update>
+
+  <!-- 更新商城订单 leoli -->
+  <update id="savenideshop_order_status" >
+    update nideshop_order set pay_status=2,pay_time=curtime()
+    ,order_status=IF(ifnull(order_status,0)=0,201,order_status)
+     where order_sn=#{ordersn,jdbcType=VARCHAR}
+  </update>
+
+  <!-- 更新商城订单 leoli -->
+  <update id="savenideshop_order_kcqty" >
+		update nideshop_product p,nideshop_order_goods g,nideshop_order m set p.goods_number=p.goods_number-ifnull(g.number,0)
+		where p.id=g.product_id and m.id=g.order_id and  order_sn=#{ordersn,jdbcType=VARCHAR}
+  </update>
+
+
+</mapper>

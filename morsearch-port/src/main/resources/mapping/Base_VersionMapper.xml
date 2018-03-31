@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Base_VersionMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Base_Version" >
+    <id column="av_id" property="av_id" jdbcType="BIGINT" />
+    <result column="av_type" property="av_type" jdbcType="TINYINT" />
+    <result column="av_versioncode" property="av_versioncode" jdbcType="INTEGER" />
+    <result column="av_versionname" property="av_versionname" jdbcType="VARCHAR" />
+    <result column="av_action" property="av_action" jdbcType="TINYINT" />
+    <result column="av_baselinecode" property="av_baselinecode" jdbcType="INTEGER" />
+    <result column="av_down_url" property="av_down_url" jdbcType="VARCHAR" />
+    <result column="av_down_file" property="av_down_file" jdbcType="VARCHAR" />
+    <result column="av_filesize" property="av_filesize" jdbcType="INTEGER" />
+    <result column="av_info" property="av_info" jdbcType="VARCHAR" />
+    <result column="av_createid" property="av_createid" jdbcType="INTEGER" />
+    <result column="av_createno" property="av_createno" jdbcType="VARCHAR" />
+    <result column="av_createdate" property="av_createdate" jdbcType="TIMESTAMP" />
+    <result column="av_stopflag" property="av_stopflag" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    av_id, av_type, av_versioncode, av_versionname, av_action, av_baselinecode, av_down_url, 
+    av_down_file, av_filesize, av_info, av_createid, av_createno, av_createdate, av_stopflag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Base_VersionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Base_Version
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Base_Version
+    where av_id = #{av_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Base_Version
+    where av_id = #{av_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Base_VersionExample" >
+    delete from Base_Version
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Base_Version" >
+    insert into Base_Version (av_id, av_type, av_versioncode, 
+      av_versionname, av_action, av_baselinecode, 
+      av_down_url, av_down_file, av_filesize, 
+      av_info, av_createid, av_createno, 
+      av_createdate, av_stopflag)
+    values (#{av_id,jdbcType=BIGINT}, #{av_type,jdbcType=TINYINT}, #{av_versioncode,jdbcType=INTEGER}, 
+      #{av_versionname,jdbcType=VARCHAR}, #{av_action,jdbcType=TINYINT}, #{av_baselinecode,jdbcType=INTEGER}, 
+      #{av_down_url,jdbcType=VARCHAR}, #{av_down_file,jdbcType=VARCHAR}, #{av_filesize,jdbcType=INTEGER}, 
+      #{av_info,jdbcType=VARCHAR}, #{av_createid,jdbcType=INTEGER}, #{av_createno,jdbcType=VARCHAR}, 
+      #{av_createdate,jdbcType=TIMESTAMP}, #{av_stopflag,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Base_Version" >
+    insert into Base_Version
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="av_id != null" >
+        av_id,
+      </if>
+      <if test="av_type != null" >
+        av_type,
+      </if>
+      <if test="av_versioncode != null" >
+        av_versioncode,
+      </if>
+      <if test="av_versionname != null" >
+        av_versionname,
+      </if>
+      <if test="av_action != null" >
+        av_action,
+      </if>
+      <if test="av_baselinecode != null" >
+        av_baselinecode,
+      </if>
+      <if test="av_down_url != null" >
+        av_down_url,
+      </if>
+      <if test="av_down_file != null" >
+        av_down_file,
+      </if>
+      <if test="av_filesize != null" >
+        av_filesize,
+      </if>
+      <if test="av_info != null" >
+        av_info,
+      </if>
+      <if test="av_createid != null" >
+        av_createid,
+      </if>
+      <if test="av_createno != null" >
+        av_createno,
+      </if>
+      <if test="av_createdate != null" >
+        av_createdate,
+      </if>
+      <if test="av_stopflag != null" >
+        av_stopflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="av_id != null" >
+        #{av_id,jdbcType=BIGINT},
+      </if>
+      <if test="av_type != null" >
+        #{av_type,jdbcType=TINYINT},
+      </if>
+      <if test="av_versioncode != null" >
+        #{av_versioncode,jdbcType=INTEGER},
+      </if>
+      <if test="av_versionname != null" >
+        #{av_versionname,jdbcType=VARCHAR},
+      </if>
+      <if test="av_action != null" >
+        #{av_action,jdbcType=TINYINT},
+      </if>
+      <if test="av_baselinecode != null" >
+        #{av_baselinecode,jdbcType=INTEGER},
+      </if>
+      <if test="av_down_url != null" >
+        #{av_down_url,jdbcType=VARCHAR},
+      </if>
+      <if test="av_down_file != null" >
+        #{av_down_file,jdbcType=VARCHAR},
+      </if>
+      <if test="av_filesize != null" >
+        #{av_filesize,jdbcType=INTEGER},
+      </if>
+      <if test="av_info != null" >
+        #{av_info,jdbcType=VARCHAR},
+      </if>
+      <if test="av_createid != null" >
+        #{av_createid,jdbcType=INTEGER},
+      </if>
+      <if test="av_createno != null" >
+        #{av_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="av_createdate != null" >
+        #{av_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="av_stopflag != null" >
+        #{av_stopflag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Base_VersionExample" resultType="java.lang.Integer" >
+    select count(*) from Base_Version
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Base_Version
+    <set >
+      <if test="record.av_id != null" >
+        av_id = #{record.av_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.av_type != null" >
+        av_type = #{record.av_type,jdbcType=TINYINT},
+      </if>
+      <if test="record.av_versioncode != null" >
+        av_versioncode = #{record.av_versioncode,jdbcType=INTEGER},
+      </if>
+      <if test="record.av_versionname != null" >
+        av_versionname = #{record.av_versionname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.av_action != null" >
+        av_action = #{record.av_action,jdbcType=TINYINT},
+      </if>
+      <if test="record.av_baselinecode != null" >
+        av_baselinecode = #{record.av_baselinecode,jdbcType=INTEGER},
+      </if>
+      <if test="record.av_down_url != null" >
+        av_down_url = #{record.av_down_url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.av_down_file != null" >
+        av_down_file = #{record.av_down_file,jdbcType=VARCHAR},
+      </if>
+      <if test="record.av_filesize != null" >
+        av_filesize = #{record.av_filesize,jdbcType=INTEGER},
+      </if>
+      <if test="record.av_info != null" >
+        av_info = #{record.av_info,jdbcType=VARCHAR},
+      </if>
+      <if test="record.av_createid != null" >
+        av_createid = #{record.av_createid,jdbcType=INTEGER},
+      </if>
+      <if test="record.av_createno != null" >
+        av_createno = #{record.av_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.av_createdate != null" >
+        av_createdate = #{record.av_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.av_stopflag != null" >
+        av_stopflag = #{record.av_stopflag,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Base_Version
+    set av_id = #{record.av_id,jdbcType=BIGINT},
+      av_type = #{record.av_type,jdbcType=TINYINT},
+      av_versioncode = #{record.av_versioncode,jdbcType=INTEGER},
+      av_versionname = #{record.av_versionname,jdbcType=VARCHAR},
+      av_action = #{record.av_action,jdbcType=TINYINT},
+      av_baselinecode = #{record.av_baselinecode,jdbcType=INTEGER},
+      av_down_url = #{record.av_down_url,jdbcType=VARCHAR},
+      av_down_file = #{record.av_down_file,jdbcType=VARCHAR},
+      av_filesize = #{record.av_filesize,jdbcType=INTEGER},
+      av_info = #{record.av_info,jdbcType=VARCHAR},
+      av_createid = #{record.av_createid,jdbcType=INTEGER},
+      av_createno = #{record.av_createno,jdbcType=VARCHAR},
+      av_createdate = #{record.av_createdate,jdbcType=TIMESTAMP},
+      av_stopflag = #{record.av_stopflag,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Base_Version" >
+    update Base_Version
+    <set >
+      <if test="av_type != null" >
+        av_type = #{av_type,jdbcType=TINYINT},
+      </if>
+      <if test="av_versioncode != null" >
+        av_versioncode = #{av_versioncode,jdbcType=INTEGER},
+      </if>
+      <if test="av_versionname != null" >
+        av_versionname = #{av_versionname,jdbcType=VARCHAR},
+      </if>
+      <if test="av_action != null" >
+        av_action = #{av_action,jdbcType=TINYINT},
+      </if>
+      <if test="av_baselinecode != null" >
+        av_baselinecode = #{av_baselinecode,jdbcType=INTEGER},
+      </if>
+      <if test="av_down_url != null" >
+        av_down_url = #{av_down_url,jdbcType=VARCHAR},
+      </if>
+      <if test="av_down_file != null" >
+        av_down_file = #{av_down_file,jdbcType=VARCHAR},
+      </if>
+      <if test="av_filesize != null" >
+        av_filesize = #{av_filesize,jdbcType=INTEGER},
+      </if>
+      <if test="av_info != null" >
+        av_info = #{av_info,jdbcType=VARCHAR},
+      </if>
+      <if test="av_createid != null" >
+        av_createid = #{av_createid,jdbcType=INTEGER},
+      </if>
+      <if test="av_createno != null" >
+        av_createno = #{av_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="av_createdate != null" >
+        av_createdate = #{av_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="av_stopflag != null" >
+        av_stopflag = #{av_stopflag,jdbcType=BIT},
+      </if>
+    </set>
+    where av_id = #{av_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Base_Version" >
+    update Base_Version
+    set av_type = #{av_type,jdbcType=TINYINT},
+      av_versioncode = #{av_versioncode,jdbcType=INTEGER},
+      av_versionname = #{av_versionname,jdbcType=VARCHAR},
+      av_action = #{av_action,jdbcType=TINYINT},
+      av_baselinecode = #{av_baselinecode,jdbcType=INTEGER},
+      av_down_url = #{av_down_url,jdbcType=VARCHAR},
+      av_down_file = #{av_down_file,jdbcType=VARCHAR},
+      av_filesize = #{av_filesize,jdbcType=INTEGER},
+      av_info = #{av_info,jdbcType=VARCHAR},
+      av_createid = #{av_createid,jdbcType=INTEGER},
+      av_createno = #{av_createno,jdbcType=VARCHAR},
+      av_createdate = #{av_createdate,jdbcType=TIMESTAMP},
+      av_stopflag = #{av_stopflag,jdbcType=BIT}
+    where av_id = #{av_id,jdbcType=BIGINT}
+  </update>
+
+  <sql id="wherelist" >
+    <if test="av_type != null and av_type != ''" >
+      and av_type like concat(concat('%',#{av_type}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="av_versioncode != null and av_versioncode != ''" >
+      and av_versioncode like concat(concat('%',#{av_versioncode}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="av_versionname != null and av_versionname != ''" >
+      and av_versionname like concat(concat('%',#{av_versionname}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="av_action != null and av_action != ''" >
+      and av_action like concat(concat('%',#{av_action}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="av_stopflag != null and av_stopflag != ''" >
+      and ifnull(av_stopflag,0) =#{av_stopflag}
+    </if>
+    /*关于建表日期的查询*/
+    <if test="av_createdate1 != null and av_createdate2 != null" >
+      and av_createdate  between #{av_createdate1} and #{av_createdate2}
+    </if>
+
+  </sql>
+  <!--分页查询begin-->
+  <select id="getVersionList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from Base_Version bv where 1=1
+    <include refid="wherelist" />
+    ORDER BY av_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+
+  <select id="getVersionListCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(av_id) from Base_Version where 1=1
+    <include refid="wherelist" />
+  </select>
+
+  <!--分页查询end-->
+
+
+  <select id="selectByPrimaryNo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from Base_Version
+    where av_versioncode = #{av_versioncode,jdbcType=BIGINT}
+  </select>
+
+  <select id="getversion" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select * from Base_Version  where
+    av_type = #{type,jdbcType=VARCHAR}
+    ORDER BY av_id DESC
+    limit 1
+  </select>
+
+</mapper>

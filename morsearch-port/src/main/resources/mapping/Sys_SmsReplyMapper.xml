@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sys_SmsReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sys_SmsReply" >
+    <id column="sr_id" property="sr_id" jdbcType="BIGINT" />
+    <result column="sr_phone" property="sr_phone" jdbcType="VARCHAR" />
+    <result column="sr_content" property="sr_content" jdbcType="VARCHAR" />
+    <result column="sr_sendtime" property="sr_sendtime" jdbcType="TIMESTAMP" />
+    <result column="sr_processtime" property="sr_processtime" jdbcType="TIMESTAMP" />
+    <result column="sr_remark" property="sr_remark" jdbcType="VARCHAR" />
+    <result column="sr_status" property="sr_status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sr_id, sr_phone, sr_content, sr_sendtime, sr_processtime, sr_remark, sr_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sys_SmsReplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sys_SmsReply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Sys_SmsReply
+    where sr_id = #{sr_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Sys_SmsReply
+    where sr_id = #{sr_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sys_SmsReplyExample" >
+    delete from Sys_SmsReply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sys_SmsReply" >
+    insert into Sys_SmsReply (sr_id, sr_phone, sr_content, 
+      sr_sendtime, sr_processtime, sr_remark, 
+      sr_status)
+    values (#{sr_id,jdbcType=BIGINT}, #{sr_phone,jdbcType=VARCHAR}, #{sr_content,jdbcType=VARCHAR}, 
+      #{sr_sendtime,jdbcType=TIMESTAMP}, #{sr_processtime,jdbcType=TIMESTAMP}, #{sr_remark,jdbcType=VARCHAR}, 
+      #{sr_status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sys_SmsReply" >
+    insert into Sys_SmsReply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sr_id != null" >
+        sr_id,
+      </if>
+      <if test="sr_phone != null" >
+        sr_phone,
+      </if>
+      <if test="sr_content != null" >
+        sr_content,
+      </if>
+      <if test="sr_sendtime != null" >
+        sr_sendtime,
+      </if>
+      <if test="sr_processtime != null" >
+        sr_processtime,
+      </if>
+      <if test="sr_remark != null" >
+        sr_remark,
+      </if>
+      <if test="sr_status != null" >
+        sr_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sr_id != null" >
+        #{sr_id,jdbcType=BIGINT},
+      </if>
+      <if test="sr_phone != null" >
+        #{sr_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sr_content != null" >
+        #{sr_content,jdbcType=VARCHAR},
+      </if>
+      <if test="sr_sendtime != null" >
+        #{sr_sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sr_processtime != null" >
+        #{sr_processtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sr_remark != null" >
+        #{sr_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sr_status != null" >
+        #{sr_status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sys_SmsReplyExample" resultType="java.lang.Integer" >
+    select count(*) from Sys_SmsReply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sys_SmsReply
+    <set >
+      <if test="record.sr_id != null" >
+        sr_id = #{record.sr_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sr_phone != null" >
+        sr_phone = #{record.sr_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sr_content != null" >
+        sr_content = #{record.sr_content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sr_sendtime != null" >
+        sr_sendtime = #{record.sr_sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sr_processtime != null" >
+        sr_processtime = #{record.sr_processtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sr_remark != null" >
+        sr_remark = #{record.sr_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sr_status != null" >
+        sr_status = #{record.sr_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sys_SmsReply
+    set sr_id = #{record.sr_id,jdbcType=BIGINT},
+      sr_phone = #{record.sr_phone,jdbcType=VARCHAR},
+      sr_content = #{record.sr_content,jdbcType=VARCHAR},
+      sr_sendtime = #{record.sr_sendtime,jdbcType=TIMESTAMP},
+      sr_processtime = #{record.sr_processtime,jdbcType=TIMESTAMP},
+      sr_remark = #{record.sr_remark,jdbcType=VARCHAR},
+      sr_status = #{record.sr_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sys_SmsReply" >
+    update Sys_SmsReply
+    <set >
+      <if test="sr_phone != null" >
+        sr_phone = #{sr_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sr_content != null" >
+        sr_content = #{sr_content,jdbcType=VARCHAR},
+      </if>
+      <if test="sr_sendtime != null" >
+        sr_sendtime = #{sr_sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sr_processtime != null" >
+        sr_processtime = #{sr_processtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sr_remark != null" >
+        sr_remark = #{sr_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sr_status != null" >
+        sr_status = #{sr_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where sr_id = #{sr_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sys_SmsReply" >
+    update Sys_SmsReply
+    set sr_phone = #{sr_phone,jdbcType=VARCHAR},
+      sr_content = #{sr_content,jdbcType=VARCHAR},
+      sr_sendtime = #{sr_sendtime,jdbcType=TIMESTAMP},
+      sr_processtime = #{sr_processtime,jdbcType=TIMESTAMP},
+      sr_remark = #{sr_remark,jdbcType=VARCHAR},
+      sr_status = #{sr_status,jdbcType=TINYINT}
+    where sr_id = #{sr_id,jdbcType=BIGINT}
+  </update>
+</mapper>

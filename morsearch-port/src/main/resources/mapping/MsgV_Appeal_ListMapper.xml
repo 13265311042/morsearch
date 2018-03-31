@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.MsgV_Appeal_ListMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.MsgV_Appeal_List" >
+    <result column="sp_id" property="sp_id" jdbcType="BIGINT" />
+    <result column="sp_orderno" property="sp_orderno" jdbcType="VARCHAR" />
+    <result column="sp_designerid" property="sp_designerid" jdbcType="BIGINT" />
+    <result column="sp_contentgroup" property="sp_contentgroup" jdbcType="VARCHAR" />
+    <result column="sp_contentvalue" property="sp_contentvalue" jdbcType="VARCHAR" />
+    <result column="sp_disposevalue" property="sp_disposevalue" jdbcType="VARCHAR" />
+    <result column="sp_disposemode" property="sp_disposemode" jdbcType="BIT" />
+    <result column="sp_flagdesread" property="sp_flagdesread" jdbcType="BIT" />
+    <result column="sp_flagsaleread" property="sp_flagsaleread" jdbcType="BIT" />
+    <result column="sp_createid" property="sp_createid" jdbcType="BIGINT" />
+    <result column="sp_createno" property="sp_createno" jdbcType="VARCHAR" />
+    <result column="sp_createdate" property="sp_createdate" jdbcType="TIMESTAMP" />
+    <result column="se_confirmid" property="se_confirmid" jdbcType="BIGINT" />
+    <result column="sp_confirmno" property="sp_confirmno" jdbcType="VARCHAR" />
+    <result column="sp_confirmdate" property="sp_confirmdate" jdbcType="TIMESTAMP" />
+    <result column="sp_disposeid" property="sp_disposeid" jdbcType="BIGINT" />
+    <result column="sp_disposeno" property="sp_disposeno" jdbcType="VARCHAR" />
+    <result column="sp_disposedate" property="sp_disposedate" jdbcType="TIMESTAMP" />
+    <result column="sp_status" property="sp_status" jdbcType="TINYINT" />
+    <result column="of_talkhead" property="of_talkhead" jdbcType="VARCHAR" />
+    <result column="of_talkcontent" property="of_talkcontent" jdbcType="VARCHAR" />
+    <result column="of_talksign" property="of_talksign" jdbcType="VARCHAR" />
+    <result column="of_coinname" property="of_coinname" jdbcType="VARCHAR" />
+    <result column="of_coinimage" property="of_coinimage" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sp_id, sp_orderno, sp_designerid, sp_contentgroup, sp_contentvalue, sp_disposevalue, 
+    sp_disposemode, sp_flagdesread, sp_flagsaleread, sp_createid, sp_createno, sp_createdate, 
+    se_confirmid, sp_confirmno, sp_confirmdate, sp_disposeid, sp_disposeno, sp_disposedate, 
+    sp_status, of_talkhead, of_talkcontent, of_talksign, of_coinname, of_coinimage
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.MsgV_Appeal_ListExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MsgV_Appeal_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.MsgV_Appeal_ListExample" >
+    delete from MsgV_Appeal_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.MsgV_Appeal_List" >
+    insert into MsgV_Appeal_List (sp_id, sp_orderno, sp_designerid, 
+      sp_contentgroup, sp_contentvalue, sp_disposevalue, 
+      sp_disposemode, sp_flagdesread, sp_flagsaleread, 
+      sp_createid, sp_createno, sp_createdate, 
+      se_confirmid, sp_confirmno, sp_confirmdate, 
+      sp_disposeid, sp_disposeno, sp_disposedate, 
+      sp_status, of_talkhead, of_talkcontent, 
+      of_talksign, of_coinname, of_coinimage
+      )
+    values (#{sp_id,jdbcType=BIGINT}, #{sp_orderno,jdbcType=VARCHAR}, #{sp_designerid,jdbcType=BIGINT}, 
+      #{sp_contentgroup,jdbcType=VARCHAR}, #{sp_contentvalue,jdbcType=VARCHAR}, #{sp_disposevalue,jdbcType=VARCHAR}, 
+      #{sp_disposemode,jdbcType=BIT}, #{sp_flagdesread,jdbcType=BIT}, #{sp_flagsaleread,jdbcType=BIT}, 
+      #{sp_createid,jdbcType=BIGINT}, #{sp_createno,jdbcType=VARCHAR}, #{sp_createdate,jdbcType=TIMESTAMP}, 
+      #{se_confirmid,jdbcType=BIGINT}, #{sp_confirmno,jdbcType=VARCHAR}, #{sp_confirmdate,jdbcType=TIMESTAMP}, 
+      #{sp_disposeid,jdbcType=BIGINT}, #{sp_disposeno,jdbcType=VARCHAR}, #{sp_disposedate,jdbcType=TIMESTAMP}, 
+      #{sp_status,jdbcType=TINYINT}, #{of_talkhead,jdbcType=VARCHAR}, #{of_talkcontent,jdbcType=VARCHAR}, 
+      #{of_talksign,jdbcType=VARCHAR}, #{of_coinname,jdbcType=VARCHAR}, #{of_coinimage,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.MsgV_Appeal_List" >
+    insert into MsgV_Appeal_List
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sp_id != null" >
+        sp_id,
+      </if>
+      <if test="sp_orderno != null" >
+        sp_orderno,
+      </if>
+      <if test="sp_designerid != null" >
+        sp_designerid,
+      </if>
+      <if test="sp_contentgroup != null" >
+        sp_contentgroup,
+      </if>
+      <if test="sp_contentvalue != null" >
+        sp_contentvalue,
+      </if>
+      <if test="sp_disposevalue != null" >
+        sp_disposevalue,
+      </if>
+      <if test="sp_disposemode != null" >
+        sp_disposemode,
+      </if>
+      <if test="sp_flagdesread != null" >
+        sp_flagdesread,
+      </if>
+      <if test="sp_flagsaleread != null" >
+        sp_flagsaleread,
+      </if>
+      <if test="sp_createid != null" >
+        sp_createid,
+      </if>
+      <if test="sp_createno != null" >
+        sp_createno,
+      </if>
+      <if test="sp_createdate != null" >
+        sp_createdate,
+      </if>
+      <if test="se_confirmid != null" >
+        se_confirmid,
+      </if>
+      <if test="sp_confirmno != null" >
+        sp_confirmno,
+      </if>
+      <if test="sp_confirmdate != null" >
+        sp_confirmdate,
+      </if>
+      <if test="sp_disposeid != null" >
+        sp_disposeid,
+      </if>
+      <if test="sp_disposeno != null" >
+        sp_disposeno,
+      </if>
+      <if test="sp_disposedate != null" >
+        sp_disposedate,
+      </if>
+      <if test="sp_status != null" >
+        sp_status,
+      </if>
+      <if test="of_talkhead != null" >
+        of_talkhead,
+      </if>
+      <if test="of_talkcontent != null" >
+        of_talkcontent,
+      </if>
+      <if test="of_talksign != null" >
+        of_talksign,
+      </if>
+      <if test="of_coinname != null" >
+        of_coinname,
+      </if>
+      <if test="of_coinimage != null" >
+        of_coinimage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sp_id != null" >
+        #{sp_id,jdbcType=BIGINT},
+      </if>
+      <if test="sp_orderno != null" >
+        #{sp_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_designerid != null" >
+        #{sp_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="sp_contentgroup != null" >
+        #{sp_contentgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_contentvalue != null" >
+        #{sp_contentvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_disposevalue != null" >
+        #{sp_disposevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_disposemode != null" >
+        #{sp_disposemode,jdbcType=BIT},
+      </if>
+      <if test="sp_flagdesread != null" >
+        #{sp_flagdesread,jdbcType=BIT},
+      </if>
+      <if test="sp_flagsaleread != null" >
+        #{sp_flagsaleread,jdbcType=BIT},
+      </if>
+      <if test="sp_createid != null" >
+        #{sp_createid,jdbcType=BIGINT},
+      </if>
+      <if test="sp_createno != null" >
+        #{sp_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_createdate != null" >
+        #{sp_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="se_confirmid != null" >
+        #{se_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="sp_confirmno != null" >
+        #{sp_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_confirmdate != null" >
+        #{sp_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sp_disposeid != null" >
+        #{sp_disposeid,jdbcType=BIGINT},
+      </if>
+      <if test="sp_disposeno != null" >
+        #{sp_disposeno,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_disposedate != null" >
+        #{sp_disposedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sp_status != null" >
+        #{sp_status,jdbcType=TINYINT},
+      </if>
+      <if test="of_talkhead != null" >
+        #{of_talkhead,jdbcType=VARCHAR},
+      </if>
+      <if test="of_talkcontent != null" >
+        #{of_talkcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="of_talksign != null" >
+        #{of_talksign,jdbcType=VARCHAR},
+      </if>
+      <if test="of_coinname != null" >
+        #{of_coinname,jdbcType=VARCHAR},
+      </if>
+      <if test="of_coinimage != null" >
+        #{of_coinimage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.MsgV_Appeal_ListExample" resultType="java.lang.Integer" >
+    select count(*) from MsgV_Appeal_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update MsgV_Appeal_List
+    <set >
+      <if test="record.sp_id != null" >
+        sp_id = #{record.sp_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sp_orderno != null" >
+        sp_orderno = #{record.sp_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_designerid != null" >
+        sp_designerid = #{record.sp_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sp_contentgroup != null" >
+        sp_contentgroup = #{record.sp_contentgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_contentvalue != null" >
+        sp_contentvalue = #{record.sp_contentvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_disposevalue != null" >
+        sp_disposevalue = #{record.sp_disposevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_disposemode != null" >
+        sp_disposemode = #{record.sp_disposemode,jdbcType=BIT},
+      </if>
+      <if test="record.sp_flagdesread != null" >
+        sp_flagdesread = #{record.sp_flagdesread,jdbcType=BIT},
+      </if>
+      <if test="record.sp_flagsaleread != null" >
+        sp_flagsaleread = #{record.sp_flagsaleread,jdbcType=BIT},
+      </if>
+      <if test="record.sp_createid != null" >
+        sp_createid = #{record.sp_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sp_createno != null" >
+        sp_createno = #{record.sp_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_createdate != null" >
+        sp_createdate = #{record.sp_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.se_confirmid != null" >
+        se_confirmid = #{record.se_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sp_confirmno != null" >
+        sp_confirmno = #{record.sp_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_confirmdate != null" >
+        sp_confirmdate = #{record.sp_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sp_disposeid != null" >
+        sp_disposeid = #{record.sp_disposeid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sp_disposeno != null" >
+        sp_disposeno = #{record.sp_disposeno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_disposedate != null" >
+        sp_disposedate = #{record.sp_disposedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sp_status != null" >
+        sp_status = #{record.sp_status,jdbcType=TINYINT},
+      </if>
+      <if test="record.of_talkhead != null" >
+        of_talkhead = #{record.of_talkhead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_talkcontent != null" >
+        of_talkcontent = #{record.of_talkcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_talksign != null" >
+        of_talksign = #{record.of_talksign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_coinname != null" >
+        of_coinname = #{record.of_coinname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_coinimage != null" >
+        of_coinimage = #{record.of_coinimage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update MsgV_Appeal_List
+    set sp_id = #{record.sp_id,jdbcType=BIGINT},
+      sp_orderno = #{record.sp_orderno,jdbcType=VARCHAR},
+      sp_designerid = #{record.sp_designerid,jdbcType=BIGINT},
+      sp_contentgroup = #{record.sp_contentgroup,jdbcType=VARCHAR},
+      sp_contentvalue = #{record.sp_contentvalue,jdbcType=VARCHAR},
+      sp_disposevalue = #{record.sp_disposevalue,jdbcType=VARCHAR},
+      sp_disposemode = #{record.sp_disposemode,jdbcType=BIT},
+      sp_flagdesread = #{record.sp_flagdesread,jdbcType=BIT},
+      sp_flagsaleread = #{record.sp_flagsaleread,jdbcType=BIT},
+      sp_createid = #{record.sp_createid,jdbcType=BIGINT},
+      sp_createno = #{record.sp_createno,jdbcType=VARCHAR},
+      sp_createdate = #{record.sp_createdate,jdbcType=TIMESTAMP},
+      se_confirmid = #{record.se_confirmid,jdbcType=BIGINT},
+      sp_confirmno = #{record.sp_confirmno,jdbcType=VARCHAR},
+      sp_confirmdate = #{record.sp_confirmdate,jdbcType=TIMESTAMP},
+      sp_disposeid = #{record.sp_disposeid,jdbcType=BIGINT},
+      sp_disposeno = #{record.sp_disposeno,jdbcType=VARCHAR},
+      sp_disposedate = #{record.sp_disposedate,jdbcType=TIMESTAMP},
+      sp_status = #{record.sp_status,jdbcType=TINYINT},
+      of_talkhead = #{record.of_talkhead,jdbcType=VARCHAR},
+      of_talkcontent = #{record.of_talkcontent,jdbcType=VARCHAR},
+      of_talksign = #{record.of_talksign,jdbcType=VARCHAR},
+      of_coinname = #{record.of_coinname,jdbcType=VARCHAR},
+      of_coinimage = #{record.of_coinimage,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+
+  <!--自定义-->
+  <sql id="wherelist" >
+    <if test="sp_createid != null and sp_createid != ''" >
+      and sp_createid like concat(concat('%',#{sp_createid}),'%')
+    </if>
+    <if test="of_coinname != null and of_coinname != ''" >
+      and of_coinname like concat(concat('%',#{of_coinname}),'%')
+    </if>
+    <if test="of_coinimage != null and of_coinimage != ''" >
+      and of_coinimage like concat(concat('%',#{of_coinimage}),'%')
+    </if>
+    <if test="of_talkcontent != null and of_talkcontent != ''" >
+      and of_talkcontent like concat(concat('%',#{of_talkcontent}),'%')
+    </if>
+    <if test="of_talkhead != null and of_talkhead != ''" >
+      and of_talkhead like concat(concat('%',#{of_talkhead}),'%')
+    </if>
+    <if test="sp_disposevalue != null and sp_disposevalue != ''" >
+      and sp_disposevalue like concat(concat('%',#{sp_disposevalue}),'%')
+    </if>
+    <if test="sp_disposedate != null and sp_disposedate != ''" >
+      and sp_disposedate like concat(concat('%',#{sp_disposedate}),'%')
+    </if>
+
+  </sql>
+
+  <select id="getSalesV_Appeal_MsgList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    sp_id,of_coinname,of_coinimage,of_talkcontent,of_talkhead,sp_disposevalue,sp_disposedate,of_talksign
+    from  MsgV_Appeal_List where 1=1
+    <include refid="wherelist" />
+    ORDER BY sp_disposedate DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountSalesV_Appeal_Msg" resultType="java.lang.Integer" parameterType="java.util.Map">
+    select count(sp_id) from MsgV_Appeal_List WHERE 1=1
+    <include refid="wherelist" />
+  </select>
+
+</mapper>

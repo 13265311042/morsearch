@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Mall_Order_DetailMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Mall_Order_Detail" >
+    <id column="mod_id" property="mod_id" jdbcType="BIGINT" />
+    <result column="mod_orderno" property="mod_orderno" jdbcType="VARCHAR" />
+    <result column="mod_goodsid" property="mod_goodsid" jdbcType="BIGINT" />
+    <result column="mod_goodtitle" property="mod_goodtitle" jdbcType="VARCHAR" />
+    <result column="mod_goodimage" property="mod_goodimage" jdbcType="VARCHAR" />
+    <result column="mod_goodcolor" property="mod_goodcolor" jdbcType="VARCHAR" />
+    <result column="mod_goodmodel" property="mod_goodmodel" jdbcType="VARCHAR" />
+    <result column="mod_price" property="mod_price" jdbcType="DECIMAL" />
+    <result column="mod_qty" property="mod_qty" jdbcType="DECIMAL" />
+    <result column="mod_amount" property="mod_amount" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mod_id, mod_orderno, mod_goodsid, mod_goodtitle, mod_goodimage, mod_goodcolor, mod_goodmodel, 
+    mod_price, mod_qty, mod_amount
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Mall_Order_DetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Mall_Order_Detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Mall_Order_Detail
+    where mod_id = #{mod_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Mall_Order_Detail
+    where mod_id = #{mod_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Mall_Order_DetailExample" >
+    delete from Mall_Order_Detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Mall_Order_Detail" >
+    insert into Mall_Order_Detail (mod_id, mod_orderno, mod_goodsid, 
+      mod_goodtitle, mod_goodimage, mod_goodcolor, 
+      mod_goodmodel, mod_price, mod_qty, 
+      mod_amount)
+    values (#{mod_id,jdbcType=BIGINT}, #{mod_orderno,jdbcType=VARCHAR}, #{mod_goodsid,jdbcType=BIGINT}, 
+      #{mod_goodtitle,jdbcType=VARCHAR}, #{mod_goodimage,jdbcType=VARCHAR}, #{mod_goodcolor,jdbcType=VARCHAR}, 
+      #{mod_goodmodel,jdbcType=VARCHAR}, #{mod_price,jdbcType=DECIMAL}, #{mod_qty,jdbcType=DECIMAL}, 
+      #{mod_amount,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Mall_Order_Detail" >
+    insert into Mall_Order_Detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mod_id != null" >
+        mod_id,
+      </if>
+      <if test="mod_orderno != null" >
+        mod_orderno,
+      </if>
+      <if test="mod_goodsid != null" >
+        mod_goodsid,
+      </if>
+      <if test="mod_goodtitle != null" >
+        mod_goodtitle,
+      </if>
+      <if test="mod_goodimage != null" >
+        mod_goodimage,
+      </if>
+      <if test="mod_goodcolor != null" >
+        mod_goodcolor,
+      </if>
+      <if test="mod_goodmodel != null" >
+        mod_goodmodel,
+      </if>
+      <if test="mod_price != null" >
+        mod_price,
+      </if>
+      <if test="mod_qty != null" >
+        mod_qty,
+      </if>
+      <if test="mod_amount != null" >
+        mod_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mod_id != null" >
+        #{mod_id,jdbcType=BIGINT},
+      </if>
+      <if test="mod_orderno != null" >
+        #{mod_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="mod_goodsid != null" >
+        #{mod_goodsid,jdbcType=BIGINT},
+      </if>
+      <if test="mod_goodtitle != null" >
+        #{mod_goodtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mod_goodimage != null" >
+        #{mod_goodimage,jdbcType=VARCHAR},
+      </if>
+      <if test="mod_goodcolor != null" >
+        #{mod_goodcolor,jdbcType=VARCHAR},
+      </if>
+      <if test="mod_goodmodel != null" >
+        #{mod_goodmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="mod_price != null" >
+        #{mod_price,jdbcType=DECIMAL},
+      </if>
+      <if test="mod_qty != null" >
+        #{mod_qty,jdbcType=DECIMAL},
+      </if>
+      <if test="mod_amount != null" >
+        #{mod_amount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Mall_Order_DetailExample" resultType="java.lang.Integer" >
+    select count(*) from Mall_Order_Detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Mall_Order_Detail
+    <set >
+      <if test="record.mod_id != null" >
+        mod_id = #{record.mod_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.mod_orderno != null" >
+        mod_orderno = #{record.mod_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mod_goodsid != null" >
+        mod_goodsid = #{record.mod_goodsid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mod_goodtitle != null" >
+        mod_goodtitle = #{record.mod_goodtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mod_goodimage != null" >
+        mod_goodimage = #{record.mod_goodimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mod_goodcolor != null" >
+        mod_goodcolor = #{record.mod_goodcolor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mod_goodmodel != null" >
+        mod_goodmodel = #{record.mod_goodmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mod_price != null" >
+        mod_price = #{record.mod_price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mod_qty != null" >
+        mod_qty = #{record.mod_qty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mod_amount != null" >
+        mod_amount = #{record.mod_amount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Mall_Order_Detail
+    set mod_id = #{record.mod_id,jdbcType=BIGINT},
+      mod_orderno = #{record.mod_orderno,jdbcType=VARCHAR},
+      mod_goodsid = #{record.mod_goodsid,jdbcType=BIGINT},
+      mod_goodtitle = #{record.mod_goodtitle,jdbcType=VARCHAR},
+      mod_goodimage = #{record.mod_goodimage,jdbcType=VARCHAR},
+      mod_goodcolor = #{record.mod_goodcolor,jdbcType=VARCHAR},
+      mod_goodmodel = #{record.mod_goodmodel,jdbcType=VARCHAR},
+      mod_price = #{record.mod_price,jdbcType=DECIMAL},
+      mod_qty = #{record.mod_qty,jdbcType=DECIMAL},
+      mod_amount = #{record.mod_amount,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Mall_Order_Detail" >
+    update Mall_Order_Detail
+    <set >
+      <if test="mod_orderno != null" >
+        mod_orderno = #{mod_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="mod_goodsid != null" >
+        mod_goodsid = #{mod_goodsid,jdbcType=BIGINT},
+      </if>
+      <if test="mod_goodtitle != null" >
+        mod_goodtitle = #{mod_goodtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mod_goodimage != null" >
+        mod_goodimage = #{mod_goodimage,jdbcType=VARCHAR},
+      </if>
+      <if test="mod_goodcolor != null" >
+        mod_goodcolor = #{mod_goodcolor,jdbcType=VARCHAR},
+      </if>
+      <if test="mod_goodmodel != null" >
+        mod_goodmodel = #{mod_goodmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="mod_price != null" >
+        mod_price = #{mod_price,jdbcType=DECIMAL},
+      </if>
+      <if test="mod_qty != null" >
+        mod_qty = #{mod_qty,jdbcType=DECIMAL},
+      </if>
+      <if test="mod_amount != null" >
+        mod_amount = #{mod_amount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where mod_id = #{mod_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Mall_Order_Detail" >
+    update Mall_Order_Detail
+    set mod_orderno = #{mod_orderno,jdbcType=VARCHAR},
+      mod_goodsid = #{mod_goodsid,jdbcType=BIGINT},
+      mod_goodtitle = #{mod_goodtitle,jdbcType=VARCHAR},
+      mod_goodimage = #{mod_goodimage,jdbcType=VARCHAR},
+      mod_goodcolor = #{mod_goodcolor,jdbcType=VARCHAR},
+      mod_goodmodel = #{mod_goodmodel,jdbcType=VARCHAR},
+      mod_price = #{mod_price,jdbcType=DECIMAL},
+      mod_qty = #{mod_qty,jdbcType=DECIMAL},
+      mod_amount = #{mod_amount,jdbcType=DECIMAL}
+    where mod_id = #{mod_id,jdbcType=BIGINT}
+  </update>
+
+  <!--自定义-->
+  <select id="getMallOrder" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+     mod_goodtitle,mod_goodimage,mod_goodcolor,mod_goodmodel,mod_price,mod_amount,mod_qty
+    from Mall_Order_Detail
+    where mod_orderno = #{no,jdbcType=BIGINT}
+  </select>
+
+
+</mapper>

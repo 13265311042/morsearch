@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Acc_MemoIntegralMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Acc_MemoIntegral" >
+    <id column="mi_id" property="mi_id" jdbcType="BIGINT" />
+    <result column="mi_type" property="mi_type" jdbcType="VARCHAR" />
+    <result column="mi_activityid" property="mi_activityid" jdbcType="BIGINT" />
+    <result column="mi_activityname" property="mi_activityname" jdbcType="VARCHAR" />
+    <result column="mi_typesign" property="mi_typesign" jdbcType="VARCHAR" />
+    <result column="mi_sourceno" property="mi_sourceno" jdbcType="VARCHAR" />
+    <result column="mi_date" property="mi_date" jdbcType="TIMESTAMP" />
+    <result column="mi_integral" property="mi_integral" jdbcType="DECIMAL" />
+    <result column="mi_accountid" property="mi_accountid" jdbcType="BIGINT" />
+    <result column="mi_createid" property="mi_createid" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mi_id, mi_type, mi_activityid, mi_activityname, mi_typesign, mi_sourceno, mi_date, 
+    mi_integral, mi_accountid, mi_createid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Acc_MemoIntegralExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Acc_MemoIntegral
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Acc_MemoIntegral
+    where mi_id = #{mi_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Acc_MemoIntegral
+    where mi_id = #{mi_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Acc_MemoIntegralExample" >
+    delete from Acc_MemoIntegral
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Acc_MemoIntegral" >
+    insert into Acc_MemoIntegral (mi_id, mi_type, mi_activityid, 
+      mi_activityname, mi_typesign, mi_sourceno, 
+      mi_date, mi_integral, mi_accountid, 
+      mi_createid)
+    values (#{mi_id,jdbcType=BIGINT}, #{mi_type,jdbcType=VARCHAR}, #{mi_activityid,jdbcType=BIGINT}, 
+      #{mi_activityname,jdbcType=VARCHAR}, #{mi_typesign,jdbcType=VARCHAR}, #{mi_sourceno,jdbcType=VARCHAR}, 
+      #{mi_date,jdbcType=TIMESTAMP}, #{mi_integral,jdbcType=DECIMAL}, #{mi_accountid,jdbcType=BIGINT}, 
+      #{mi_createid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Acc_MemoIntegral" >
+    insert into Acc_MemoIntegral
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mi_id != null" >
+        mi_id,
+      </if>
+      <if test="mi_type != null" >
+        mi_type,
+      </if>
+      <if test="mi_activityid != null" >
+        mi_activityid,
+      </if>
+      <if test="mi_activityname != null" >
+        mi_activityname,
+      </if>
+      <if test="mi_typesign != null" >
+        mi_typesign,
+      </if>
+      <if test="mi_sourceno != null" >
+        mi_sourceno,
+      </if>
+      <if test="mi_date != null" >
+        mi_date,
+      </if>
+      <if test="mi_integral != null" >
+        mi_integral,
+      </if>
+      <if test="mi_accountid != null" >
+        mi_accountid,
+      </if>
+      <if test="mi_createid != null" >
+        mi_createid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mi_id != null" >
+        #{mi_id,jdbcType=BIGINT},
+      </if>
+      <if test="mi_type != null" >
+        #{mi_type,jdbcType=VARCHAR},
+      </if>
+      <if test="mi_activityid != null" >
+        #{mi_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="mi_activityname != null" >
+        #{mi_activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="mi_typesign != null" >
+        #{mi_typesign,jdbcType=VARCHAR},
+      </if>
+      <if test="mi_sourceno != null" >
+        #{mi_sourceno,jdbcType=VARCHAR},
+      </if>
+      <if test="mi_date != null" >
+        #{mi_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mi_integral != null" >
+        #{mi_integral,jdbcType=DECIMAL},
+      </if>
+      <if test="mi_accountid != null" >
+        #{mi_accountid,jdbcType=BIGINT},
+      </if>
+      <if test="mi_createid != null" >
+        #{mi_createid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Acc_MemoIntegralExample" resultType="java.lang.Integer" >
+    select count(*) from Acc_MemoIntegral
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Acc_MemoIntegral
+    <set >
+      <if test="record.mi_id != null" >
+        mi_id = #{record.mi_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.mi_type != null" >
+        mi_type = #{record.mi_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mi_activityid != null" >
+        mi_activityid = #{record.mi_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mi_activityname != null" >
+        mi_activityname = #{record.mi_activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mi_typesign != null" >
+        mi_typesign = #{record.mi_typesign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mi_sourceno != null" >
+        mi_sourceno = #{record.mi_sourceno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mi_date != null" >
+        mi_date = #{record.mi_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mi_integral != null" >
+        mi_integral = #{record.mi_integral,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mi_accountid != null" >
+        mi_accountid = #{record.mi_accountid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mi_createid != null" >
+        mi_createid = #{record.mi_createid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Acc_MemoIntegral
+    set mi_id = #{record.mi_id,jdbcType=BIGINT},
+      mi_type = #{record.mi_type,jdbcType=VARCHAR},
+      mi_activityid = #{record.mi_activityid,jdbcType=BIGINT},
+      mi_activityname = #{record.mi_activityname,jdbcType=VARCHAR},
+      mi_typesign = #{record.mi_typesign,jdbcType=VARCHAR},
+      mi_sourceno = #{record.mi_sourceno,jdbcType=VARCHAR},
+      mi_date = #{record.mi_date,jdbcType=TIMESTAMP},
+      mi_integral = #{record.mi_integral,jdbcType=DECIMAL},
+      mi_accountid = #{record.mi_accountid,jdbcType=BIGINT},
+      mi_createid = #{record.mi_createid,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Acc_MemoIntegral" >
+    update Acc_MemoIntegral
+    <set >
+      <if test="mi_type != null" >
+        mi_type = #{mi_type,jdbcType=VARCHAR},
+      </if>
+      <if test="mi_activityid != null" >
+        mi_activityid = #{mi_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="mi_activityname != null" >
+        mi_activityname = #{mi_activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="mi_typesign != null" >
+        mi_typesign = #{mi_typesign,jdbcType=VARCHAR},
+      </if>
+      <if test="mi_sourceno != null" >
+        mi_sourceno = #{mi_sourceno,jdbcType=VARCHAR},
+      </if>
+      <if test="mi_date != null" >
+        mi_date = #{mi_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mi_integral != null" >
+        mi_integral = #{mi_integral,jdbcType=DECIMAL},
+      </if>
+      <if test="mi_accountid != null" >
+        mi_accountid = #{mi_accountid,jdbcType=BIGINT},
+      </if>
+      <if test="mi_createid != null" >
+        mi_createid = #{mi_createid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where mi_id = #{mi_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Acc_MemoIntegral" >
+    update Acc_MemoIntegral
+    set mi_type = #{mi_type,jdbcType=VARCHAR},
+      mi_activityid = #{mi_activityid,jdbcType=BIGINT},
+      mi_activityname = #{mi_activityname,jdbcType=VARCHAR},
+      mi_typesign = #{mi_typesign,jdbcType=VARCHAR},
+      mi_sourceno = #{mi_sourceno,jdbcType=VARCHAR},
+      mi_date = #{mi_date,jdbcType=TIMESTAMP},
+      mi_integral = #{mi_integral,jdbcType=DECIMAL},
+      mi_accountid = #{mi_accountid,jdbcType=BIGINT},
+      mi_createid = #{mi_createid,jdbcType=BIGINT}
+    where mi_id = #{mi_id,jdbcType=BIGINT}
+  </update>
+
+  <!--自定义-->
+
+  <select id="getAcc_MemoIntegralList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    mi_id,mi_date,mi_typesign,mi_activityname,mi_integral,mi_sourceno
+    from Acc_MemoIntegral  WHERE
+    mi_createid =#{userid,jdbcType=BIGINT}
+    ORDER BY mi_date DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <!--总数-->
+  <select id="getCountAcc_MemoIntegral" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(mi_id) from Acc_MemoIntegral WHERE
+     mi_createid =#{userid,jdbcType=BIGINT}
+  </select>
+
+</mapper>

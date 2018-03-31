@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Acc_WalletMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Acc_Wallet" >
+    <id column="wl_userid" property="wl_userid" jdbcType="BIGINT" />
+    <result column="wl_account" property="wl_account" jdbcType="DECIMAL" />
+    <result column="wl_integral" property="wl_integral" jdbcType="DECIMAL" />
+    <result column="wl_deposit" property="wl_deposit" jdbcType="DECIMAL" />
+    <result column="wl_occupied" property="wl_occupied" jdbcType="DECIMAL" />
+    <result column="wl_receiveqty" property="wl_receiveqty" jdbcType="DECIMAL" />
+    <result column="wl_countbuy" property="wl_countbuy" jdbcType="INTEGER" />
+    <result column="wl_countrecharge" property="wl_countrecharge" jdbcType="INTEGER" />
+    <result column="wl_createdate" property="wl_createdate" jdbcType="TIMESTAMP" />
+    <result column="wl_updatedate" property="wl_updatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    wl_userid, wl_account, wl_integral, wl_deposit, wl_occupied, wl_receiveqty, wl_countbuy,
+    wl_countrecharge, wl_createdate, wl_updatedate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Acc_WalletExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Acc_Wallet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Acc_Wallet
+    where wl_userid = #{wl_userid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Acc_Wallet
+    where wl_userid = #{wl_userid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Acc_WalletExample" >
+    delete from Acc_Wallet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Acc_Wallet" >
+    insert into Acc_Wallet (wl_userid, wl_account, wl_integral,
+    wl_deposit, wl_occupied, wl_receiveqty,
+    wl_countbuy, wl_countrecharge, wl_createdate,
+    wl_updatedate)
+    values (#{wl_userid,jdbcType=BIGINT}, #{wl_account,jdbcType=DECIMAL}, #{wl_integral,jdbcType=DECIMAL},
+    #{wl_deposit,jdbcType=DECIMAL}, #{wl_occupied,jdbcType=DECIMAL}, #{wl_receiveqty,jdbcType=DECIMAL},
+    #{wl_countbuy,jdbcType=INTEGER}, #{wl_countrecharge,jdbcType=INTEGER}, #{wl_createdate,jdbcType=TIMESTAMP},
+    #{wl_updatedate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Acc_Wallet" >
+    insert into Acc_Wallet
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wl_userid != null" >
+        wl_userid,
+      </if>
+      <if test="wl_account != null" >
+        wl_account,
+      </if>
+      <if test="wl_integral != null" >
+        wl_integral,
+      </if>
+      <if test="wl_deposit != null" >
+        wl_deposit,
+      </if>
+      <if test="wl_occupied != null" >
+        wl_occupied,
+      </if>
+      <if test="wl_receiveqty != null" >
+        wl_receiveqty,
+      </if>
+      <if test="wl_countbuy != null" >
+        wl_countbuy,
+      </if>
+      <if test="wl_countrecharge != null" >
+        wl_countrecharge,
+      </if>
+      <if test="wl_createdate != null" >
+        wl_createdate,
+      </if>
+      <if test="wl_updatedate != null" >
+        wl_updatedate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wl_userid != null" >
+        #{wl_userid,jdbcType=BIGINT},
+      </if>
+      <if test="wl_account != null" >
+        #{wl_account,jdbcType=DECIMAL},
+      </if>
+      <if test="wl_integral != null" >
+        #{wl_integral,jdbcType=DECIMAL},
+      </if>
+      <if test="wl_deposit != null" >
+        #{wl_deposit,jdbcType=DECIMAL},
+      </if>
+      <if test="wl_occupied != null" >
+        #{wl_occupied,jdbcType=DECIMAL},
+      </if>
+      <if test="wl_receiveqty != null" >
+        #{wl_receiveqty,jdbcType=DECIMAL},
+      </if>
+      <if test="wl_countbuy != null" >
+        #{wl_countbuy,jdbcType=INTEGER},
+      </if>
+      <if test="wl_countrecharge != null" >
+        #{wl_countrecharge,jdbcType=INTEGER},
+      </if>
+      <if test="wl_createdate != null" >
+        #{wl_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wl_updatedate != null" >
+        #{wl_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Acc_WalletExample" resultType="java.lang.Integer" >
+    select count(*) from Acc_Wallet
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Acc_Wallet
+    <set >
+      <if test="record.wl_userid != null" >
+        wl_userid = #{record.wl_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.wl_account != null" >
+        wl_account = #{record.wl_account,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wl_integral != null" >
+        wl_integral = #{record.wl_integral,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wl_deposit != null" >
+        wl_deposit = #{record.wl_deposit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wl_occupied != null" >
+        wl_occupied = #{record.wl_occupied,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wl_receiveqty != null" >
+        wl_receiveqty = #{record.wl_receiveqty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wl_countbuy != null" >
+        wl_countbuy = #{record.wl_countbuy,jdbcType=INTEGER},
+      </if>
+      <if test="record.wl_countrecharge != null" >
+        wl_countrecharge = #{record.wl_countrecharge,jdbcType=INTEGER},
+      </if>
+      <if test="record.wl_createdate != null" >
+        wl_createdate = #{record.wl_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.wl_updatedate != null" >
+        wl_updatedate = #{record.wl_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Acc_Wallet
+    set wl_userid = #{record.wl_userid,jdbcType=BIGINT},
+    wl_account = #{record.wl_account,jdbcType=DECIMAL},
+    wl_integral = #{record.wl_integral,jdbcType=DECIMAL},
+    wl_deposit = #{record.wl_deposit,jdbcType=DECIMAL},
+    wl_occupied = #{record.wl_occupied,jdbcType=DECIMAL},
+    wl_receiveqty = #{record.wl_receiveqty,jdbcType=DECIMAL},
+    wl_countbuy = #{record.wl_countbuy,jdbcType=INTEGER},
+    wl_countrecharge = #{record.wl_countrecharge,jdbcType=INTEGER},
+    wl_createdate = #{record.wl_createdate,jdbcType=TIMESTAMP},
+    wl_updatedate = #{record.wl_updatedate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Acc_Wallet" >
+    update Acc_Wallet
+    <set >
+      <if test="wl_account != null" >
+        wl_account = #{wl_account,jdbcType=DECIMAL},
+      </if>
+      <if test="wl_integral != null" >
+        wl_integral = #{wl_integral,jdbcType=DECIMAL},
+      </if>
+      <if test="wl_deposit != null" >
+        wl_deposit = #{wl_deposit,jdbcType=DECIMAL},
+      </if>
+      <if test="wl_occupied != null" >
+        wl_occupied = #{wl_occupied,jdbcType=DECIMAL},
+      </if>
+      <if test="wl_receiveqty != null" >
+        wl_receiveqty = #{wl_receiveqty,jdbcType=DECIMAL},
+      </if>
+      <if test="wl_countbuy != null" >
+        wl_countbuy = #{wl_countbuy,jdbcType=INTEGER},
+      </if>
+      <if test="wl_countrecharge != null" >
+        wl_countrecharge = #{wl_countrecharge,jdbcType=INTEGER},
+      </if>
+      <if test="wl_createdate != null" >
+        wl_createdate = #{wl_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wl_updatedate != null" >
+        wl_updatedate = #{wl_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where wl_userid = #{wl_userid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Acc_Wallet" >
+    update Acc_Wallet
+    set wl_account = #{wl_account,jdbcType=DECIMAL},
+    wl_integral = #{wl_integral,jdbcType=DECIMAL},
+    wl_deposit = #{wl_deposit,jdbcType=DECIMAL},
+    wl_occupied = #{wl_occupied,jdbcType=DECIMAL},
+    wl_receiveqty = #{wl_receiveqty,jdbcType=DECIMAL},
+    wl_countbuy = #{wl_countbuy,jdbcType=INTEGER},
+    wl_countrecharge = #{wl_countrecharge,jdbcType=INTEGER},
+    wl_createdate = #{wl_createdate,jdbcType=TIMESTAMP},
+    wl_updatedate = #{wl_updatedate,jdbcType=TIMESTAMP}
+    where wl_userid = #{wl_userid,jdbcType=BIGINT}
+  </update>
+
+  <!--自定义-->
+  <select id="getIntegral" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select wl_integral from Acc_Wallet WHERE
+    wl_userid =#{userid,jdbcType=BIGINT}
+  </select>
+
+  <!--查询这个用户存不存在-->
+  <select id="getCount_userid" resultType="java.lang.Integer" parameterType="java.lang.Long" >
+    select count(wl_userid) FROM Acc_Wallet where wl_userid = #{wl_userid,jdbcType=BIGINT}
+  </select>
+
+
+</mapper>

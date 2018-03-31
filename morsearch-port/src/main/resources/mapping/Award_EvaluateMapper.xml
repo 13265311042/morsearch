@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Award_EvaluateMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Award_Evaluate" >
+    <id column="ba_id" property="ba_id" jdbcType="BIGINT" />
+    <result column="ba_name" property="ba_name" jdbcType="VARCHAR" />
+    <result column="ba_datebegin" property="ba_datebegin" jdbcType="VARCHAR" />
+    <result column="ba_dateend" property="ba_dateend" jdbcType="VARCHAR" />
+    <result column="ba_popup" property="ba_popup" jdbcType="SMALLINT" />
+    <result column="ba_integral_first" property="ba_integral_first" jdbcType="INTEGER" />
+    <result column="ba_integral_normal" property="ba_integral_normal" jdbcType="INTEGER" />
+    <result column="ba_createid" property="ba_createid" jdbcType="BIGINT" />
+    <result column="ba_createno" property="ba_createno" jdbcType="VARCHAR" />
+    <result column="ba_createdate" property="ba_createdate" jdbcType="TIMESTAMP" />
+    <result column="ba_confirmid" property="ba_confirmid" jdbcType="BIGINT" />
+    <result column="ba_confirmno" property="ba_confirmno" jdbcType="VARCHAR" />
+    <result column="ba_confirmdate" property="ba_confirmdate" jdbcType="TIMESTAMP" />
+    <result column="ba_status" property="ba_status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ba_id, ba_name, ba_datebegin, ba_dateend, ba_popup, ba_integral_first, ba_integral_normal,
+    ba_createid, ba_createno, ba_createdate, ba_confirmid, ba_confirmno, ba_confirmdate,
+    ba_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Award_EvaluateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Award_Evaluate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Award_Evaluate
+    where ba_id = #{ba_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Award_Evaluate
+    where ba_id = #{ba_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Award_EvaluateExample" >
+    delete from Award_Evaluate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Award_Evaluate" >
+    insert into Award_Evaluate (ba_id, ba_name, ba_datebegin,
+    ba_dateend, ba_popup, ba_integral_first,
+    ba_integral_normal, ba_createid, ba_createno,
+    ba_createdate, ba_confirmid, ba_confirmno,
+    ba_confirmdate, ba_status)
+    values (#{ba_id,jdbcType=BIGINT}, #{ba_name,jdbcType=VARCHAR}, #{ba_datebegin,jdbcType=VARCHAR},
+    #{ba_dateend,jdbcType=VARCHAR}, #{ba_popup,jdbcType=SMALLINT}, #{ba_integral_first,jdbcType=INTEGER},
+    #{ba_integral_normal,jdbcType=INTEGER}, #{ba_createid,jdbcType=BIGINT}, #{ba_createno,jdbcType=VARCHAR},
+    #{ba_createdate,jdbcType=TIMESTAMP}, #{ba_confirmid,jdbcType=BIGINT}, #{ba_confirmno,jdbcType=VARCHAR},
+    #{ba_confirmdate,jdbcType=TIMESTAMP}, #{ba_status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Award_Evaluate" >
+    insert into Award_Evaluate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ba_id != null" >
+        ba_id,
+      </if>
+      <if test="ba_name != null" >
+        ba_name,
+      </if>
+      <if test="ba_datebegin != null" >
+        ba_datebegin,
+      </if>
+      <if test="ba_dateend != null" >
+        ba_dateend,
+      </if>
+      <if test="ba_popup != null" >
+        ba_popup,
+      </if>
+      <if test="ba_integral_first != null" >
+        ba_integral_first,
+      </if>
+      <if test="ba_integral_normal != null" >
+        ba_integral_normal,
+      </if>
+      <if test="ba_createid != null" >
+        ba_createid,
+      </if>
+      <if test="ba_createno != null" >
+        ba_createno,
+      </if>
+      <if test="ba_createdate != null" >
+        ba_createdate,
+      </if>
+      <if test="ba_confirmid != null" >
+        ba_confirmid,
+      </if>
+      <if test="ba_confirmno != null" >
+        ba_confirmno,
+      </if>
+      <if test="ba_confirmdate != null" >
+        ba_confirmdate,
+      </if>
+      <if test="ba_status != null" >
+        ba_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ba_id != null" >
+        #{ba_id,jdbcType=BIGINT},
+      </if>
+      <if test="ba_name != null" >
+        #{ba_name,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_datebegin != null" >
+        #{ba_datebegin,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_dateend != null" >
+        #{ba_dateend,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_popup != null" >
+        #{ba_popup,jdbcType=SMALLINT},
+      </if>
+      <if test="ba_integral_first != null" >
+        #{ba_integral_first,jdbcType=INTEGER},
+      </if>
+      <if test="ba_integral_normal != null" >
+        #{ba_integral_normal,jdbcType=INTEGER},
+      </if>
+      <if test="ba_createid != null" >
+        #{ba_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ba_createno != null" >
+        #{ba_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_createdate != null" >
+        #{ba_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ba_confirmid != null" >
+        #{ba_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="ba_confirmno != null" >
+        #{ba_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_confirmdate != null" >
+        #{ba_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ba_status != null" >
+        #{ba_status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Award_EvaluateExample" resultType="java.lang.Integer" >
+    select count(*) from Award_Evaluate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Award_Evaluate
+    <set >
+      <if test="record.ba_id != null" >
+        ba_id = #{record.ba_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ba_name != null" >
+        ba_name = #{record.ba_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_datebegin != null" >
+        ba_datebegin = #{record.ba_datebegin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_dateend != null" >
+        ba_dateend = #{record.ba_dateend,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_popup != null" >
+        ba_popup = #{record.ba_popup,jdbcType=SMALLINT},
+      </if>
+      <if test="record.ba_integral_first != null" >
+        ba_integral_first = #{record.ba_integral_first,jdbcType=INTEGER},
+      </if>
+      <if test="record.ba_integral_normal != null" >
+        ba_integral_normal = #{record.ba_integral_normal,jdbcType=INTEGER},
+      </if>
+      <if test="record.ba_createid != null" >
+        ba_createid = #{record.ba_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ba_createno != null" >
+        ba_createno = #{record.ba_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_createdate != null" >
+        ba_createdate = #{record.ba_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ba_confirmid != null" >
+        ba_confirmid = #{record.ba_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ba_confirmno != null" >
+        ba_confirmno = #{record.ba_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_confirmdate != null" >
+        ba_confirmdate = #{record.ba_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ba_status != null" >
+        ba_status = #{record.ba_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Award_Evaluate
+    set ba_id = #{record.ba_id,jdbcType=BIGINT},
+    ba_name = #{record.ba_name,jdbcType=VARCHAR},
+    ba_datebegin = #{record.ba_datebegin,jdbcType=VARCHAR},
+    ba_dateend = #{record.ba_dateend,jdbcType=VARCHAR},
+    ba_popup = #{record.ba_popup,jdbcType=SMALLINT},
+    ba_integral_first = #{record.ba_integral_first,jdbcType=INTEGER},
+    ba_integral_normal = #{record.ba_integral_normal,jdbcType=INTEGER},
+    ba_createid = #{record.ba_createid,jdbcType=BIGINT},
+    ba_createno = #{record.ba_createno,jdbcType=VARCHAR},
+    ba_createdate = #{record.ba_createdate,jdbcType=TIMESTAMP},
+    ba_confirmid = #{record.ba_confirmid,jdbcType=BIGINT},
+    ba_confirmno = #{record.ba_confirmno,jdbcType=VARCHAR},
+    ba_confirmdate = #{record.ba_confirmdate,jdbcType=TIMESTAMP},
+    ba_status = #{record.ba_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Award_Evaluate" >
+    update Award_Evaluate
+    <set >
+      <if test="ba_name != null" >
+        ba_name = #{ba_name,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_datebegin != null" >
+        ba_datebegin = #{ba_datebegin,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_dateend != null" >
+        ba_dateend = #{ba_dateend,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_popup != null" >
+        ba_popup = #{ba_popup,jdbcType=SMALLINT},
+      </if>
+      <if test="ba_integral_first != null" >
+        ba_integral_first = #{ba_integral_first,jdbcType=INTEGER},
+      </if>
+      <if test="ba_integral_normal != null" >
+        ba_integral_normal = #{ba_integral_normal,jdbcType=INTEGER},
+      </if>
+      <if test="ba_createid != null" >
+        ba_createid = #{ba_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ba_createno != null" >
+        ba_createno = #{ba_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_createdate != null" >
+        ba_createdate = #{ba_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ba_confirmid != null" >
+        ba_confirmid = #{ba_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="ba_confirmno != null" >
+        ba_confirmno = #{ba_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_confirmdate != null" >
+        ba_confirmdate = #{ba_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ba_status != null" >
+        ba_status = #{ba_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ba_id = #{ba_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Award_Evaluate" >
+    update Award_Evaluate
+    set ba_name = #{ba_name,jdbcType=VARCHAR},
+      ba_datebegin = #{ba_datebegin,jdbcType=VARCHAR},
+      ba_dateend = #{ba_dateend,jdbcType=VARCHAR},
+      ba_popup = #{ba_popup,jdbcType=SMALLINT},
+      ba_integral_first = #{ba_integral_first,jdbcType=INTEGER},
+      ba_integral_normal = #{ba_integral_normal,jdbcType=INTEGER},
+      ba_createid = #{ba_createid,jdbcType=BIGINT},
+      ba_createno = #{ba_createno,jdbcType=VARCHAR},
+      ba_createdate = #{ba_createdate,jdbcType=TIMESTAMP},
+      ba_confirmid = #{ba_confirmid,jdbcType=BIGINT},
+      ba_confirmno = #{ba_confirmno,jdbcType=VARCHAR},
+      ba_confirmdate = #{ba_confirmdate,jdbcType=TIMESTAMP},
+      ba_status = #{ba_status,jdbcType=TINYINT}
+    where ba_id = #{ba_id,jdbcType=BIGINT}
+  </update>
+</mapper>

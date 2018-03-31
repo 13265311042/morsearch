@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="gbk"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+">
+
+
+<!--=====================================  定时任务 =====================================-->
+
+ 	<bean id="jobTask" class="com.morsearch.quartz.JobTask"/><!--定义定时任务类-->
+
+	<!--更改拜贴状态任务 begin-->
+	<bean id="JobMethodSaleOrder"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="jobTask" />
+		</property>
+		<property name="targetMethod">  <!-- 要执行的方法名称 -->
+			<value>saveSaleOrderStatus</value>
+		</property>
+	</bean>
+	<!-- ======================== 调度触发器 ========================  -->
+	<bean id="CronTriggerSaleOrderBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="JobMethodSaleOrder"></property>
+		<!--每天0点和1点触发一次-->
+<!--
+		<property name="cronExpression" value="0 0 0,1 * * ?"></property>
+-->
+		<property name="cronExpression" value="0/30 * * * * ?"></property> <!--每15分钟触发一次-->
+	</bean>
+	<!--更改拜贴状态任务 end-->
+
+
+
+
+
+
+	<!-- ======================== 调度工厂列表 ======================== -->
+	<bean id="SpringJobSchedulerFactoryBean" lazy-init="false" autowire="no"
+		  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="CronTriggerSaleOrderBean" />
+			</list>
+		</property>
+	</bean>
+
+
+</beans>

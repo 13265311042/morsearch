@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                        "
+>
+	<context:component-scan base-package="com.morsearch.dao" />
+
+	<!-- Shiro begin -->
+
+	<!-- 配置自定义Realm -->
+	<bean id="myRealm" class="com.morsearch.controller.comm.ShiroManager"/>
+
+
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<!-- 设置session过期时间为1小时(单位：毫秒)，默认为30分钟 -->
+		<property name="globalSessionTimeout" value="3600000"></property>
+		<property name="sessionValidationSchedulerEnabled" value="true"></property>
+		<property name="sessionIdUrlRewritingEnabled" value="false"></property>
+	</bean>
+
+	<!-- 安全管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="myRealm"/>
+		<property name="rememberMeManager" ref="rememberMeManager"/>
+
+	</bean>
+
+	<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<constructor-arg value="rememberMe"/>
+		<property name="httpOnly" value="true"/>
+		<property name="maxAge" value="31536000"/>
+	</bean>
+
+	<bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+		<property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+		<property name="cookie" ref="rememberMeCookie"/>
+	</bean>
+
+
+
+	<!-- Shiro过滤器 核心-->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- Shiro的核心安全接口,这个属性是必须的 -->
+		<property name="securityManager" ref="securityManager"/>
+		<!-- 身份认证失败，则跳转到登录页面的配置 -->
+		<property name="loginUrl" value="/login"/>
+		<!-- 权限认证失败，则跳转到指定页面 -->
+		<property name="unauthorizedUrl" value="/angu.jsp"/>
+		<!-- Shiro连接约束配置,即过滤链的定义 -->
+		<property name="filterChainDefinitions">
+			<value>
+				<!--anon 表示匿名访问，不需要认证以及授权-->
+				/loginAdmin=anon
+				/front/**=anon
+				/mall/**=anon
+				/des/**=anon
+				/company/**=anon
+				/front/login*=anon
+
+<!--
+-->
+				<!--authc表示需要认证 没有进行身份认证是不能进行访问的-->
+<!--
+				/front/getwalletmsg*=authc
+
+				/front/changeuserpwd*=authc
+
+				/front/lablelistaddfront*=authc
+				/front/addbuy*=authc
+				/front/addorder*=authc
+				/front/saveorderrevoke*=authc
+				/front/addrecharge*=authc
+				/front/saveorderfinish*=authc
+				/front/savepaypwd*=authc
+				/front/saveforgotpassword*=authc
+				/front/getuserdata*=authc
+				/front/deletefile*=authc
+				/front/adduploaddata*=authc
+				/front/deleteaccessory*=authc
+-->
+
+
+<!--
+				/admin*=authc
+				/front/*=authc
+				/front/*=perms["1"]
+-->
+
+<!--
+/app/*=roles[app]
+表示访问/student请求的用户必须是teacher角色，不然是不能进行访问的。
+/app/*=perms["user:create"]
+表示访问/teacher请求是需要当前用户具有user:create权限才能进行访问的。
+其中app和user:create为字段内容值
+
+		/** = anon
+		/page/login.jsp = anon
+		/page/register/* = anon
+		/page/index.jsp = authc
+		/page/addItem* = authc,roles[数据管理员]
+		/page/file* = authc,roleOR[普通用户,数据管理员]
+		/page/listItems* = authc,roleOR[数据管理员,普通用户]
+		/page/showItem* = authc,roleOR[数据管理员,普通用户]
+		/page/updateItem*=authc,roles[数据管理员]
+-->
+			</value>
+		</property>
+	</bean>
+
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	<!-- 开启Shiro注解 -->
+<!--
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		  depends-on="lifecycleBeanPostProcessor"/>
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager"/>
+	</bean>
+-->
+	<!-- Shiro end -->
+
+
+
+
+</beans>

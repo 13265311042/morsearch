@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.BaseV_Company_UserMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.BaseV_Company_User" >
+    <result column="bcu_id" property="bcu_id" jdbcType="BIGINT" />
+    <result column="bcu_userid" property="bcu_userid" jdbcType="BIGINT" />
+    <result column="bcu_type" property="bcu_type" jdbcType="TINYINT" />
+    <result column="bcu_listuserid" property="bcu_listuserid" jdbcType="BIGINT" />
+    <result column="bcu_createdate" property="bcu_createdate" jdbcType="TIMESTAMP" />
+    <result column="bcu_updatedate" property="bcu_updatedate" jdbcType="TIMESTAMP" />
+    <result column="bcu_confirm1" property="bcu_confirm1" jdbcType="BIT" />
+    <result column="bcu_confirm2" property="bcu_confirm2" jdbcType="BIT" />
+    <result column="listuserphone" property="listuserphone" jdbcType="VARCHAR" />
+    <result column="listusername" property="listusername" jdbcType="VARCHAR" />
+    <result column="listuserimageurl" property="listuserimageurl" jdbcType="VARCHAR" />
+    <result column="listusersex" property="listusersex" jdbcType="VARCHAR" />
+    <result column="listuserpersonjob" property="listuserpersonjob" jdbcType="VARCHAR" />
+    <result column="listuserpersonmajor" property="listuserpersonmajor" jdbcType="VARCHAR" />
+    <result column="listuserpersonworkage" property="listuserpersonworkage" jdbcType="VARCHAR" />
+    <result column="listusercompanybrand" property="listusercompanybrand" jdbcType="VARCHAR" />
+    <result column="listusercompanyname" property="listusercompanyname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    bcu_id, bcu_userid, bcu_type, bcu_listuserid, bcu_createdate, bcu_updatedate, bcu_confirm1,
+    bcu_confirm2, listuserphone, listusername, listuserimageurl, listusersex, listuserpersonjob,
+    listuserpersonmajor, listuserpersonworkage, listusercompanybrand, listusercompanyname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.BaseV_Company_UserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from BaseV_Company_User
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.BaseV_Company_UserExample" >
+    delete from BaseV_Company_User
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.BaseV_Company_User" >
+    insert into BaseV_Company_User (bcu_id, bcu_userid, bcu_type,
+    bcu_listuserid, bcu_createdate, bcu_updatedate,
+    bcu_confirm1, bcu_confirm2, listuserphone,
+    listusername, listuserimageurl, listusersex,
+    listuserpersonjob, listuserpersonmajor,
+    listuserpersonworkage, listusercompanybrand,
+    listusercompanyname)
+    values (#{bcu_id,jdbcType=BIGINT}, #{bcu_userid,jdbcType=BIGINT}, #{bcu_type,jdbcType=TINYINT},
+    #{bcu_listuserid,jdbcType=BIGINT}, #{bcu_createdate,jdbcType=TIMESTAMP}, #{bcu_updatedate,jdbcType=TIMESTAMP},
+    #{bcu_confirm1,jdbcType=BIT}, #{bcu_confirm2,jdbcType=BIT}, #{listuserphone,jdbcType=VARCHAR},
+    #{listusername,jdbcType=VARCHAR}, #{listuserimageurl,jdbcType=VARCHAR}, #{listusersex,jdbcType=VARCHAR},
+    #{listuserpersonjob,jdbcType=VARCHAR}, #{listuserpersonmajor,jdbcType=VARCHAR},
+    #{listuserpersonworkage,jdbcType=VARCHAR}, #{listusercompanybrand,jdbcType=VARCHAR},
+    #{listusercompanyname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.BaseV_Company_User" >
+    insert into BaseV_Company_User
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bcu_id != null" >
+        bcu_id,
+      </if>
+      <if test="bcu_userid != null" >
+        bcu_userid,
+      </if>
+      <if test="bcu_type != null" >
+        bcu_type,
+      </if>
+      <if test="bcu_listuserid != null" >
+        bcu_listuserid,
+      </if>
+      <if test="bcu_createdate != null" >
+        bcu_createdate,
+      </if>
+      <if test="bcu_updatedate != null" >
+        bcu_updatedate,
+      </if>
+      <if test="bcu_confirm1 != null" >
+        bcu_confirm1,
+      </if>
+      <if test="bcu_confirm2 != null" >
+        bcu_confirm2,
+      </if>
+      <if test="listuserphone != null" >
+        listuserphone,
+      </if>
+      <if test="listusername != null" >
+        listusername,
+      </if>
+      <if test="listuserimageurl != null" >
+        listuserimageurl,
+      </if>
+      <if test="listusersex != null" >
+        listusersex,
+      </if>
+      <if test="listuserpersonjob != null" >
+        listuserpersonjob,
+      </if>
+      <if test="listuserpersonmajor != null" >
+        listuserpersonmajor,
+      </if>
+      <if test="listuserpersonworkage != null" >
+        listuserpersonworkage,
+      </if>
+      <if test="listusercompanybrand != null" >
+        listusercompanybrand,
+      </if>
+      <if test="listusercompanyname != null" >
+        listusercompanyname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bcu_id != null" >
+        #{bcu_id,jdbcType=BIGINT},
+      </if>
+      <if test="bcu_userid != null" >
+        #{bcu_userid,jdbcType=BIGINT},
+      </if>
+      <if test="bcu_type != null" >
+        #{bcu_type,jdbcType=TINYINT},
+      </if>
+      <if test="bcu_listuserid != null" >
+        #{bcu_listuserid,jdbcType=BIGINT},
+      </if>
+      <if test="bcu_createdate != null" >
+        #{bcu_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bcu_updatedate != null" >
+        #{bcu_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bcu_confirm1 != null" >
+        #{bcu_confirm1,jdbcType=BIT},
+      </if>
+      <if test="bcu_confirm2 != null" >
+        #{bcu_confirm2,jdbcType=BIT},
+      </if>
+      <if test="listuserphone != null" >
+        #{listuserphone,jdbcType=VARCHAR},
+      </if>
+      <if test="listusername != null" >
+        #{listusername,jdbcType=VARCHAR},
+      </if>
+      <if test="listuserimageurl != null" >
+        #{listuserimageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="listusersex != null" >
+        #{listusersex,jdbcType=VARCHAR},
+      </if>
+      <if test="listuserpersonjob != null" >
+        #{listuserpersonjob,jdbcType=VARCHAR},
+      </if>
+      <if test="listuserpersonmajor != null" >
+        #{listuserpersonmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="listuserpersonworkage != null" >
+        #{listuserpersonworkage,jdbcType=VARCHAR},
+      </if>
+      <if test="listusercompanybrand != null" >
+        #{listusercompanybrand,jdbcType=VARCHAR},
+      </if>
+      <if test="listusercompanyname != null" >
+        #{listusercompanyname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.BaseV_Company_UserExample" resultType="java.lang.Integer" >
+    select count(*) from BaseV_Company_User
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update BaseV_Company_User
+    <set >
+      <if test="record.bcu_id != null" >
+        bcu_id = #{record.bcu_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.bcu_userid != null" >
+        bcu_userid = #{record.bcu_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.bcu_type != null" >
+        bcu_type = #{record.bcu_type,jdbcType=TINYINT},
+      </if>
+      <if test="record.bcu_listuserid != null" >
+        bcu_listuserid = #{record.bcu_listuserid,jdbcType=BIGINT},
+      </if>
+      <if test="record.bcu_createdate != null" >
+        bcu_createdate = #{record.bcu_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bcu_updatedate != null" >
+        bcu_updatedate = #{record.bcu_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bcu_confirm1 != null" >
+        bcu_confirm1 = #{record.bcu_confirm1,jdbcType=BIT},
+      </if>
+      <if test="record.bcu_confirm2 != null" >
+        bcu_confirm2 = #{record.bcu_confirm2,jdbcType=BIT},
+      </if>
+      <if test="record.listuserphone != null" >
+        listuserphone = #{record.listuserphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listusername != null" >
+        listusername = #{record.listusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listuserimageurl != null" >
+        listuserimageurl = #{record.listuserimageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listusersex != null" >
+        listusersex = #{record.listusersex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listuserpersonjob != null" >
+        listuserpersonjob = #{record.listuserpersonjob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listuserpersonmajor != null" >
+        listuserpersonmajor = #{record.listuserpersonmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listuserpersonworkage != null" >
+        listuserpersonworkage = #{record.listuserpersonworkage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listusercompanybrand != null" >
+        listusercompanybrand = #{record.listusercompanybrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listusercompanyname != null" >
+        listusercompanyname = #{record.listusercompanyname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update BaseV_Company_User
+    set bcu_id = #{record.bcu_id,jdbcType=BIGINT},
+    bcu_userid = #{record.bcu_userid,jdbcType=BIGINT},
+    bcu_type = #{record.bcu_type,jdbcType=TINYINT},
+    bcu_listuserid = #{record.bcu_listuserid,jdbcType=BIGINT},
+    bcu_createdate = #{record.bcu_createdate,jdbcType=TIMESTAMP},
+    bcu_updatedate = #{record.bcu_updatedate,jdbcType=TIMESTAMP},
+    bcu_confirm1 = #{record.bcu_confirm1,jdbcType=BIT},
+    bcu_confirm2 = #{record.bcu_confirm2,jdbcType=BIT},
+    listuserphone = #{record.listuserphone,jdbcType=VARCHAR},
+    listusername = #{record.listusername,jdbcType=VARCHAR},
+    listuserimageurl = #{record.listuserimageurl,jdbcType=VARCHAR},
+    listusersex = #{record.listusersex,jdbcType=VARCHAR},
+    listuserpersonjob = #{record.listuserpersonjob,jdbcType=VARCHAR},
+    listuserpersonmajor = #{record.listuserpersonmajor,jdbcType=VARCHAR},
+    listuserpersonworkage = #{record.listuserpersonworkage,jdbcType=VARCHAR},
+    listusercompanybrand = #{record.listusercompanybrand,jdbcType=VARCHAR},
+    listusercompanyname = #{record.listusercompanyname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+
+  <!--自定义-->
+  <sql id="wherelist" >
+    <if test="listusername != null and listusername != ''" >
+      and listusername like concat(concat('%',#{listusername}),'%')
+    </if>
+    <if test="listuserphone != null and listuserphone != ''" >
+      and listuserphone like concat(concat('%',#{listuserphone}),'%')
+    </if>
+  </sql>
+
+
+  <!--
+    1.白名单，2.黑名单,3.待审核
+  -->
+
+  <select id="getBaseV_Company_UserList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select *
+    from  BaseV_Company_User where bcu_type=#{type,jdbcType=TINYINT}
+    AND
+    bcu_userid = #{userid,jdbcType=BIGINT}
+    <include refid="wherelist" />
+    ORDER BY bcu_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getBaseV_Company_UserList1" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select *
+    from  BaseV_Company_User where bcu_type=2
+    AND
+    bcu_userid = #{userid,jdbcType=BIGINT}
+    <include refid="wherelist" />
+    ORDER BY bcu_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountBaseV_Company_User" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(bcu_id) from BaseV_Company_User WHERE
+    bcu_type=#{type,jdbcType=TINYINT}
+    <include refid="wherelist" />
+  </select>
+
+
+
+</mapper>

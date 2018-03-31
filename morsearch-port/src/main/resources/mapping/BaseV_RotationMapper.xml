@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.BaseV_RotationMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.BaseV_Rotation" >
+    <result column="rt_id" property="rt_id" jdbcType="BIGINT" />
+    <result column="rt_type" property="rt_type" jdbcType="VARCHAR" />
+    <result column="rt_index" property="rt_index" jdbcType="INTEGER" />
+    <result column="rt_title" property="rt_title" jdbcType="VARCHAR" />
+    <result column="rt_mode" property="rt_mode" jdbcType="TINYINT" />
+    <result column="rt_location" property="rt_location" jdbcType="VARCHAR" />
+    <result column="rt_flagstop" property="rt_flagstop" jdbcType="BIT" />
+    <result column="rt_remark" property="rt_remark" jdbcType="VARCHAR" />
+    <result column="rt_createno" property="rt_createno" jdbcType="VARCHAR" />
+    <result column="rt_createdate" property="rt_createdate" jdbcType="TIMESTAMP" />
+    <result column="rt_updateno" property="rt_updateno" jdbcType="VARCHAR" />
+    <result column="rt_updatedate" property="rt_updatedate" jdbcType="TIMESTAMP" />
+    <result column="modename" property="modename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rt_id, rt_type, rt_index, rt_title, rt_mode, rt_location, rt_flagstop, rt_remark,
+    rt_createno, rt_createdate, rt_updateno, rt_updatedate, modename
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.BaseV_RotationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from BaseV_Rotation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.BaseV_RotationExample" >
+    delete from BaseV_Rotation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.BaseV_Rotation" >
+    insert into BaseV_Rotation (rt_id, rt_type, rt_index,
+    rt_title, rt_mode, rt_location,
+    rt_flagstop, rt_remark, rt_createno,
+    rt_createdate, rt_updateno, rt_updatedate,
+    modename)
+    values (#{rt_id,jdbcType=BIGINT}, #{rt_type,jdbcType=VARCHAR}, #{rt_index,jdbcType=INTEGER},
+    #{rt_title,jdbcType=VARCHAR}, #{rt_mode,jdbcType=TINYINT}, #{rt_location,jdbcType=VARCHAR},
+    #{rt_flagstop,jdbcType=BIT}, #{rt_remark,jdbcType=VARCHAR}, #{rt_createno,jdbcType=VARCHAR},
+    #{rt_createdate,jdbcType=TIMESTAMP}, #{rt_updateno,jdbcType=VARCHAR}, #{rt_updatedate,jdbcType=TIMESTAMP},
+    #{modename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.BaseV_Rotation" >
+    insert into BaseV_Rotation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rt_id != null" >
+        rt_id,
+      </if>
+      <if test="rt_type != null" >
+        rt_type,
+      </if>
+      <if test="rt_index != null" >
+        rt_index,
+      </if>
+      <if test="rt_title != null" >
+        rt_title,
+      </if>
+      <if test="rt_mode != null" >
+        rt_mode,
+      </if>
+      <if test="rt_location != null" >
+        rt_location,
+      </if>
+      <if test="rt_flagstop != null" >
+        rt_flagstop,
+      </if>
+      <if test="rt_remark != null" >
+        rt_remark,
+      </if>
+      <if test="rt_createno != null" >
+        rt_createno,
+      </if>
+      <if test="rt_createdate != null" >
+        rt_createdate,
+      </if>
+      <if test="rt_updateno != null" >
+        rt_updateno,
+      </if>
+      <if test="rt_updatedate != null" >
+        rt_updatedate,
+      </if>
+      <if test="modename != null" >
+        modename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rt_id != null" >
+        #{rt_id,jdbcType=BIGINT},
+      </if>
+      <if test="rt_type != null" >
+        #{rt_type,jdbcType=VARCHAR},
+      </if>
+      <if test="rt_index != null" >
+        #{rt_index,jdbcType=INTEGER},
+      </if>
+      <if test="rt_title != null" >
+        #{rt_title,jdbcType=VARCHAR},
+      </if>
+      <if test="rt_mode != null" >
+        #{rt_mode,jdbcType=TINYINT},
+      </if>
+      <if test="rt_location != null" >
+        #{rt_location,jdbcType=VARCHAR},
+      </if>
+      <if test="rt_flagstop != null" >
+        #{rt_flagstop,jdbcType=BIT},
+      </if>
+      <if test="rt_remark != null" >
+        #{rt_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="rt_createno != null" >
+        #{rt_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="rt_createdate != null" >
+        #{rt_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rt_updateno != null" >
+        #{rt_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="rt_updatedate != null" >
+        #{rt_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modename != null" >
+        #{modename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.BaseV_RotationExample" resultType="java.lang.Integer" >
+    select count(*) from BaseV_Rotation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update BaseV_Rotation
+    <set >
+      <if test="record.rt_id != null" >
+        rt_id = #{record.rt_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.rt_type != null" >
+        rt_type = #{record.rt_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rt_index != null" >
+        rt_index = #{record.rt_index,jdbcType=INTEGER},
+      </if>
+      <if test="record.rt_title != null" >
+        rt_title = #{record.rt_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rt_mode != null" >
+        rt_mode = #{record.rt_mode,jdbcType=TINYINT},
+      </if>
+      <if test="record.rt_location != null" >
+        rt_location = #{record.rt_location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rt_flagstop != null" >
+        rt_flagstop = #{record.rt_flagstop,jdbcType=BIT},
+      </if>
+      <if test="record.rt_remark != null" >
+        rt_remark = #{record.rt_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rt_createno != null" >
+        rt_createno = #{record.rt_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rt_createdate != null" >
+        rt_createdate = #{record.rt_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rt_updateno != null" >
+        rt_updateno = #{record.rt_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rt_updatedate != null" >
+        rt_updatedate = #{record.rt_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modename != null" >
+        modename = #{record.modename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update BaseV_Rotation
+    set rt_id = #{record.rt_id,jdbcType=BIGINT},
+    rt_type = #{record.rt_type,jdbcType=VARCHAR},
+    rt_index = #{record.rt_index,jdbcType=INTEGER},
+    rt_title = #{record.rt_title,jdbcType=VARCHAR},
+    rt_mode = #{record.rt_mode,jdbcType=TINYINT},
+    rt_location = #{record.rt_location,jdbcType=VARCHAR},
+    rt_flagstop = #{record.rt_flagstop,jdbcType=BIT},
+    rt_remark = #{record.rt_remark,jdbcType=VARCHAR},
+    rt_createno = #{record.rt_createno,jdbcType=VARCHAR},
+    rt_createdate = #{record.rt_createdate,jdbcType=TIMESTAMP},
+    rt_updateno = #{record.rt_updateno,jdbcType=VARCHAR},
+    rt_updatedate = #{record.rt_updatedate,jdbcType=TIMESTAMP},
+    modename = #{record.modename,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+
+  <!-- 条件 -->
+  <sql id="wherelist" >
+    <if test="rt_type != null and rt_type != ''" >
+      and rt_type like concat(concat('%',#{rt_type}),'%') <!-- 类别 -->
+    </if>
+    <if test="rt_title != null and rt_title != ''" >
+      and rt_title like concat(concat('%',#{rt_title}),'%')<!-- 标题-->
+    </if>
+    <if test="rt_flagstop != null and rt_flagstop != ''" >
+      and ifnull(rt_flagstop,0) =#{rt_flagstop}
+    </if>
+    <if test="modename != null and modename != ''" >
+      and modename like concat(concat('%',#{modename}),'%')<!-- 标题-->
+    </if>
+    /*建表日期的查询*/
+    <if test="rt_createdate1 != null and rt_createdate2 !=null" >
+      and rt_createdate  between #{rt_createdate1} and #{rt_createdate2}
+    </if>
+    /*修改日期的查询*/
+    <if test="rt_updatedate1 != null and rt_updatedate2 !=null" >
+      and rt_updatedate  between #{rt_updatedate1} and #{rt_updatedate2}
+    </if>
+
+  </sql>
+
+  <!-- 分页 -->
+  <select id="getBaseV_RotationList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from BaseV_Rotation ar where 1=1
+    <include refid="wherelist" />
+    ORDER BY rt_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountBaseV_Rotation" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(rt_id) from BaseV_Rotation where 1=1
+    <include refid="wherelist" />
+  </select>
+
+</mapper>

@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Desig_EvaluateMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Desig_Evaluate" >
+    <id column="de_id" property="de_id" jdbcType="BIGINT" />
+    <result column="de_orderno" property="de_orderno" jdbcType="VARCHAR" />
+    <result column="de_designerid" property="de_designerid" jdbcType="BIGINT" />
+    <result column="de_appraiser" property="de_appraiser" jdbcType="VARCHAR" />
+    <result column="de_appraiseimage" property="de_appraiseimage" jdbcType="VARCHAR" />
+    <result column="de_anonymity" property="de_anonymity" jdbcType="BIT" />
+    <result column="de_contentgroup" property="de_contentgroup" jdbcType="VARCHAR" />
+    <result column="de_contentgrade" property="de_contentgrade" jdbcType="VARCHAR" />
+    <result column="de_contentvalue" property="de_contentvalue" jdbcType="VARCHAR" />
+    <result column="de_createid" property="de_createid" jdbcType="BIGINT" />
+    <result column="de_createno" property="de_createno" jdbcType="VARCHAR" />
+    <result column="de_createdate" property="de_createdate" jdbcType="TIMESTAMP" />
+    <result column="de_confirmid" property="de_confirmid" jdbcType="BIGINT" />
+    <result column="de_confirmno" property="de_confirmno" jdbcType="VARCHAR" />
+    <result column="de_confirmdate" property="de_confirmdate" jdbcType="TIMESTAMP" />
+    <result column="de_status" property="de_status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    de_id, de_orderno, de_designerid, de_appraiser, de_appraiseimage, de_anonymity, de_contentgroup,
+    de_contentgrade, de_contentvalue, de_createid, de_createno, de_createdate, de_confirmid,
+    de_confirmno, de_confirmdate, de_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Desig_EvaluateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Desig_Evaluate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Desig_Evaluate
+    where de_id = #{de_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Desig_Evaluate
+    where de_id = #{de_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Desig_EvaluateExample" >
+    delete from Desig_Evaluate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Desig_Evaluate" >
+    insert into Desig_Evaluate (de_id, de_orderno, de_designerid,
+    de_appraiser, de_appraiseimage, de_anonymity,
+    de_contentgroup, de_contentgrade, de_contentvalue,
+    de_createid, de_createno, de_createdate,
+    de_confirmid, de_confirmno, de_confirmdate,
+    de_status)
+    values (#{de_id,jdbcType=BIGINT}, #{de_orderno,jdbcType=VARCHAR}, #{de_designerid,jdbcType=BIGINT},
+    #{de_appraiser,jdbcType=VARCHAR}, #{de_appraiseimage,jdbcType=VARCHAR}, #{de_anonymity,jdbcType=BIT},
+    #{de_contentgroup,jdbcType=VARCHAR}, #{de_contentgrade,jdbcType=VARCHAR}, #{de_contentvalue,jdbcType=VARCHAR},
+    #{de_createid,jdbcType=BIGINT}, #{de_createno,jdbcType=VARCHAR}, #{de_createdate,jdbcType=TIMESTAMP},
+    #{de_confirmid,jdbcType=BIGINT}, #{de_confirmno,jdbcType=VARCHAR}, #{de_confirmdate,jdbcType=TIMESTAMP},
+    #{de_status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Desig_Evaluate" >
+    insert into Desig_Evaluate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="de_id != null" >
+        de_id,
+      </if>
+      <if test="de_orderno != null" >
+        de_orderno,
+      </if>
+      <if test="de_designerid != null" >
+        de_designerid,
+      </if>
+      <if test="de_appraiser != null" >
+        de_appraiser,
+      </if>
+      <if test="de_appraiseimage != null" >
+        de_appraiseimage,
+      </if>
+      <if test="de_anonymity != null" >
+        de_anonymity,
+      </if>
+      <if test="de_contentgroup != null" >
+        de_contentgroup,
+      </if>
+      <if test="de_contentgrade != null" >
+        de_contentgrade,
+      </if>
+      <if test="de_contentvalue != null" >
+        de_contentvalue,
+      </if>
+      <if test="de_createid != null" >
+        de_createid,
+      </if>
+      <if test="de_createno != null" >
+        de_createno,
+      </if>
+      <if test="de_createdate != null" >
+        de_createdate,
+      </if>
+      <if test="de_confirmid != null" >
+        de_confirmid,
+      </if>
+      <if test="de_confirmno != null" >
+        de_confirmno,
+      </if>
+      <if test="de_confirmdate != null" >
+        de_confirmdate,
+      </if>
+      <if test="de_status != null" >
+        de_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="de_id != null" >
+        #{de_id,jdbcType=BIGINT},
+      </if>
+      <if test="de_orderno != null" >
+        #{de_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="de_designerid != null" >
+        #{de_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="de_appraiser != null" >
+        #{de_appraiser,jdbcType=VARCHAR},
+      </if>
+      <if test="de_appraiseimage != null" >
+        #{de_appraiseimage,jdbcType=VARCHAR},
+      </if>
+      <if test="de_anonymity != null" >
+        #{de_anonymity,jdbcType=BIT},
+      </if>
+      <if test="de_contentgroup != null" >
+        #{de_contentgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="de_contentgrade != null" >
+        #{de_contentgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="de_contentvalue != null" >
+        #{de_contentvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="de_createid != null" >
+        #{de_createid,jdbcType=BIGINT},
+      </if>
+      <if test="de_createno != null" >
+        #{de_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="de_createdate != null" >
+        #{de_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="de_confirmid != null" >
+        #{de_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="de_confirmno != null" >
+        #{de_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="de_confirmdate != null" >
+        #{de_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="de_status != null" >
+        #{de_status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Desig_EvaluateExample" resultType="java.lang.Integer" >
+    select count(*) from Desig_Evaluate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Desig_Evaluate
+    <set >
+      <if test="record.de_id != null" >
+        de_id = #{record.de_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.de_orderno != null" >
+        de_orderno = #{record.de_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.de_designerid != null" >
+        de_designerid = #{record.de_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="record.de_appraiser != null" >
+        de_appraiser = #{record.de_appraiser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.de_appraiseimage != null" >
+        de_appraiseimage = #{record.de_appraiseimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.de_anonymity != null" >
+        de_anonymity = #{record.de_anonymity,jdbcType=BIT},
+      </if>
+      <if test="record.de_contentgroup != null" >
+        de_contentgroup = #{record.de_contentgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.de_contentgrade != null" >
+        de_contentgrade = #{record.de_contentgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.de_contentvalue != null" >
+        de_contentvalue = #{record.de_contentvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.de_createid != null" >
+        de_createid = #{record.de_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.de_createno != null" >
+        de_createno = #{record.de_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.de_createdate != null" >
+        de_createdate = #{record.de_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.de_confirmid != null" >
+        de_confirmid = #{record.de_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="record.de_confirmno != null" >
+        de_confirmno = #{record.de_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.de_confirmdate != null" >
+        de_confirmdate = #{record.de_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.de_status != null" >
+        de_status = #{record.de_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Desig_Evaluate
+    set de_id = #{record.de_id,jdbcType=BIGINT},
+    de_orderno = #{record.de_orderno,jdbcType=VARCHAR},
+    de_designerid = #{record.de_designerid,jdbcType=BIGINT},
+    de_appraiser = #{record.de_appraiser,jdbcType=VARCHAR},
+    de_appraiseimage = #{record.de_appraiseimage,jdbcType=VARCHAR},
+    de_anonymity = #{record.de_anonymity,jdbcType=BIT},
+    de_contentgroup = #{record.de_contentgroup,jdbcType=VARCHAR},
+    de_contentgrade = #{record.de_contentgrade,jdbcType=VARCHAR},
+    de_contentvalue = #{record.de_contentvalue,jdbcType=VARCHAR},
+    de_createid = #{record.de_createid,jdbcType=BIGINT},
+    de_createno = #{record.de_createno,jdbcType=VARCHAR},
+    de_createdate = #{record.de_createdate,jdbcType=TIMESTAMP},
+    de_confirmid = #{record.de_confirmid,jdbcType=BIGINT},
+    de_confirmno = #{record.de_confirmno,jdbcType=VARCHAR},
+    de_confirmdate = #{record.de_confirmdate,jdbcType=TIMESTAMP},
+    de_status = #{record.de_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Desig_Evaluate" >
+    update Desig_Evaluate
+    <set >
+      <if test="de_orderno != null" >
+        de_orderno = #{de_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="de_designerid != null" >
+        de_designerid = #{de_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="de_appraiser != null" >
+        de_appraiser = #{de_appraiser,jdbcType=VARCHAR},
+      </if>
+      <if test="de_appraiseimage != null" >
+        de_appraiseimage = #{de_appraiseimage,jdbcType=VARCHAR},
+      </if>
+      <if test="de_anonymity != null" >
+        de_anonymity = #{de_anonymity,jdbcType=BIT},
+      </if>
+      <if test="de_contentgroup != null" >
+        de_contentgroup = #{de_contentgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="de_contentgrade != null" >
+        de_contentgrade = #{de_contentgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="de_contentvalue != null" >
+        de_contentvalue = #{de_contentvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="de_createid != null" >
+        de_createid = #{de_createid,jdbcType=BIGINT},
+      </if>
+      <if test="de_createno != null" >
+        de_createno = #{de_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="de_createdate != null" >
+        de_createdate = #{de_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="de_confirmid != null" >
+        de_confirmid = #{de_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="de_confirmno != null" >
+        de_confirmno = #{de_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="de_confirmdate != null" >
+        de_confirmdate = #{de_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="de_status != null" >
+        de_status = #{de_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where de_id = #{de_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Desig_Evaluate" >
+    update Desig_Evaluate
+    set de_orderno = #{de_orderno,jdbcType=VARCHAR},
+    de_designerid = #{de_designerid,jdbcType=BIGINT},
+    de_appraiser = #{de_appraiser,jdbcType=VARCHAR},
+    de_appraiseimage = #{de_appraiseimage,jdbcType=VARCHAR},
+    de_anonymity = #{de_anonymity,jdbcType=BIT},
+    de_contentgroup = #{de_contentgroup,jdbcType=VARCHAR},
+    de_contentgrade = #{de_contentgrade,jdbcType=VARCHAR},
+    de_contentvalue = #{de_contentvalue,jdbcType=VARCHAR},
+    de_createid = #{de_createid,jdbcType=BIGINT},
+    de_createno = #{de_createno,jdbcType=VARCHAR},
+    de_createdate = #{de_createdate,jdbcType=TIMESTAMP},
+    de_confirmid = #{de_confirmid,jdbcType=BIGINT},
+    de_confirmno = #{de_confirmno,jdbcType=VARCHAR},
+    de_confirmdate = #{de_confirmdate,jdbcType=TIMESTAMP},
+    de_status = #{de_status,jdbcType=TINYINT}
+    where de_id = #{de_id,jdbcType=BIGINT}
+  </update>
+
+  <!--自定义-->
+
+  <sql id="wherelist" >
+    <if test="de_designerid != null and de_designerid != ''" >
+      and de_designerid like concat(concat('%',#{de_designerid}),'%')
+    </if>
+    <if test="de_appraiser != null and de_appraiser != ''" >
+      and de_appraiser like concat(concat('%',#{de_appraiser}),'%')
+    </if>
+    <if test="de_contentvalue != null and de_contentvalue != ''" >
+      and de_contentvalue like concat(concat('%',#{de_contentvalue}),'%')
+    </if>
+    <if test="de_contentgroup != null and de_contentgroup != ''" >
+      and de_contentgroup like concat(concat('%',#{de_contentgroup}),'%')
+    </if>
+    <if test="de_contentgrade != null and de_contentgrade != ''" >
+      and de_contentgrade like concat(concat('%',#{de_contentgrade}),'%')
+    </if>
+    <if test="de_appraiseimage != null and de_appraiseimage != ''" >
+      and de_appraiseimage like concat(concat('%',#{de_appraiseimage}),'%')
+    </if>
+    <if test="de_createdate != null and de_createdate != ''" >
+      and de_createdate like concat(concat('%',#{de_createdate}),'%')
+    </if>
+  </sql>
+
+  <select id="getDesigList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    de_appraiser,de_contentvalue,de_contentgroup,de_contentgrade,de_createdate,de_appraiseimage
+    from  Desig_Evaluate where 1=1
+    <include refid="wherelist" />
+    ORDER BY de_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getDesignEvaluateNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    *
+    from  Desig_Evaluate where
+   de_orderno =#{no,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getDesignEvaluateContentgrade" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    de_contentgrade
+    from  Desig_Evaluate where
+    de_createid =#{createid,jdbcType=BIGINT}
+  </select>
+
+  <select id="getDesigListCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(de_designerid) from Desig_Evaluate WHERE 1=1
+    <include refid="wherelist" />
+  </select>
+
+<!--设计师列表-->
+  <select id="getDesig_EvaluateList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select *
+    from  Desig_Evaluate where 1=1
+    <include refid="wherelist1" />
+    ORDER BY de_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+<!--设计师总数-->
+  <select id="getCountDesig_Evaluate" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(de_id) from Desig_Evaluate WHERE 1=1
+    <include refid="wherelist1" />
+  </select>
+
+
+
+  <sql id="wherelist1" >
+    <if test="de_orderno != null and de_orderno != ''" >
+      and de_orderno like concat(concat('%',#{de_orderno}),'%')
+    </if>
+    <if test="de_createno != null and de_createno != ''" >
+      and de_createno like concat(concat('%',#{de_createno}),'%')
+    </if>
+    <if test="de_confirmno != null and de_confirmno != ''" >
+      and de_confirmno like concat(concat('%',#{de_confirmno}),'%')
+    </if>
+    /*关于制表日期的查询*/
+
+    <if test="de_createdate1 != null and de_createdate2 !=null" >
+      and de_createdate  between #{de_createdate1} and #{de_createdate2}
+    </if>
+
+    /*关于审核日期的查询*/
+    <if test="de_confirmdate1 != null and de_confirmdate2 !=null" >
+      and de_confirmdate  between #{de_confirmdate1} and #{de_confirmdate2}
+    </if>
+  </sql>
+</mapper>

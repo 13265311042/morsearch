@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
+                        http://www.springframework.org/schema/context  
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+						   http://www.springframework.org/schema/tx
+           			   http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+           			   http://www.springframework.org/schema/aop
+           			   http://www.springframework.org/schema/aop/spring-aop.xsd"
+>
+
+<!--
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+-->
+	<context:component-scan base-package="com.morsearch" />
+
+
+
+
+<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+		<list>
+          <value>classpath:jdbc.properties</value>  
+          <value>classpath:redis.properties</value>
+		<value>classpath:ftp.properties</value>
+        </list>
+		</property>
+	</bean>
+
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<!-- 数据连接信息 -->
+		<property name="jdbcUrl" value="${jdbcUrl}"></property>
+		<property name="driverClass" value="${driverClass}"></property>
+		<property name="user" value="${user}"></property>
+		<property name="password" value="${password}"></property>
+		<!-- 其他配置 -->
+		<!--初始化时获取三个连接，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+		<property name="initialPoolSize" value="3"></property>
+		<!--连接池中保留的最小连接数。Default: 3 -->
+		<property name="minPoolSize" value="3"></property>
+		<!--连接池中保留的最大连接数。Default: 15 -->
+		<property name="maxPoolSize" value="1000"></property>
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+		<property name="acquireIncrement" value="5"></property>
+		<!--maxStatementsPerConnection定义了连接池内单个连接所拥有的最大缓存statements数。Default: 0 -->
+		<property name="maxStatementsPerConnection" value="5"></property>
+		<!--最大空闲时间,1800秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+		<property name="maxIdleTime" value="1800"></property>
+		<!--配置连接的生存时间，超过这个时间的连接由连接池自动断开丢弃掉 -->
+		<property name="maxConnectionAge" value="40"></property>
+		<property name="checkoutTimeout" value="3000"></property>
+		<!--连接关闭时将未提交的操作回滚 -->
+		<property name="autoCommitOnClose" value="true"></property>
+		<!-- 每隔50秒检查连接池中的空闲连接 -->
+		<property name="idleConnectionTestPeriod" value="50" />
+	</bean>
+
+	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+	 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:mapping/*.xml"></property>
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean> 
+
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+ <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.morsearch.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+
+	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 只对业务逻辑层(dao)实施事务 事务逻辑一定要放在同个service层的同一个方法处理，否则事务不起作用  -->
+	<aop:config>
+		<aop:pointcut id="Adviceopen" expression="execution(* com.morsearch.service.impl..*.*(..))"/>
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="Adviceopen"/>
+	</aop:config>
+	<!-- (事务管理增强) REQUIRED，增加事务；read-only="true",不需要事务-->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="insert*" propagation="REQUIRED"  rollback-for="java.lang.Exception" />
+			<tx:method name="del*" propagation="REQUIRED"  rollback-for="java.lang.Exception"/>
+			<tx:method name="save*" propagation="REQUIRED"  rollback-for="java.lang.Exception"/>
+			<tx:method name="update*" propagation="REQUIRED"  rollback-for="java.lang.Exception"/>
+			<tx:method name="add*" propagation="REQUIRED"  rollback-for="java.lang.Exception"/>
+			<tx:method name="find*"  propagation="NOT_SUPPORTED" read-only="true" />
+			<tx:method name="get*"  propagation="NOT_SUPPORTED" read-only="true" />
+			<tx:method name="select*" propagation="NOT_SUPPORTED" read-only="true" />
+			<tx:method name="list*" propagation="NOT_SUPPORTED" read-only="true" />
+			<tx:method name="*" rollback-for="java.lang.Exception"/>
+		</tx:attributes>
+	</tx:advice>
+
+
+<!--        &lt;!&ndash; 自动扫描组件，需要把controller去掉，否则影响事务管理   &ndash;&gt;-->
+<!--
+        <context:component-scan base-package="com.morsearch">
+            <context:exclude-filter type="regex" expression="com.morsearch.controller.*"/>
+        </context:component-scan>
+-->
+
+
+</beans>

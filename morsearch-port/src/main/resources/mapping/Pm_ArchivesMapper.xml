@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Pm_ArchivesMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Pm_Archives" >
+    <id column="pa_id" property="pa_id" jdbcType="BIGINT" />
+    <result column="pa_title" property="pa_title" jdbcType="VARCHAR" />
+    <result column="pa_major" property="pa_major" jdbcType="VARCHAR" />
+    <result column="pa_style" property="pa_style" jdbcType="VARCHAR" />
+    <result column="pa_features" property="pa_features" jdbcType="VARCHAR" />
+    <result column="pa_content" property="pa_content" jdbcType="VARCHAR" />
+    <result column="pa_companyid" property="pa_companyid" jdbcType="INTEGER" />
+    <result column="pa_companyname" property="pa_companyname" jdbcType="VARCHAR" />
+    <result column="pa_filename" property="pa_filename" jdbcType="VARCHAR" />
+    <result column="pa_attachqty" property="pa_attachqty" jdbcType="INTEGER" />
+    <result column="pa_pagecount" property="pa_pagecount" jdbcType="INTEGER" />
+    <result column="pa_sharepid" property="pa_sharepid" jdbcType="BIGINT" />
+    <result column="pa_flagshare" property="pa_flagshare" jdbcType="BIT" />
+    <result column="pa_flagstop" property="pa_flagstop" jdbcType="BIT" />
+    <result column="pa_flagselect" property="pa_flagselect" jdbcType="BIT" />
+    <result column="pa_flagnews" property="pa_flagnews" jdbcType="BIT" />
+    <result column="pa_count_collect" property="pa_count_collect" jdbcType="INTEGER" />
+    <result column="pa_count_browse" property="pa_count_browse" jdbcType="INTEGER" />
+    <result column="pa_createid" property="pa_createid" jdbcType="BIGINT" />
+    <result column="pa_createno" property="pa_createno" jdbcType="VARCHAR" />
+    <result column="pa_createdate" property="pa_createdate" jdbcType="TIMESTAMP" />
+    <result column="pa_confirmid" property="pa_confirmid" jdbcType="BIGINT" />
+    <result column="pa_confirmno" property="pa_confirmno" jdbcType="VARCHAR" />
+    <result column="pa_confirmdate" property="pa_confirmdate" jdbcType="TIMESTAMP" />
+    <result column="pa_status" property="pa_status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pa_id, pa_title, pa_major, pa_style, pa_features, pa_content, pa_companyid, pa_companyname,
+    pa_filename, pa_attachqty, pa_pagecount, pa_sharepid, pa_flagshare, pa_flagstop,
+    pa_flagselect, pa_flagnews, pa_count_collect, pa_count_browse, pa_createid, pa_createno,
+    pa_createdate, pa_confirmid, pa_confirmno, pa_confirmdate, pa_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Pm_ArchivesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pm_Archives
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Pm_Archives
+    where pa_id = #{pa_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Pm_Archives
+    where pa_id = #{pa_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Pm_ArchivesExample" >
+    delete from Pm_Archives
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Pm_Archives" >
+    <selectKey keyProperty="pa_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Pm_Archives (pa_id, pa_title, pa_major,
+    pa_style, pa_features, pa_content,
+    pa_companyid, pa_companyname, pa_filename,
+    pa_attachqty, pa_pagecount, pa_sharepid,
+    pa_flagshare, pa_flagstop, pa_flagselect,
+    pa_flagnews, pa_count_collect, pa_count_browse,
+    pa_createid, pa_createno, pa_createdate,
+    pa_confirmid, pa_confirmno, pa_confirmdate,
+    pa_status)
+    values (#{pa_id,jdbcType=BIGINT}, #{pa_title,jdbcType=VARCHAR}, #{pa_major,jdbcType=VARCHAR},
+    #{pa_style,jdbcType=VARCHAR}, #{pa_features,jdbcType=VARCHAR}, #{pa_content,jdbcType=VARCHAR},
+    #{pa_companyid,jdbcType=INTEGER}, #{pa_companyname,jdbcType=VARCHAR}, #{pa_filename,jdbcType=VARCHAR},
+    #{pa_attachqty,jdbcType=INTEGER}, #{pa_pagecount,jdbcType=INTEGER}, #{pa_sharepid,jdbcType=BIGINT},
+    #{pa_flagshare,jdbcType=BIT}, #{pa_flagstop,jdbcType=BIT}, #{pa_flagselect,jdbcType=BIT},
+    #{pa_flagnews,jdbcType=BIT}, #{pa_count_collect,jdbcType=INTEGER}, #{pa_count_browse,jdbcType=INTEGER},
+    #{pa_createid,jdbcType=BIGINT}, #{pa_createno,jdbcType=VARCHAR}, #{pa_createdate,jdbcType=TIMESTAMP},
+    #{pa_confirmid,jdbcType=BIGINT}, #{pa_confirmno,jdbcType=VARCHAR}, #{pa_confirmdate,jdbcType=TIMESTAMP},
+    #{pa_status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Pm_Archives" >
+    <selectKey keyProperty="pa_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Pm_Archives
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pa_id != null" >
+        pa_id,
+      </if>
+      <if test="pa_title != null" >
+        pa_title,
+      </if>
+      <if test="pa_major != null" >
+        pa_major,
+      </if>
+      <if test="pa_style != null" >
+        pa_style,
+      </if>
+      <if test="pa_features != null" >
+        pa_features,
+      </if>
+      <if test="pa_content != null" >
+        pa_content,
+      </if>
+      <if test="pa_companyid != null" >
+        pa_companyid,
+      </if>
+      <if test="pa_companyname != null" >
+        pa_companyname,
+      </if>
+      <if test="pa_filename != null" >
+        pa_filename,
+      </if>
+      <if test="pa_attachqty != null" >
+        pa_attachqty,
+      </if>
+      <if test="pa_pagecount != null" >
+        pa_pagecount,
+      </if>
+      <if test="pa_sharepid != null" >
+        pa_sharepid,
+      </if>
+      <if test="pa_flagshare != null" >
+        pa_flagshare,
+      </if>
+      <if test="pa_flagstop != null" >
+        pa_flagstop,
+      </if>
+      <if test="pa_flagselect != null" >
+        pa_flagselect,
+      </if>
+      <if test="pa_flagnews != null" >
+        pa_flagnews,
+      </if>
+      <if test="pa_count_collect != null" >
+        pa_count_collect,
+      </if>
+      <if test="pa_count_browse != null" >
+        pa_count_browse,
+      </if>
+      <if test="pa_createid != null" >
+        pa_createid,
+      </if>
+      <if test="pa_createno != null" >
+        pa_createno,
+      </if>
+      <if test="pa_createdate != null" >
+        pa_createdate,
+      </if>
+      <if test="pa_confirmid != null" >
+        pa_confirmid,
+      </if>
+      <if test="pa_confirmno != null" >
+        pa_confirmno,
+      </if>
+      <if test="pa_confirmdate != null" >
+        pa_confirmdate,
+      </if>
+      <if test="pa_status != null" >
+        pa_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pa_id != null" >
+        #{pa_id,jdbcType=BIGINT},
+      </if>
+      <if test="pa_title != null" >
+        #{pa_title,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_major != null" >
+        #{pa_major,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_style != null" >
+        #{pa_style,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_features != null" >
+        #{pa_features,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_content != null" >
+        #{pa_content,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_companyid != null" >
+        #{pa_companyid,jdbcType=INTEGER},
+      </if>
+      <if test="pa_companyname != null" >
+        #{pa_companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_filename != null" >
+        #{pa_filename,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_attachqty != null" >
+        #{pa_attachqty,jdbcType=INTEGER},
+      </if>
+      <if test="pa_pagecount != null" >
+        #{pa_pagecount,jdbcType=INTEGER},
+      </if>
+      <if test="pa_sharepid != null" >
+        #{pa_sharepid,jdbcType=BIGINT},
+      </if>
+      <if test="pa_flagshare != null" >
+        #{pa_flagshare,jdbcType=BIT},
+      </if>
+      <if test="pa_flagstop != null" >
+        #{pa_flagstop,jdbcType=BIT},
+      </if>
+      <if test="pa_flagselect != null" >
+        #{pa_flagselect,jdbcType=BIT},
+      </if>
+      <if test="pa_flagnews != null" >
+        #{pa_flagnews,jdbcType=BIT},
+      </if>
+      <if test="pa_count_collect != null" >
+        #{pa_count_collect,jdbcType=INTEGER},
+      </if>
+      <if test="pa_count_browse != null" >
+        #{pa_count_browse,jdbcType=INTEGER},
+      </if>
+      <if test="pa_createid != null" >
+        #{pa_createid,jdbcType=BIGINT},
+      </if>
+      <if test="pa_createno != null" >
+        #{pa_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_createdate != null" >
+        #{pa_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pa_confirmid != null" >
+        #{pa_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="pa_confirmno != null" >
+        #{pa_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_confirmdate != null" >
+        #{pa_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pa_status != null" >
+        #{pa_status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Pm_ArchivesExample" resultType="java.lang.Integer" >
+    select count(*) from Pm_Archives
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pm_Archives
+    <set >
+      <if test="record.pa_id != null" >
+        pa_id = #{record.pa_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.pa_title != null" >
+        pa_title = #{record.pa_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_major != null" >
+        pa_major = #{record.pa_major,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_style != null" >
+        pa_style = #{record.pa_style,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_features != null" >
+        pa_features = #{record.pa_features,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_content != null" >
+        pa_content = #{record.pa_content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_companyid != null" >
+        pa_companyid = #{record.pa_companyid,jdbcType=INTEGER},
+      </if>
+      <if test="record.pa_companyname != null" >
+        pa_companyname = #{record.pa_companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_filename != null" >
+        pa_filename = #{record.pa_filename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_attachqty != null" >
+        pa_attachqty = #{record.pa_attachqty,jdbcType=INTEGER},
+      </if>
+      <if test="record.pa_pagecount != null" >
+        pa_pagecount = #{record.pa_pagecount,jdbcType=INTEGER},
+      </if>
+      <if test="record.pa_sharepid != null" >
+        pa_sharepid = #{record.pa_sharepid,jdbcType=BIGINT},
+      </if>
+      <if test="record.pa_flagshare != null" >
+        pa_flagshare = #{record.pa_flagshare,jdbcType=BIT},
+      </if>
+      <if test="record.pa_flagstop != null" >
+        pa_flagstop = #{record.pa_flagstop,jdbcType=BIT},
+      </if>
+      <if test="record.pa_flagselect != null" >
+        pa_flagselect = #{record.pa_flagselect,jdbcType=BIT},
+      </if>
+      <if test="record.pa_flagnews != null" >
+        pa_flagnews = #{record.pa_flagnews,jdbcType=BIT},
+      </if>
+      <if test="record.pa_count_collect != null" >
+        pa_count_collect = #{record.pa_count_collect,jdbcType=INTEGER},
+      </if>
+      <if test="record.pa_count_browse != null" >
+        pa_count_browse = #{record.pa_count_browse,jdbcType=INTEGER},
+      </if>
+      <if test="record.pa_createid != null" >
+        pa_createid = #{record.pa_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.pa_createno != null" >
+        pa_createno = #{record.pa_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_createdate != null" >
+        pa_createdate = #{record.pa_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pa_confirmid != null" >
+        pa_confirmid = #{record.pa_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="record.pa_confirmno != null" >
+        pa_confirmno = #{record.pa_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_confirmdate != null" >
+        pa_confirmdate = #{record.pa_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pa_status != null" >
+        pa_status = #{record.pa_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pm_Archives
+    set pa_id = #{record.pa_id,jdbcType=BIGINT},
+    pa_title = #{record.pa_title,jdbcType=VARCHAR},
+    pa_major = #{record.pa_major,jdbcType=VARCHAR},
+    pa_style = #{record.pa_style,jdbcType=VARCHAR},
+    pa_features = #{record.pa_features,jdbcType=VARCHAR},
+    pa_content = #{record.pa_content,jdbcType=VARCHAR},
+    pa_companyid = #{record.pa_companyid,jdbcType=INTEGER},
+    pa_companyname = #{record.pa_companyname,jdbcType=VARCHAR},
+    pa_filename = #{record.pa_filename,jdbcType=VARCHAR},
+    pa_attachqty = #{record.pa_attachqty,jdbcType=INTEGER},
+    pa_pagecount = #{record.pa_pagecount,jdbcType=INTEGER},
+    pa_sharepid = #{record.pa_sharepid,jdbcType=BIGINT},
+    pa_flagshare = #{record.pa_flagshare,jdbcType=BIT},
+    pa_flagstop = #{record.pa_flagstop,jdbcType=BIT},
+    pa_flagselect = #{record.pa_flagselect,jdbcType=BIT},
+    pa_flagnews = #{record.pa_flagnews,jdbcType=BIT},
+    pa_count_collect = #{record.pa_count_collect,jdbcType=INTEGER},
+    pa_count_browse = #{record.pa_count_browse,jdbcType=INTEGER},
+    pa_createid = #{record.pa_createid,jdbcType=BIGINT},
+    pa_createno = #{record.pa_createno,jdbcType=VARCHAR},
+    pa_createdate = #{record.pa_createdate,jdbcType=TIMESTAMP},
+    pa_confirmid = #{record.pa_confirmid,jdbcType=BIGINT},
+    pa_confirmno = #{record.pa_confirmno,jdbcType=VARCHAR},
+    pa_confirmdate = #{record.pa_confirmdate,jdbcType=TIMESTAMP},
+    pa_status = #{record.pa_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Pm_Archives" >
+    update Pm_Archives
+    <set >
+      <if test="pa_title != null" >
+        pa_title = #{pa_title,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_major != null" >
+        pa_major = #{pa_major,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_style != null" >
+        pa_style = #{pa_style,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_features != null" >
+        pa_features = #{pa_features,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_content != null" >
+        pa_content = #{pa_content,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_companyid != null" >
+        pa_companyid = #{pa_companyid,jdbcType=INTEGER},
+      </if>
+      <if test="pa_companyname != null" >
+        pa_companyname = #{pa_companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_filename != null" >
+        pa_filename = #{pa_filename,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_attachqty != null" >
+        pa_attachqty = #{pa_attachqty,jdbcType=INTEGER},
+      </if>
+      <if test="pa_pagecount != null" >
+        pa_pagecount = #{pa_pagecount,jdbcType=INTEGER},
+      </if>
+      <if test="pa_sharepid != null" >
+        pa_sharepid = #{pa_sharepid,jdbcType=BIGINT},
+      </if>
+      <if test="pa_flagshare != null" >
+        pa_flagshare = #{pa_flagshare,jdbcType=BIT},
+      </if>
+      <if test="pa_flagstop != null" >
+        pa_flagstop = #{pa_flagstop,jdbcType=BIT},
+      </if>
+      <if test="pa_flagselect != null" >
+        pa_flagselect = #{pa_flagselect,jdbcType=BIT},
+      </if>
+      <if test="pa_flagnews != null" >
+        pa_flagnews = #{pa_flagnews,jdbcType=BIT},
+      </if>
+      <if test="pa_count_collect != null" >
+        pa_count_collect = #{pa_count_collect,jdbcType=INTEGER},
+      </if>
+      <if test="pa_count_browse != null" >
+        pa_count_browse = #{pa_count_browse,jdbcType=INTEGER},
+      </if>
+      <if test="pa_createid != null" >
+        pa_createid = #{pa_createid,jdbcType=BIGINT},
+      </if>
+      <if test="pa_createno != null" >
+        pa_createno = #{pa_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_createdate != null" >
+        pa_createdate = #{pa_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pa_confirmid != null" >
+        pa_confirmid = #{pa_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="pa_confirmno != null" >
+        pa_confirmno = #{pa_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_confirmdate != null" >
+        pa_confirmdate = #{pa_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pa_status != null" >
+        pa_status = #{pa_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where pa_id = #{pa_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Pm_Archives" >
+    update Pm_Archives
+    set pa_title = #{pa_title,jdbcType=VARCHAR},
+    pa_major = #{pa_major,jdbcType=VARCHAR},
+    pa_style = #{pa_style,jdbcType=VARCHAR},
+    pa_features = #{pa_features,jdbcType=VARCHAR},
+    pa_content = #{pa_content,jdbcType=VARCHAR},
+    pa_companyid = #{pa_companyid,jdbcType=INTEGER},
+    pa_companyname = #{pa_companyname,jdbcType=VARCHAR},
+    pa_filename = #{pa_filename,jdbcType=VARCHAR},
+    pa_attachqty = #{pa_attachqty,jdbcType=INTEGER},
+    pa_pagecount = #{pa_pagecount,jdbcType=INTEGER},
+    pa_sharepid = #{pa_sharepid,jdbcType=BIGINT},
+    pa_flagshare = #{pa_flagshare,jdbcType=BIT},
+    pa_flagstop = #{pa_flagstop,jdbcType=BIT},
+    pa_flagselect = #{pa_flagselect,jdbcType=BIT},
+    pa_flagnews = #{pa_flagnews,jdbcType=BIT},
+    pa_count_collect = #{pa_count_collect,jdbcType=INTEGER},
+    pa_count_browse = #{pa_count_browse,jdbcType=INTEGER},
+    pa_createid = #{pa_createid,jdbcType=BIGINT},
+    pa_createno = #{pa_createno,jdbcType=VARCHAR},
+    pa_createdate = #{pa_createdate,jdbcType=TIMESTAMP},
+    pa_confirmid = #{pa_confirmid,jdbcType=BIGINT},
+    pa_confirmno = #{pa_confirmno,jdbcType=VARCHAR},
+    pa_confirmdate = #{pa_confirmdate,jdbcType=TIMESTAMP},
+    pa_status = #{pa_status,jdbcType=TINYINT}
+    where pa_id = #{pa_id,jdbcType=BIGINT}
+  </update>
+
+
+
+  <!--自定义-->
+  <sql id="wherelist" >
+    <if test="pa_createid != null and pa_createid != ''" >
+      and pa_createid like concat(concat('%',#{pa_createid}),'%')
+    </if>
+    <if test="pa_title != null and pa_title != ''" >
+      and pa_title like concat(concat('%',#{pa_title}),'%')
+    </if>
+    <if test="pa_major != null and pa_major != ''" >
+      and pa_major like concat(concat('%',#{pa_major}),'%')
+    </if>
+    <if test="pa_style != null and pa_style != ''" >
+      and pa_style like concat(concat('%',#{pa_style}),'%')
+    </if>
+    <if test="pa_features != null and pa_features != ''" >
+      and pa_features like concat(concat('%',#{pa_features}),'%')
+    </if>
+  </sql>
+
+  <select id="getPmArchivesList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    pa_id,pa_title,pa_major,pa_style,pa_features,pa_count_browse,pa_createdate
+    from  Pm_Archives where (pa_flagstop=0 OR pa_flagstop is NULL)
+    and
+    pa_createid =#{pa_createid,jdbcType=BIGINT}
+    ORDER BY pa_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getPmArchivesListCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+    select count(*) from Pm_Archives WHERE
+    pa_createid =#{pa_createid,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="getPmarchives" resultMap="BaseResultMap" parameterType="String">
+    select *
+    from Pm_Archives WHERE
+    pa_title = #{title,jdbcType=VARCHAR}
+  </select>
+
+  <select id="get_Pmarchives" resultMap="BaseResultMap">
+    select pa_id
+    from Pm_Archives WHERE
+    pa_title = #{title,jdbcType=VARCHAR}
+    AND
+    pa_createid =#{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="getList" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select
+    pa_id,pa_title,pa_major,pa_style,pa_features
+    from Pm_Archives WHERE
+    pa_createid = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="getPm_Archives" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select
+    *
+    from Pm_Archives WHERE
+    pa_id = #{pa_id,jdbcType=BIGINT}
+  </select>
+
+  <!--分页查询-->
+  <!--查询产品档案列表-->
+  <select id="getPm_ArchivesList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select *  from  Pm_Archives where 1=1
+    <include refid="wherelist1" />
+    ORDER BY pa_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <!--得到总数-->
+  <select id="getCountPm_Archives" resultType="java.lang.Integer" parameterType="java.util.Map">
+    select count(pa_id) from Pm_Archives WHERE 1=1
+    <include refid="wherelist1" />
+  </select>
+
+  <!--查询条件-->
+  <sql id="wherelist1" >
+    <if test="pa_title != null and pa_title != ''" >
+      and pa_title like concat(concat('%',#{pa_title}),'%')
+    </if>
+    <if test="pa_major != null and pa_major != ''" >
+      and pa_major like concat(concat('%',#{pa_major}),'%')
+    </if>
+    <if test="pa_companyname != null and pa_companyname != ''" >
+      and pa_companyname like concat(concat('%',#{pa_companyname}),'%')
+    </if>
+    <if test="pa_filename != null and pa_filename != ''" >
+      and pa_filename like concat(concat('%',#{pa_filename}),'%')
+    </if>
+
+    <if test="pa_flagstop != null and pa_flagstop != ''" >
+      and ifnull(pa_flagstop,0) =#{pa_flagstop}
+    </if>
+    /*关于注册时间的查询*/
+    <if test="pa_createdate1 != null and pa_createdate2 !=null" >
+      and pa_createdate  between #{pa_createdate1} and #{pa_createdate2}
+    </if>
+    /*关于登陆时间的查询*/
+    <if test="pa_confirmdate1 != null and pa_confirmdate2 !=null" >
+      and pa_confirmdate  between #{pa_confirmdate1} and #{pa_confirmdate2}
+    </if>
+
+    <if test="pa_status != null" >
+      and pa_status=#{pa_status}
+    </if>
+  </sql>
+
+
+  <!-- 获取文档明细  1.查浏览和收藏数量-->
+  <select id="getArchivesDetail" resultMap="BaseResultMap" parameterType="String" >
+    select
+    <if test="type==1" >
+      *
+    </if>
+    <if test="type==2" >
+      pa_id,pa_count_collect
+    </if>
+    <if test="type==3" >
+      pa_id,pa_count_browse
+    </if>
+    <if test="type==4" >
+      pa_id,pa_createid,pa_title
+    </if>
+    from Pm_Archives
+    where pa_id = #{paid,jdbcType=BIGINT}
+
+  </select>
+
+  <select id="getPm_Archivesidlist"  resultMap="BaseResultMap">
+      select pa_id from Pm_Archives
+  </select>
+
+
+  <select id="getPm_ArchivesListid" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT * FROM Pm_Archives WHERE NOT EXISTS ( SELECT dh_dyid FROM Desig_Home WHERE Desig_Home.dh_type=2 AND Desig_Home.dh_dyid = Pm_Archives.pa_id )
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountPm_Archivesid" resultType="java.lang.Integer" parameterType="java.util.Map">
+    select count(pa_id) from Pm_Archives WHERE NOT EXISTS ( SELECT dh_dyid FROM Desig_Home WHERE Desig_Home.dh_type=2 AND Desig_Home.dh_dyid = Pm_Archives.pa_id )
+  </select>
+
+
+  <select id="getPm_Archivesidnocut"  resultType="java.util.Map">
+    select pa_filename,pa_id,pa_createdate from Pm_Archives where ifnull(pa_pagecount,0)=0
+    and ifnull(pa_filename,'')!='' and DATE_ADD(pa_createdate,INTERVAL 15 DAY)>=NOW()
+  </select>
+
+
+
+</mapper>

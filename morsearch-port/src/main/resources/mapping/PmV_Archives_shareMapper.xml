@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.PmV_Archives_shareMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.PmV_Archives_share" >
+    <result column="pa_id" property="pa_id" jdbcType="BIGINT" />
+    <result column="pa_title" property="pa_title" jdbcType="VARCHAR" />
+    <result column="pa_flagselect" property="pa_flagselect" jdbcType="BIT" />
+    <result column="pa_companyid" property="pa_companyid" jdbcType="INTEGER" />
+    <result column="pa_companyname" property="pa_companyname" jdbcType="VARCHAR" />
+    <result column="pa_createid" property="pa_createid" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pa_id, pa_title, pa_flagselect, pa_companyid, pa_companyname, pa_createid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.PmV_Archives_shareExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PmV_Archives_share
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.PmV_Archives_shareExample" >
+    delete from PmV_Archives_share
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.PmV_Archives_share" >
+    insert into PmV_Archives_share (pa_id, pa_title, pa_flagselect, 
+      pa_companyid, pa_companyname, pa_createid
+      )
+    values (#{pa_id,jdbcType=BIGINT}, #{pa_title,jdbcType=VARCHAR}, #{pa_flagselect,jdbcType=BIT}, 
+      #{pa_companyid,jdbcType=INTEGER}, #{pa_companyname,jdbcType=VARCHAR}, #{pa_createid,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.PmV_Archives_share" >
+    insert into PmV_Archives_share
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pa_id != null" >
+        pa_id,
+      </if>
+      <if test="pa_title != null" >
+        pa_title,
+      </if>
+      <if test="pa_flagselect != null" >
+        pa_flagselect,
+      </if>
+      <if test="pa_companyid != null" >
+        pa_companyid,
+      </if>
+      <if test="pa_companyname != null" >
+        pa_companyname,
+      </if>
+      <if test="pa_createid != null" >
+        pa_createid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pa_id != null" >
+        #{pa_id,jdbcType=BIGINT},
+      </if>
+      <if test="pa_title != null" >
+        #{pa_title,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_flagselect != null" >
+        #{pa_flagselect,jdbcType=BIT},
+      </if>
+      <if test="pa_companyid != null" >
+        #{pa_companyid,jdbcType=INTEGER},
+      </if>
+      <if test="pa_companyname != null" >
+        #{pa_companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_createid != null" >
+        #{pa_createid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.PmV_Archives_shareExample" resultType="java.lang.Integer" >
+    select count(*) from PmV_Archives_share
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PmV_Archives_share
+    <set >
+      <if test="record.pa_id != null" >
+        pa_id = #{record.pa_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.pa_title != null" >
+        pa_title = #{record.pa_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_flagselect != null" >
+        pa_flagselect = #{record.pa_flagselect,jdbcType=BIT},
+      </if>
+      <if test="record.pa_companyid != null" >
+        pa_companyid = #{record.pa_companyid,jdbcType=INTEGER},
+      </if>
+      <if test="record.pa_companyname != null" >
+        pa_companyname = #{record.pa_companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_createid != null" >
+        pa_createid = #{record.pa_createid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PmV_Archives_share
+    set pa_id = #{record.pa_id,jdbcType=BIGINT},
+      pa_title = #{record.pa_title,jdbcType=VARCHAR},
+      pa_flagselect = #{record.pa_flagselect,jdbcType=BIT},
+      pa_companyid = #{record.pa_companyid,jdbcType=INTEGER},
+      pa_companyname = #{record.pa_companyname,jdbcType=VARCHAR},
+      pa_createid = #{record.pa_createid,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <!--自定义-->
+
+  <select id="getShare" resultMap="BaseResultMap" parameterType="map" >
+    select
+    pa_title,pa_id
+    from PmV_Archives_share WHERE
+    pa_createid != #{ur_id,jdbcType=BIGINT}
+    and pa_companyname = #{pa_companyname,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getArchivesShare" resultMap="BaseResultMap" parameterType="Long" >
+    select
+    *
+    from PmV_Archives_share WHERE
+    pa_id = #{pa_id,jdbcType=BIGINT}
+  </select>
+</mapper>

@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.DesigV_ProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.DesigV_Project" >
+    <result column="sp_id" property="sp_id" jdbcType="BIGINT" />
+    <result column="sp_no" property="sp_no" jdbcType="VARCHAR" />
+    <result column="sp_title" property="sp_title" jdbcType="VARCHAR" />
+    <result column="sp_citycode" property="sp_citycode" jdbcType="VARCHAR" />
+    <result column="sp_cityname" property="sp_cityname" jdbcType="VARCHAR" />
+    <result column="sp_signcode" property="sp_signcode" jdbcType="TINYINT" />
+    <result column="sp_signname" property="sp_signname" jdbcType="VARCHAR" />
+    <result column="sp_count_collect" property="sp_count_collect" jdbcType="INTEGER" />
+    <result column="sp_count_browse" property="sp_count_browse" jdbcType="INTEGER" />
+    <result column="sp_flag_auditread" property="sp_flag_auditread" jdbcType="BIT" />
+    <result column="sp_flag_adminread" property="sp_flag_adminread" jdbcType="BIT" />
+    <result column="sp_adminremark" property="sp_adminremark" jdbcType="VARCHAR" />
+    <result column="sp_createid" property="sp_createid" jdbcType="BIGINT" />
+    <result column="sp_createno" property="sp_createno" jdbcType="VARCHAR" />
+    <result column="sp_createdate" property="sp_createdate" jdbcType="TIMESTAMP" />
+    <result column="sp_confirmid" property="sp_confirmid" jdbcType="BIGINT" />
+    <result column="sp_confirmno" property="sp_confirmno" jdbcType="VARCHAR" />
+    <result column="sp_confirmdate" property="sp_confirmdate" jdbcType="TIMESTAMP" />
+    <result column="sp_status" property="sp_status" jdbcType="TINYINT" />
+    <result column="statusname" property="statusname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sp_id, sp_no, sp_title, sp_citycode, sp_cityname, sp_signcode, sp_signname, sp_count_collect, 
+    sp_count_browse, sp_flag_auditread, sp_flag_adminread, sp_adminremark, sp_createid, 
+    sp_createno, sp_createdate, sp_confirmid, sp_confirmno, sp_confirmdate, sp_status, 
+    statusname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.DesigV_ProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from DesigV_Project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.DesigV_ProjectExample" >
+    delete from DesigV_Project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.DesigV_Project" >
+    insert into DesigV_Project (sp_id, sp_no, sp_title, 
+      sp_citycode, sp_cityname, sp_signcode, 
+      sp_signname, sp_count_collect, sp_count_browse, 
+      sp_flag_auditread, sp_flag_adminread, sp_adminremark, 
+      sp_createid, sp_createno, sp_createdate, 
+      sp_confirmid, sp_confirmno, sp_confirmdate, 
+      sp_status, statusname)
+    values (#{sp_id,jdbcType=BIGINT}, #{sp_no,jdbcType=VARCHAR}, #{sp_title,jdbcType=VARCHAR}, 
+      #{sp_citycode,jdbcType=VARCHAR}, #{sp_cityname,jdbcType=VARCHAR}, #{sp_signcode,jdbcType=TINYINT}, 
+      #{sp_signname,jdbcType=VARCHAR}, #{sp_count_collect,jdbcType=INTEGER}, #{sp_count_browse,jdbcType=INTEGER}, 
+      #{sp_flag_auditread,jdbcType=BIT}, #{sp_flag_adminread,jdbcType=BIT}, #{sp_adminremark,jdbcType=VARCHAR}, 
+      #{sp_createid,jdbcType=BIGINT}, #{sp_createno,jdbcType=VARCHAR}, #{sp_createdate,jdbcType=TIMESTAMP}, 
+      #{sp_confirmid,jdbcType=BIGINT}, #{sp_confirmno,jdbcType=VARCHAR}, #{sp_confirmdate,jdbcType=TIMESTAMP}, 
+      #{sp_status,jdbcType=TINYINT}, #{statusname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.DesigV_Project" >
+    insert into DesigV_Project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sp_id != null" >
+        sp_id,
+      </if>
+      <if test="sp_no != null" >
+        sp_no,
+      </if>
+      <if test="sp_title != null" >
+        sp_title,
+      </if>
+      <if test="sp_citycode != null" >
+        sp_citycode,
+      </if>
+      <if test="sp_cityname != null" >
+        sp_cityname,
+      </if>
+      <if test="sp_signcode != null" >
+        sp_signcode,
+      </if>
+      <if test="sp_signname != null" >
+        sp_signname,
+      </if>
+      <if test="sp_count_collect != null" >
+        sp_count_collect,
+      </if>
+      <if test="sp_count_browse != null" >
+        sp_count_browse,
+      </if>
+      <if test="sp_flag_auditread != null" >
+        sp_flag_auditread,
+      </if>
+      <if test="sp_flag_adminread != null" >
+        sp_flag_adminread,
+      </if>
+      <if test="sp_adminremark != null" >
+        sp_adminremark,
+      </if>
+      <if test="sp_createid != null" >
+        sp_createid,
+      </if>
+      <if test="sp_createno != null" >
+        sp_createno,
+      </if>
+      <if test="sp_createdate != null" >
+        sp_createdate,
+      </if>
+      <if test="sp_confirmid != null" >
+        sp_confirmid,
+      </if>
+      <if test="sp_confirmno != null" >
+        sp_confirmno,
+      </if>
+      <if test="sp_confirmdate != null" >
+        sp_confirmdate,
+      </if>
+      <if test="sp_status != null" >
+        sp_status,
+      </if>
+      <if test="statusname != null" >
+        statusname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sp_id != null" >
+        #{sp_id,jdbcType=BIGINT},
+      </if>
+      <if test="sp_no != null" >
+        #{sp_no,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_title != null" >
+        #{sp_title,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_citycode != null" >
+        #{sp_citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_cityname != null" >
+        #{sp_cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_signcode != null" >
+        #{sp_signcode,jdbcType=TINYINT},
+      </if>
+      <if test="sp_signname != null" >
+        #{sp_signname,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_count_collect != null" >
+        #{sp_count_collect,jdbcType=INTEGER},
+      </if>
+      <if test="sp_count_browse != null" >
+        #{sp_count_browse,jdbcType=INTEGER},
+      </if>
+      <if test="sp_flag_auditread != null" >
+        #{sp_flag_auditread,jdbcType=BIT},
+      </if>
+      <if test="sp_flag_adminread != null" >
+        #{sp_flag_adminread,jdbcType=BIT},
+      </if>
+      <if test="sp_adminremark != null" >
+        #{sp_adminremark,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_createid != null" >
+        #{sp_createid,jdbcType=BIGINT},
+      </if>
+      <if test="sp_createno != null" >
+        #{sp_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_createdate != null" >
+        #{sp_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sp_confirmid != null" >
+        #{sp_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="sp_confirmno != null" >
+        #{sp_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_confirmdate != null" >
+        #{sp_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sp_status != null" >
+        #{sp_status,jdbcType=TINYINT},
+      </if>
+      <if test="statusname != null" >
+        #{statusname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.DesigV_ProjectExample" resultType="java.lang.Integer" >
+    select count(*) from DesigV_Project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update DesigV_Project
+    <set >
+      <if test="record.sp_id != null" >
+        sp_id = #{record.sp_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sp_no != null" >
+        sp_no = #{record.sp_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_title != null" >
+        sp_title = #{record.sp_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_citycode != null" >
+        sp_citycode = #{record.sp_citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_cityname != null" >
+        sp_cityname = #{record.sp_cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_signcode != null" >
+        sp_signcode = #{record.sp_signcode,jdbcType=TINYINT},
+      </if>
+      <if test="record.sp_signname != null" >
+        sp_signname = #{record.sp_signname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_count_collect != null" >
+        sp_count_collect = #{record.sp_count_collect,jdbcType=INTEGER},
+      </if>
+      <if test="record.sp_count_browse != null" >
+        sp_count_browse = #{record.sp_count_browse,jdbcType=INTEGER},
+      </if>
+      <if test="record.sp_flag_auditread != null" >
+        sp_flag_auditread = #{record.sp_flag_auditread,jdbcType=BIT},
+      </if>
+      <if test="record.sp_flag_adminread != null" >
+        sp_flag_adminread = #{record.sp_flag_adminread,jdbcType=BIT},
+      </if>
+      <if test="record.sp_adminremark != null" >
+        sp_adminremark = #{record.sp_adminremark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_createid != null" >
+        sp_createid = #{record.sp_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sp_createno != null" >
+        sp_createno = #{record.sp_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_createdate != null" >
+        sp_createdate = #{record.sp_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sp_confirmid != null" >
+        sp_confirmid = #{record.sp_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sp_confirmno != null" >
+        sp_confirmno = #{record.sp_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_confirmdate != null" >
+        sp_confirmdate = #{record.sp_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sp_status != null" >
+        sp_status = #{record.sp_status,jdbcType=TINYINT},
+      </if>
+      <if test="record.statusname != null" >
+        statusname = #{record.statusname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update DesigV_Project
+    set sp_id = #{record.sp_id,jdbcType=BIGINT},
+      sp_no = #{record.sp_no,jdbcType=VARCHAR},
+      sp_title = #{record.sp_title,jdbcType=VARCHAR},
+      sp_citycode = #{record.sp_citycode,jdbcType=VARCHAR},
+      sp_cityname = #{record.sp_cityname,jdbcType=VARCHAR},
+      sp_signcode = #{record.sp_signcode,jdbcType=TINYINT},
+      sp_signname = #{record.sp_signname,jdbcType=VARCHAR},
+      sp_count_collect = #{record.sp_count_collect,jdbcType=INTEGER},
+      sp_count_browse = #{record.sp_count_browse,jdbcType=INTEGER},
+      sp_flag_auditread = #{record.sp_flag_auditread,jdbcType=BIT},
+      sp_flag_adminread = #{record.sp_flag_adminread,jdbcType=BIT},
+      sp_adminremark = #{record.sp_adminremark,jdbcType=VARCHAR},
+      sp_createid = #{record.sp_createid,jdbcType=BIGINT},
+      sp_createno = #{record.sp_createno,jdbcType=VARCHAR},
+      sp_createdate = #{record.sp_createdate,jdbcType=TIMESTAMP},
+      sp_confirmid = #{record.sp_confirmid,jdbcType=BIGINT},
+      sp_confirmno = #{record.sp_confirmno,jdbcType=VARCHAR},
+      sp_confirmdate = #{record.sp_confirmdate,jdbcType=TIMESTAMP},
+      sp_status = #{record.sp_status,jdbcType=TINYINT},
+      statusname = #{record.statusname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+
+
+  <!--后台查询设计师需求专用-->
+  <!-- 分页查询 -->
+  <select id="getDesigV_ProjectBackList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from DesigV_Project dp where 1=1
+    <include refid="wherelistback" />
+    ORDER BY sp_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <!--查询订单的数量-->
+  <select id="getCountDesigV_ProjectBack" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(sp_id) from DesigV_Project where 1=1
+    <include refid="wherelistback" />
+  </select>
+
+  <!-- 条件 -->
+  <sql id="wherelistback" >
+    <if test="sp_no != null and sp_no != ''" >
+      and sp_no like concat(concat('%',#{sp_no}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="sp_title != null and sp_title != ''" >
+      and sp_title like concat(concat('%',#{sp_title}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sp_citycode != null and sp_citycode != ''" >
+      and sp_citycode like concat(concat('%',#{sp_citycode}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sp_cityname != null and sp_cityname != ''" >
+      and sp_cityname like concat(concat('%',#{sp_cityname}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sp_createno != null and sp_createno != ''" >
+      and sp_createno like concat(concat('%',#{sp_createno}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sp_adminremark != null and sp_adminremark != ''" >
+      and sp_adminremark like concat(concat('%',#{sp_adminremark}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="statusname != null and statusname != ''" >
+      and statusname like concat(concat('%',#{statusname}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sp_status != null" ><!-- 精确查询 -->
+      and sp_status=#{sp_status}
+    </if>
+    /*关于建立日期时间的查询*/
+    <if test="sp_createdate1 != null and sp_createdate2 !=null" >
+      and sp_createdate  between #{sp_createdate1} and #{sp_createdate2}
+    </if>
+    /*关于申述日期时间的查询*/
+    <if test="sp_confirmdate1 != null and sp_confirmdate2 !=null" >
+      and sp_confirmdate  between #{sp_confirmdate1} and #{sp_confirmdate2}
+    </if>
+  </sql>
+
+  <select id="selectDesigV_Project"  resultMap="BaseResultMap"  parameterType="java.lang.Long" >
+    select * from DesigV_Project WHERE
+    sp_id =#{id,jdbcType=BIGINT}
+  </select>
+</mapper>

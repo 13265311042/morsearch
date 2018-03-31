@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.AwardV_Evaluate_CountMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.AwardV_Evaluate_Count" >
+    <result column="sc_id" property="sc_id" jdbcType="BIGINT" />
+    <result column="sc_activityid" property="sc_activityid" jdbcType="BIGINT" />
+    <result column="sc_orderno" property="sc_orderno" jdbcType="VARCHAR" />
+    <result column="sc_appraiseid" property="sc_appraiseid" jdbcType="BIGINT" />
+    <result column="sc_addintegral" property="sc_addintegral" jdbcType="DECIMAL" />
+    <result column="sc_isfirst" property="sc_isfirst" jdbcType="BIT" />
+    <result column="sc_userid" property="sc_userid" jdbcType="BIGINT" />
+    <result column="sc_createdate" property="sc_createdate" jdbcType="TIMESTAMP" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="userphone" property="userphone" jdbcType="VARCHAR" />
+    <result column="appraisename" property="appraisename" jdbcType="VARCHAR" />
+    <result column="appraisephone" property="appraisephone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sc_id, sc_activityid, sc_orderno, sc_appraiseid, sc_addintegral, sc_isfirst, sc_userid, 
+    sc_createdate, username, userphone, appraisename, appraisephone
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.AwardV_Evaluate_CountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from AwardV_Evaluate_Count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.AwardV_Evaluate_CountExample" >
+    delete from AwardV_Evaluate_Count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.AwardV_Evaluate_Count" >
+    insert into AwardV_Evaluate_Count (sc_id, sc_activityid, sc_orderno, 
+      sc_appraiseid, sc_addintegral, sc_isfirst, 
+      sc_userid, sc_createdate, username, 
+      userphone, appraisename, appraisephone
+      )
+    values (#{sc_id,jdbcType=BIGINT}, #{sc_activityid,jdbcType=BIGINT}, #{sc_orderno,jdbcType=VARCHAR}, 
+      #{sc_appraiseid,jdbcType=BIGINT}, #{sc_addintegral,jdbcType=DECIMAL}, #{sc_isfirst,jdbcType=BIT}, 
+      #{sc_userid,jdbcType=BIGINT}, #{sc_createdate,jdbcType=TIMESTAMP}, #{username,jdbcType=VARCHAR}, 
+      #{userphone,jdbcType=VARCHAR}, #{appraisename,jdbcType=VARCHAR}, #{appraisephone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.AwardV_Evaluate_Count" >
+    insert into AwardV_Evaluate_Count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sc_id != null" >
+        sc_id,
+      </if>
+      <if test="sc_activityid != null" >
+        sc_activityid,
+      </if>
+      <if test="sc_orderno != null" >
+        sc_orderno,
+      </if>
+      <if test="sc_appraiseid != null" >
+        sc_appraiseid,
+      </if>
+      <if test="sc_addintegral != null" >
+        sc_addintegral,
+      </if>
+      <if test="sc_isfirst != null" >
+        sc_isfirst,
+      </if>
+      <if test="sc_userid != null" >
+        sc_userid,
+      </if>
+      <if test="sc_createdate != null" >
+        sc_createdate,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="userphone != null" >
+        userphone,
+      </if>
+      <if test="appraisename != null" >
+        appraisename,
+      </if>
+      <if test="appraisephone != null" >
+        appraisephone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sc_id != null" >
+        #{sc_id,jdbcType=BIGINT},
+      </if>
+      <if test="sc_activityid != null" >
+        #{sc_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_orderno != null" >
+        #{sc_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="sc_appraiseid != null" >
+        #{sc_appraiseid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_addintegral != null" >
+        #{sc_addintegral,jdbcType=DECIMAL},
+      </if>
+      <if test="sc_isfirst != null" >
+        #{sc_isfirst,jdbcType=BIT},
+      </if>
+      <if test="sc_userid != null" >
+        #{sc_userid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_createdate != null" >
+        #{sc_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null" >
+        #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="appraisename != null" >
+        #{appraisename,jdbcType=VARCHAR},
+      </if>
+      <if test="appraisephone != null" >
+        #{appraisephone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.AwardV_Evaluate_CountExample" resultType="java.lang.Integer" >
+    select count(*) from AwardV_Evaluate_Count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update AwardV_Evaluate_Count
+    <set >
+      <if test="record.sc_id != null" >
+        sc_id = #{record.sc_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sc_activityid != null" >
+        sc_activityid = #{record.sc_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sc_orderno != null" >
+        sc_orderno = #{record.sc_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sc_appraiseid != null" >
+        sc_appraiseid = #{record.sc_appraiseid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sc_addintegral != null" >
+        sc_addintegral = #{record.sc_addintegral,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sc_isfirst != null" >
+        sc_isfirst = #{record.sc_isfirst,jdbcType=BIT},
+      </if>
+      <if test="record.sc_userid != null" >
+        sc_userid = #{record.sc_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sc_createdate != null" >
+        sc_createdate = #{record.sc_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userphone != null" >
+        userphone = #{record.userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appraisename != null" >
+        appraisename = #{record.appraisename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appraisephone != null" >
+        appraisephone = #{record.appraisephone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update AwardV_Evaluate_Count
+    set sc_id = #{record.sc_id,jdbcType=BIGINT},
+      sc_activityid = #{record.sc_activityid,jdbcType=BIGINT},
+      sc_orderno = #{record.sc_orderno,jdbcType=VARCHAR},
+      sc_appraiseid = #{record.sc_appraiseid,jdbcType=BIGINT},
+      sc_addintegral = #{record.sc_addintegral,jdbcType=DECIMAL},
+      sc_isfirst = #{record.sc_isfirst,jdbcType=BIT},
+      sc_userid = #{record.sc_userid,jdbcType=BIGINT},
+      sc_createdate = #{record.sc_createdate,jdbcType=TIMESTAMP},
+      username = #{record.username,jdbcType=VARCHAR},
+      userphone = #{record.userphone,jdbcType=VARCHAR},
+      appraisename = #{record.appraisename,jdbcType=VARCHAR},
+      appraisephone = #{record.appraisephone,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+
+  <!--分页查询begin-->
+
+  <sql id="wherelist" >
+    <if test="sc_activityid != null and sc_activityid != ''" >
+      and sc_activityid=#{sc_activityid}/*传入活动的id*/
+    </if>
+
+  </sql>
+  <!--分页查询begin-->
+  <select id="getAwardV_Evaluate_CountList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from AwardV_Evaluate_Count bv where 1=1
+    <include refid="wherelist" />
+    ORDER BY sc_createdate DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+
+  <select id="getCountAwardV_Evaluate_Count" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(sc_id) from AwardV_Evaluate_Count where 1=1
+    <include refid="wherelist" />
+  </select>
+</mapper>

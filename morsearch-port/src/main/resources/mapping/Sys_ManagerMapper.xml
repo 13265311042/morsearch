@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sys_ManagerMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sys_Manager" >
+    <id column="sm_id" property="sm_id" jdbcType="INTEGER" />
+    <result column="sm_no" property="sm_no" jdbcType="VARCHAR" />
+    <result column="sm_password" property="sm_password" jdbcType="VARCHAR" />
+    <result column="sm_name" property="sm_name" jdbcType="VARCHAR" />
+    <result column="sm_phone" property="sm_phone" jdbcType="VARCHAR" />
+    <result column="sm_email" property="sm_email" jdbcType="VARCHAR" />
+    <result column="sm_remark" property="sm_remark" jdbcType="VARCHAR" />
+    <result column="sm_roleid" property="sm_roleid" jdbcType="INTEGER" />
+    <result column="sm_deptid" property="sm_deptid" jdbcType="INTEGER" />
+    <result column="sm_flag_admin" property="sm_flag_admin" jdbcType="BIT" />
+    <result column="sm_status" property="sm_status" jdbcType="TINYINT" />
+    <result column="sm_createid" property="sm_createid" jdbcType="INTEGER" />
+    <result column="sm_createdate" property="sm_createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sm_id, sm_no, sm_password, sm_name, sm_phone, sm_email, sm_remark, sm_roleid, sm_deptid,
+    sm_flag_admin, sm_status, sm_createid, sm_createdate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sys_ManagerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sys_Manager
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from Sys_Manager
+    where sm_id = #{sm_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Sys_Manager
+    where sm_id = #{sm_id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sys_ManagerExample" >
+    delete from Sys_Manager
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sys_Manager" >
+    <selectKey keyProperty="sm_id" order="AFTER" resultType="java.lang.Integer">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Sys_Manager (sm_id, sm_no, sm_password,
+    sm_name, sm_phone, sm_email,
+    sm_remark, sm_roleid, sm_deptid,
+    sm_flag_admin, sm_status, sm_createid,
+    sm_createdate)
+    values (#{sm_id,jdbcType=INTEGER}, #{sm_no,jdbcType=VARCHAR}, #{sm_password,jdbcType=VARCHAR},
+    #{sm_name,jdbcType=VARCHAR}, #{sm_phone,jdbcType=VARCHAR}, #{sm_email,jdbcType=VARCHAR},
+    #{sm_remark,jdbcType=VARCHAR}, #{sm_roleid,jdbcType=INTEGER}, #{sm_deptid,jdbcType=INTEGER},
+    #{sm_flag_admin,jdbcType=BIT}, #{sm_status,jdbcType=TINYINT}, #{sm_createid,jdbcType=VARCHAR},
+    #{sm_createdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sys_Manager" >
+    <selectKey keyProperty="sm_id" order="AFTER" resultType="java.lang.Integer">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Sys_Manager
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sm_id != null" >
+        sm_id,
+      </if>
+      <if test="sm_no != null" >
+        sm_no,
+      </if>
+      <if test="sm_password != null" >
+        sm_password,
+      </if>
+      <if test="sm_name != null" >
+        sm_name,
+      </if>
+      <if test="sm_phone != null" >
+        sm_phone,
+      </if>
+      <if test="sm_email != null" >
+        sm_email,
+      </if>
+      <if test="sm_remark != null" >
+        sm_remark,
+      </if>
+      <if test="sm_roleid != null" >
+        sm_roleid,
+      </if>
+      <if test="sm_deptid != null" >
+        sm_deptid,
+      </if>
+      <if test="sm_flag_admin != null" >
+        sm_flag_admin,
+      </if>
+      <if test="sm_status != null" >
+        sm_status,
+      </if>
+      <if test="sm_createid != null" >
+        sm_createid,
+      </if>
+      <if test="sm_createdate != null" >
+        sm_createdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sm_id != null" >
+        #{sm_id,jdbcType=INTEGER},
+      </if>
+      <if test="sm_no != null" >
+        #{sm_no,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_password != null" >
+        #{sm_password,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_name != null" >
+        #{sm_name,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_phone != null" >
+        #{sm_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_email != null" >
+        #{sm_email,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_remark != null" >
+        #{sm_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_roleid != null" >
+        #{sm_roleid,jdbcType=INTEGER},
+      </if>
+      <if test="sm_deptid != null" >
+        #{sm_deptid,jdbcType=INTEGER},
+      </if>
+      <if test="sm_flag_admin != null" >
+        #{sm_flag_admin,jdbcType=BIT},
+      </if>
+      <if test="sm_status != null" >
+        #{sm_status,jdbcType=TINYINT},
+      </if>
+      <if test="sm_createid != null" >
+        #{sm_createid,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_createdate != null" >
+        #{sm_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sys_ManagerExample" resultType="java.lang.Integer" >
+    select count(*) from Sys_Manager
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sys_Manager
+    <set >
+      <if test="record.sm_id != null" >
+        sm_id = #{record.sm_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sm_no != null" >
+        sm_no = #{record.sm_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_password != null" >
+        sm_password = #{record.sm_password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_name != null" >
+        sm_name = #{record.sm_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_phone != null" >
+        sm_phone = #{record.sm_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_email != null" >
+        sm_email = #{record.sm_email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_remark != null" >
+        sm_remark = #{record.sm_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_roleid != null" >
+        sm_roleid = #{record.sm_roleid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sm_deptid != null" >
+        sm_deptid = #{record.sm_deptid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sm_flag_admin != null" >
+        sm_flag_admin = #{record.sm_flag_admin,jdbcType=BIT},
+      </if>
+      <if test="record.sm_status != null" >
+        sm_status = #{record.sm_status,jdbcType=TINYINT},
+      </if>
+      <if test="record.sm_createid != null" >
+        sm_createid = #{record.sm_createid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_createdate != null" >
+        sm_createdate = #{record.sm_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sys_Manager
+    set sm_id = #{record.sm_id,jdbcType=INTEGER},
+    sm_no = #{record.sm_no,jdbcType=VARCHAR},
+    sm_password = #{record.sm_password,jdbcType=VARCHAR},
+    sm_name = #{record.sm_name,jdbcType=VARCHAR},
+    sm_phone = #{record.sm_phone,jdbcType=VARCHAR},
+    sm_email = #{record.sm_email,jdbcType=VARCHAR},
+    sm_remark = #{record.sm_remark,jdbcType=VARCHAR},
+    sm_roleid = #{record.sm_roleid,jdbcType=INTEGER},
+    sm_deptid = #{record.sm_deptid,jdbcType=INTEGER},
+    sm_flag_admin = #{record.sm_flag_admin,jdbcType=BIT},
+    sm_status = #{record.sm_status,jdbcType=TINYINT},
+    sm_createid = #{record.sm_createid,jdbcType=VARCHAR},
+    sm_createdate = #{record.sm_createdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sys_Manager" >
+    update Sys_Manager
+    <set >
+      <if test="sm_no != null" >
+        sm_no = #{sm_no,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_password != null" >
+        sm_password = #{sm_password,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_name != null" >
+        sm_name = #{sm_name,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_phone != null" >
+        sm_phone = #{sm_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_email != null" >
+        sm_email = #{sm_email,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_remark != null" >
+        sm_remark = #{sm_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_roleid != null" >
+        sm_roleid = #{sm_roleid,jdbcType=INTEGER},
+      </if>
+      <if test="sm_deptid != null" >
+        sm_deptid = #{sm_deptid,jdbcType=INTEGER},
+      </if>
+      <if test="sm_flag_admin != null" >
+        sm_flag_admin = #{sm_flag_admin,jdbcType=BIT},
+      </if>
+      <if test="sm_status != null" >
+        sm_status = #{sm_status,jdbcType=TINYINT},
+      </if>
+      <if test="sm_createid != null" >
+        sm_createid = #{sm_createid,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_createdate != null" >
+        sm_createdate = #{sm_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sm_id = #{sm_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sys_Manager" >
+    update Sys_Manager
+    set sm_no = #{sm_no,jdbcType=VARCHAR},
+    sm_password = #{sm_password,jdbcType=VARCHAR},
+    sm_name = #{sm_name,jdbcType=VARCHAR},
+    sm_phone = #{sm_phone,jdbcType=VARCHAR},
+    sm_email = #{sm_email,jdbcType=VARCHAR},
+    sm_remark = #{sm_remark,jdbcType=VARCHAR},
+    sm_roleid = #{sm_roleid,jdbcType=INTEGER},
+    sm_deptid = #{sm_deptid,jdbcType=INTEGER},
+    sm_flag_admin = #{sm_flag_admin,jdbcType=BIT},
+    sm_status = #{sm_status,jdbcType=TINYINT},
+    sm_createid = #{sm_createid,jdbcType=VARCHAR},
+    sm_createdate = #{sm_createdate,jdbcType=TIMESTAMP}
+    where sm_id = #{sm_id,jdbcType=INTEGER}
+  </update>
+
+
+  <!-- 登录后台  begin-->
+  <select id="loginManger" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sys_Manager" >
+    select
+    <include refid="Base_Column_List" />
+    from Sys_Manager
+    where 1=1
+    and  sm_no=#{userno,jdbcType=VARCHAR}
+    and  sm_password=#{password,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 列表查询  begin-->
+  <sql id="wherelist" >
+    <if test="sm_no != null and sm_no != ''" >
+      and sm_no like concat(concat('%',#{sm_no}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="sm_name != null and sm_name != ''" >
+      and sm_name like concat(concat('%',#{sm_name}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sm_phone != null and sm_phone != ''" >
+      and sm_phone like concat(concat('%',#{sm_phone}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sm_email != null and sm_email != ''" >
+      and sm_email like concat(concat('%',#{sm_email}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sm_status != null" >
+      and sm_status=#{sm_status}
+    </if>
+    /*关于登陆时间的查询*/
+    <if test="sm_login_date1 != null and sm_login_date2 !=null" >
+      and sm_login_date  between #{sm_login_date1} and #{sm_login_date2}
+    </if>
+
+  </sql>
+
+  <select id="getmanageList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT *
+    from Sys_Manager  where 1=1
+    <include refid="wherelist" />
+    ORDER BY sm_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getmanageListCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(sm_id) from Sys_Manager where 1=1
+    <include refid="wherelist" />
+  </select>
+  <!-- 列表查询  end-->
+
+</mapper>

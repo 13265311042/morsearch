@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.SalesV_Collect_PsnMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.SalesV_Collect_Psn" >
+    <result column="ss_id" property="ss_id" jdbcType="BIGINT" />
+    <result column="ss_designerid" property="ss_designerid" jdbcType="BIGINT" />
+    <result column="ss_createid" property="ss_createid" jdbcType="BIGINT" />
+    <result column="ss_createno" property="ss_createno" jdbcType="VARCHAR" />
+    <result column="ss_createdate" property="ss_createdate" jdbcType="TIMESTAMP" />
+    <result column="dateshort" property="dateshort" jdbcType="VARCHAR" />
+    <result column="ur_phone" property="ur_phone" jdbcType="VARCHAR" />
+    <result column="ur_namenick" property="ur_namenick" jdbcType="VARCHAR" />
+    <result column="ur_imageurl" property="ur_imageurl" jdbcType="VARCHAR" />
+    <result column="ue_personjob" property="ue_personjob" jdbcType="VARCHAR" />
+    <result column="ue_personmajor" property="ue_personmajor" jdbcType="VARCHAR" />
+    <result column="ue_companybrand" property="ue_companybrand" jdbcType="VARCHAR" />
+    <result column="ue_companyname" property="ue_companyname" jdbcType="VARCHAR" />
+    <result column="ue_companyunit" property="ue_companyunit" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ss_id, ss_designerid, ss_createid, ss_createno, ss_createdate, dateshort, ur_phone, 
+    ur_namenick, ur_imageurl, ue_personjob, ue_personmajor, ue_companybrand, ue_companyname, 
+    ue_companyunit
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.SalesV_Collect_PsnExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SalesV_Collect_Psn
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.SalesV_Collect_PsnExample" >
+    delete from SalesV_Collect_Psn
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.SalesV_Collect_Psn" >
+    insert into SalesV_Collect_Psn (ss_id, ss_designerid, ss_createid, 
+      ss_createno, ss_createdate, dateshort, 
+      ur_phone, ur_namenick, ur_imageurl, 
+      ue_personjob, ue_personmajor, ue_companybrand, 
+      ue_companyname, ue_companyunit)
+    values (#{ss_id,jdbcType=BIGINT}, #{ss_designerid,jdbcType=BIGINT}, #{ss_createid,jdbcType=BIGINT}, 
+      #{ss_createno,jdbcType=VARCHAR}, #{ss_createdate,jdbcType=TIMESTAMP}, #{dateshort,jdbcType=VARCHAR}, 
+      #{ur_phone,jdbcType=VARCHAR}, #{ur_namenick,jdbcType=VARCHAR}, #{ur_imageurl,jdbcType=VARCHAR}, 
+      #{ue_personjob,jdbcType=VARCHAR}, #{ue_personmajor,jdbcType=VARCHAR}, #{ue_companybrand,jdbcType=VARCHAR}, 
+      #{ue_companyname,jdbcType=VARCHAR}, #{ue_companyunit,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.SalesV_Collect_Psn" >
+    insert into SalesV_Collect_Psn
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ss_id != null" >
+        ss_id,
+      </if>
+      <if test="ss_designerid != null" >
+        ss_designerid,
+      </if>
+      <if test="ss_createid != null" >
+        ss_createid,
+      </if>
+      <if test="ss_createno != null" >
+        ss_createno,
+      </if>
+      <if test="ss_createdate != null" >
+        ss_createdate,
+      </if>
+      <if test="dateshort != null" >
+        dateshort,
+      </if>
+      <if test="ur_phone != null" >
+        ur_phone,
+      </if>
+      <if test="ur_namenick != null" >
+        ur_namenick,
+      </if>
+      <if test="ur_imageurl != null" >
+        ur_imageurl,
+      </if>
+      <if test="ue_personjob != null" >
+        ue_personjob,
+      </if>
+      <if test="ue_personmajor != null" >
+        ue_personmajor,
+      </if>
+      <if test="ue_companybrand != null" >
+        ue_companybrand,
+      </if>
+      <if test="ue_companyname != null" >
+        ue_companyname,
+      </if>
+      <if test="ue_companyunit != null" >
+        ue_companyunit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ss_id != null" >
+        #{ss_id,jdbcType=BIGINT},
+      </if>
+      <if test="ss_designerid != null" >
+        #{ss_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="ss_createid != null" >
+        #{ss_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ss_createno != null" >
+        #{ss_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ss_createdate != null" >
+        #{ss_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dateshort != null" >
+        #{dateshort,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_phone != null" >
+        #{ur_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_namenick != null" >
+        #{ur_namenick,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_imageurl != null" >
+        #{ur_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personjob != null" >
+        #{ue_personjob,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personmajor != null" >
+        #{ue_personmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companybrand != null" >
+        #{ue_companybrand,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyname != null" >
+        #{ue_companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyunit != null" >
+        #{ue_companyunit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.SalesV_Collect_PsnExample" resultType="java.lang.Integer" >
+    select count(*) from SalesV_Collect_Psn
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SalesV_Collect_Psn
+    <set >
+      <if test="record.ss_id != null" >
+        ss_id = #{record.ss_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ss_designerid != null" >
+        ss_designerid = #{record.ss_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ss_createid != null" >
+        ss_createid = #{record.ss_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ss_createno != null" >
+        ss_createno = #{record.ss_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ss_createdate != null" >
+        ss_createdate = #{record.ss_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dateshort != null" >
+        dateshort = #{record.dateshort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_phone != null" >
+        ur_phone = #{record.ur_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_namenick != null" >
+        ur_namenick = #{record.ur_namenick,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_imageurl != null" >
+        ur_imageurl = #{record.ur_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_personjob != null" >
+        ue_personjob = #{record.ue_personjob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_personmajor != null" >
+        ue_personmajor = #{record.ue_personmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companybrand != null" >
+        ue_companybrand = #{record.ue_companybrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companyname != null" >
+        ue_companyname = #{record.ue_companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companyunit != null" >
+        ue_companyunit = #{record.ue_companyunit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SalesV_Collect_Psn
+    set ss_id = #{record.ss_id,jdbcType=BIGINT},
+      ss_designerid = #{record.ss_designerid,jdbcType=BIGINT},
+      ss_createid = #{record.ss_createid,jdbcType=BIGINT},
+      ss_createno = #{record.ss_createno,jdbcType=VARCHAR},
+      ss_createdate = #{record.ss_createdate,jdbcType=TIMESTAMP},
+      dateshort = #{record.dateshort,jdbcType=VARCHAR},
+      ur_phone = #{record.ur_phone,jdbcType=VARCHAR},
+      ur_namenick = #{record.ur_namenick,jdbcType=VARCHAR},
+      ur_imageurl = #{record.ur_imageurl,jdbcType=VARCHAR},
+      ue_personjob = #{record.ue_personjob,jdbcType=VARCHAR},
+      ue_personmajor = #{record.ue_personmajor,jdbcType=VARCHAR},
+      ue_companybrand = #{record.ue_companybrand,jdbcType=VARCHAR},
+      ue_companyname = #{record.ue_companyname,jdbcType=VARCHAR},
+      ue_companyunit = #{record.ue_companyunit,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+
+  <!-- 条件 -->
+  <sql id="wherelist" >
+    <if test="ss_designerid != null and ss_designerid != ''" >
+      and ss_designerid like concat(concat('%',#{ss_designerid}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="ss_createid != null and ss_createid != ''" > <!-- 模糊查询 -->
+      and ss_createid = #{ss_createid,jdbcType=BIGINT}
+    </if>
+    <if test="ss_createno != null and ss_createno != ''" >
+      and ss_createno like concat(concat('%',#{ss_createno}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="ur_namenick != null and ur_namenick != ''" >
+      and ur_namenick like concat(concat('%',#{ur_namenick}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="ss_createdate1 != null and ss_createdate2 !=null" >
+      and ss_createdate  between #{ss_createdate1} and #{ss_createdate2}
+    </if>
+  </sql>
+
+  <!-- 分页 -->
+  <select id="getSalesV_Collect_PsnList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from SalesV_Collect_Psn scp where 1=1
+    <include refid="wherelist" />
+    ORDER BY ss_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountSalesV_Collect_Psn" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(ss_id) from SalesV_Collect_Psn scp where 1=1
+    <include refid="wherelist" />
+  </select>
+
+</mapper>

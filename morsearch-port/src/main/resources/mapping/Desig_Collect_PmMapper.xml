@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Desig_Collect_PmMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Desig_Collect_Pm" >
+    <id column="dm_id" property="dm_id" jdbcType="BIGINT" />
+    <result column="dm_archivesid" property="dm_archivesid" jdbcType="BIGINT" />
+    <result column="dm_createid" property="dm_createid" jdbcType="BIGINT" />
+    <result column="dm_createno" property="dm_createno" jdbcType="VARCHAR" />
+    <result column="dm_createdate" property="dm_createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dm_id, dm_archivesid, dm_createid, dm_createno, dm_createdate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Desig_Collect_PmExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Desig_Collect_Pm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Desig_Collect_Pm
+    where dm_id = #{dm_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Desig_Collect_Pm
+    where dm_id = #{dm_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Desig_Collect_PmExample" >
+    delete from Desig_Collect_Pm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Desig_Collect_Pm" >
+    insert into Desig_Collect_Pm (dm_id, dm_archivesid, dm_createid,
+    dm_createno, dm_createdate)
+    values (#{dm_id,jdbcType=BIGINT}, #{dm_archivesid,jdbcType=BIGINT}, #{dm_createid,jdbcType=BIGINT},
+    #{dm_createno,jdbcType=VARCHAR}, #{dm_createdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Desig_Collect_Pm" >
+    insert into Desig_Collect_Pm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dm_id != null" >
+        dm_id,
+      </if>
+      <if test="dm_archivesid != null" >
+        dm_archivesid,
+      </if>
+      <if test="dm_createid != null" >
+        dm_createid,
+      </if>
+      <if test="dm_createno != null" >
+        dm_createno,
+      </if>
+      <if test="dm_createdate != null" >
+        dm_createdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dm_id != null" >
+        #{dm_id,jdbcType=BIGINT},
+      </if>
+      <if test="dm_archivesid != null" >
+        #{dm_archivesid,jdbcType=BIGINT},
+      </if>
+      <if test="dm_createid != null" >
+        #{dm_createid,jdbcType=BIGINT},
+      </if>
+      <if test="dm_createno != null" >
+        #{dm_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="dm_createdate != null" >
+        #{dm_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Desig_Collect_PmExample" resultType="java.lang.Integer" >
+    select count(*) from Desig_Collect_Pm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Desig_Collect_Pm
+    <set >
+      <if test="record.dm_id != null" >
+        dm_id = #{record.dm_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.dm_archivesid != null" >
+        dm_archivesid = #{record.dm_archivesid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dm_createid != null" >
+        dm_createid = #{record.dm_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dm_createno != null" >
+        dm_createno = #{record.dm_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dm_createdate != null" >
+        dm_createdate = #{record.dm_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Desig_Collect_Pm
+    set dm_id = #{record.dm_id,jdbcType=BIGINT},
+    dm_archivesid = #{record.dm_archivesid,jdbcType=BIGINT},
+    dm_createid = #{record.dm_createid,jdbcType=BIGINT},
+    dm_createno = #{record.dm_createno,jdbcType=VARCHAR},
+    dm_createdate = #{record.dm_createdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Desig_Collect_Pm" >
+    update Desig_Collect_Pm
+    <set >
+      <if test="dm_archivesid != null" >
+        dm_archivesid = #{dm_archivesid,jdbcType=BIGINT},
+      </if>
+      <if test="dm_createid != null" >
+        dm_createid = #{dm_createid,jdbcType=BIGINT},
+      </if>
+      <if test="dm_createno != null" >
+        dm_createno = #{dm_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="dm_createdate != null" >
+        dm_createdate = #{dm_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where dm_id = #{dm_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Desig_Collect_Pm" >
+    update Desig_Collect_Pm
+    set dm_archivesid = #{dm_archivesid,jdbcType=BIGINT},
+    dm_createid = #{dm_createid,jdbcType=BIGINT},
+    dm_createno = #{dm_createno,jdbcType=VARCHAR},
+    dm_createdate = #{dm_createdate,jdbcType=TIMESTAMP}
+    where dm_id = #{dm_id,jdbcType=BIGINT}
+  </update>
+
+
+  <!--自定义-->
+
+  <select id="getDesig_Collect_Pm" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select *
+    from Desig_Collect_Pm  where
+    dm_archivesid =#{dm_archivesid,jdbcType=BIGINT}
+    AND
+    dm_createid =#{dm_createid,jdbcType=BIGINT}
+  </select>
+
+
+</mapper>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.AccV_MemoCoinMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.AccV_MemoCoin" >
+    <result column="orderid" property="orderid" jdbcType="BIGINT" />
+    <result column="orderno" property="orderno" jdbcType="VARCHAR" />
+    <result column="orderdate" property="orderdate" jdbcType="TIMESTAMP" />
+    <result column="ordertype" property="ordertype" jdbcType="VARCHAR" />
+    <result column="ordersign" property="ordersign" jdbcType="VARCHAR" />
+    <result column="ordertitle" property="ordertitle" jdbcType="VARCHAR" />
+    <result column="ordercoincode" property="ordercoincode" jdbcType="VARCHAR" />
+    <result column="ordercoinname" property="ordercoinname" jdbcType="VARCHAR" />
+    <result column="ordercoinqty" property="ordercoinqty" jdbcType="DECIMAL" />
+    <result column="ordercoinprice" property="ordercoinprice" jdbcType="DECIMAL" />
+    <result column="orderaccount" property="orderaccount" jdbcType="DECIMAL" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="accountid" property="accountid" jdbcType="BIGINT" />
+    <result column="createid" property="createid" jdbcType="BIGINT" />
+    <result column="accountname" property="accountname" jdbcType="VARCHAR" />
+    <result column="createname" property="createname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    orderid, orderno, orderdate, ordertype, ordersign, ordertitle, ordercoincode, ordercoinname, 
+    ordercoinqty, ordercoinprice, orderaccount, currency, accountid, createid, accountname, 
+    createname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.AccV_MemoCoinExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from AccV_MemoCoin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.AccV_MemoCoinExample" >
+    delete from AccV_MemoCoin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.AccV_MemoCoin" >
+    insert into AccV_MemoCoin (orderid, orderno, orderdate, 
+      ordertype, ordersign, ordertitle, 
+      ordercoincode, ordercoinname, ordercoinqty, 
+      ordercoinprice, orderaccount, currency, 
+      accountid, createid, accountname, 
+      createname)
+    values (#{orderid,jdbcType=BIGINT}, #{orderno,jdbcType=VARCHAR}, #{orderdate,jdbcType=TIMESTAMP}, 
+      #{ordertype,jdbcType=VARCHAR}, #{ordersign,jdbcType=VARCHAR}, #{ordertitle,jdbcType=VARCHAR}, 
+      #{ordercoincode,jdbcType=VARCHAR}, #{ordercoinname,jdbcType=VARCHAR}, #{ordercoinqty,jdbcType=DECIMAL}, 
+      #{ordercoinprice,jdbcType=DECIMAL}, #{orderaccount,jdbcType=DECIMAL}, #{currency,jdbcType=VARCHAR}, 
+      #{accountid,jdbcType=BIGINT}, #{createid,jdbcType=BIGINT}, #{accountname,jdbcType=VARCHAR}, 
+      #{createname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.AccV_MemoCoin" >
+    insert into AccV_MemoCoin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderid,
+      </if>
+      <if test="orderno != null" >
+        orderno,
+      </if>
+      <if test="orderdate != null" >
+        orderdate,
+      </if>
+      <if test="ordertype != null" >
+        ordertype,
+      </if>
+      <if test="ordersign != null" >
+        ordersign,
+      </if>
+      <if test="ordertitle != null" >
+        ordertitle,
+      </if>
+      <if test="ordercoincode != null" >
+        ordercoincode,
+      </if>
+      <if test="ordercoinname != null" >
+        ordercoinname,
+      </if>
+      <if test="ordercoinqty != null" >
+        ordercoinqty,
+      </if>
+      <if test="ordercoinprice != null" >
+        ordercoinprice,
+      </if>
+      <if test="orderaccount != null" >
+        orderaccount,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="accountid != null" >
+        accountid,
+      </if>
+      <if test="createid != null" >
+        createid,
+      </if>
+      <if test="accountname != null" >
+        accountname,
+      </if>
+      <if test="createname != null" >
+        createname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=BIGINT},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="orderdate != null" >
+        #{orderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordertype != null" >
+        #{ordertype,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersign != null" >
+        #{ordersign,jdbcType=VARCHAR},
+      </if>
+      <if test="ordertitle != null" >
+        #{ordertitle,jdbcType=VARCHAR},
+      </if>
+      <if test="ordercoincode != null" >
+        #{ordercoincode,jdbcType=VARCHAR},
+      </if>
+      <if test="ordercoinname != null" >
+        #{ordercoinname,jdbcType=VARCHAR},
+      </if>
+      <if test="ordercoinqty != null" >
+        #{ordercoinqty,jdbcType=DECIMAL},
+      </if>
+      <if test="ordercoinprice != null" >
+        #{ordercoinprice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderaccount != null" >
+        #{orderaccount,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="accountid != null" >
+        #{accountid,jdbcType=BIGINT},
+      </if>
+      <if test="createid != null" >
+        #{createid,jdbcType=BIGINT},
+      </if>
+      <if test="accountname != null" >
+        #{accountname,jdbcType=VARCHAR},
+      </if>
+      <if test="createname != null" >
+        #{createname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.AccV_MemoCoinExample" resultType="java.lang.Integer" >
+    select count(*) from AccV_MemoCoin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update AccV_MemoCoin
+    <set >
+      <if test="record.orderid != null" >
+        orderid = #{record.orderid,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderno != null" >
+        orderno = #{record.orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderdate != null" >
+        orderdate = #{record.orderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ordertype != null" >
+        ordertype = #{record.ordertype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ordersign != null" >
+        ordersign = #{record.ordersign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ordertitle != null" >
+        ordertitle = #{record.ordertitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ordercoincode != null" >
+        ordercoincode = #{record.ordercoincode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ordercoinname != null" >
+        ordercoinname = #{record.ordercoinname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ordercoinqty != null" >
+        ordercoinqty = #{record.ordercoinqty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ordercoinprice != null" >
+        ordercoinprice = #{record.ordercoinprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orderaccount != null" >
+        orderaccount = #{record.orderaccount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.currency != null" >
+        currency = #{record.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountid != null" >
+        accountid = #{record.accountid,jdbcType=BIGINT},
+      </if>
+      <if test="record.createid != null" >
+        createid = #{record.createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.accountname != null" >
+        accountname = #{record.accountname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createname != null" >
+        createname = #{record.createname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update AccV_MemoCoin
+    set orderid = #{record.orderid,jdbcType=BIGINT},
+      orderno = #{record.orderno,jdbcType=VARCHAR},
+      orderdate = #{record.orderdate,jdbcType=TIMESTAMP},
+      ordertype = #{record.ordertype,jdbcType=VARCHAR},
+      ordersign = #{record.ordersign,jdbcType=VARCHAR},
+      ordertitle = #{record.ordertitle,jdbcType=VARCHAR},
+      ordercoincode = #{record.ordercoincode,jdbcType=VARCHAR},
+      ordercoinname = #{record.ordercoinname,jdbcType=VARCHAR},
+      ordercoinqty = #{record.ordercoinqty,jdbcType=DECIMAL},
+      ordercoinprice = #{record.ordercoinprice,jdbcType=DECIMAL},
+      orderaccount = #{record.orderaccount,jdbcType=DECIMAL},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      accountid = #{record.accountid,jdbcType=BIGINT},
+      createid = #{record.createid,jdbcType=BIGINT},
+      accountname = #{record.accountname,jdbcType=VARCHAR},
+      createname = #{record.createname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

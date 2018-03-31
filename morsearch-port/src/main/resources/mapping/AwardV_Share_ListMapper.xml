@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.AwardV_Share_ListMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.AwardV_Share_List" >
+    <result column="ba_id" property="ba_id" jdbcType="BIGINT" />
+    <result column="ba_tasktype" property="ba_tasktype" jdbcType="VARCHAR" />
+    <result column="ba_name" property="ba_name" jdbcType="VARCHAR" />
+    <result column="ba_datebegin" property="ba_datebegin" jdbcType="VARCHAR" />
+    <result column="ba_dateend" property="ba_dateend" jdbcType="VARCHAR" />
+    <result column="ba_createid" property="ba_createid" jdbcType="BIGINT" />
+    <result column="ba_status" property="ba_status" jdbcType="TINYINT" />
+    <result column="statusname" property="statusname" jdbcType="VARCHAR" />
+    <result column="activityname" property="activityname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ba_id, ba_tasktype, ba_name, ba_datebegin, ba_dateend, ba_createid, ba_status, statusname,
+    activityname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.AwardV_Share_ListExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from AwardV_Share_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.AwardV_Share_ListExample" >
+    delete from AwardV_Share_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.AwardV_Share_List" >
+    insert into AwardV_Share_List (ba_id, ba_tasktype, ba_name,
+    ba_datebegin, ba_dateend, ba_createid,
+    ba_status, statusname, activityname
+    )
+    values (#{ba_id,jdbcType=BIGINT}, #{ba_tasktype,jdbcType=VARCHAR}, #{ba_name,jdbcType=VARCHAR},
+    #{ba_datebegin,jdbcType=VARCHAR}, #{ba_dateend,jdbcType=VARCHAR}, #{ba_createid,jdbcType=BIGINT},
+    #{ba_status,jdbcType=TINYINT}, #{statusname,jdbcType=VARCHAR}, #{activityname,jdbcType=VARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.AwardV_Share_List" >
+    insert into AwardV_Share_List
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ba_id != null" >
+        ba_id,
+      </if>
+      <if test="ba_tasktype != null" >
+        ba_tasktype,
+      </if>
+      <if test="ba_name != null" >
+        ba_name,
+      </if>
+      <if test="ba_datebegin != null" >
+        ba_datebegin,
+      </if>
+      <if test="ba_dateend != null" >
+        ba_dateend,
+      </if>
+      <if test="ba_createid != null" >
+        ba_createid,
+      </if>
+      <if test="ba_status != null" >
+        ba_status,
+      </if>
+      <if test="statusname != null" >
+        statusname,
+      </if>
+      <if test="activityname != null" >
+        activityname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ba_id != null" >
+        #{ba_id,jdbcType=BIGINT},
+      </if>
+      <if test="ba_tasktype != null" >
+        #{ba_tasktype,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_name != null" >
+        #{ba_name,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_datebegin != null" >
+        #{ba_datebegin,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_dateend != null" >
+        #{ba_dateend,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_createid != null" >
+        #{ba_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ba_status != null" >
+        #{ba_status,jdbcType=TINYINT},
+      </if>
+      <if test="statusname != null" >
+        #{statusname,jdbcType=VARCHAR},
+      </if>
+      <if test="activityname != null" >
+        #{activityname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.AwardV_Share_ListExample" resultType="java.lang.Integer" >
+    select count(*) from AwardV_Share_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update AwardV_Share_List
+    <set >
+      <if test="record.ba_id != null" >
+        ba_id = #{record.ba_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ba_tasktype != null" >
+        ba_tasktype = #{record.ba_tasktype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_name != null" >
+        ba_name = #{record.ba_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_datebegin != null" >
+        ba_datebegin = #{record.ba_datebegin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_dateend != null" >
+        ba_dateend = #{record.ba_dateend,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_createid != null" >
+        ba_createid = #{record.ba_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ba_status != null" >
+        ba_status = #{record.ba_status,jdbcType=TINYINT},
+      </if>
+      <if test="record.statusname != null" >
+        statusname = #{record.statusname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityname != null" >
+        activityname = #{record.activityname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update AwardV_Share_List
+    set ba_id = #{record.ba_id,jdbcType=BIGINT},
+    ba_tasktype = #{record.ba_tasktype,jdbcType=VARCHAR},
+    ba_name = #{record.ba_name,jdbcType=VARCHAR},
+    ba_datebegin = #{record.ba_datebegin,jdbcType=VARCHAR},
+    ba_dateend = #{record.ba_dateend,jdbcType=VARCHAR},
+    ba_createid = #{record.ba_createid,jdbcType=BIGINT},
+    ba_status = #{record.ba_status,jdbcType=TINYINT},
+    statusname = #{record.statusname,jdbcType=VARCHAR},
+    activityname = #{record.activityname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+
+  <!--分页查询-->
+  <sql id="wherelist" >
+    <if test="ba_name != null and ba_name != ''" >
+      and ba_name like concat(concat('%',#{ba_name}),'%') <!-- 活动名称查询 -->
+    </if>
+    <if test="ba_tasktype != null and ba_tasktype != ''" >
+      and ba_tasktype =#{ba_tasktype} <!-- 精确查询-->
+    </if>
+    <if test="ba_status != null" >/*状态查询*/
+      and ba_status=#{ba_status}
+    </if>
+    /*关于开始时间的查询*/
+    <if test="ba_datebegin1 != null and ba_datebegin2 != null" >
+      and ba_datebegin  between #{ba_datebegin1} and #{ba_datebegin2}
+    </if>
+    /*关于结束时间的查询*/
+    <if test="ba_dateend1 != null and ba_dateend2 != null" >
+      and ba_dateend  between #{ba_dateend1} and #{ba_dateend2}
+    </if>
+  </sql>
+  <!--分页查询begin-->
+  <select id="getAwardV_Share_ListList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from AwardV_Share_List bv where 1=1
+    <include refid="wherelist" />
+    ORDER BY ba_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+
+  <select id="getCountAwardV_Share_List" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(ba_id) from AwardV_Share_List where 1=1
+    <include refid="wherelist" />
+  </select>
+
+
+</mapper>

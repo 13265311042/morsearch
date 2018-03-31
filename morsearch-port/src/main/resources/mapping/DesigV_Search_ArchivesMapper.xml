@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.DesigV_Search_ArchivesMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.DesigV_Search_Archives" >
+    <result column="pa_id" property="pa_id" jdbcType="BIGINT" />
+    <result column="pa_title" property="pa_title" jdbcType="VARCHAR" />
+    <result column="pa_major" property="pa_major" jdbcType="VARCHAR" />
+    <result column="pa_style" property="pa_style" jdbcType="VARCHAR" />
+    <result column="pa_features" property="pa_features" jdbcType="VARCHAR" />
+    <result column="pa_count_collect" property="pa_count_collect" jdbcType="INTEGER" />
+    <result column="pa_count_browse" property="pa_count_browse" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="createname" property="createname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pa_id, pa_title, pa_major, pa_style, pa_features, pa_count_collect, pa_count_browse, 
+    createdate, createname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.DesigV_Search_ArchivesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from DesigV_Search_Archives
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.DesigV_Search_ArchivesExample" >
+    delete from DesigV_Search_Archives
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.DesigV_Search_Archives" >
+    insert into DesigV_Search_Archives (pa_id, pa_title, pa_major, 
+      pa_style, pa_features, pa_count_collect, 
+      pa_count_browse, createdate, createname
+      )
+    values (#{pa_id,jdbcType=BIGINT}, #{pa_title,jdbcType=VARCHAR}, #{pa_major,jdbcType=VARCHAR}, 
+      #{pa_style,jdbcType=VARCHAR}, #{pa_features,jdbcType=VARCHAR}, #{pa_count_collect,jdbcType=INTEGER}, 
+      #{pa_count_browse,jdbcType=INTEGER}, #{createdate,jdbcType=TIMESTAMP}, #{createname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.DesigV_Search_Archives" >
+    insert into DesigV_Search_Archives
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pa_id != null" >
+        pa_id,
+      </if>
+      <if test="pa_title != null" >
+        pa_title,
+      </if>
+      <if test="pa_major != null" >
+        pa_major,
+      </if>
+      <if test="pa_style != null" >
+        pa_style,
+      </if>
+      <if test="pa_features != null" >
+        pa_features,
+      </if>
+      <if test="pa_count_collect != null" >
+        pa_count_collect,
+      </if>
+      <if test="pa_count_browse != null" >
+        pa_count_browse,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="createname != null" >
+        createname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pa_id != null" >
+        #{pa_id,jdbcType=BIGINT},
+      </if>
+      <if test="pa_title != null" >
+        #{pa_title,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_major != null" >
+        #{pa_major,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_style != null" >
+        #{pa_style,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_features != null" >
+        #{pa_features,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_count_collect != null" >
+        #{pa_count_collect,jdbcType=INTEGER},
+      </if>
+      <if test="pa_count_browse != null" >
+        #{pa_count_browse,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createname != null" >
+        #{createname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.DesigV_Search_ArchivesExample" resultType="java.lang.Integer" >
+    select count(*) from DesigV_Search_Archives
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update DesigV_Search_Archives
+    <set >
+      <if test="record.pa_id != null" >
+        pa_id = #{record.pa_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.pa_title != null" >
+        pa_title = #{record.pa_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_major != null" >
+        pa_major = #{record.pa_major,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_style != null" >
+        pa_style = #{record.pa_style,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_features != null" >
+        pa_features = #{record.pa_features,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_count_collect != null" >
+        pa_count_collect = #{record.pa_count_collect,jdbcType=INTEGER},
+      </if>
+      <if test="record.pa_count_browse != null" >
+        pa_count_browse = #{record.pa_count_browse,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdate != null" >
+        createdate = #{record.createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createname != null" >
+        createname = #{record.createname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update DesigV_Search_Archives
+    set pa_id = #{record.pa_id,jdbcType=BIGINT},
+      pa_title = #{record.pa_title,jdbcType=VARCHAR},
+      pa_major = #{record.pa_major,jdbcType=VARCHAR},
+      pa_style = #{record.pa_style,jdbcType=VARCHAR},
+      pa_features = #{record.pa_features,jdbcType=VARCHAR},
+      pa_count_collect = #{record.pa_count_collect,jdbcType=INTEGER},
+      pa_count_browse = #{record.pa_count_browse,jdbcType=INTEGER},
+      createdate = #{record.createdate,jdbcType=TIMESTAMP},
+      createname = #{record.createname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <!--自定义-->
+  <sql id="wherelist" >
+    <if test="keywords != null and keywords != ''" >
+      AND (pa_title like concat(concat('%',#{keywords}),'%')
+    </if>
+    <if test="keywords != null and keywords != ''" >
+      OR pa_major like concat(concat('%',#{keywords}),'%')
+    </if>
+    <if test="keywords != null and keywords != ''" >
+      OR pa_style like concat(concat('%',#{keywords}),'%')
+    </if>
+    <if test="keywords != null and keywords != ''" >
+      OR pa_features like concat(concat('%',#{keywords}),'%')
+    </if>
+    <if test="keywords != null and keywords != ''" >
+      OR createname like concat(concat('%',#{keywords}),'%')
+    </if>
+    <if test="keywords != null and keywords != ''" >
+      OR pa_count_browse like concat(concat('%',#{keywords}),'%'))
+    </if>
+  </sql>
+
+  <select id="getDesigV_Search_ArchivesList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    pa_id,pa_title,pa_major,pa_style,pa_features,createname,pa_count_browse,createdate,pa_createid
+    from DesigV_Search_Archives  WHERE 1=1
+    <include refid="wherelist" />
+    ORDER BY createdate DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <!--总数-->
+  <select id="getCountDesigV_Search_Archives" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(pa_id) from DesigV_Search_Archives se WHERE 1=1
+    <include refid="wherelist" />
+  </select>
+
+
+</mapper>

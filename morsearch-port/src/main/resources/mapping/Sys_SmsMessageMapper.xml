@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sys_SmsMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sys_SmsMessage" >
+    <id column="sm_id" property="sm_id" jdbcType="INTEGER" />
+    <result column="sm_tempno" property="sm_tempno" jdbcType="VARCHAR" />
+    <result column="sm_userid" property="sm_userid" jdbcType="BIGINT" />
+    <result column="sm_phone" property="sm_phone" jdbcType="VARCHAR" />
+    <result column="sm_para0" property="sm_para0" jdbcType="VARCHAR" />
+    <result column="sm_para1" property="sm_para1" jdbcType="VARCHAR" />
+    <result column="sm_para2" property="sm_para2" jdbcType="VARCHAR" />
+    <result column="sm_para3" property="sm_para3" jdbcType="VARCHAR" />
+    <result column="sm_para4" property="sm_para4" jdbcType="VARCHAR" />
+    <result column="sm_para5" property="sm_para5" jdbcType="VARCHAR" />
+    <result column="sm_para6" property="sm_para6" jdbcType="VARCHAR" />
+    <result column="sm_para7" property="sm_para7" jdbcType="VARCHAR" />
+    <result column="sm_para8" property="sm_para8" jdbcType="VARCHAR" />
+    <result column="sm_sendtime" property="sm_sendtime" jdbcType="TIMESTAMP" />
+    <result column="sm_createtime" property="sm_createtime" jdbcType="TIMESTAMP" />
+    <result column="sm_status" property="sm_status" jdbcType="TINYINT" />
+    <result column="sm_remark" property="sm_remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sm_id, sm_tempno, sm_userid, sm_phone, sm_para0, sm_para1, sm_para2, sm_para3, sm_para4,
+    sm_para5, sm_para6, sm_para7, sm_para8, sm_sendtime, sm_createtime, sm_status, sm_remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sys_SmsMessageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sys_SmsMessage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from Sys_SmsMessage
+    where sm_id = #{sm_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Sys_SmsMessage
+    where sm_id = #{sm_id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sys_SmsMessageExample" >
+    delete from Sys_SmsMessage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sys_SmsMessage" >
+    insert into Sys_SmsMessage (sm_id, sm_tempno, sm_userid,
+    sm_phone, sm_para0, sm_para1,
+    sm_para2, sm_para3, sm_para4,
+    sm_para5, sm_para6, sm_para7,
+    sm_para8, sm_sendtime, sm_createtime,
+    sm_status, sm_remark)
+    values (#{sm_id,jdbcType=INTEGER}, #{sm_tempno,jdbcType=VARCHAR}, #{sm_userid,jdbcType=BIGINT},
+    #{sm_phone,jdbcType=VARCHAR}, #{sm_para0,jdbcType=VARCHAR}, #{sm_para1,jdbcType=VARCHAR},
+    #{sm_para2,jdbcType=VARCHAR}, #{sm_para3,jdbcType=VARCHAR}, #{sm_para4,jdbcType=VARCHAR},
+    #{sm_para5,jdbcType=VARCHAR}, #{sm_para6,jdbcType=VARCHAR}, #{sm_para7,jdbcType=VARCHAR},
+    #{sm_para8,jdbcType=VARCHAR}, #{sm_sendtime,jdbcType=TIMESTAMP}, #{sm_createtime,jdbcType=TIMESTAMP},
+    #{sm_status,jdbcType=TINYINT}, #{sm_remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sys_SmsMessage" >
+    insert into Sys_SmsMessage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sm_id != null" >
+        sm_id,
+      </if>
+      <if test="sm_tempno != null" >
+        sm_tempno,
+      </if>
+      <if test="sm_userid != null" >
+        sm_userid,
+      </if>
+      <if test="sm_phone != null" >
+        sm_phone,
+      </if>
+      <if test="sm_para0 != null" >
+        sm_para0,
+      </if>
+      <if test="sm_para1 != null" >
+        sm_para1,
+      </if>
+      <if test="sm_para2 != null" >
+        sm_para2,
+      </if>
+      <if test="sm_para3 != null" >
+        sm_para3,
+      </if>
+      <if test="sm_para4 != null" >
+        sm_para4,
+      </if>
+      <if test="sm_para5 != null" >
+        sm_para5,
+      </if>
+      <if test="sm_para6 != null" >
+        sm_para6,
+      </if>
+      <if test="sm_para7 != null" >
+        sm_para7,
+      </if>
+      <if test="sm_para8 != null" >
+        sm_para8,
+      </if>
+      <if test="sm_sendtime != null" >
+        sm_sendtime,
+      </if>
+      <if test="sm_createtime != null" >
+        sm_createtime,
+      </if>
+      <if test="sm_status != null" >
+        sm_status,
+      </if>
+      <if test="sm_remark != null" >
+        sm_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sm_id != null" >
+        #{sm_id,jdbcType=INTEGER},
+      </if>
+      <if test="sm_tempno != null" >
+        #{sm_tempno,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_userid != null" >
+        #{sm_userid,jdbcType=BIGINT},
+      </if>
+      <if test="sm_phone != null" >
+        #{sm_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para0 != null" >
+        #{sm_para0,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para1 != null" >
+        #{sm_para1,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para2 != null" >
+        #{sm_para2,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para3 != null" >
+        #{sm_para3,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para4 != null" >
+        #{sm_para4,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para5 != null" >
+        #{sm_para5,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para6 != null" >
+        #{sm_para6,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para7 != null" >
+        #{sm_para7,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para8 != null" >
+        #{sm_para8,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_sendtime != null" >
+        #{sm_sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sm_createtime != null" >
+        #{sm_createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sm_status != null" >
+        #{sm_status,jdbcType=TINYINT},
+      </if>
+      <if test="sm_remark != null" >
+        #{sm_remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sys_SmsMessageExample" resultType="java.lang.Integer" >
+    select count(*) from Sys_SmsMessage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sys_SmsMessage
+    <set >
+      <if test="record.sm_id != null" >
+        sm_id = #{record.sm_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sm_tempno != null" >
+        sm_tempno = #{record.sm_tempno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_userid != null" >
+        sm_userid = #{record.sm_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sm_phone != null" >
+        sm_phone = #{record.sm_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_para0 != null" >
+        sm_para0 = #{record.sm_para0,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_para1 != null" >
+        sm_para1 = #{record.sm_para1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_para2 != null" >
+        sm_para2 = #{record.sm_para2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_para3 != null" >
+        sm_para3 = #{record.sm_para3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_para4 != null" >
+        sm_para4 = #{record.sm_para4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_para5 != null" >
+        sm_para5 = #{record.sm_para5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_para6 != null" >
+        sm_para6 = #{record.sm_para6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_para7 != null" >
+        sm_para7 = #{record.sm_para7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_para8 != null" >
+        sm_para8 = #{record.sm_para8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_sendtime != null" >
+        sm_sendtime = #{record.sm_sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sm_createtime != null" >
+        sm_createtime = #{record.sm_createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sm_status != null" >
+        sm_status = #{record.sm_status,jdbcType=TINYINT},
+      </if>
+      <if test="record.sm_remark != null" >
+        sm_remark = #{record.sm_remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sys_SmsMessage
+    set sm_id = #{record.sm_id,jdbcType=INTEGER},
+    sm_tempno = #{record.sm_tempno,jdbcType=VARCHAR},
+    sm_userid = #{record.sm_userid,jdbcType=BIGINT},
+    sm_phone = #{record.sm_phone,jdbcType=VARCHAR},
+    sm_para0 = #{record.sm_para0,jdbcType=VARCHAR},
+    sm_para1 = #{record.sm_para1,jdbcType=VARCHAR},
+    sm_para2 = #{record.sm_para2,jdbcType=VARCHAR},
+    sm_para3 = #{record.sm_para3,jdbcType=VARCHAR},
+    sm_para4 = #{record.sm_para4,jdbcType=VARCHAR},
+    sm_para5 = #{record.sm_para5,jdbcType=VARCHAR},
+    sm_para6 = #{record.sm_para6,jdbcType=VARCHAR},
+    sm_para7 = #{record.sm_para7,jdbcType=VARCHAR},
+    sm_para8 = #{record.sm_para8,jdbcType=VARCHAR},
+    sm_sendtime = #{record.sm_sendtime,jdbcType=TIMESTAMP},
+    sm_createtime = #{record.sm_createtime,jdbcType=TIMESTAMP},
+    sm_status = #{record.sm_status,jdbcType=TINYINT},
+    sm_remark = #{record.sm_remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sys_SmsMessage" >
+    update Sys_SmsMessage
+    <set >
+      <if test="sm_tempno != null" >
+        sm_tempno = #{sm_tempno,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_userid != null" >
+        sm_userid = #{sm_userid,jdbcType=BIGINT},
+      </if>
+      <if test="sm_phone != null" >
+        sm_phone = #{sm_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para0 != null" >
+        sm_para0 = #{sm_para0,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para1 != null" >
+        sm_para1 = #{sm_para1,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para2 != null" >
+        sm_para2 = #{sm_para2,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para3 != null" >
+        sm_para3 = #{sm_para3,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para4 != null" >
+        sm_para4 = #{sm_para4,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para5 != null" >
+        sm_para5 = #{sm_para5,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para6 != null" >
+        sm_para6 = #{sm_para6,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para7 != null" >
+        sm_para7 = #{sm_para7,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_para8 != null" >
+        sm_para8 = #{sm_para8,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_sendtime != null" >
+        sm_sendtime = #{sm_sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sm_createtime != null" >
+        sm_createtime = #{sm_createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sm_status != null" >
+        sm_status = #{sm_status,jdbcType=TINYINT},
+      </if>
+      <if test="sm_remark != null" >
+        sm_remark = #{sm_remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sm_id = #{sm_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sys_SmsMessage" >
+    update Sys_SmsMessage
+    set sm_tempno = #{sm_tempno,jdbcType=VARCHAR},
+      sm_userid = #{sm_userid,jdbcType=BIGINT},
+      sm_phone = #{sm_phone,jdbcType=VARCHAR},
+      sm_para0 = #{sm_para0,jdbcType=VARCHAR},
+      sm_para1 = #{sm_para1,jdbcType=VARCHAR},
+      sm_para2 = #{sm_para2,jdbcType=VARCHAR},
+      sm_para3 = #{sm_para3,jdbcType=VARCHAR},
+      sm_para4 = #{sm_para4,jdbcType=VARCHAR},
+      sm_para5 = #{sm_para5,jdbcType=VARCHAR},
+      sm_para6 = #{sm_para6,jdbcType=VARCHAR},
+      sm_para7 = #{sm_para7,jdbcType=VARCHAR},
+      sm_para8 = #{sm_para8,jdbcType=VARCHAR},
+      sm_sendtime = #{sm_sendtime,jdbcType=TIMESTAMP},
+      sm_createtime = #{sm_createtime,jdbcType=TIMESTAMP},
+      sm_status = #{sm_status,jdbcType=TINYINT},
+      sm_remark = #{sm_remark,jdbcType=VARCHAR}
+    where sm_id = #{sm_id,jdbcType=INTEGER}
+  </update>
+</mapper>

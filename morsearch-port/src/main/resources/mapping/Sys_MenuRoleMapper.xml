@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sys_MenuRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sys_MenuRole" >
+    <id column="rl_id" property="rl_id" jdbcType="INTEGER" />
+    <result column="rl_name" property="rl_name" jdbcType="VARCHAR" />
+    <result column="rl_remark" property="rl_remark" jdbcType="VARCHAR" />
+    <result column="rl_stopflag" property="rl_stopflag" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rl_id, rl_name, rl_remark, rl_stopflag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sys_MenuRoleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sys_MenuRole
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Sys_MenuRole
+    where rl_id = #{rl_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Sys_MenuRole
+    where rl_id = #{rl_id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sys_MenuRoleExample" >
+    delete from Sys_MenuRole
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sys_MenuRole" >
+    insert into Sys_MenuRole (rl_id, rl_name, rl_remark, 
+      rl_stopflag)
+    values (#{rl_id,jdbcType=INTEGER}, #{rl_name,jdbcType=VARCHAR}, #{rl_remark,jdbcType=VARCHAR}, 
+      #{rl_stopflag,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sys_MenuRole" >
+    insert into Sys_MenuRole
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rl_id != null" >
+        rl_id,
+      </if>
+      <if test="rl_name != null" >
+        rl_name,
+      </if>
+      <if test="rl_remark != null" >
+        rl_remark,
+      </if>
+      <if test="rl_stopflag != null" >
+        rl_stopflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rl_id != null" >
+        #{rl_id,jdbcType=INTEGER},
+      </if>
+      <if test="rl_name != null" >
+        #{rl_name,jdbcType=VARCHAR},
+      </if>
+      <if test="rl_remark != null" >
+        #{rl_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="rl_stopflag != null" >
+        #{rl_stopflag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sys_MenuRoleExample" resultType="java.lang.Integer" >
+    select count(*) from Sys_MenuRole
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sys_MenuRole
+    <set >
+      <if test="record.rl_id != null" >
+        rl_id = #{record.rl_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.rl_name != null" >
+        rl_name = #{record.rl_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rl_remark != null" >
+        rl_remark = #{record.rl_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rl_stopflag != null" >
+        rl_stopflag = #{record.rl_stopflag,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sys_MenuRole
+    set rl_id = #{record.rl_id,jdbcType=INTEGER},
+      rl_name = #{record.rl_name,jdbcType=VARCHAR},
+      rl_remark = #{record.rl_remark,jdbcType=VARCHAR},
+      rl_stopflag = #{record.rl_stopflag,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sys_MenuRole" >
+    update Sys_MenuRole
+    <set >
+      <if test="rl_name != null" >
+        rl_name = #{rl_name,jdbcType=VARCHAR},
+      </if>
+      <if test="rl_remark != null" >
+        rl_remark = #{rl_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="rl_stopflag != null" >
+        rl_stopflag = #{rl_stopflag,jdbcType=BIT},
+      </if>
+    </set>
+    where rl_id = #{rl_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sys_MenuRole" >
+    update Sys_MenuRole
+    set rl_name = #{rl_name,jdbcType=VARCHAR},
+      rl_remark = #{rl_remark,jdbcType=VARCHAR},
+      rl_stopflag = #{rl_stopflag,jdbcType=BIT}
+    where rl_id = #{rl_id,jdbcType=INTEGER}
+  </update>
+
+
+  <!-- 分页 -->
+
+  <select id="getRoleMenuList" resultMap="BaseResultMap" >
+    select * from Sys_MenuRole  WHERE 1=1
+    <include refid="wherelist" />
+    ORDER BY rl_id
+    limit #{pagestart},#{pagesize}
+  </select>
+
+
+  <select id="getRoleMenuCount" resultType="java.lang.Integer" >
+    select count(rl_id) from Sys_MenuRole WHERE 1=1
+    <include refid="wherelist" />
+  </select>
+
+  <!-- 条件 -->
+  <sql id="wherelist" >
+    <if test="rl_name != null and rl_name != ''" >
+      and rl_name like concat(concat('%',#{rl_name}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="rl_stopflag != null and rl_stopflag != ''" >
+      and ifnull(rl_stopflag,0)=#{rl_stopflag}
+    </if>
+  </sql>
+
+
+
+</mapper>

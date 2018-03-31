@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Award_ShareMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Award_Share" >
+    <id column="ba_id" property="ba_id" jdbcType="BIGINT" />
+    <result column="ba_tasktype" property="ba_tasktype" jdbcType="VARCHAR" />
+    <result column="ba_name" property="ba_name" jdbcType="VARCHAR" />
+    <result column="ba_datebegin" property="ba_datebegin" jdbcType="VARCHAR" />
+    <result column="ba_dateend" property="ba_dateend" jdbcType="VARCHAR" />
+    <result column="ba_popup" property="ba_popup" jdbcType="SMALLINT" />
+    <result column="ba_title" property="ba_title" jdbcType="VARCHAR" />
+    <result column="ba_link" property="ba_link" jdbcType="VARCHAR" />
+    <result column="ba_rule" property="ba_rule" jdbcType="VARCHAR" />
+    <result column="ba_image" property="ba_image" jdbcType="VARCHAR" />
+    <result column="ba_share_gift" property="ba_share_gift" jdbcType="INTEGER" />
+    <result column="ba_share_astrict" property="ba_share_astrict" jdbcType="BIT" />
+    <result column="ba_share_count" property="ba_share_count" jdbcType="INTEGER" />
+    <result column="ba_receive_gift" property="ba_receive_gift" jdbcType="INTEGER" />
+    <result column="ba_receive_astrict" property="ba_receive_astrict" jdbcType="BIT" />
+    <result column="ba_receive_count" property="ba_receive_count" jdbcType="INTEGER" />
+    <result column="ba_record_activities" property="ba_record_activities" jdbcType="VARCHAR" />
+    <result column="ba_award_type" property="ba_award_type" jdbcType="TINYINT" />
+    <result column="ba_createid" property="ba_createid" jdbcType="BIGINT" />
+    <result column="ba_createno" property="ba_createno" jdbcType="VARCHAR" />
+    <result column="ba_createdate" property="ba_createdate" jdbcType="TIMESTAMP" />
+    <result column="ba_confirmid" property="ba_confirmid" jdbcType="BIGINT" />
+    <result column="ba_confirmno" property="ba_confirmno" jdbcType="VARCHAR" />
+    <result column="ba_confirmdate" property="ba_confirmdate" jdbcType="TIMESTAMP" />
+    <result column="ba_status" property="ba_status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ba_id, ba_tasktype, ba_name, ba_datebegin, ba_dateend, ba_popup, ba_title, ba_link,
+    ba_rule, ba_image, ba_share_gift, ba_share_astrict, ba_share_count, ba_receive_gift,
+    ba_receive_astrict, ba_receive_count, ba_record_activities, ba_award_type, ba_createid,
+    ba_createno, ba_createdate, ba_confirmid, ba_confirmno, ba_confirmdate, ba_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Award_ShareExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Award_Share
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Award_Share
+    where ba_id = #{ba_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Award_Share
+    where ba_id = #{ba_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Award_ShareExample" >
+    delete from Award_Share
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Award_Share" >
+    <selectKey keyProperty="ba_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Award_Share (ba_id, ba_tasktype, ba_name,
+    ba_datebegin, ba_dateend, ba_popup,
+    ba_title, ba_link, ba_rule,
+    ba_image, ba_share_gift, ba_share_astrict,
+    ba_share_count, ba_receive_gift, ba_receive_astrict,
+    ba_receive_count, ba_record_activities,
+    ba_award_type, ba_createid, ba_createno,
+    ba_createdate, ba_confirmid, ba_confirmno,
+    ba_confirmdate, ba_status)
+    values (#{ba_id,jdbcType=BIGINT}, #{ba_tasktype,jdbcType=VARCHAR}, #{ba_name,jdbcType=VARCHAR},
+    #{ba_datebegin,jdbcType=VARCHAR}, #{ba_dateend,jdbcType=VARCHAR}, #{ba_popup,jdbcType=SMALLINT},
+    #{ba_title,jdbcType=VARCHAR}, #{ba_link,jdbcType=VARCHAR}, #{ba_rule,jdbcType=VARCHAR},
+    #{ba_image,jdbcType=VARCHAR}, #{ba_share_gift,jdbcType=INTEGER}, #{ba_share_astrict,jdbcType=BIT},
+    #{ba_share_count,jdbcType=INTEGER}, #{ba_receive_gift,jdbcType=INTEGER}, #{ba_receive_astrict,jdbcType=BIT},
+    #{ba_receive_count,jdbcType=INTEGER}, #{ba_record_activities,jdbcType=VARCHAR},
+    #{ba_award_type,jdbcType=TINYINT}, #{ba_createid,jdbcType=BIGINT}, #{ba_createno,jdbcType=VARCHAR},
+    #{ba_createdate,jdbcType=TIMESTAMP}, #{ba_confirmid,jdbcType=BIGINT}, #{ba_confirmno,jdbcType=VARCHAR},
+    #{ba_confirmdate,jdbcType=TIMESTAMP}, #{ba_status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Award_Share" >
+    <selectKey keyProperty="ba_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Award_Share
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ba_id != null" >
+        ba_id,
+      </if>
+      <if test="ba_tasktype != null" >
+        ba_tasktype,
+      </if>
+      <if test="ba_name != null" >
+        ba_name,
+      </if>
+      <if test="ba_datebegin != null" >
+        ba_datebegin,
+      </if>
+      <if test="ba_dateend != null" >
+        ba_dateend,
+      </if>
+      <if test="ba_popup != null" >
+        ba_popup,
+      </if>
+      <if test="ba_title != null" >
+        ba_title,
+      </if>
+      <if test="ba_link != null" >
+        ba_link,
+      </if>
+      <if test="ba_rule != null" >
+        ba_rule,
+      </if>
+      <if test="ba_image != null" >
+        ba_image,
+      </if>
+      <if test="ba_share_gift != null" >
+        ba_share_gift,
+      </if>
+      <if test="ba_share_astrict != null" >
+        ba_share_astrict,
+      </if>
+      <if test="ba_share_count != null" >
+        ba_share_count,
+      </if>
+      <if test="ba_receive_gift != null" >
+        ba_receive_gift,
+      </if>
+      <if test="ba_receive_astrict != null" >
+        ba_receive_astrict,
+      </if>
+      <if test="ba_receive_count != null" >
+        ba_receive_count,
+      </if>
+      <if test="ba_record_activities != null" >
+        ba_record_activities,
+      </if>
+      <if test="ba_award_type != null" >
+        ba_award_type,
+      </if>
+      <if test="ba_createid != null" >
+        ba_createid,
+      </if>
+      <if test="ba_createno != null" >
+        ba_createno,
+      </if>
+      <if test="ba_createdate != null" >
+        ba_createdate,
+      </if>
+      <if test="ba_confirmid != null" >
+        ba_confirmid,
+      </if>
+      <if test="ba_confirmno != null" >
+        ba_confirmno,
+      </if>
+      <if test="ba_confirmdate != null" >
+        ba_confirmdate,
+      </if>
+      <if test="ba_status != null" >
+        ba_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ba_id != null" >
+        #{ba_id,jdbcType=BIGINT},
+      </if>
+      <if test="ba_tasktype != null" >
+        #{ba_tasktype,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_name != null" >
+        #{ba_name,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_datebegin != null" >
+        #{ba_datebegin,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_dateend != null" >
+        #{ba_dateend,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_popup != null" >
+        #{ba_popup,jdbcType=SMALLINT},
+      </if>
+      <if test="ba_title != null" >
+        #{ba_title,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_link != null" >
+        #{ba_link,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_rule != null" >
+        #{ba_rule,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_image != null" >
+        #{ba_image,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_share_gift != null" >
+        #{ba_share_gift,jdbcType=INTEGER},
+      </if>
+      <if test="ba_share_astrict != null" >
+        #{ba_share_astrict,jdbcType=BIT},
+      </if>
+      <if test="ba_share_count != null" >
+        #{ba_share_count,jdbcType=INTEGER},
+      </if>
+      <if test="ba_receive_gift != null" >
+        #{ba_receive_gift,jdbcType=INTEGER},
+      </if>
+      <if test="ba_receive_astrict != null" >
+        #{ba_receive_astrict,jdbcType=BIT},
+      </if>
+      <if test="ba_receive_count != null" >
+        #{ba_receive_count,jdbcType=INTEGER},
+      </if>
+      <if test="ba_record_activities != null" >
+        #{ba_record_activities,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_award_type != null" >
+        #{ba_award_type,jdbcType=TINYINT},
+      </if>
+      <if test="ba_createid != null" >
+        #{ba_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ba_createno != null" >
+        #{ba_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_createdate != null" >
+        #{ba_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ba_confirmid != null" >
+        #{ba_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="ba_confirmno != null" >
+        #{ba_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_confirmdate != null" >
+        #{ba_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ba_status != null" >
+        #{ba_status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Award_ShareExample" resultType="java.lang.Integer" >
+    select count(*) from Award_Share
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Award_Share
+    <set >
+      <if test="record.ba_id != null" >
+        ba_id = #{record.ba_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ba_tasktype != null" >
+        ba_tasktype = #{record.ba_tasktype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_name != null" >
+        ba_name = #{record.ba_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_datebegin != null" >
+        ba_datebegin = #{record.ba_datebegin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_dateend != null" >
+        ba_dateend = #{record.ba_dateend,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_popup != null" >
+        ba_popup = #{record.ba_popup,jdbcType=SMALLINT},
+      </if>
+      <if test="record.ba_title != null" >
+        ba_title = #{record.ba_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_link != null" >
+        ba_link = #{record.ba_link,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_rule != null" >
+        ba_rule = #{record.ba_rule,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_image != null" >
+        ba_image = #{record.ba_image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_share_gift != null" >
+        ba_share_gift = #{record.ba_share_gift,jdbcType=INTEGER},
+      </if>
+      <if test="record.ba_share_astrict != null" >
+        ba_share_astrict = #{record.ba_share_astrict,jdbcType=BIT},
+      </if>
+      <if test="record.ba_share_count != null" >
+        ba_share_count = #{record.ba_share_count,jdbcType=INTEGER},
+      </if>
+      <if test="record.ba_receive_gift != null" >
+        ba_receive_gift = #{record.ba_receive_gift,jdbcType=INTEGER},
+      </if>
+      <if test="record.ba_receive_astrict != null" >
+        ba_receive_astrict = #{record.ba_receive_astrict,jdbcType=BIT},
+      </if>
+      <if test="record.ba_receive_count != null" >
+        ba_receive_count = #{record.ba_receive_count,jdbcType=INTEGER},
+      </if>
+      <if test="record.ba_record_activities != null" >
+        ba_record_activities = #{record.ba_record_activities,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_award_type != null" >
+        ba_award_type = #{record.ba_award_type,jdbcType=TINYINT},
+      </if>
+      <if test="record.ba_createid != null" >
+        ba_createid = #{record.ba_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ba_createno != null" >
+        ba_createno = #{record.ba_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_createdate != null" >
+        ba_createdate = #{record.ba_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ba_confirmid != null" >
+        ba_confirmid = #{record.ba_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ba_confirmno != null" >
+        ba_confirmno = #{record.ba_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_confirmdate != null" >
+        ba_confirmdate = #{record.ba_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ba_status != null" >
+        ba_status = #{record.ba_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Award_Share
+    set ba_id = #{record.ba_id,jdbcType=BIGINT},
+    ba_tasktype = #{record.ba_tasktype,jdbcType=VARCHAR},
+    ba_name = #{record.ba_name,jdbcType=VARCHAR},
+    ba_datebegin = #{record.ba_datebegin,jdbcType=VARCHAR},
+    ba_dateend = #{record.ba_dateend,jdbcType=VARCHAR},
+    ba_popup = #{record.ba_popup,jdbcType=SMALLINT},
+    ba_title = #{record.ba_title,jdbcType=VARCHAR},
+    ba_link = #{record.ba_link,jdbcType=VARCHAR},
+    ba_rule = #{record.ba_rule,jdbcType=VARCHAR},
+    ba_image = #{record.ba_image,jdbcType=VARCHAR},
+    ba_share_gift = #{record.ba_share_gift,jdbcType=INTEGER},
+    ba_share_astrict = #{record.ba_share_astrict,jdbcType=BIT},
+    ba_share_count = #{record.ba_share_count,jdbcType=INTEGER},
+    ba_receive_gift = #{record.ba_receive_gift,jdbcType=INTEGER},
+    ba_receive_astrict = #{record.ba_receive_astrict,jdbcType=BIT},
+    ba_receive_count = #{record.ba_receive_count,jdbcType=INTEGER},
+    ba_record_activities = #{record.ba_record_activities,jdbcType=VARCHAR},
+    ba_award_type = #{record.ba_award_type,jdbcType=TINYINT},
+    ba_createid = #{record.ba_createid,jdbcType=BIGINT},
+    ba_createno = #{record.ba_createno,jdbcType=VARCHAR},
+    ba_createdate = #{record.ba_createdate,jdbcType=TIMESTAMP},
+    ba_confirmid = #{record.ba_confirmid,jdbcType=BIGINT},
+    ba_confirmno = #{record.ba_confirmno,jdbcType=VARCHAR},
+    ba_confirmdate = #{record.ba_confirmdate,jdbcType=TIMESTAMP},
+    ba_status = #{record.ba_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Award_Share" >
+    update Award_Share
+    <set >
+      <if test="ba_tasktype != null" >
+        ba_tasktype = #{ba_tasktype,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_name != null" >
+        ba_name = #{ba_name,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_datebegin != null" >
+        ba_datebegin = #{ba_datebegin,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_dateend != null" >
+        ba_dateend = #{ba_dateend,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_popup != null" >
+        ba_popup = #{ba_popup,jdbcType=SMALLINT},
+      </if>
+      <if test="ba_title != null" >
+        ba_title = #{ba_title,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_link != null" >
+        ba_link = #{ba_link,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_rule != null" >
+        ba_rule = #{ba_rule,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_image != null" >
+        ba_image = #{ba_image,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_share_gift != null" >
+        ba_share_gift = #{ba_share_gift,jdbcType=INTEGER},
+      </if>
+      <if test="ba_share_astrict != null" >
+        ba_share_astrict = #{ba_share_astrict,jdbcType=BIT},
+      </if>
+      <if test="ba_share_count != null" >
+        ba_share_count = #{ba_share_count,jdbcType=INTEGER},
+      </if>
+      <if test="ba_receive_gift != null" >
+        ba_receive_gift = #{ba_receive_gift,jdbcType=INTEGER},
+      </if>
+      <if test="ba_receive_astrict != null" >
+        ba_receive_astrict = #{ba_receive_astrict,jdbcType=BIT},
+      </if>
+      <if test="ba_receive_count != null" >
+        ba_receive_count = #{ba_receive_count,jdbcType=INTEGER},
+      </if>
+      <if test="ba_record_activities != null" >
+        ba_record_activities = #{ba_record_activities,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_award_type != null" >
+        ba_award_type = #{ba_award_type,jdbcType=TINYINT},
+      </if>
+      <if test="ba_createid != null" >
+        ba_createid = #{ba_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ba_createno != null" >
+        ba_createno = #{ba_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_createdate != null" >
+        ba_createdate = #{ba_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ba_confirmid != null" >
+        ba_confirmid = #{ba_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="ba_confirmno != null" >
+        ba_confirmno = #{ba_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_confirmdate != null" >
+        ba_confirmdate = #{ba_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ba_status != null" >
+        ba_status = #{ba_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ba_id = #{ba_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Award_Share" >
+    update Award_Share
+    set ba_tasktype = #{ba_tasktype,jdbcType=VARCHAR},
+      ba_name = #{ba_name,jdbcType=VARCHAR},
+      ba_datebegin = #{ba_datebegin,jdbcType=VARCHAR},
+      ba_dateend = #{ba_dateend,jdbcType=VARCHAR},
+      ba_popup = #{ba_popup,jdbcType=SMALLINT},
+      ba_title = #{ba_title,jdbcType=VARCHAR},
+      ba_link = #{ba_link,jdbcType=VARCHAR},
+      ba_rule = #{ba_rule,jdbcType=VARCHAR},
+      ba_image = #{ba_image,jdbcType=VARCHAR},
+      ba_share_gift = #{ba_share_gift,jdbcType=INTEGER},
+      ba_share_astrict = #{ba_share_astrict,jdbcType=BIT},
+      ba_share_count = #{ba_share_count,jdbcType=INTEGER},
+      ba_receive_gift = #{ba_receive_gift,jdbcType=INTEGER},
+      ba_receive_astrict = #{ba_receive_astrict,jdbcType=BIT},
+      ba_receive_count = #{ba_receive_count,jdbcType=INTEGER},
+      ba_record_activities = #{ba_record_activities,jdbcType=VARCHAR},
+      ba_award_type = #{ba_award_type,jdbcType=TINYINT},
+      ba_createid = #{ba_createid,jdbcType=BIGINT},
+      ba_createno = #{ba_createno,jdbcType=VARCHAR},
+      ba_createdate = #{ba_createdate,jdbcType=TIMESTAMP},
+      ba_confirmid = #{ba_confirmid,jdbcType=BIGINT},
+      ba_confirmno = #{ba_confirmno,jdbcType=VARCHAR},
+      ba_confirmdate = #{ba_confirmdate,jdbcType=TIMESTAMP},
+      ba_status = #{ba_status,jdbcType=TINYINT}
+    where ba_id = #{ba_id,jdbcType=BIGINT}
+  </update>
+</mapper>

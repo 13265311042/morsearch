@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.MsgV_Order_ListMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.MsgV_Order_List" >
+    <result column="mo_id" property="mo_id" jdbcType="BIGINT" />
+    <result column="mo_orderno" property="mo_orderno" jdbcType="VARCHAR" />
+    <result column="mo_orderstatus" property="mo_orderstatus" jdbcType="TINYINT" />
+    <result column="mo_talkcontent" property="mo_talkcontent" jdbcType="VARCHAR" />
+    <result column="mo_title" property="mo_title" jdbcType="VARCHAR" />
+    <result column="mo_flagread" property="mo_flagread" jdbcType="BIT" />
+    <result column="mo_desigid" property="mo_desigid" jdbcType="BIGINT" />
+    <result column="mo_salerid" property="mo_salerid" jdbcType="BIGINT" />
+    <result column="mo_createdate" property="mo_createdate" jdbcType="TIMESTAMP" />
+    <result column="of_talkhead" property="of_talkhead" jdbcType="VARCHAR" />
+    <result column="of_talksign" property="of_talksign" jdbcType="VARCHAR" />
+    <result column="of_coincode" property="of_coincode" jdbcType="VARCHAR" />
+    <result column="of_coinname" property="of_coinname" jdbcType="VARCHAR" />
+    <result column="of_coinimage" property="of_coinimage" jdbcType="VARCHAR" />
+    <result column="statusname" property="statusname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mo_id, mo_orderno, mo_orderstatus, mo_talkcontent, mo_title, mo_flagread, mo_desigid, 
+    mo_salerid, mo_createdate, of_talkhead, of_talksign, of_coincode, of_coinname, of_coinimage, 
+    statusname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.MsgV_Order_ListExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MsgV_Order_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.MsgV_Order_ListExample" >
+    delete from MsgV_Order_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.MsgV_Order_List" >
+    insert into MsgV_Order_List (mo_id, mo_orderno, mo_orderstatus, 
+      mo_talkcontent, mo_title, mo_flagread, 
+      mo_desigid, mo_salerid, mo_createdate, 
+      of_talkhead, of_talksign, of_coincode, 
+      of_coinname, of_coinimage, statusname
+      )
+    values (#{mo_id,jdbcType=BIGINT}, #{mo_orderno,jdbcType=VARCHAR}, #{mo_orderstatus,jdbcType=TINYINT}, 
+      #{mo_talkcontent,jdbcType=VARCHAR}, #{mo_title,jdbcType=VARCHAR}, #{mo_flagread,jdbcType=BIT}, 
+      #{mo_desigid,jdbcType=BIGINT}, #{mo_salerid,jdbcType=BIGINT}, #{mo_createdate,jdbcType=TIMESTAMP}, 
+      #{of_talkhead,jdbcType=VARCHAR}, #{of_talksign,jdbcType=VARCHAR}, #{of_coincode,jdbcType=VARCHAR}, 
+      #{of_coinname,jdbcType=VARCHAR}, #{of_coinimage,jdbcType=VARCHAR}, #{statusname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.MsgV_Order_List" >
+    insert into MsgV_Order_List
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mo_id != null" >
+        mo_id,
+      </if>
+      <if test="mo_orderno != null" >
+        mo_orderno,
+      </if>
+      <if test="mo_orderstatus != null" >
+        mo_orderstatus,
+      </if>
+      <if test="mo_talkcontent != null" >
+        mo_talkcontent,
+      </if>
+      <if test="mo_title != null" >
+        mo_title,
+      </if>
+      <if test="mo_flagread != null" >
+        mo_flagread,
+      </if>
+      <if test="mo_desigid != null" >
+        mo_desigid,
+      </if>
+      <if test="mo_salerid != null" >
+        mo_salerid,
+      </if>
+      <if test="mo_createdate != null" >
+        mo_createdate,
+      </if>
+      <if test="of_talkhead != null" >
+        of_talkhead,
+      </if>
+      <if test="of_talksign != null" >
+        of_talksign,
+      </if>
+      <if test="of_coincode != null" >
+        of_coincode,
+      </if>
+      <if test="of_coinname != null" >
+        of_coinname,
+      </if>
+      <if test="of_coinimage != null" >
+        of_coinimage,
+      </if>
+      <if test="statusname != null" >
+        statusname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mo_id != null" >
+        #{mo_id,jdbcType=BIGINT},
+      </if>
+      <if test="mo_orderno != null" >
+        #{mo_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_orderstatus != null" >
+        #{mo_orderstatus,jdbcType=TINYINT},
+      </if>
+      <if test="mo_talkcontent != null" >
+        #{mo_talkcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_title != null" >
+        #{mo_title,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_flagread != null" >
+        #{mo_flagread,jdbcType=BIT},
+      </if>
+      <if test="mo_desigid != null" >
+        #{mo_desigid,jdbcType=BIGINT},
+      </if>
+      <if test="mo_salerid != null" >
+        #{mo_salerid,jdbcType=BIGINT},
+      </if>
+      <if test="mo_createdate != null" >
+        #{mo_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="of_talkhead != null" >
+        #{of_talkhead,jdbcType=VARCHAR},
+      </if>
+      <if test="of_talksign != null" >
+        #{of_talksign,jdbcType=VARCHAR},
+      </if>
+      <if test="of_coincode != null" >
+        #{of_coincode,jdbcType=VARCHAR},
+      </if>
+      <if test="of_coinname != null" >
+        #{of_coinname,jdbcType=VARCHAR},
+      </if>
+      <if test="of_coinimage != null" >
+        #{of_coinimage,jdbcType=VARCHAR},
+      </if>
+      <if test="statusname != null" >
+        #{statusname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.MsgV_Order_ListExample" resultType="java.lang.Integer" >
+    select count(*) from MsgV_Order_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update MsgV_Order_List
+    <set >
+      <if test="record.mo_id != null" >
+        mo_id = #{record.mo_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.mo_orderno != null" >
+        mo_orderno = #{record.mo_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_orderstatus != null" >
+        mo_orderstatus = #{record.mo_orderstatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.mo_talkcontent != null" >
+        mo_talkcontent = #{record.mo_talkcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_title != null" >
+        mo_title = #{record.mo_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_flagread != null" >
+        mo_flagread = #{record.mo_flagread,jdbcType=BIT},
+      </if>
+      <if test="record.mo_desigid != null" >
+        mo_desigid = #{record.mo_desigid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mo_salerid != null" >
+        mo_salerid = #{record.mo_salerid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mo_createdate != null" >
+        mo_createdate = #{record.mo_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.of_talkhead != null" >
+        of_talkhead = #{record.of_talkhead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_talksign != null" >
+        of_talksign = #{record.of_talksign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_coincode != null" >
+        of_coincode = #{record.of_coincode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_coinname != null" >
+        of_coinname = #{record.of_coinname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_coinimage != null" >
+        of_coinimage = #{record.of_coinimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusname != null" >
+        statusname = #{record.statusname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update MsgV_Order_List
+    set mo_id = #{record.mo_id,jdbcType=BIGINT},
+      mo_orderno = #{record.mo_orderno,jdbcType=VARCHAR},
+      mo_orderstatus = #{record.mo_orderstatus,jdbcType=TINYINT},
+      mo_talkcontent = #{record.mo_talkcontent,jdbcType=VARCHAR},
+      mo_title = #{record.mo_title,jdbcType=VARCHAR},
+      mo_flagread = #{record.mo_flagread,jdbcType=BIT},
+      mo_desigid = #{record.mo_desigid,jdbcType=BIGINT},
+      mo_salerid = #{record.mo_salerid,jdbcType=BIGINT},
+      mo_createdate = #{record.mo_createdate,jdbcType=TIMESTAMP},
+      of_talkhead = #{record.of_talkhead,jdbcType=VARCHAR},
+      of_talksign = #{record.of_talksign,jdbcType=VARCHAR},
+      of_coincode = #{record.of_coincode,jdbcType=VARCHAR},
+      of_coinname = #{record.of_coinname,jdbcType=VARCHAR},
+      of_coinimage = #{record.of_coinimage,jdbcType=VARCHAR},
+      statusname = #{record.statusname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

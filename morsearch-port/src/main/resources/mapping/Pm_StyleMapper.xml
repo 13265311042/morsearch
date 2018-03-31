@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Pm_StyleMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Pm_Style" >
+    <id column="ps_id" property="ps_id" jdbcType="BIGINT" />
+    <result column="ps_name" property="ps_name" jdbcType="VARCHAR" />
+    <result column="ps_majorid" property="ps_majorid" jdbcType="BIGINT" />
+    <result column="ps_majorname" property="ps_majorname" jdbcType="VARCHAR" />
+    <result column="ps_index" property="ps_index" jdbcType="INTEGER" />
+    <result column="ps_stopflag" property="ps_stopflag" jdbcType="BIT" />
+    <result column="ps_delflag" property="ps_delflag" jdbcType="BIT" />
+    <result column="ps_selectflag" property="ps_selectflag" jdbcType="BIT" />
+    <result column="ps_remark" property="ps_remark" jdbcType="VARCHAR" />
+    <result column="ps_createno" property="ps_createno" jdbcType="VARCHAR" />
+    <result column="ps_createdate" property="ps_createdate" jdbcType="TIMESTAMP" />
+    <result column="ps_updateno" property="ps_updateno" jdbcType="VARCHAR" />
+    <result column="ps_updatedate" property="ps_updatedate" jdbcType="TIMESTAMP" />
+    <result column="ps_status" property="ps_status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ps_id, ps_name, ps_majorid, ps_majorname, ps_index, ps_stopflag, ps_delflag, ps_selectflag, 
+    ps_remark, ps_createno, ps_createdate, ps_updateno, ps_updatedate, ps_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Pm_StyleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pm_Style
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Pm_Style
+    where ps_id = #{ps_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Pm_Style
+    where ps_id = #{ps_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Pm_StyleExample" >
+    delete from Pm_Style
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Pm_Style" >
+    <selectKey keyProperty="ps_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Pm_Style (ps_id, ps_name, ps_majorid,
+      ps_majorname, ps_index, ps_stopflag, 
+      ps_delflag, ps_selectflag, ps_remark, 
+      ps_createno, ps_createdate, ps_updateno, 
+      ps_updatedate, ps_status)
+    values (#{ps_id,jdbcType=BIGINT}, #{ps_name,jdbcType=VARCHAR}, #{ps_majorid,jdbcType=BIGINT}, 
+      #{ps_majorname,jdbcType=VARCHAR}, #{ps_index,jdbcType=INTEGER}, #{ps_stopflag,jdbcType=BIT}, 
+      #{ps_delflag,jdbcType=BIT}, #{ps_selectflag,jdbcType=BIT}, #{ps_remark,jdbcType=VARCHAR}, 
+      #{ps_createno,jdbcType=VARCHAR}, #{ps_createdate,jdbcType=TIMESTAMP}, #{ps_updateno,jdbcType=VARCHAR}, 
+      #{ps_updatedate,jdbcType=TIMESTAMP}, #{ps_status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Pm_Style" >
+    <selectKey keyProperty="ps_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Pm_Style
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ps_id != null" >
+        ps_id,
+      </if>
+      <if test="ps_name != null" >
+        ps_name,
+      </if>
+      <if test="ps_majorid != null" >
+        ps_majorid,
+      </if>
+      <if test="ps_majorname != null" >
+        ps_majorname,
+      </if>
+      <if test="ps_index != null" >
+        ps_index,
+      </if>
+      <if test="ps_stopflag != null" >
+        ps_stopflag,
+      </if>
+      <if test="ps_delflag != null" >
+        ps_delflag,
+      </if>
+      <if test="ps_selectflag != null" >
+        ps_selectflag,
+      </if>
+      <if test="ps_remark != null" >
+        ps_remark,
+      </if>
+      <if test="ps_createno != null" >
+        ps_createno,
+      </if>
+      <if test="ps_createdate != null" >
+        ps_createdate,
+      </if>
+      <if test="ps_updateno != null" >
+        ps_updateno,
+      </if>
+      <if test="ps_updatedate != null" >
+        ps_updatedate,
+      </if>
+      <if test="ps_status != null" >
+        ps_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ps_id != null" >
+        #{ps_id,jdbcType=BIGINT},
+      </if>
+      <if test="ps_name != null" >
+        #{ps_name,jdbcType=VARCHAR},
+      </if>
+      <if test="ps_majorid != null" >
+        #{ps_majorid,jdbcType=BIGINT},
+      </if>
+      <if test="ps_majorname != null" >
+        #{ps_majorname,jdbcType=VARCHAR},
+      </if>
+      <if test="ps_index != null" >
+        #{ps_index,jdbcType=INTEGER},
+      </if>
+      <if test="ps_stopflag != null" >
+        #{ps_stopflag,jdbcType=BIT},
+      </if>
+      <if test="ps_delflag != null" >
+        #{ps_delflag,jdbcType=BIT},
+      </if>
+      <if test="ps_selectflag != null" >
+        #{ps_selectflag,jdbcType=BIT},
+      </if>
+      <if test="ps_remark != null" >
+        #{ps_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ps_createno != null" >
+        #{ps_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ps_createdate != null" >
+        #{ps_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ps_updateno != null" >
+        #{ps_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="ps_updatedate != null" >
+        #{ps_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ps_status != null" >
+        #{ps_status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Pm_StyleExample" resultType="java.lang.Integer" >
+    select count(*) from Pm_Style
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pm_Style
+    <set >
+      <if test="record.ps_id != null" >
+        ps_id = #{record.ps_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ps_name != null" >
+        ps_name = #{record.ps_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ps_majorid != null" >
+        ps_majorid = #{record.ps_majorid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ps_majorname != null" >
+        ps_majorname = #{record.ps_majorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ps_index != null" >
+        ps_index = #{record.ps_index,jdbcType=INTEGER},
+      </if>
+      <if test="record.ps_stopflag != null" >
+        ps_stopflag = #{record.ps_stopflag,jdbcType=BIT},
+      </if>
+      <if test="record.ps_delflag != null" >
+        ps_delflag = #{record.ps_delflag,jdbcType=BIT},
+      </if>
+      <if test="record.ps_selectflag != null" >
+        ps_selectflag = #{record.ps_selectflag,jdbcType=BIT},
+      </if>
+      <if test="record.ps_remark != null" >
+        ps_remark = #{record.ps_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ps_createno != null" >
+        ps_createno = #{record.ps_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ps_createdate != null" >
+        ps_createdate = #{record.ps_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ps_updateno != null" >
+        ps_updateno = #{record.ps_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ps_updatedate != null" >
+        ps_updatedate = #{record.ps_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ps_status != null" >
+        ps_status = #{record.ps_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pm_Style
+    set ps_id = #{record.ps_id,jdbcType=BIGINT},
+      ps_name = #{record.ps_name,jdbcType=VARCHAR},
+      ps_majorid = #{record.ps_majorid,jdbcType=BIGINT},
+      ps_majorname = #{record.ps_majorname,jdbcType=VARCHAR},
+      ps_index = #{record.ps_index,jdbcType=INTEGER},
+      ps_stopflag = #{record.ps_stopflag,jdbcType=BIT},
+      ps_delflag = #{record.ps_delflag,jdbcType=BIT},
+      ps_selectflag = #{record.ps_selectflag,jdbcType=BIT},
+      ps_remark = #{record.ps_remark,jdbcType=VARCHAR},
+      ps_createno = #{record.ps_createno,jdbcType=VARCHAR},
+      ps_createdate = #{record.ps_createdate,jdbcType=TIMESTAMP},
+      ps_updateno = #{record.ps_updateno,jdbcType=VARCHAR},
+      ps_updatedate = #{record.ps_updatedate,jdbcType=TIMESTAMP},
+      ps_status = #{record.ps_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Pm_Style" >
+    update Pm_Style
+    <set >
+      <if test="ps_name != null" >
+        ps_name = #{ps_name,jdbcType=VARCHAR},
+      </if>
+      <if test="ps_majorid != null" >
+        ps_majorid = #{ps_majorid,jdbcType=BIGINT},
+      </if>
+      <if test="ps_majorname != null" >
+        ps_majorname = #{ps_majorname,jdbcType=VARCHAR},
+      </if>
+      <if test="ps_index != null" >
+        ps_index = #{ps_index,jdbcType=INTEGER},
+      </if>
+      <if test="ps_stopflag != null" >
+        ps_stopflag = #{ps_stopflag,jdbcType=BIT},
+      </if>
+      <if test="ps_delflag != null" >
+        ps_delflag = #{ps_delflag,jdbcType=BIT},
+      </if>
+      <if test="ps_selectflag != null" >
+        ps_selectflag = #{ps_selectflag,jdbcType=BIT},
+      </if>
+      <if test="ps_remark != null" >
+        ps_remark = #{ps_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ps_createno != null" >
+        ps_createno = #{ps_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ps_createdate != null" >
+        ps_createdate = #{ps_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ps_updateno != null" >
+        ps_updateno = #{ps_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="ps_updatedate != null" >
+        ps_updatedate = #{ps_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ps_status != null" >
+        ps_status = #{ps_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ps_id = #{ps_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Pm_Style" >
+    update Pm_Style
+    set ps_name = #{ps_name,jdbcType=VARCHAR},
+      ps_majorid = #{ps_majorid,jdbcType=BIGINT},
+      ps_majorname = #{ps_majorname,jdbcType=VARCHAR},
+      ps_index = #{ps_index,jdbcType=INTEGER},
+      ps_stopflag = #{ps_stopflag,jdbcType=BIT},
+      ps_delflag = #{ps_delflag,jdbcType=BIT},
+      ps_selectflag = #{ps_selectflag,jdbcType=BIT},
+      ps_remark = #{ps_remark,jdbcType=VARCHAR},
+      ps_createno = #{ps_createno,jdbcType=VARCHAR},
+      ps_createdate = #{ps_createdate,jdbcType=TIMESTAMP},
+      ps_updateno = #{ps_updateno,jdbcType=VARCHAR},
+      ps_updatedate = #{ps_updatedate,jdbcType=TIMESTAMP},
+      ps_status = #{ps_status,jdbcType=TINYINT}
+    where ps_id = #{ps_id,jdbcType=BIGINT}
+  </update>
+
+  <sql id="wherelist" >
+    <if test="ps_majorid != null and ps_majorid != ''" >
+      and ps_majorid like concat(concat('%',#{ps_majorid}),'%')
+    </if>
+    <if test="ps_majorname != null and ps_majorname != ''" >
+      and ps_majorname like concat(concat('%',#{ps_majorname}),'%')
+    </if>
+    <if test="ps_index != null and ps_index != ''" >
+      and ps_index like concat(concat('%',#{ps_index}),'%')
+    </if>
+    <if test="ps_remark != null and ps_remark != ''" >
+      and ps_remark like concat(concat('%',#{ps_remark}),'%')
+    </if>
+    <if test="ps_stopflag != null" >
+      and ps_stopflag=#{ps_stopflag}
+    </if>
+    <if test="ps_delflag != null" >
+      and ps_delflag=#{ps_delflag}
+    </if>
+    <if test="ps_selectflag != null" >
+      and ps_selectflag=#{ps_selectflag}
+    </if>
+  </sql>
+
+  <!--自定义-->
+  <select id="getStyleList1"  resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    ps_id,ps_name,ps_majorid,ps_majorname
+    from Pm_Style where ps_majorid = #{ps_majorid,jdbcType=BIGINT}
+    <include refid="wherelist" />
+    order by ps_index
+  </select>
+
+  <select id="getStyleList"  resultMap="BaseResultMap" >
+    select
+    ps_id,ps_name,ps_majorid,ps_majorname
+    from Pm_Style WHERE
+     ps_majorname = #{ps_majorname,jdbcType=BIGINT}
+    order by ps_index
+  </select>
+
+  <select id="getStyList"  resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select
+    ps_id,ps_name,ps_majorid,ps_majorname
+    from Pm_Style WHERE
+    ps_majorid = #{id,jdbcType=VARCHAR}
+    order by ps_index
+  </select>
+
+  <!-- 获取标签用词类型数量   string-->
+  <select id="getStyleListCount" parameterType="String" resultType="java.lang.Integer">
+    select  count(*) from Pm_Style where ps_majorid = #{ps_majorid,jdbcType=BIGINT}
+    <if test="ps_name != null and ps_name != ''" >
+      and ps_name = #{ps_name,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <select id="getStyId" resultMap="BaseResultMap" parameterType="String" >
+    select
+    ps_id,ps_name from Pm_Style WHERE
+    ps_name=#{name,jdbcType=VARCHAR}
+  </select>
+
+
+  <!--分页查询-->
+  <!--查询产品档案列表-->
+  <select id="getPm_StyleList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select *  from  Pm_Style  ps where 1=1
+    <include refid="wherelist1" />
+    ORDER BY ps_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getPm_StyleListname" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select ps_id,ps_name  from  Pm_Style
+  </select>
+
+  <!--得到总数-->
+  <select id="getCountPm_Style" resultType="java.lang.Integer" parameterType="java.util.Map">
+    select count(ps_id) from Pm_Style ps WHERE 1=1
+    <include refid="wherelist1" />
+  </select>
+
+  <!--查询条件-->
+  <sql id="wherelist1" >
+    <if test="ps_name != null and ps_name != ''" >
+      and ps_name like concat(concat('%',#{ps_name}),'%')
+    </if>
+    <if test="ps_majorname != null and ps_majorname != ''" >
+      and ps_majorname like concat(concat('%',#{ps_majorname}),'%')
+    </if>
+    <if test="ps_remark != null and ps_remark != ''" >
+      and ps_remark like concat(concat('%',#{ps_remark}),'%')
+    </if>
+    <if test="ps_createno != null and ps_createno != ''" >
+      and ps_createno like concat(concat('%',#{ps_createno}),'%')
+    </if>
+
+    <if test="ps_updateno != null and ps_updateno != ''" >
+      and ps_updateno like concat(concat('%',#{ps_updateno}),'%')
+    </if>
+
+    <if test="ps_stopflag != null and ps_stopflag != ''" >
+      and ifnull(ps_stopflag,0) =#{ps_stopflag}
+    </if>
+    /*关于建表日期时间的查询*/
+    <if test="ps_createdate1 != null and ps_createdate2 !=null" >
+      and ps_createdate  between #{ps_createdate1} and #{ps_createdate2}
+    </if>
+    /*关于修改日期时间的查询*/
+    <if test="ps_updatedate1 != null and ps_updatedate2 !=null" >
+      and ps_updatedate  between #{ps_updatedate1} and #{ps_updatedate2}
+    </if>
+
+    <if test="ps_status != null" >
+      and ps_status=#{ps_status}
+    </if>
+  </sql>
+
+
+</mapper>

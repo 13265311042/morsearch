@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.SalesV_Order_ListMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.SalesV_Order_List" >
+    <result column="of_id" property="of_id" jdbcType="BIGINT" />
+    <result column="of_no" property="of_no" jdbcType="VARCHAR" />
+    <result column="of_dateorder" property="of_dateorder" jdbcType="TIMESTAMP" />
+    <result column="of_datemeet" property="of_datemeet" jdbcType="TIMESTAMP" />
+    <result column="dateshort" property="dateshort" jdbcType="VARCHAR" />
+    <result column="of_custid" property="of_custid" jdbcType="BIGINT" />
+    <result column="of_custname" property="of_custname" jdbcType="VARCHAR" />
+    <result column="of_createid" property="of_createid" jdbcType="BIGINT" />
+    <result column="of_accountid" property="of_accountid" jdbcType="BIGINT" />
+    <result column="of_coinname" property="of_coinname" jdbcType="VARCHAR" />
+    <result column="of_coinimage" property="of_coinimage" jdbcType="VARCHAR" />
+    <result column="ue_personjob" property="ue_personjob" jdbcType="VARCHAR" />
+    <result column="ur_imageurl" property="ur_imageurl" jdbcType="VARCHAR" />
+    <result column="ur_sex" property="ur_sex" jdbcType="VARCHAR" />
+    <result column="of_status" property="of_status" jdbcType="INTEGER" />
+    <result column="of_flagappraisesale" property="of_flagappraisesale" jdbcType="BIT" />
+    <result column="of_flagappraisedesi" property="of_flagappraisedesi" jdbcType="BIT" />
+    <result column="of_flagsuccess" property="of_flagsuccess" jdbcType="BIT" />
+    <result column="of_flagfinish" property="of_flagfinish" jdbcType="BIT" />
+    <result column="statusname" property="statusname" jdbcType="VARCHAR" />
+    <result column="of_appealstatus" property="of_appealstatus" jdbcType="INTEGER" />
+    <result column="appealname" property="appealname" jdbcType="VARCHAR" />
+    <result column="of_appealdate" property="of_appealdate" jdbcType="TIMESTAMP" />
+    <result column="Of_adjdateread" property="of_adjdateread" jdbcType="BIT" />
+    <result column="of_adjdatemsg" property="of_adjdatemsg" jdbcType="VARCHAR" />
+    <result column="of_dateappraisesale" property="of_dateappraisesale" jdbcType="TIMESTAMP" />
+    <result column="of_dateappraisedesi" property="of_dateappraisedesi" jdbcType="TIMESTAMP" />
+    <result column="sale_namenick" property="sale_namenick" jdbcType="VARCHAR" />
+    <result column="sale_imageurl" property="sale_imageurl" jdbcType="VARCHAR" />
+    <result column="sale_sex" property="sale_sex" jdbcType="VARCHAR" />
+    <result column="sale_personjob" property="sale_personjob" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    of_id, of_no, of_dateorder, of_datemeet, dateshort, of_custid, of_custname, of_createid,
+    of_accountid, of_coinname, of_coinimage, ue_personjob, ur_imageurl, ur_sex, of_status,
+    of_flagappraisesale, of_flagappraisedesi, of_flagsuccess, of_flagfinish, statusname,
+    of_appealstatus, appealname, of_appealdate, Of_adjdateread, of_adjdatemsg, of_dateappraisesale,
+    of_dateappraisedesi, sale_namenick, sale_imageurl, sale_sex, sale_personjob
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.SalesV_Order_ListExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SalesV_Order_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.SalesV_Order_ListExample" >
+    delete from SalesV_Order_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.SalesV_Order_List" >
+    insert into SalesV_Order_List (of_id, of_no, of_dateorder,
+    of_datemeet, dateshort, of_custid,
+    of_custname, of_createid, of_accountid,
+    of_coinname, of_coinimage, ue_personjob,
+    ur_imageurl, ur_sex, of_status,
+    of_flagappraisesale, of_flagappraisedesi, of_flagsuccess,
+    of_flagfinish, statusname, of_appealstatus,
+    appealname, of_appealdate, Of_adjdateread,
+    of_adjdatemsg, of_dateappraisesale, of_dateappraisedesi,
+    sale_namenick, sale_imageurl, sale_sex,
+    sale_personjob)
+    values (#{of_id,jdbcType=BIGINT}, #{of_no,jdbcType=VARCHAR}, #{of_dateorder,jdbcType=TIMESTAMP},
+    #{of_datemeet,jdbcType=TIMESTAMP}, #{dateshort,jdbcType=VARCHAR}, #{of_custid,jdbcType=BIGINT},
+    #{of_custname,jdbcType=VARCHAR}, #{of_createid,jdbcType=BIGINT}, #{of_accountid,jdbcType=BIGINT},
+    #{of_coinname,jdbcType=VARCHAR}, #{of_coinimage,jdbcType=VARCHAR}, #{ue_personjob,jdbcType=VARCHAR},
+    #{ur_imageurl,jdbcType=VARCHAR}, #{ur_sex,jdbcType=VARCHAR}, #{of_status,jdbcType=INTEGER},
+    #{of_flagappraisesale,jdbcType=BIT}, #{of_flagappraisedesi,jdbcType=BIT}, #{of_flagsuccess,jdbcType=BIT},
+    #{of_flagfinish,jdbcType=BIT}, #{statusname,jdbcType=VARCHAR}, #{of_appealstatus,jdbcType=INTEGER},
+    #{appealname,jdbcType=VARCHAR}, #{of_appealdate,jdbcType=TIMESTAMP}, #{of_adjdateread,jdbcType=BIT},
+    #{of_adjdatemsg,jdbcType=VARCHAR}, #{of_dateappraisesale,jdbcType=TIMESTAMP}, #{of_dateappraisedesi,jdbcType=TIMESTAMP},
+    #{sale_namenick,jdbcType=VARCHAR}, #{sale_imageurl,jdbcType=VARCHAR}, #{sale_sex,jdbcType=VARCHAR},
+    #{sale_personjob,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.SalesV_Order_List" >
+    insert into SalesV_Order_List
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="of_id != null" >
+        of_id,
+      </if>
+      <if test="of_no != null" >
+        of_no,
+      </if>
+      <if test="of_dateorder != null" >
+        of_dateorder,
+      </if>
+      <if test="of_datemeet != null" >
+        of_datemeet,
+      </if>
+      <if test="dateshort != null" >
+        dateshort,
+      </if>
+      <if test="of_custid != null" >
+        of_custid,
+      </if>
+      <if test="of_custname != null" >
+        of_custname,
+      </if>
+      <if test="of_createid != null" >
+        of_createid,
+      </if>
+      <if test="of_accountid != null" >
+        of_accountid,
+      </if>
+      <if test="of_coinname != null" >
+        of_coinname,
+      </if>
+      <if test="of_coinimage != null" >
+        of_coinimage,
+      </if>
+      <if test="ue_personjob != null" >
+        ue_personjob,
+      </if>
+      <if test="ur_imageurl != null" >
+        ur_imageurl,
+      </if>
+      <if test="ur_sex != null" >
+        ur_sex,
+      </if>
+      <if test="of_status != null" >
+        of_status,
+      </if>
+      <if test="of_flagappraisesale != null" >
+        of_flagappraisesale,
+      </if>
+      <if test="of_flagappraisedesi != null" >
+        of_flagappraisedesi,
+      </if>
+      <if test="of_flagsuccess != null" >
+        of_flagsuccess,
+      </if>
+      <if test="of_flagfinish != null" >
+        of_flagfinish,
+      </if>
+      <if test="statusname != null" >
+        statusname,
+      </if>
+      <if test="of_appealstatus != null" >
+        of_appealstatus,
+      </if>
+      <if test="appealname != null" >
+        appealname,
+      </if>
+      <if test="of_appealdate != null" >
+        of_appealdate,
+      </if>
+      <if test="of_adjdateread != null" >
+        Of_adjdateread,
+      </if>
+      <if test="of_adjdatemsg != null" >
+        of_adjdatemsg,
+      </if>
+      <if test="of_dateappraisesale != null" >
+        of_dateappraisesale,
+      </if>
+      <if test="of_dateappraisedesi != null" >
+        of_dateappraisedesi,
+      </if>
+      <if test="sale_namenick != null" >
+        sale_namenick,
+      </if>
+      <if test="sale_imageurl != null" >
+        sale_imageurl,
+      </if>
+      <if test="sale_sex != null" >
+        sale_sex,
+      </if>
+      <if test="sale_personjob != null" >
+        sale_personjob,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="of_id != null" >
+        #{of_id,jdbcType=BIGINT},
+      </if>
+      <if test="of_no != null" >
+        #{of_no,jdbcType=VARCHAR},
+      </if>
+      <if test="of_dateorder != null" >
+        #{of_dateorder,jdbcType=TIMESTAMP},
+      </if>
+      <if test="of_datemeet != null" >
+        #{of_datemeet,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dateshort != null" >
+        #{dateshort,jdbcType=VARCHAR},
+      </if>
+      <if test="of_custid != null" >
+        #{of_custid,jdbcType=BIGINT},
+      </if>
+      <if test="of_custname != null" >
+        #{of_custname,jdbcType=VARCHAR},
+      </if>
+      <if test="of_createid != null" >
+        #{of_createid,jdbcType=BIGINT},
+      </if>
+      <if test="of_accountid != null" >
+        #{of_accountid,jdbcType=BIGINT},
+      </if>
+      <if test="of_coinname != null" >
+        #{of_coinname,jdbcType=VARCHAR},
+      </if>
+      <if test="of_coinimage != null" >
+        #{of_coinimage,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personjob != null" >
+        #{ue_personjob,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_imageurl != null" >
+        #{ur_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_sex != null" >
+        #{ur_sex,jdbcType=VARCHAR},
+      </if>
+      <if test="of_status != null" >
+        #{of_status,jdbcType=INTEGER},
+      </if>
+      <if test="of_flagappraisesale != null" >
+        #{of_flagappraisesale,jdbcType=BIT},
+      </if>
+      <if test="of_flagappraisedesi != null" >
+        #{of_flagappraisedesi,jdbcType=BIT},
+      </if>
+      <if test="of_flagsuccess != null" >
+        #{of_flagsuccess,jdbcType=BIT},
+      </if>
+      <if test="of_flagfinish != null" >
+        #{of_flagfinish,jdbcType=BIT},
+      </if>
+      <if test="statusname != null" >
+        #{statusname,jdbcType=VARCHAR},
+      </if>
+      <if test="of_appealstatus != null" >
+        #{of_appealstatus,jdbcType=INTEGER},
+      </if>
+      <if test="appealname != null" >
+        #{appealname,jdbcType=VARCHAR},
+      </if>
+      <if test="of_appealdate != null" >
+        #{of_appealdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="of_adjdateread != null" >
+        #{of_adjdateread,jdbcType=BIT},
+      </if>
+      <if test="of_adjdatemsg != null" >
+        #{of_adjdatemsg,jdbcType=VARCHAR},
+      </if>
+      <if test="of_dateappraisesale != null" >
+        #{of_dateappraisesale,jdbcType=TIMESTAMP},
+      </if>
+      <if test="of_dateappraisedesi != null" >
+        #{of_dateappraisedesi,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sale_namenick != null" >
+        #{sale_namenick,jdbcType=VARCHAR},
+      </if>
+      <if test="sale_imageurl != null" >
+        #{sale_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sale_sex != null" >
+        #{sale_sex,jdbcType=VARCHAR},
+      </if>
+      <if test="sale_personjob != null" >
+        #{sale_personjob,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.SalesV_Order_ListExample" resultType="java.lang.Integer" >
+    select count(*) from SalesV_Order_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SalesV_Order_List
+    <set >
+      <if test="record.of_id != null" >
+        of_id = #{record.of_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.of_no != null" >
+        of_no = #{record.of_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_dateorder != null" >
+        of_dateorder = #{record.of_dateorder,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.of_datemeet != null" >
+        of_datemeet = #{record.of_datemeet,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dateshort != null" >
+        dateshort = #{record.dateshort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_custid != null" >
+        of_custid = #{record.of_custid,jdbcType=BIGINT},
+      </if>
+      <if test="record.of_custname != null" >
+        of_custname = #{record.of_custname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_createid != null" >
+        of_createid = #{record.of_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.of_accountid != null" >
+        of_accountid = #{record.of_accountid,jdbcType=BIGINT},
+      </if>
+      <if test="record.of_coinname != null" >
+        of_coinname = #{record.of_coinname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_coinimage != null" >
+        of_coinimage = #{record.of_coinimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_personjob != null" >
+        ue_personjob = #{record.ue_personjob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_imageurl != null" >
+        ur_imageurl = #{record.ur_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_sex != null" >
+        ur_sex = #{record.ur_sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_status != null" >
+        of_status = #{record.of_status,jdbcType=INTEGER},
+      </if>
+      <if test="record.of_flagappraisesale != null" >
+        of_flagappraisesale = #{record.of_flagappraisesale,jdbcType=BIT},
+      </if>
+      <if test="record.of_flagappraisedesi != null" >
+        of_flagappraisedesi = #{record.of_flagappraisedesi,jdbcType=BIT},
+      </if>
+      <if test="record.of_flagsuccess != null" >
+        of_flagsuccess = #{record.of_flagsuccess,jdbcType=BIT},
+      </if>
+      <if test="record.of_flagfinish != null" >
+        of_flagfinish = #{record.of_flagfinish,jdbcType=BIT},
+      </if>
+      <if test="record.statusname != null" >
+        statusname = #{record.statusname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_appealstatus != null" >
+        of_appealstatus = #{record.of_appealstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.appealname != null" >
+        appealname = #{record.appealname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_appealdate != null" >
+        of_appealdate = #{record.of_appealdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.of_adjdateread != null" >
+        Of_adjdateread = #{record.of_adjdateread,jdbcType=BIT},
+      </if>
+      <if test="record.of_adjdatemsg != null" >
+        of_adjdatemsg = #{record.of_adjdatemsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_dateappraisesale != null" >
+        of_dateappraisesale = #{record.of_dateappraisesale,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.of_dateappraisedesi != null" >
+        of_dateappraisedesi = #{record.of_dateappraisedesi,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sale_namenick != null" >
+        sale_namenick = #{record.sale_namenick,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sale_imageurl != null" >
+        sale_imageurl = #{record.sale_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sale_sex != null" >
+        sale_sex = #{record.sale_sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sale_personjob != null" >
+        sale_personjob = #{record.sale_personjob,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SalesV_Order_List
+    set of_id = #{record.of_id,jdbcType=BIGINT},
+    of_no = #{record.of_no,jdbcType=VARCHAR},
+    of_dateorder = #{record.of_dateorder,jdbcType=TIMESTAMP},
+    of_datemeet = #{record.of_datemeet,jdbcType=TIMESTAMP},
+    dateshort = #{record.dateshort,jdbcType=VARCHAR},
+    of_custid = #{record.of_custid,jdbcType=BIGINT},
+    of_custname = #{record.of_custname,jdbcType=VARCHAR},
+    of_createid = #{record.of_createid,jdbcType=BIGINT},
+    of_accountid = #{record.of_accountid,jdbcType=BIGINT},
+    of_coinname = #{record.of_coinname,jdbcType=VARCHAR},
+    of_coinimage = #{record.of_coinimage,jdbcType=VARCHAR},
+    ue_personjob = #{record.ue_personjob,jdbcType=VARCHAR},
+    ur_imageurl = #{record.ur_imageurl,jdbcType=VARCHAR},
+    ur_sex = #{record.ur_sex,jdbcType=VARCHAR},
+    of_status = #{record.of_status,jdbcType=INTEGER},
+    of_flagappraisesale = #{record.of_flagappraisesale,jdbcType=BIT},
+    of_flagappraisedesi = #{record.of_flagappraisedesi,jdbcType=BIT},
+    of_flagsuccess = #{record.of_flagsuccess,jdbcType=BIT},
+    of_flagfinish = #{record.of_flagfinish,jdbcType=BIT},
+    statusname = #{record.statusname,jdbcType=VARCHAR},
+    of_appealstatus = #{record.of_appealstatus,jdbcType=INTEGER},
+    appealname = #{record.appealname,jdbcType=VARCHAR},
+    of_appealdate = #{record.of_appealdate,jdbcType=TIMESTAMP},
+    Of_adjdateread = #{record.of_adjdateread,jdbcType=BIT},
+    of_adjdatemsg = #{record.of_adjdatemsg,jdbcType=VARCHAR},
+    of_dateappraisesale = #{record.of_dateappraisesale,jdbcType=TIMESTAMP},
+    of_dateappraisedesi = #{record.of_dateappraisedesi,jdbcType=TIMESTAMP},
+    sale_namenick = #{record.sale_namenick,jdbcType=VARCHAR},
+    sale_imageurl = #{record.sale_imageurl,jdbcType=VARCHAR},
+    sale_sex = #{record.sale_sex,jdbcType=VARCHAR},
+    sale_personjob = #{record.sale_personjob,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+
+
+  <!-- 分页查询 -->
+  <!--查询订单列表-->
+  <select id="getSalesVOrderListList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from SalesV_Order_List sol where 1=1
+    <include refid="wherelist" />
+    ORDER BY of_id ASC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <!--查询订单的数量-->
+  <select id="getCountSalesVOrderList" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(of_id) from SalesV_Order_List where 1=1
+    <include refid="wherelist" />
+  </select>
+
+  <!-- 条件 -->
+  <sql id="wherelist" >
+    <if test="of_no != null and of_no != ''" >
+      and of_no like concat(concat('%',#{of_no}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="of_custname != null and of_custname != ''" >
+      and of_custname like concat(concat('%',#{of_custname}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="statusname != null and statusname != ''" >
+      and statusname like concat(concat('%',#{statusname}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="of_status != null" ><!-- 精确查询 -->
+      and of_status=#{of_status}
+    </if>
+    /*关于订单日期时间的查询*/
+    <if test="of_dateorder1 != null and of_dateorder2 !=null" >
+      and of_dateorder  between #{of_dateorder1} and #{of_dateorder2}
+    </if>
+    /*关于申述日期时间的查询*/
+    <if test="appealdate1 != null and appealdate2 !=null" >
+      and appealdate  between #{appealdate1} and #{appealdate2}
+    </if>
+    /*申述状态的查询*/
+    <if test="of_appealstatus != null" ><!-- 精确查询 -->
+      and of_appealstatus=#{of_appealstatus}
+    </if>
+
+  </sql>
+
+</mapper>

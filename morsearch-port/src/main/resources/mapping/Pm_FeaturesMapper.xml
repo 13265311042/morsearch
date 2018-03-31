@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Pm_FeaturesMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Pm_Features" >
+    <id column="pf_id" property="pf_id" jdbcType="BIGINT" />
+    <result column="pf_name" property="pf_name" jdbcType="VARCHAR" />
+    <result column="pf_styleid" property="pf_styleid" jdbcType="BIGINT" />
+    <result column="pf_stylename" property="pf_stylename" jdbcType="VARCHAR" />
+    <result column="pf_index" property="pf_index" jdbcType="INTEGER" />
+    <result column="pf_stopflag" property="pf_stopflag" jdbcType="BIT" />
+    <result column="pf_delflag" property="pf_delflag" jdbcType="BIT" />
+    <result column="pf_selectflag" property="pf_selectflag" jdbcType="BIT" />
+    <result column="pf_remark" property="pf_remark" jdbcType="VARCHAR" />
+    <result column="pf_createno" property="pf_createno" jdbcType="VARCHAR" />
+    <result column="pf_createdate" property="pf_createdate" jdbcType="TIMESTAMP" />
+    <result column="pf_updateno" property="pf_updateno" jdbcType="VARCHAR" />
+    <result column="pf_updatedate" property="pf_updatedate" jdbcType="TIMESTAMP" />
+    <result column="pf_status" property="pf_status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pf_id, pf_name, pf_styleid, pf_stylename, pf_index, pf_stopflag, pf_delflag, pf_selectflag, 
+    pf_remark, pf_createno, pf_createdate, pf_updateno, pf_updatedate, pf_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Pm_FeaturesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pm_Features
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Pm_Features
+    where pf_id = #{pf_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Pm_Features
+    where pf_id = #{pf_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Pm_FeaturesExample" >
+    delete from Pm_Features
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Pm_Features" >
+    <selectKey keyProperty="pf_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Pm_Features (pf_id, pf_name, pf_styleid, 
+      pf_stylename, pf_index, pf_stopflag, 
+      pf_delflag, pf_selectflag, pf_remark, 
+      pf_createno, pf_createdate, pf_updateno, 
+      pf_updatedate, pf_status)
+    values (#{pf_id,jdbcType=BIGINT}, #{pf_name,jdbcType=VARCHAR}, #{pf_styleid,jdbcType=BIGINT}, 
+      #{pf_stylename,jdbcType=VARCHAR}, #{pf_index,jdbcType=INTEGER}, #{pf_stopflag,jdbcType=BIT}, 
+      #{pf_delflag,jdbcType=BIT}, #{pf_selectflag,jdbcType=BIT}, #{pf_remark,jdbcType=VARCHAR}, 
+      #{pf_createno,jdbcType=VARCHAR}, #{pf_createdate,jdbcType=TIMESTAMP}, #{pf_updateno,jdbcType=VARCHAR}, 
+      #{pf_updatedate,jdbcType=TIMESTAMP}, #{pf_status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Pm_Features" >
+    <selectKey keyProperty="pf_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Pm_Features
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pf_id != null" >
+        pf_id,
+      </if>
+      <if test="pf_name != null" >
+        pf_name,
+      </if>
+      <if test="pf_styleid != null" >
+        pf_styleid,
+      </if>
+      <if test="pf_stylename != null" >
+        pf_stylename,
+      </if>
+      <if test="pf_index != null" >
+        pf_index,
+      </if>
+      <if test="pf_stopflag != null" >
+        pf_stopflag,
+      </if>
+      <if test="pf_delflag != null" >
+        pf_delflag,
+      </if>
+      <if test="pf_selectflag != null" >
+        pf_selectflag,
+      </if>
+      <if test="pf_remark != null" >
+        pf_remark,
+      </if>
+      <if test="pf_createno != null" >
+        pf_createno,
+      </if>
+      <if test="pf_createdate != null" >
+        pf_createdate,
+      </if>
+      <if test="pf_updateno != null" >
+        pf_updateno,
+      </if>
+      <if test="pf_updatedate != null" >
+        pf_updatedate,
+      </if>
+      <if test="pf_status != null" >
+        pf_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pf_id != null" >
+        #{pf_id,jdbcType=BIGINT},
+      </if>
+      <if test="pf_name != null" >
+        #{pf_name,jdbcType=VARCHAR},
+      </if>
+      <if test="pf_styleid != null" >
+        #{pf_styleid,jdbcType=BIGINT},
+      </if>
+      <if test="pf_stylename != null" >
+        #{pf_stylename,jdbcType=VARCHAR},
+      </if>
+      <if test="pf_index != null" >
+        #{pf_index,jdbcType=INTEGER},
+      </if>
+      <if test="pf_stopflag != null" >
+        #{pf_stopflag,jdbcType=BIT},
+      </if>
+      <if test="pf_delflag != null" >
+        #{pf_delflag,jdbcType=BIT},
+      </if>
+      <if test="pf_selectflag != null" >
+        #{pf_selectflag,jdbcType=BIT},
+      </if>
+      <if test="pf_remark != null" >
+        #{pf_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="pf_createno != null" >
+        #{pf_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="pf_createdate != null" >
+        #{pf_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pf_updateno != null" >
+        #{pf_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="pf_updatedate != null" >
+        #{pf_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pf_status != null" >
+        #{pf_status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Pm_FeaturesExample" resultType="java.lang.Integer" >
+    select count(*) from Pm_Features
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pm_Features
+    <set >
+      <if test="record.pf_id != null" >
+        pf_id = #{record.pf_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.pf_name != null" >
+        pf_name = #{record.pf_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pf_styleid != null" >
+        pf_styleid = #{record.pf_styleid,jdbcType=BIGINT},
+      </if>
+      <if test="record.pf_stylename != null" >
+        pf_stylename = #{record.pf_stylename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pf_index != null" >
+        pf_index = #{record.pf_index,jdbcType=INTEGER},
+      </if>
+      <if test="record.pf_stopflag != null" >
+        pf_stopflag = #{record.pf_stopflag,jdbcType=BIT},
+      </if>
+      <if test="record.pf_delflag != null" >
+        pf_delflag = #{record.pf_delflag,jdbcType=BIT},
+      </if>
+      <if test="record.pf_selectflag != null" >
+        pf_selectflag = #{record.pf_selectflag,jdbcType=BIT},
+      </if>
+      <if test="record.pf_remark != null" >
+        pf_remark = #{record.pf_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pf_createno != null" >
+        pf_createno = #{record.pf_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pf_createdate != null" >
+        pf_createdate = #{record.pf_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pf_updateno != null" >
+        pf_updateno = #{record.pf_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pf_updatedate != null" >
+        pf_updatedate = #{record.pf_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pf_status != null" >
+        pf_status = #{record.pf_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pm_Features
+    set pf_id = #{record.pf_id,jdbcType=BIGINT},
+      pf_name = #{record.pf_name,jdbcType=VARCHAR},
+      pf_styleid = #{record.pf_styleid,jdbcType=BIGINT},
+      pf_stylename = #{record.pf_stylename,jdbcType=VARCHAR},
+      pf_index = #{record.pf_index,jdbcType=INTEGER},
+      pf_stopflag = #{record.pf_stopflag,jdbcType=BIT},
+      pf_delflag = #{record.pf_delflag,jdbcType=BIT},
+      pf_selectflag = #{record.pf_selectflag,jdbcType=BIT},
+      pf_remark = #{record.pf_remark,jdbcType=VARCHAR},
+      pf_createno = #{record.pf_createno,jdbcType=VARCHAR},
+      pf_createdate = #{record.pf_createdate,jdbcType=TIMESTAMP},
+      pf_updateno = #{record.pf_updateno,jdbcType=VARCHAR},
+      pf_updatedate = #{record.pf_updatedate,jdbcType=TIMESTAMP},
+      pf_status = #{record.pf_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Pm_Features" >
+    update Pm_Features
+    <set >
+      <if test="pf_name != null" >
+        pf_name = #{pf_name,jdbcType=VARCHAR},
+      </if>
+      <if test="pf_styleid != null" >
+        pf_styleid = #{pf_styleid,jdbcType=BIGINT},
+      </if>
+      <if test="pf_stylename != null" >
+        pf_stylename = #{pf_stylename,jdbcType=VARCHAR},
+      </if>
+      <if test="pf_index != null" >
+        pf_index = #{pf_index,jdbcType=INTEGER},
+      </if>
+      <if test="pf_stopflag != null" >
+        pf_stopflag = #{pf_stopflag,jdbcType=BIT},
+      </if>
+      <if test="pf_delflag != null" >
+        pf_delflag = #{pf_delflag,jdbcType=BIT},
+      </if>
+      <if test="pf_selectflag != null" >
+        pf_selectflag = #{pf_selectflag,jdbcType=BIT},
+      </if>
+      <if test="pf_remark != null" >
+        pf_remark = #{pf_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="pf_createno != null" >
+        pf_createno = #{pf_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="pf_createdate != null" >
+        pf_createdate = #{pf_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pf_updateno != null" >
+        pf_updateno = #{pf_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="pf_updatedate != null" >
+        pf_updatedate = #{pf_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pf_status != null" >
+        pf_status = #{pf_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where pf_id = #{pf_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Pm_Features" >
+    update Pm_Features
+    set pf_name = #{pf_name,jdbcType=VARCHAR},
+      pf_styleid = #{pf_styleid,jdbcType=BIGINT},
+      pf_stylename = #{pf_stylename,jdbcType=VARCHAR},
+      pf_index = #{pf_index,jdbcType=INTEGER},
+      pf_stopflag = #{pf_stopflag,jdbcType=BIT},
+      pf_delflag = #{pf_delflag,jdbcType=BIT},
+      pf_selectflag = #{pf_selectflag,jdbcType=BIT},
+      pf_remark = #{pf_remark,jdbcType=VARCHAR},
+      pf_createno = #{pf_createno,jdbcType=VARCHAR},
+      pf_createdate = #{pf_createdate,jdbcType=TIMESTAMP},
+      pf_updateno = #{pf_updateno,jdbcType=VARCHAR},
+      pf_updatedate = #{pf_updatedate,jdbcType=TIMESTAMP},
+      pf_status = #{pf_status,jdbcType=TINYINT}
+    where pf_id = #{pf_id,jdbcType=BIGINT}
+  </update>
+
+  <!--自定义-->
+  <select id="getFeaturesListCount" parameterType="String" resultType="java.lang.Integer">
+    select  count(*) from Pm_Features where pf_styleid = #{pf_styleid,jdbcType=BIGINT}
+    <if test="pf_name != null and pf_name != ''" >
+      and pf_name = #{pf_name,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <select id="getFeaturesList"  resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select
+    pf_id,pf_name,pf_styleid,pf_stylename
+    from Pm_Features WHERE
+    pf_styleid = #{id,jdbcType=VARCHAR}
+    order by pf_index DESC
+  </select>
+
+
+  <!--分页查询-->
+  <!--查询产品档案列表-->
+  <select id="getPm_FeaturesList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select *  from  Pm_Features where 1=1
+    <include refid="wherelist1" />
+    ORDER BY pf_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <!--得到总数-->
+  <select id="getCountPm_Features" resultType="java.lang.Integer" parameterType="java.util.Map">
+    select count(pf_id) from Pm_Features WHERE 1=1
+    <include refid="wherelist1" />
+  </select>
+
+  <!--查询条件-->
+  <sql id="wherelist1" >
+    <if test="pf_name != null and pf_name != ''" >
+      and pf_name like concat(concat('%',#{pf_name}),'%')
+    </if>
+    <if test="pf_stylename != null and pf_stylename != ''" >
+      and pf_stylename like concat(concat('%',#{pf_stylename}),'%')
+    </if>
+    <if test="pf_createno != null and pf_createno != ''" >
+      and pf_createno like concat(concat('%',#{pf_createno}),'%')
+    </if>
+    <if test="pf_updateno != null and pf_updateno != ''" >
+      and pf_updateno like concat(concat('%',#{pf_updateno}),'%')
+    </if>
+
+    <if test="pf_stopflag != null and pf_stopflag != ''" >
+      and ifnull(pf_stopflag,0) =#{pf_stopflag}
+    </if>
+    /*关于建表日期时间的查询*/
+    <if test="pf_createdate1 != null and pf_createdate2 !=null" >
+      and pf_createdate  between #{pf_createdate1} and #{pf_createdate2}
+    </if>
+    /*关于修改日期时间的查询*/
+    <if test="pf_updatedate1 != null and pf_updatedate2 !=null" >
+      and pf_updatedate  between #{pf_updatedate1} and #{pf_updatedate2}
+    </if>
+
+    <if test="pf_status != null" >
+      and pf_status=#{pf_status}
+    </if>
+  </sql>
+
+</mapper>

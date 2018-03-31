@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Base_LableListMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Base_LableList" >
+    <id column="bl_id" property="bl_id" jdbcType="BIGINT" />
+    <result column="bl_type" property="bl_type" jdbcType="VARCHAR" />
+    <result column="bl_name" property="bl_name" jdbcType="VARCHAR" />
+    <result column="bl_index" property="bl_index" jdbcType="INTEGER" />
+    <result column="bl_code" property="bl_code" jdbcType="VARCHAR" />
+    <result column="bl_value" property="bl_value" jdbcType="VARCHAR" />
+    <result column="bl_imageurl" property="bl_imageurl" jdbcType="VARCHAR" />
+    <result column="bl_stopflag" property="bl_stopflag" jdbcType="BIT" />
+    <result column="bl_delflag" property="bl_delflag" jdbcType="BIT" />
+    <result column="bl_selectflag" property="bl_selectflag" jdbcType="BIT" />
+    <result column="bl_remark" property="bl_remark" jdbcType="VARCHAR" />
+    <result column="bl_createno" property="bl_createno" jdbcType="VARCHAR" />
+    <result column="bl_createdate" property="bl_createdate" jdbcType="TIMESTAMP" />
+    <result column="bl_updateno" property="bl_updateno" jdbcType="VARCHAR" />
+    <result column="bl_updatedate" property="bl_updatedate" jdbcType="TIMESTAMP" />
+    <result column="bl_status" property="bl_status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    bl_id, bl_type, bl_name, bl_index, bl_code, bl_value, bl_imageurl, bl_stopflag, bl_delflag,
+    bl_selectflag, bl_remark, bl_createno, bl_createdate, bl_updateno, bl_updatedate,
+    bl_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Base_LableListExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Base_LableList
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Base_LableList
+    where bl_id = #{bl_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Base_LableList
+    where bl_id = #{bl_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Base_LableListExample" >
+    delete from Base_LableList
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Base_LableList" >
+    insert into Base_LableList (bl_id, bl_type, bl_name,
+    bl_index, bl_code, bl_value,
+    bl_imageurl, bl_stopflag, bl_delflag,
+    bl_selectflag, bl_remark, bl_createno,
+    bl_createdate, bl_updateno, bl_updatedate,
+    bl_status)
+    values (#{bl_id,jdbcType=BIGINT}, #{bl_type,jdbcType=VARCHAR}, #{bl_name,jdbcType=VARCHAR},
+    #{bl_index,jdbcType=INTEGER}, #{bl_code,jdbcType=VARCHAR}, #{bl_value,jdbcType=VARCHAR},
+    #{bl_imageurl,jdbcType=VARCHAR}, #{bl_stopflag,jdbcType=BIT}, #{bl_delflag,jdbcType=BIT},
+    #{bl_selectflag,jdbcType=BIT}, #{bl_remark,jdbcType=VARCHAR}, #{bl_createno,jdbcType=VARCHAR},
+    #{bl_createdate,jdbcType=TIMESTAMP}, #{bl_updateno,jdbcType=VARCHAR}, #{bl_updatedate,jdbcType=TIMESTAMP},
+    #{bl_status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Base_LableList" >
+    insert into Base_LableList
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bl_id != null" >
+        bl_id,
+      </if>
+      <if test="bl_type != null" >
+        bl_type,
+      </if>
+      <if test="bl_name != null" >
+        bl_name,
+      </if>
+      <if test="bl_index != null" >
+        bl_index,
+      </if>
+      <if test="bl_code != null" >
+        bl_code,
+      </if>
+      <if test="bl_value != null" >
+        bl_value,
+      </if>
+      <if test="bl_imageurl != null" >
+        bl_imageurl,
+      </if>
+      <if test="bl_stopflag != null" >
+        bl_stopflag,
+      </if>
+      <if test="bl_delflag != null" >
+        bl_delflag,
+      </if>
+      <if test="bl_selectflag != null" >
+        bl_selectflag,
+      </if>
+      <if test="bl_remark != null" >
+        bl_remark,
+      </if>
+      <if test="bl_createno != null" >
+        bl_createno,
+      </if>
+      <if test="bl_createdate != null" >
+        bl_createdate,
+      </if>
+      <if test="bl_updateno != null" >
+        bl_updateno,
+      </if>
+      <if test="bl_updatedate != null" >
+        bl_updatedate,
+      </if>
+      <if test="bl_status != null" >
+        bl_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bl_id != null" >
+        #{bl_id,jdbcType=BIGINT},
+      </if>
+      <if test="bl_type != null" >
+        #{bl_type,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_name != null" >
+        #{bl_name,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_index != null" >
+        #{bl_index,jdbcType=INTEGER},
+      </if>
+      <if test="bl_code != null" >
+        #{bl_code,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_value != null" >
+        #{bl_value,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_imageurl != null" >
+        #{bl_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_stopflag != null" >
+        #{bl_stopflag,jdbcType=BIT},
+      </if>
+      <if test="bl_delflag != null" >
+        #{bl_delflag,jdbcType=BIT},
+      </if>
+      <if test="bl_selectflag != null" >
+        #{bl_selectflag,jdbcType=BIT},
+      </if>
+      <if test="bl_remark != null" >
+        #{bl_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_createno != null" >
+        #{bl_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_createdate != null" >
+        #{bl_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bl_updateno != null" >
+        #{bl_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_updatedate != null" >
+        #{bl_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bl_status != null" >
+        #{bl_status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Base_LableListExample" resultType="java.lang.Integer" >
+    select count(*) from Base_LableList
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Base_LableList
+    <set >
+      <if test="record.bl_id != null" >
+        bl_id = #{record.bl_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.bl_type != null" >
+        bl_type = #{record.bl_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bl_name != null" >
+        bl_name = #{record.bl_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bl_index != null" >
+        bl_index = #{record.bl_index,jdbcType=INTEGER},
+      </if>
+      <if test="record.bl_code != null" >
+        bl_code = #{record.bl_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bl_value != null" >
+        bl_value = #{record.bl_value,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bl_imageurl != null" >
+        bl_imageurl = #{record.bl_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bl_stopflag != null" >
+        bl_stopflag = #{record.bl_stopflag,jdbcType=BIT},
+      </if>
+      <if test="record.bl_delflag != null" >
+        bl_delflag = #{record.bl_delflag,jdbcType=BIT},
+      </if>
+      <if test="record.bl_selectflag != null" >
+        bl_selectflag = #{record.bl_selectflag,jdbcType=BIT},
+      </if>
+      <if test="record.bl_remark != null" >
+        bl_remark = #{record.bl_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bl_createno != null" >
+        bl_createno = #{record.bl_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bl_createdate != null" >
+        bl_createdate = #{record.bl_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bl_updateno != null" >
+        bl_updateno = #{record.bl_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bl_updatedate != null" >
+        bl_updatedate = #{record.bl_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bl_status != null" >
+        bl_status = #{record.bl_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Base_LableList
+    set bl_id = #{record.bl_id,jdbcType=BIGINT},
+    bl_type = #{record.bl_type,jdbcType=VARCHAR},
+    bl_name = #{record.bl_name,jdbcType=VARCHAR},
+    bl_index = #{record.bl_index,jdbcType=INTEGER},
+    bl_code = #{record.bl_code,jdbcType=VARCHAR},
+    bl_value = #{record.bl_value,jdbcType=VARCHAR},
+    bl_imageurl = #{record.bl_imageurl,jdbcType=VARCHAR},
+    bl_stopflag = #{record.bl_stopflag,jdbcType=BIT},
+    bl_delflag = #{record.bl_delflag,jdbcType=BIT},
+    bl_selectflag = #{record.bl_selectflag,jdbcType=BIT},
+    bl_remark = #{record.bl_remark,jdbcType=VARCHAR},
+    bl_createno = #{record.bl_createno,jdbcType=VARCHAR},
+    bl_createdate = #{record.bl_createdate,jdbcType=TIMESTAMP},
+    bl_updateno = #{record.bl_updateno,jdbcType=VARCHAR},
+    bl_updatedate = #{record.bl_updatedate,jdbcType=TIMESTAMP},
+    bl_status = #{record.bl_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Base_LableList" >
+    update Base_LableList
+    <set >
+      <if test="bl_type != null" >
+        bl_type = #{bl_type,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_name != null" >
+        bl_name = #{bl_name,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_index != null" >
+        bl_index = #{bl_index,jdbcType=INTEGER},
+      </if>
+      <if test="bl_code != null" >
+        bl_code = #{bl_code,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_value != null" >
+        bl_value = #{bl_value,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_imageurl != null" >
+        bl_imageurl = #{bl_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_stopflag != null" >
+        bl_stopflag = #{bl_stopflag,jdbcType=BIT},
+      </if>
+      <if test="bl_delflag != null" >
+        bl_delflag = #{bl_delflag,jdbcType=BIT},
+      </if>
+      <if test="bl_selectflag != null" >
+        bl_selectflag = #{bl_selectflag,jdbcType=BIT},
+      </if>
+      <if test="bl_remark != null" >
+        bl_remark = #{bl_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_createno != null" >
+        bl_createno = #{bl_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_createdate != null" >
+        bl_createdate = #{bl_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bl_updateno != null" >
+        bl_updateno = #{bl_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="bl_updatedate != null" >
+        bl_updatedate = #{bl_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bl_status != null" >
+        bl_status = #{bl_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where bl_id = #{bl_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Base_LableList" >
+    update Base_LableList
+    set bl_type = #{bl_type,jdbcType=VARCHAR},
+    bl_name = #{bl_name,jdbcType=VARCHAR},
+    bl_index = #{bl_index,jdbcType=INTEGER},
+    bl_code = #{bl_code,jdbcType=VARCHAR},
+    bl_value = #{bl_value,jdbcType=VARCHAR},
+    bl_imageurl = #{bl_imageurl,jdbcType=VARCHAR},
+    bl_stopflag = #{bl_stopflag,jdbcType=BIT},
+    bl_delflag = #{bl_delflag,jdbcType=BIT},
+    bl_selectflag = #{bl_selectflag,jdbcType=BIT},
+    bl_remark = #{bl_remark,jdbcType=VARCHAR},
+    bl_createno = #{bl_createno,jdbcType=VARCHAR},
+    bl_createdate = #{bl_createdate,jdbcType=TIMESTAMP},
+    bl_updateno = #{bl_updateno,jdbcType=VARCHAR},
+    bl_updatedate = #{bl_updatedate,jdbcType=TIMESTAMP},
+    bl_status = #{bl_status,jdbcType=TINYINT}
+    where bl_id = #{bl_id,jdbcType=BIGINT}
+  </update>
+
+
+  <!-- 标签列表按类别查询11111   end-->
+  <select id="getLableList"  resultMap="BaseResultMap" parameterType="String">
+    select
+    <if test="showflag != null and showflag==false" >
+      bl_name,bl_index,bl_selectflag,bl_code,bl_value
+    </if>
+    <if test="showflag != null and showflag==true" >
+      *
+    </if>
+    from Base_LableList where IFNULL(bl_delflag,0)=0 and IFNULL(bl_status,0)=1
+    and IFNULL(bl_stopflag,0)=0
+    and bl_type = #{bl_type,jdbcType=VARCHAR}
+
+    order by bl_index
+  </select>
+
+  <!-- 获取标签用词类型数量   string-->
+  <select id="getLableListCount" parameterType="String" resultType="java.lang.Integer">
+    select  count(*) from Base_LableList where
+    IFNULL(bl_stopflag,0)=0
+    and IFNULL(bl_delflag,0)=0  and IFNULL(bl_status,0)=1
+    and bl_type=#{bl_type,jdbcType=VARCHAR}
+    <if test="bl_name != null and bl_name != ''" >
+      and bl_name = #{bl_name,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+
+  <!--分页-->
+  <select id="getLableListlist"  resultMap="BaseResultMap" parameterType="java.util.Map">
+    select * from Base_LableList bbl WHERE 1=1 and bl_status=1
+    <include refid="wherelist" />
+    ORDER BY bl_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+
+  <sql id="wherelist" >
+    <if test="bl_name != null and bl_name != ''" >
+      and bl_name like concat(concat('%',#{bl_name}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="bl_type != null and bl_type != ''" >
+      and bl_type=#{bl_type} <!-- 精准查询 -->
+    </if>
+    <if test="bl_index != null and bl_index != ''" >
+      and bl_index like concat(concat('%',#{bl_index}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="bl_code != null and bl_code != ''" >
+      and bl_code like concat(concat('%',#{bl_code}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="bl_value != null and bl_value != ''" >
+      and bl_value like concat(concat('%',#{bl_value}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="bl_stopflag != null and bl_stopflag != ''" >
+      and ifnull(bl_stopflag,0) =#{bl_stopflag}
+    </if>
+    <if test="bl_delflag != null" >
+      and bl_delflag=#{bl_delflag}
+    </if>
+    <if test="bl_selectflag != null" >
+      and bl_selectflag=#{bl_selectflag}
+    </if>
+    <if test="bl_remark != null and bl_remark != ''" >
+      and bl_remark like concat(concat('%',#{bl_remark}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="bl_status != null" >
+      and bl_status =#{bl_status}
+    </if>
+
+    /*关于建表日期时间的查询*/
+    <if test="bl_createdate1 != null and bl_createdate2 !=null" >
+      and bl_createdate  between #{bl_createdate1} and #{bl_createdate2}
+    </if>
+    /*关于修改日期时间的查询*/
+    <if test="bl_updatedate1 != null and bl_updatedate2 !=null" >
+      and bl_updatedate  between #{bl_updatedate1} and #{bl_updatedate2}
+    </if>
+  </sql>
+
+
+  <select id="getLableListCountList" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(bl_id) from Base_LableList where 1=1
+    and bl_status=1
+    <include refid="wherelist" />
+  </select>
+  <!-- 列表查询  end-->
+
+
+  <select id="getLableID" resultMap="BaseResultMap" parameterType="String" >
+    select
+    bl_id,bl_name from Base_LableList where bl_type = 1002
+    and  bl_name=#{name,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getLableName" resultMap="BaseResultMap" parameterType="String">
+    select
+    bl_name from Base_LableList where
+    bl_type = #{bl_type,jdbcType=VARCHAR}
+    and bl_status=1
+  </select>
+
+  <select id="getName" resultMap="BaseResultMap" parameterType="String">
+    select
+    bl_name from Base_LableList where
+    bl_type = #{bl_type,jdbcType=VARCHAR}
+  </select>
+
+
+  <select id="getLableList1idlist" resultMap="BaseResultMap" parameterType="String">
+    select  bl_id from Base_LableList where
+     bl_type = #{bl_type,jdbcType=VARCHAR}
+  </select>
+
+
+
+  <select id="getBl_name" resultMap="BaseResultMap" parameterType="String" >
+    select
+    bl_name from Base_LableList where bl_type =#{bl_type,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getLableListidfirst" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT * FROM Base_LableList WHERE  bl_type=1007 AND NOT EXISTS ( SELECT dh_dyid FROM Desig_Home WHERE Desig_Home.dh_type=4 AND Desig_Home.dh_dyid = Base_LableList.bl_id )
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountLableListidfirst" resultType="java.lang.Integer" parameterType="java.util.Map">
+ SELECT count(bl_id) FROM Base_LableList WHERE bl_type=1007  AND  NOT EXISTS ( SELECT dh_dyid FROM Desig_Home WHERE Desig_Home.dh_type=4 AND Desig_Home.dh_dyid = Base_LableList.bl_id )
+  </select>
+
+
+  <select id="getLableListidlast" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT * FROM Base_LableList WHERE  bl_type=1002 AND NOT EXISTS ( SELECT dh_dyid FROM Desig_Home WHERE Desig_Home.dh_type=1 AND Desig_Home.dh_dyid = Base_LableList.bl_id )
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountLableListidlast" resultType="java.lang.Integer" parameterType="java.util.Map">
+    SELECT count(bl_id) FROM Base_LableList WHERE bl_type=1002  AND  NOT EXISTS ( SELECT dh_dyid FROM Desig_Home WHERE Desig_Home.dh_type=1 AND Desig_Home.dh_dyid = Base_LableList.bl_id )
+  </select>
+
+
+  <select id="getLableListaudit" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT * FROM Base_LableList where ifnull(bl_status,0)=0
+    limit #{pagestart},#{pagesize}
+  </select>
+
+
+  <sql id="wherelist11" >
+  <if test="bl_name != null and bl_name != ''" >
+    and bl_name like concat(concat('%',#{bl_name}),'%') <!-- 模糊查询 -->
+  </if>
+  <if test="bl_type != null and bl_type != ''" >
+    and bl_type=#{bl_type} <!-- 精准查询 -->
+  </if>
+</sql>
+
+  <select id="getCountlable1" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(bl_id) from Base_LableList WHERE ifnull(bl_status,0)=0
+    <include refid="wherelist" />
+  </select>
+
+
+  <select id="getLableList1"  resultMap="BaseResultMap" parameterType="java.util.Map">
+    select * from Base_LableList bbl  WHERE ifnull(bl_status,0)=0
+    <include refid="wherelist" />
+    ORDER BY bl_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+
+  <select id="getCountIndex" resultMap="BaseResultMap" >
+    select bl_index from Base_LableList WHERE bl_type=1002
+    ORDER BY bl_index DESC
+    <include refid="wherelist" />
+  </select>
+
+
+  <select id="getLableListname" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select bl_id,bl_name from Base_LableList where bl_type=1002
+  </select>
+
+  <select id="getbrandListname" resultMap="BaseResultMap">
+    select bl_id,bl_name from Base_LableList where bl_type=1007
+  </select>
+
+  <select id="getjorListname" resultMap="BaseResultMap">
+    select bl_id,bl_name from Base_LableList where bl_type=1002
+  </select>
+
+  <select id="getworkageListname" resultMap="BaseResultMap">
+    select bl_id,bl_name from Base_LableList where bl_type=1005
+  </select>
+
+</mapper>

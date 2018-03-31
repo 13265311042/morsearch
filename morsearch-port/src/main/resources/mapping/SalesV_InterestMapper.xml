@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.SalesV_InterestMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.SalesV_Interest" >
+    <result column="si_id" property="si_id" jdbcType="BIGINT" />
+    <result column="si_salesmanid" property="si_salesmanid" jdbcType="BIGINT" />
+    <result column="si_pmid" property="si_pmid" jdbcType="BIGINT" />
+    <result column="si_pmtitle" property="si_pmtitle" jdbcType="VARCHAR" />
+    <result column="si_desginerid" property="si_desginerid" jdbcType="BIGINT" />
+    <result column="si_createdate" property="si_createdate" jdbcType="TIMESTAMP" />
+    <result column="desginer_name" property="desginer_name" jdbcType="VARCHAR" />
+    <result column="desginer_job" property="desginer_job" jdbcType="VARCHAR" />
+    <result column="desginer_message" property="desginer_message" jdbcType="VARCHAR" />
+    <result column="desginer_imageurl" property="desginer_imageurl" jdbcType="VARCHAR" />
+    <result column="dateshort" property="dateshort" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    si_id, si_salesmanid, si_pmid, si_pmtitle, si_desginerid, si_createdate, desginer_name,
+    desginer_job, desginer_message, desginer_imageurl, dateshort
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.SalesV_InterestExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SalesV_Interest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.SalesV_InterestExample" >
+    delete from SalesV_Interest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.SalesV_Interest" >
+    insert into SalesV_Interest (si_id, si_salesmanid, si_pmid,
+    si_pmtitle, si_desginerid, si_createdate,
+    desginer_name, desginer_job, desginer_message,
+    desginer_imageurl, dateshort)
+    values (#{si_id,jdbcType=BIGINT}, #{si_salesmanid,jdbcType=BIGINT}, #{si_pmid,jdbcType=BIGINT},
+    #{si_pmtitle,jdbcType=VARCHAR}, #{si_desginerid,jdbcType=BIGINT}, #{si_createdate,jdbcType=TIMESTAMP},
+    #{desginer_name,jdbcType=VARCHAR}, #{desginer_job,jdbcType=VARCHAR}, #{desginer_message,jdbcType=VARCHAR},
+    #{desginer_imageurl,jdbcType=VARCHAR}, #{dateshort,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.SalesV_Interest" >
+    insert into SalesV_Interest
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="si_id != null" >
+        si_id,
+      </if>
+      <if test="si_salesmanid != null" >
+        si_salesmanid,
+      </if>
+      <if test="si_pmid != null" >
+        si_pmid,
+      </if>
+      <if test="si_pmtitle != null" >
+        si_pmtitle,
+      </if>
+      <if test="si_desginerid != null" >
+        si_desginerid,
+      </if>
+      <if test="si_createdate != null" >
+        si_createdate,
+      </if>
+      <if test="desginer_name != null" >
+        desginer_name,
+      </if>
+      <if test="desginer_job != null" >
+        desginer_job,
+      </if>
+      <if test="desginer_message != null" >
+        desginer_message,
+      </if>
+      <if test="desginer_imageurl != null" >
+        desginer_imageurl,
+      </if>
+      <if test="dateshort != null" >
+        dateshort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="si_id != null" >
+        #{si_id,jdbcType=BIGINT},
+      </if>
+      <if test="si_salesmanid != null" >
+        #{si_salesmanid,jdbcType=BIGINT},
+      </if>
+      <if test="si_pmid != null" >
+        #{si_pmid,jdbcType=BIGINT},
+      </if>
+      <if test="si_pmtitle != null" >
+        #{si_pmtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="si_desginerid != null" >
+        #{si_desginerid,jdbcType=BIGINT},
+      </if>
+      <if test="si_createdate != null" >
+        #{si_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="desginer_name != null" >
+        #{desginer_name,jdbcType=VARCHAR},
+      </if>
+      <if test="desginer_job != null" >
+        #{desginer_job,jdbcType=VARCHAR},
+      </if>
+      <if test="desginer_message != null" >
+        #{desginer_message,jdbcType=VARCHAR},
+      </if>
+      <if test="desginer_imageurl != null" >
+        #{desginer_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="dateshort != null" >
+        #{dateshort,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.SalesV_InterestExample" resultType="java.lang.Integer" >
+    select count(*) from SalesV_Interest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SalesV_Interest
+    <set >
+      <if test="record.si_id != null" >
+        si_id = #{record.si_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.si_salesmanid != null" >
+        si_salesmanid = #{record.si_salesmanid,jdbcType=BIGINT},
+      </if>
+      <if test="record.si_pmid != null" >
+        si_pmid = #{record.si_pmid,jdbcType=BIGINT},
+      </if>
+      <if test="record.si_pmtitle != null" >
+        si_pmtitle = #{record.si_pmtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.si_desginerid != null" >
+        si_desginerid = #{record.si_desginerid,jdbcType=BIGINT},
+      </if>
+      <if test="record.si_createdate != null" >
+        si_createdate = #{record.si_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.desginer_name != null" >
+        desginer_name = #{record.desginer_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desginer_job != null" >
+        desginer_job = #{record.desginer_job,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desginer_message != null" >
+        desginer_message = #{record.desginer_message,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desginer_imageurl != null" >
+        desginer_imageurl = #{record.desginer_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateshort != null" >
+        dateshort = #{record.dateshort,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SalesV_Interest
+    set si_id = #{record.si_id,jdbcType=BIGINT},
+    si_salesmanid = #{record.si_salesmanid,jdbcType=BIGINT},
+    si_pmid = #{record.si_pmid,jdbcType=BIGINT},
+    si_pmtitle = #{record.si_pmtitle,jdbcType=VARCHAR},
+    si_desginerid = #{record.si_desginerid,jdbcType=BIGINT},
+    si_createdate = #{record.si_createdate,jdbcType=TIMESTAMP},
+    desginer_name = #{record.desginer_name,jdbcType=VARCHAR},
+    desginer_job = #{record.desginer_job,jdbcType=VARCHAR},
+    desginer_message = #{record.desginer_message,jdbcType=VARCHAR},
+    desginer_imageurl = #{record.desginer_imageurl,jdbcType=VARCHAR},
+    dateshort = #{record.dateshort,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <select id="getInterestList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select si_id,desginer_name,desginer_job,desginer_message,si_createdate,si_pmtitle,desginer_imageurl,si_desginerid,dateshort
+    from SalesV_Interest  where
+    si_salesmanid =#{si_salesmanid,jdbcType=BIGINT}
+    ORDER BY si_createdate DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getInterestListCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(si_salesmanid) from SalesV_Interest WHERE 1=1
+    and si_salesmanid =#{si_salesmanid,jdbcType=BIGINT}
+  </select>
+
+
+
+
+
+
+
+</mapper>

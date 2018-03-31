@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sys_SmsVerifyMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sys_SmsVerify" >
+    <id column="sv_id" property="sv_id" jdbcType="INTEGER" />
+    <result column="sv_phone" property="sv_phone" jdbcType="VARCHAR" />
+    <result column="sv_typeindex" property="sv_typeindex" jdbcType="TINYINT" />
+    <result column="sv_typename" property="sv_typename" jdbcType="VARCHAR" />
+    <result column="sv_userid" property="sv_userid" jdbcType="BIGINT" />
+    <result column="sv_ip" property="sv_ip" jdbcType="VARCHAR" />
+    <result column="sv_repeat" property="sv_repeat" jdbcType="TINYINT" />
+    <result column="sv_code" property="sv_code" jdbcType="VARCHAR" />
+    <result column="sv_sendtime" property="sv_sendtime" jdbcType="TIMESTAMP" />
+    <result column="sv_verifytime" property="sv_verifytime" jdbcType="TIMESTAMP" />
+    <result column="sv_status" property="sv_status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sv_id, sv_phone, sv_typeindex, sv_typename, sv_userid, sv_ip, sv_repeat, sv_code,
+    sv_sendtime, sv_verifytime, sv_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sys_SmsVerifyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sys_SmsVerify
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from Sys_SmsVerify
+    where sv_id = #{sv_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Sys_SmsVerify
+    where sv_id = #{sv_id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sys_SmsVerifyExample" >
+    delete from Sys_SmsVerify
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sys_SmsVerify" >
+    insert into Sys_SmsVerify (sv_id, sv_phone, sv_typeindex,
+    sv_typename, sv_userid, sv_ip,
+    sv_repeat, sv_code, sv_sendtime,
+    sv_verifytime, sv_status)
+    values (#{sv_id,jdbcType=INTEGER}, #{sv_phone,jdbcType=VARCHAR}, #{sv_typeindex,jdbcType=TINYINT},
+    #{sv_typename,jdbcType=VARCHAR}, #{sv_userid,jdbcType=BIGINT}, #{sv_ip,jdbcType=VARCHAR},
+    #{sv_repeat,jdbcType=TINYINT}, #{sv_code,jdbcType=VARCHAR}, #{sv_sendtime,jdbcType=TIMESTAMP},
+    #{sv_verifytime,jdbcType=TIMESTAMP}, #{sv_status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sys_SmsVerify" >
+    insert into Sys_SmsVerify
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sv_id != null" >
+        sv_id,
+      </if>
+      <if test="sv_phone != null" >
+        sv_phone,
+      </if>
+      <if test="sv_typeindex != null" >
+        sv_typeindex,
+      </if>
+      <if test="sv_typename != null" >
+        sv_typename,
+      </if>
+      <if test="sv_userid != null" >
+        sv_userid,
+      </if>
+      <if test="sv_ip != null" >
+        sv_ip,
+      </if>
+      <if test="sv_repeat != null" >
+        sv_repeat,
+      </if>
+      <if test="sv_code != null" >
+        sv_code,
+      </if>
+      <if test="sv_sendtime != null" >
+        sv_sendtime,
+      </if>
+      <if test="sv_verifytime != null" >
+        sv_verifytime,
+      </if>
+      <if test="sv_status != null" >
+        sv_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sv_id != null" >
+        #{sv_id,jdbcType=INTEGER},
+      </if>
+      <if test="sv_phone != null" >
+        #{sv_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sv_typeindex != null" >
+        #{sv_typeindex,jdbcType=TINYINT},
+      </if>
+      <if test="sv_typename != null" >
+        #{sv_typename,jdbcType=VARCHAR},
+      </if>
+      <if test="sv_userid != null" >
+        #{sv_userid,jdbcType=BIGINT},
+      </if>
+      <if test="sv_ip != null" >
+        #{sv_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="sv_repeat != null" >
+        #{sv_repeat,jdbcType=TINYINT},
+      </if>
+      <if test="sv_code != null" >
+        #{sv_code,jdbcType=VARCHAR},
+      </if>
+      <if test="sv_sendtime != null" >
+        #{sv_sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sv_verifytime != null" >
+        #{sv_verifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sv_status != null" >
+        #{sv_status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sys_SmsVerifyExample" resultType="java.lang.Integer" >
+    select count(*) from Sys_SmsVerify
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sys_SmsVerify
+    <set >
+      <if test="record.sv_id != null" >
+        sv_id = #{record.sv_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sv_phone != null" >
+        sv_phone = #{record.sv_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sv_typeindex != null" >
+        sv_typeindex = #{record.sv_typeindex,jdbcType=TINYINT},
+      </if>
+      <if test="record.sv_typename != null" >
+        sv_typename = #{record.sv_typename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sv_userid != null" >
+        sv_userid = #{record.sv_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sv_ip != null" >
+        sv_ip = #{record.sv_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sv_repeat != null" >
+        sv_repeat = #{record.sv_repeat,jdbcType=TINYINT},
+      </if>
+      <if test="record.sv_code != null" >
+        sv_code = #{record.sv_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sv_sendtime != null" >
+        sv_sendtime = #{record.sv_sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sv_verifytime != null" >
+        sv_verifytime = #{record.sv_verifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sv_status != null" >
+        sv_status = #{record.sv_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sys_SmsVerify
+    set sv_id = #{record.sv_id,jdbcType=INTEGER},
+    sv_phone = #{record.sv_phone,jdbcType=VARCHAR},
+    sv_typeindex = #{record.sv_typeindex,jdbcType=TINYINT},
+    sv_typename = #{record.sv_typename,jdbcType=VARCHAR},
+    sv_userid = #{record.sv_userid,jdbcType=BIGINT},
+    sv_ip = #{record.sv_ip,jdbcType=VARCHAR},
+    sv_repeat = #{record.sv_repeat,jdbcType=TINYINT},
+    sv_code = #{record.sv_code,jdbcType=VARCHAR},
+    sv_sendtime = #{record.sv_sendtime,jdbcType=TIMESTAMP},
+    sv_verifytime = #{record.sv_verifytime,jdbcType=TIMESTAMP},
+    sv_status = #{record.sv_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sys_SmsVerify" >
+    update Sys_SmsVerify
+    <set >
+      <if test="sv_phone != null" >
+        sv_phone = #{sv_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sv_typeindex != null" >
+        sv_typeindex = #{sv_typeindex,jdbcType=TINYINT},
+      </if>
+      <if test="sv_typename != null" >
+        sv_typename = #{sv_typename,jdbcType=VARCHAR},
+      </if>
+      <if test="sv_userid != null" >
+        sv_userid = #{sv_userid,jdbcType=BIGINT},
+      </if>
+      <if test="sv_ip != null" >
+        sv_ip = #{sv_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="sv_repeat != null" >
+        sv_repeat = #{sv_repeat,jdbcType=TINYINT},
+      </if>
+      <if test="sv_code != null" >
+        sv_code = #{sv_code,jdbcType=VARCHAR},
+      </if>
+      <if test="sv_sendtime != null" >
+        sv_sendtime = #{sv_sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sv_verifytime != null" >
+        sv_verifytime = #{sv_verifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sv_status != null" >
+        sv_status = #{sv_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where sv_id = #{sv_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sys_SmsVerify" >
+    update Sys_SmsVerify
+    set sv_phone = #{sv_phone,jdbcType=VARCHAR},
+    sv_typeindex = #{sv_typeindex,jdbcType=TINYINT},
+    sv_typename = #{sv_typename,jdbcType=VARCHAR},
+    sv_userid = #{sv_userid,jdbcType=BIGINT},
+    sv_ip = #{sv_ip,jdbcType=VARCHAR},
+    sv_repeat = #{sv_repeat,jdbcType=TINYINT},
+    sv_code = #{sv_code,jdbcType=VARCHAR},
+    sv_sendtime = #{sv_sendtime,jdbcType=TIMESTAMP},
+    sv_verifytime = #{sv_verifytime,jdbcType=TIMESTAMP},
+    sv_status = #{sv_status,jdbcType=TINYINT}
+    where sv_id = #{sv_id,jdbcType=INTEGER}
+  </update>
+
+  <!--自定义-->
+  <select id="getPhoneCount" resultType="java.lang.Integer" parameterType="String" >
+    select COUNT(sv_id) from Sys_SmsVerify where IFNULL(sv_status,0)=1
+    and sv_phone = #{phone,jdbcType=VARCHAR}
+    and sv_sendtime= #{todaymintime,jdbcType=TIMESTAMP}
+    and  sv_sendtime=#{todaymaxtime,jdbcType=TIMESTAMP}
+    <if test="typeindex != null and typeindex != 0">
+      and sv_typeindex = #{typeindex,jdbcType=TINYINT}
+    </if>
+  </select>
+
+  <select id="getPhoneVerifylast" resultMap="BaseResultMap" parameterType="String" >
+    select * from Sys_SmsVerify  where IFNULL(sv_status,0)=0
+    and sv_phone = #{phone,jdbcType=VARCHAR}
+    <if test="typeindex != null and typeindex != 0">
+      and sv_typeindex = #{typeindex,jdbcType=TINYINT}
+    </if>
+    order by sv_id desc limit 1
+
+  </select>
+
+
+<!--
+  <select id="getCodeVerify" resultMap="BaseResultMap" parameterType="String" >
+    select *
+    from Sys_SmsVerify where IFNULL(sv_status,0)=0
+    and sv_code = #{code,jdbcType=INTEGER}
+  </select>
+-->
+
+
+</mapper>

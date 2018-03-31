@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.SalesV_Order_MsgMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.SalesV_Order_Msg" >
+    <result column="of_id" property="of_id" jdbcType="BIGINT" />
+    <result column="of_no" property="of_no" jdbcType="VARCHAR" />
+    <result column="of_dateupdate" property="of_dateupdate" jdbcType="TIMESTAMP" />
+    <result column="of_custid" property="of_custid" jdbcType="BIGINT" />
+    <result column="of_custname" property="of_custname" jdbcType="VARCHAR" />
+    <result column="of_talklastmsg" property="of_talklastmsg" jdbcType="VARCHAR" />
+    <result column="of_checkmsgs" property="of_checkmsgs" jdbcType="BIT" />
+    <result column="of_checkmsgd" property="of_checkmsgd" jdbcType="BIT" />
+    <result column="of_createid" property="of_createid" jdbcType="BIGINT" />
+    <result column="ue_personjob" property="ue_personjob" jdbcType="VARCHAR" />
+    <result column="ur_imageurl" property="ur_imageurl" jdbcType="VARCHAR" />
+    <result column="of_status" property="of_status" jdbcType="TINYINT" />
+    <result column="statusname" property="statusname" jdbcType="VARCHAR" />
+    <result column="dateshort" property="dateshort" jdbcType="VARCHAR" />
+    <result column="of_flagfinish" property="of_flagfinish" jdbcType="BIT" />
+    <result column="of_flagsuccess" property="of_flagsuccess" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    of_id, of_no, of_dateupdate, of_custid, of_custname, of_talklastmsg, of_checkmsgs,
+    of_checkmsgd, of_createid, ue_personjob, ur_imageurl, of_status, statusname, dateshort,
+    of_flagfinish, of_flagsuccess
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.SalesV_Order_MsgExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SalesV_Order_Msg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.SalesV_Order_MsgExample" >
+    delete from SalesV_Order_Msg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.SalesV_Order_Msg" >
+    insert into SalesV_Order_Msg (of_id, of_no, of_dateupdate,
+    of_custid, of_custname, of_talklastmsg,
+    of_checkmsgs, of_checkmsgd, of_createid,
+    ue_personjob, ur_imageurl, of_status,
+    statusname, dateshort, of_flagfinish,
+    of_flagsuccess)
+    values (#{of_id,jdbcType=BIGINT}, #{of_no,jdbcType=VARCHAR}, #{of_dateupdate,jdbcType=TIMESTAMP},
+    #{of_custid,jdbcType=BIGINT}, #{of_custname,jdbcType=VARCHAR}, #{of_talklastmsg,jdbcType=VARCHAR},
+    #{of_checkmsgs,jdbcType=BIT}, #{of_checkmsgd,jdbcType=BIT}, #{of_createid,jdbcType=BIGINT},
+    #{ue_personjob,jdbcType=VARCHAR}, #{ur_imageurl,jdbcType=VARCHAR}, #{of_status,jdbcType=TINYINT},
+    #{statusname,jdbcType=VARCHAR}, #{dateshort,jdbcType=VARCHAR}, #{of_flagfinish,jdbcType=BIT},
+    #{of_flagsuccess,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.SalesV_Order_Msg" >
+    insert into SalesV_Order_Msg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="of_id != null" >
+        of_id,
+      </if>
+      <if test="of_no != null" >
+        of_no,
+      </if>
+      <if test="of_dateupdate != null" >
+        of_dateupdate,
+      </if>
+      <if test="of_custid != null" >
+        of_custid,
+      </if>
+      <if test="of_custname != null" >
+        of_custname,
+      </if>
+      <if test="of_talklastmsg != null" >
+        of_talklastmsg,
+      </if>
+      <if test="of_checkmsgs != null" >
+        of_checkmsgs,
+      </if>
+      <if test="of_checkmsgd != null" >
+        of_checkmsgd,
+      </if>
+      <if test="of_createid != null" >
+        of_createid,
+      </if>
+      <if test="ue_personjob != null" >
+        ue_personjob,
+      </if>
+      <if test="ur_imageurl != null" >
+        ur_imageurl,
+      </if>
+      <if test="of_status != null" >
+        of_status,
+      </if>
+      <if test="statusname != null" >
+        statusname,
+      </if>
+      <if test="dateshort != null" >
+        dateshort,
+      </if>
+      <if test="of_flagfinish != null" >
+        of_flagfinish,
+      </if>
+      <if test="of_flagsuccess != null" >
+        of_flagsuccess,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="of_id != null" >
+        #{of_id,jdbcType=BIGINT},
+      </if>
+      <if test="of_no != null" >
+        #{of_no,jdbcType=VARCHAR},
+      </if>
+      <if test="of_dateupdate != null" >
+        #{of_dateupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="of_custid != null" >
+        #{of_custid,jdbcType=BIGINT},
+      </if>
+      <if test="of_custname != null" >
+        #{of_custname,jdbcType=VARCHAR},
+      </if>
+      <if test="of_talklastmsg != null" >
+        #{of_talklastmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="of_checkmsgs != null" >
+        #{of_checkmsgs,jdbcType=BIT},
+      </if>
+      <if test="of_checkmsgd != null" >
+        #{of_checkmsgd,jdbcType=BIT},
+      </if>
+      <if test="of_createid != null" >
+        #{of_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ue_personjob != null" >
+        #{ue_personjob,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_imageurl != null" >
+        #{ur_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="of_status != null" >
+        #{of_status,jdbcType=TINYINT},
+      </if>
+      <if test="statusname != null" >
+        #{statusname,jdbcType=VARCHAR},
+      </if>
+      <if test="dateshort != null" >
+        #{dateshort,jdbcType=VARCHAR},
+      </if>
+      <if test="of_flagfinish != null" >
+        #{of_flagfinish,jdbcType=BIT},
+      </if>
+      <if test="of_flagsuccess != null" >
+        #{of_flagsuccess,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.SalesV_Order_MsgExample" resultType="java.lang.Integer" >
+    select count(*) from SalesV_Order_Msg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SalesV_Order_Msg
+    <set >
+      <if test="record.of_id != null" >
+        of_id = #{record.of_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.of_no != null" >
+        of_no = #{record.of_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_dateupdate != null" >
+        of_dateupdate = #{record.of_dateupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.of_custid != null" >
+        of_custid = #{record.of_custid,jdbcType=BIGINT},
+      </if>
+      <if test="record.of_custname != null" >
+        of_custname = #{record.of_custname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_talklastmsg != null" >
+        of_talklastmsg = #{record.of_talklastmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_checkmsgs != null" >
+        of_checkmsgs = #{record.of_checkmsgs,jdbcType=BIT},
+      </if>
+      <if test="record.of_checkmsgd != null" >
+        of_checkmsgd = #{record.of_checkmsgd,jdbcType=BIT},
+      </if>
+      <if test="record.of_createid != null" >
+        of_createid = #{record.of_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ue_personjob != null" >
+        ue_personjob = #{record.ue_personjob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_imageurl != null" >
+        ur_imageurl = #{record.ur_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_status != null" >
+        of_status = #{record.of_status,jdbcType=TINYINT},
+      </if>
+      <if test="record.statusname != null" >
+        statusname = #{record.statusname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateshort != null" >
+        dateshort = #{record.dateshort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_flagfinish != null" >
+        of_flagfinish = #{record.of_flagfinish,jdbcType=BIT},
+      </if>
+      <if test="record.of_flagsuccess != null" >
+        of_flagsuccess = #{record.of_flagsuccess,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SalesV_Order_Msg
+    set of_id = #{record.of_id,jdbcType=BIGINT},
+    of_no = #{record.of_no,jdbcType=VARCHAR},
+    of_dateupdate = #{record.of_dateupdate,jdbcType=TIMESTAMP},
+    of_custid = #{record.of_custid,jdbcType=BIGINT},
+    of_custname = #{record.of_custname,jdbcType=VARCHAR},
+    of_talklastmsg = #{record.of_talklastmsg,jdbcType=VARCHAR},
+    of_checkmsgs = #{record.of_checkmsgs,jdbcType=BIT},
+    of_checkmsgd = #{record.of_checkmsgd,jdbcType=BIT},
+    of_createid = #{record.of_createid,jdbcType=BIGINT},
+    ue_personjob = #{record.ue_personjob,jdbcType=VARCHAR},
+    ur_imageurl = #{record.ur_imageurl,jdbcType=VARCHAR},
+    of_status = #{record.of_status,jdbcType=TINYINT},
+    statusname = #{record.statusname,jdbcType=VARCHAR},
+    dateshort = #{record.dateshort,jdbcType=VARCHAR},
+    of_flagfinish = #{record.of_flagfinish,jdbcType=BIT},
+    of_flagsuccess = #{record.of_flagsuccess,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

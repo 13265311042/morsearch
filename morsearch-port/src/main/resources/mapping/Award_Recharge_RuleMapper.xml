@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Award_Recharge_RuleMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Award_Recharge_Rule" >
+    <id column="arm_baid" property="arm_baid" jdbcType="BIGINT" />
+    <id column="arm_index" property="arm_index" jdbcType="VARCHAR" />
+    <result column="arm_valuemin" property="arm_valuemin" jdbcType="INTEGER" />
+    <result column="arm_valuemax" property="arm_valuemax" jdbcType="INTEGER" />
+    <result column="arm_discount" property="arm_discount" jdbcType="DECIMAL" />
+    <result column="arm_addbase" property="arm_addbase" jdbcType="INTEGER" />
+    <result column="arm_addmode" property="arm_addmode" jdbcType="TINYINT" />
+    <result column="arm_addintegral" property="arm_addintegral" jdbcType="INTEGER" />
+    <result column="arm_addamount" property="arm_addamount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    arm_baid, arm_index, arm_valuemin, arm_valuemax, arm_discount, arm_addbase, arm_addmode,
+    arm_addintegral, arm_addamount
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Award_Recharge_RuleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Award_Recharge_Rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.morsearch.model.Award_Recharge_RuleKey" >
+    select
+    <include refid="Base_Column_List" />
+    from Award_Recharge_Rule
+    where arm_baid = #{arm_baid,jdbcType=BIGINT}
+    and arm_index = #{arm_index,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.morsearch.model.Award_Recharge_RuleKey" >
+    delete from Award_Recharge_Rule
+    where arm_baid = #{arm_baid,jdbcType=BIGINT}
+    and arm_index = #{arm_index,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Award_Recharge_RuleExample" >
+    delete from Award_Recharge_Rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Award_Recharge_Rule" >
+    insert into Award_Recharge_Rule (arm_baid, arm_index, arm_valuemin,
+    arm_valuemax, arm_discount, arm_addbase,
+    arm_addmode, arm_addintegral, arm_addamount
+    )
+    values (#{arm_baid,jdbcType=BIGINT}, #{arm_index,jdbcType=VARCHAR}, #{arm_valuemin,jdbcType=INTEGER},
+    #{arm_valuemax,jdbcType=INTEGER}, #{arm_discount,jdbcType=DECIMAL}, #{arm_addbase,jdbcType=INTEGER},
+    #{arm_addmode,jdbcType=TINYINT}, #{arm_addintegral,jdbcType=INTEGER}, #{arm_addamount,jdbcType=INTEGER}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Award_Recharge_Rule" >
+    insert into Award_Recharge_Rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="arm_baid != null" >
+        arm_baid,
+      </if>
+      <if test="arm_index != null" >
+        arm_index,
+      </if>
+      <if test="arm_valuemin != null" >
+        arm_valuemin,
+      </if>
+      <if test="arm_valuemax != null" >
+        arm_valuemax,
+      </if>
+      <if test="arm_discount != null" >
+        arm_discount,
+      </if>
+      <if test="arm_addbase != null" >
+        arm_addbase,
+      </if>
+      <if test="arm_addmode != null" >
+        arm_addmode,
+      </if>
+      <if test="arm_addintegral != null" >
+        arm_addintegral,
+      </if>
+      <if test="arm_addamount != null" >
+        arm_addamount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="arm_baid != null" >
+        #{arm_baid,jdbcType=BIGINT},
+      </if>
+      <if test="arm_index != null" >
+        #{arm_index,jdbcType=VARCHAR},
+      </if>
+      <if test="arm_valuemin != null" >
+        #{arm_valuemin,jdbcType=INTEGER},
+      </if>
+      <if test="arm_valuemax != null" >
+        #{arm_valuemax,jdbcType=INTEGER},
+      </if>
+      <if test="arm_discount != null" >
+        #{arm_discount,jdbcType=DECIMAL},
+      </if>
+      <if test="arm_addbase != null" >
+        #{arm_addbase,jdbcType=INTEGER},
+      </if>
+      <if test="arm_addmode != null" >
+        #{arm_addmode,jdbcType=TINYINT},
+      </if>
+      <if test="arm_addintegral != null" >
+        #{arm_addintegral,jdbcType=INTEGER},
+      </if>
+      <if test="arm_addamount != null" >
+        #{arm_addamount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Award_Recharge_RuleExample" resultType="java.lang.Integer" >
+    select count(*) from Award_Recharge_Rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Award_Recharge_Rule
+    <set >
+      <if test="record.arm_baid != null" >
+        arm_baid = #{record.arm_baid,jdbcType=BIGINT},
+      </if>
+      <if test="record.arm_index != null" >
+        arm_index = #{record.arm_index,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arm_valuemin != null" >
+        arm_valuemin = #{record.arm_valuemin,jdbcType=INTEGER},
+      </if>
+      <if test="record.arm_valuemax != null" >
+        arm_valuemax = #{record.arm_valuemax,jdbcType=INTEGER},
+      </if>
+      <if test="record.arm_discount != null" >
+        arm_discount = #{record.arm_discount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.arm_addbase != null" >
+        arm_addbase = #{record.arm_addbase,jdbcType=INTEGER},
+      </if>
+      <if test="record.arm_addmode != null" >
+        arm_addmode = #{record.arm_addmode,jdbcType=TINYINT},
+      </if>
+      <if test="record.arm_addintegral != null" >
+        arm_addintegral = #{record.arm_addintegral,jdbcType=INTEGER},
+      </if>
+      <if test="record.arm_addamount != null" >
+        arm_addamount = #{record.arm_addamount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Award_Recharge_Rule
+    set arm_baid = #{record.arm_baid,jdbcType=BIGINT},
+    arm_index = #{record.arm_index,jdbcType=VARCHAR},
+    arm_valuemin = #{record.arm_valuemin,jdbcType=INTEGER},
+    arm_valuemax = #{record.arm_valuemax,jdbcType=INTEGER},
+    arm_discount = #{record.arm_discount,jdbcType=DECIMAL},
+    arm_addbase = #{record.arm_addbase,jdbcType=INTEGER},
+    arm_addmode = #{record.arm_addmode,jdbcType=TINYINT},
+    arm_addintegral = #{record.arm_addintegral,jdbcType=INTEGER},
+    arm_addamount = #{record.arm_addamount,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Award_Recharge_Rule" >
+    update Award_Recharge_Rule
+    <set >
+      <if test="arm_valuemin != null" >
+        arm_valuemin = #{arm_valuemin,jdbcType=INTEGER},
+      </if>
+      <if test="arm_valuemax != null" >
+        arm_valuemax = #{arm_valuemax,jdbcType=INTEGER},
+      </if>
+      <if test="arm_discount != null" >
+        arm_discount = #{arm_discount,jdbcType=DECIMAL},
+      </if>
+      <if test="arm_addbase != null" >
+        arm_addbase = #{arm_addbase,jdbcType=INTEGER},
+      </if>
+      <if test="arm_addmode != null" >
+        arm_addmode = #{arm_addmode,jdbcType=TINYINT},
+      </if>
+      <if test="arm_addintegral != null" >
+        arm_addintegral = #{arm_addintegral,jdbcType=INTEGER},
+      </if>
+      <if test="arm_addamount != null" >
+        arm_addamount = #{arm_addamount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where arm_baid = #{arm_baid,jdbcType=BIGINT}
+    and arm_index = #{arm_index,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Award_Recharge_Rule" >
+    update Award_Recharge_Rule
+    set arm_valuemin = #{arm_valuemin,jdbcType=INTEGER},
+      arm_valuemax = #{arm_valuemax,jdbcType=INTEGER},
+      arm_discount = #{arm_discount,jdbcType=DECIMAL},
+      arm_addbase = #{arm_addbase,jdbcType=INTEGER},
+      arm_addmode = #{arm_addmode,jdbcType=TINYINT},
+      arm_addintegral = #{arm_addintegral,jdbcType=INTEGER},
+      arm_addamount = #{arm_addamount,jdbcType=INTEGER}
+    where arm_baid = #{arm_baid,jdbcType=BIGINT}
+      and arm_index = #{arm_index,jdbcType=VARCHAR}
+  </update>
+</mapper>

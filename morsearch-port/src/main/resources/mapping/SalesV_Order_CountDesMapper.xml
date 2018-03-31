@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.SalesV_Order_CountDesMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.SalesV_Order_CountDes" >
+    <result column="designid" property="designid" jdbcType="BIGINT" />
+    <result column="djt" property="djt" jdbcType="DECIMAL" />
+    <result column="dqr" property="dqr" jdbcType="DECIMAL" />
+    <result column="djj" property="djj" jdbcType="DECIMAL" />
+    <result column="dpj" property="dpj" jdbcType="DECIMAL" />
+    <result column="ywc" property="ywc" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    designid, djt, dqr, djj, dpj, ywc
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.SalesV_Order_CountDesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SalesV_Order_CountDes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.SalesV_Order_CountDesExample" >
+    delete from SalesV_Order_CountDes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.SalesV_Order_CountDes" >
+    insert into SalesV_Order_CountDes (designid, djt, dqr, 
+      djj, dpj, ywc)
+    values (#{designid,jdbcType=BIGINT}, #{djt,jdbcType=DECIMAL}, #{dqr,jdbcType=DECIMAL}, 
+      #{djj,jdbcType=DECIMAL}, #{dpj,jdbcType=DECIMAL}, #{ywc,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.SalesV_Order_CountDes" >
+    insert into SalesV_Order_CountDes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="designid != null" >
+        designid,
+      </if>
+      <if test="djt != null" >
+        djt,
+      </if>
+      <if test="dqr != null" >
+        dqr,
+      </if>
+      <if test="djj != null" >
+        djj,
+      </if>
+      <if test="dpj != null" >
+        dpj,
+      </if>
+      <if test="ywc != null" >
+        ywc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="designid != null" >
+        #{designid,jdbcType=BIGINT},
+      </if>
+      <if test="djt != null" >
+        #{djt,jdbcType=DECIMAL},
+      </if>
+      <if test="dqr != null" >
+        #{dqr,jdbcType=DECIMAL},
+      </if>
+      <if test="djj != null" >
+        #{djj,jdbcType=DECIMAL},
+      </if>
+      <if test="dpj != null" >
+        #{dpj,jdbcType=DECIMAL},
+      </if>
+      <if test="ywc != null" >
+        #{ywc,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.SalesV_Order_CountDesExample" resultType="java.lang.Integer" >
+    select count(*) from SalesV_Order_CountDes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SalesV_Order_CountDes
+    <set >
+      <if test="record.designid != null" >
+        designid = #{record.designid,jdbcType=BIGINT},
+      </if>
+      <if test="record.djt != null" >
+        djt = #{record.djt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dqr != null" >
+        dqr = #{record.dqr,jdbcType=DECIMAL},
+      </if>
+      <if test="record.djj != null" >
+        djj = #{record.djj,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dpj != null" >
+        dpj = #{record.dpj,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ywc != null" >
+        ywc = #{record.ywc,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SalesV_Order_CountDes
+    set designid = #{record.designid,jdbcType=BIGINT},
+      djt = #{record.djt,jdbcType=DECIMAL},
+      dqr = #{record.dqr,jdbcType=DECIMAL},
+      djj = #{record.djj,jdbcType=DECIMAL},
+      dpj = #{record.dpj,jdbcType=DECIMAL},
+      ywc = #{record.ywc,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+
+  <!-- 设计师统计数量订单状态  -->
+  <select id="getDesOrderCount"  resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select * from SalesV_Order_CountDes
+    where designid=#{userid,jdbcType=BIGINT}
+  </select>
+
+</mapper>

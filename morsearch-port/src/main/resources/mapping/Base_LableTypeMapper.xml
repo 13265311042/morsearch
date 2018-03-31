@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Base_LableTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Base_LableType" >
+    <id column="bt_type" property="bt_type" jdbcType="VARCHAR" />
+    <result column="bt_name" property="bt_name" jdbcType="VARCHAR" />
+    <result column="bt_index" property="bt_index" jdbcType="INTEGER" />
+    <result column="bt_allowflag" property="bt_allowflag" jdbcType="BIT" />
+    <result column="bt_stopflag" property="bt_stopflag" jdbcType="BIT" />
+    <result column="bt_remark" property="bt_remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    bt_type, bt_name, bt_index, bt_allowflag, bt_stopflag, bt_remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Base_LableTypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Base_LableType
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Base_LableType
+    where bt_type = #{bt_type,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Base_LableType
+    where bt_type = #{bt_type,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Base_LableTypeExample" >
+    delete from Base_LableType
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Base_LableType" >
+    insert into Base_LableType (bt_type, bt_name, bt_index, 
+      bt_allowflag, bt_stopflag, bt_remark
+      )
+    values (#{bt_type,jdbcType=VARCHAR}, #{bt_name,jdbcType=VARCHAR}, #{bt_index,jdbcType=INTEGER}, 
+      #{bt_allowflag,jdbcType=BIT}, #{bt_stopflag,jdbcType=BIT}, #{bt_remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Base_LableType" >
+    insert into Base_LableType
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bt_type != null" >
+        bt_type,
+      </if>
+      <if test="bt_name != null" >
+        bt_name,
+      </if>
+      <if test="bt_index != null" >
+        bt_index,
+      </if>
+      <if test="bt_allowflag != null" >
+        bt_allowflag,
+      </if>
+      <if test="bt_stopflag != null" >
+        bt_stopflag,
+      </if>
+      <if test="bt_remark != null" >
+        bt_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bt_type != null" >
+        #{bt_type,jdbcType=VARCHAR},
+      </if>
+      <if test="bt_name != null" >
+        #{bt_name,jdbcType=VARCHAR},
+      </if>
+      <if test="bt_index != null" >
+        #{bt_index,jdbcType=INTEGER},
+      </if>
+      <if test="bt_allowflag != null" >
+        #{bt_allowflag,jdbcType=BIT},
+      </if>
+      <if test="bt_stopflag != null" >
+        #{bt_stopflag,jdbcType=BIT},
+      </if>
+      <if test="bt_remark != null" >
+        #{bt_remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Base_LableTypeExample" resultType="java.lang.Integer" >
+    select count(*) from Base_LableType
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Base_LableType
+    <set >
+      <if test="record.bt_type != null" >
+        bt_type = #{record.bt_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bt_name != null" >
+        bt_name = #{record.bt_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bt_index != null" >
+        bt_index = #{record.bt_index,jdbcType=INTEGER},
+      </if>
+      <if test="record.bt_allowflag != null" >
+        bt_allowflag = #{record.bt_allowflag,jdbcType=BIT},
+      </if>
+      <if test="record.bt_stopflag != null" >
+        bt_stopflag = #{record.bt_stopflag,jdbcType=BIT},
+      </if>
+      <if test="record.bt_remark != null" >
+        bt_remark = #{record.bt_remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Base_LableType
+    set bt_type = #{record.bt_type,jdbcType=VARCHAR},
+      bt_name = #{record.bt_name,jdbcType=VARCHAR},
+      bt_index = #{record.bt_index,jdbcType=INTEGER},
+      bt_allowflag = #{record.bt_allowflag,jdbcType=BIT},
+      bt_stopflag = #{record.bt_stopflag,jdbcType=BIT},
+      bt_remark = #{record.bt_remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Base_LableType" >
+    update Base_LableType
+    <set >
+      <if test="bt_name != null" >
+        bt_name = #{bt_name,jdbcType=VARCHAR},
+      </if>
+      <if test="bt_index != null" >
+        bt_index = #{bt_index,jdbcType=INTEGER},
+      </if>
+      <if test="bt_allowflag != null" >
+        bt_allowflag = #{bt_allowflag,jdbcType=BIT},
+      </if>
+      <if test="bt_stopflag != null" >
+        bt_stopflag = #{bt_stopflag,jdbcType=BIT},
+      </if>
+      <if test="bt_remark != null" >
+        bt_remark = #{bt_remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bt_type = #{bt_type,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Base_LableType" >
+    update Base_LableType
+    set bt_name = #{bt_name,jdbcType=VARCHAR},
+      bt_index = #{bt_index,jdbcType=INTEGER},
+      bt_allowflag = #{bt_allowflag,jdbcType=BIT},
+      bt_stopflag = #{bt_stopflag,jdbcType=BIT},
+      bt_remark = #{bt_remark,jdbcType=VARCHAR}
+    where bt_type = #{bt_type,jdbcType=VARCHAR}
+  </update>
+</mapper>

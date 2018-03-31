@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Msg_NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Msg_News" >
+    <id column="mn_id" property="mn_id" jdbcType="BIGINT" />
+    <result column="mn_index" property="mn_index" jdbcType="INTEGER" />
+    <result column="mn_title" property="mn_title" jdbcType="VARCHAR" />
+    <result column="mn_headpic" property="mn_headpic" jdbcType="VARCHAR" />
+    <result column="mn_headisv" property="mn_headisv" jdbcType="BIT" />
+    <result column="mn_keyword" property="mn_keyword" jdbcType="VARCHAR" />
+    <result column="mn_clickqty" property="mn_clickqty" jdbcType="INTEGER" />
+    <result column="mn_type" property="mn_type" jdbcType="TINYINT" />
+    <result column="mn_createno" property="mn_createno" jdbcType="VARCHAR" />
+    <result column="mn_createdate" property="mn_createdate" jdbcType="TIMESTAMP" />
+    <result column="mn_status" property="mn_status" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.morsearch.model.Msg_News" extends="BaseResultMap" >
+    <result column="mn_content" property="mn_content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mn_id, mn_index, mn_title, mn_headpic, mn_headisv, mn_keyword, mn_clickqty, mn_type,
+    mn_createno, mn_createdate, mn_status
+  </sql>
+  <sql id="Blob_Column_List" >
+    mn_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.morsearch.model.Msg_NewsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Msg_News
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Msg_NewsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Msg_News
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Msg_News
+    where mn_id = #{mn_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Msg_News
+    where mn_id = #{mn_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Msg_NewsExample" >
+    delete from Msg_News
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Msg_News" >
+    insert into Msg_News (mn_id, mn_index, mn_title,
+    mn_headpic, mn_headisv, mn_keyword,
+    mn_clickqty, mn_type, mn_createno,
+    mn_createdate, mn_status, mn_content
+    )
+    values (#{mn_id,jdbcType=BIGINT}, #{mn_index,jdbcType=INTEGER}, #{mn_title,jdbcType=VARCHAR},
+    #{mn_headpic,jdbcType=VARCHAR}, #{mn_headisv,jdbcType=BIT}, #{mn_keyword,jdbcType=VARCHAR},
+    #{mn_clickqty,jdbcType=INTEGER}, #{mn_type,jdbcType=TINYINT}, #{mn_createno,jdbcType=VARCHAR},
+    #{mn_createdate,jdbcType=TIMESTAMP}, #{mn_status,jdbcType=TINYINT}, #{mn_content,jdbcType=LONGVARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Msg_News" >
+    insert into Msg_News
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mn_id != null" >
+        mn_id,
+      </if>
+      <if test="mn_index != null" >
+        mn_index,
+      </if>
+      <if test="mn_title != null" >
+        mn_title,
+      </if>
+      <if test="mn_headpic != null" >
+        mn_headpic,
+      </if>
+      <if test="mn_headisv != null" >
+        mn_headisv,
+      </if>
+      <if test="mn_keyword != null" >
+        mn_keyword,
+      </if>
+      <if test="mn_clickqty != null" >
+        mn_clickqty,
+      </if>
+      <if test="mn_type != null" >
+        mn_type,
+      </if>
+      <if test="mn_createno != null" >
+        mn_createno,
+      </if>
+      <if test="mn_createdate != null" >
+        mn_createdate,
+      </if>
+      <if test="mn_status != null" >
+        mn_status,
+      </if>
+      <if test="mn_content != null" >
+        mn_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mn_id != null" >
+        #{mn_id,jdbcType=BIGINT},
+      </if>
+      <if test="mn_index != null" >
+        #{mn_index,jdbcType=INTEGER},
+      </if>
+      <if test="mn_title != null" >
+        #{mn_title,jdbcType=VARCHAR},
+      </if>
+      <if test="mn_headpic != null" >
+        #{mn_headpic,jdbcType=VARCHAR},
+      </if>
+      <if test="mn_headisv != null" >
+        #{mn_headisv,jdbcType=BIT},
+      </if>
+      <if test="mn_keyword != null" >
+        #{mn_keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="mn_clickqty != null" >
+        #{mn_clickqty,jdbcType=INTEGER},
+      </if>
+      <if test="mn_type != null" >
+        #{mn_type,jdbcType=TINYINT},
+      </if>
+      <if test="mn_createno != null" >
+        #{mn_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="mn_createdate != null" >
+        #{mn_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mn_status != null" >
+        #{mn_status,jdbcType=TINYINT},
+      </if>
+      <if test="mn_content != null" >
+        #{mn_content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Msg_NewsExample" resultType="java.lang.Integer" >
+    select count(*) from Msg_News
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Msg_News
+    <set >
+      <if test="record.mn_id != null" >
+        mn_id = #{record.mn_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.mn_index != null" >
+        mn_index = #{record.mn_index,jdbcType=INTEGER},
+      </if>
+      <if test="record.mn_title != null" >
+        mn_title = #{record.mn_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mn_headpic != null" >
+        mn_headpic = #{record.mn_headpic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mn_headisv != null" >
+        mn_headisv = #{record.mn_headisv,jdbcType=BIT},
+      </if>
+      <if test="record.mn_keyword != null" >
+        mn_keyword = #{record.mn_keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mn_clickqty != null" >
+        mn_clickqty = #{record.mn_clickqty,jdbcType=INTEGER},
+      </if>
+      <if test="record.mn_type != null" >
+        mn_type = #{record.mn_type,jdbcType=TINYINT},
+      </if>
+      <if test="record.mn_createno != null" >
+        mn_createno = #{record.mn_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mn_createdate != null" >
+        mn_createdate = #{record.mn_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mn_status != null" >
+        mn_status = #{record.mn_status,jdbcType=TINYINT},
+      </if>
+      <if test="record.mn_content != null" >
+        mn_content = #{record.mn_content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update Msg_News
+    set mn_id = #{record.mn_id,jdbcType=BIGINT},
+    mn_index = #{record.mn_index,jdbcType=INTEGER},
+    mn_title = #{record.mn_title,jdbcType=VARCHAR},
+    mn_headpic = #{record.mn_headpic,jdbcType=VARCHAR},
+    mn_headisv = #{record.mn_headisv,jdbcType=BIT},
+    mn_keyword = #{record.mn_keyword,jdbcType=VARCHAR},
+    mn_clickqty = #{record.mn_clickqty,jdbcType=INTEGER},
+    mn_type = #{record.mn_type,jdbcType=TINYINT},
+    mn_createno = #{record.mn_createno,jdbcType=VARCHAR},
+    mn_createdate = #{record.mn_createdate,jdbcType=TIMESTAMP},
+    mn_status = #{record.mn_status,jdbcType=TINYINT},
+    mn_content = #{record.mn_content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Msg_News
+    set mn_id = #{record.mn_id,jdbcType=BIGINT},
+    mn_index = #{record.mn_index,jdbcType=INTEGER},
+    mn_title = #{record.mn_title,jdbcType=VARCHAR},
+    mn_headpic = #{record.mn_headpic,jdbcType=VARCHAR},
+    mn_headisv = #{record.mn_headisv,jdbcType=BIT},
+    mn_keyword = #{record.mn_keyword,jdbcType=VARCHAR},
+    mn_clickqty = #{record.mn_clickqty,jdbcType=INTEGER},
+    mn_type = #{record.mn_type,jdbcType=TINYINT},
+    mn_createno = #{record.mn_createno,jdbcType=VARCHAR},
+    mn_createdate = #{record.mn_createdate,jdbcType=TIMESTAMP},
+    mn_status = #{record.mn_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Msg_News" >
+    update Msg_News
+    <set >
+      <if test="mn_index != null" >
+        mn_index = #{mn_index,jdbcType=INTEGER},
+      </if>
+      <if test="mn_title != null" >
+        mn_title = #{mn_title,jdbcType=VARCHAR},
+      </if>
+      <if test="mn_headpic != null" >
+        mn_headpic = #{mn_headpic,jdbcType=VARCHAR},
+      </if>
+      <if test="mn_headisv != null" >
+        mn_headisv = #{mn_headisv,jdbcType=BIT},
+      </if>
+      <if test="mn_keyword != null" >
+        mn_keyword = #{mn_keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="mn_clickqty != null" >
+        mn_clickqty = #{mn_clickqty,jdbcType=INTEGER},
+      </if>
+      <if test="mn_type != null" >
+        mn_type = #{mn_type,jdbcType=TINYINT},
+      </if>
+      <if test="mn_createno != null" >
+        mn_createno = #{mn_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="mn_createdate != null" >
+        mn_createdate = #{mn_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mn_status != null" >
+        mn_status = #{mn_status,jdbcType=TINYINT},
+      </if>
+      <if test="mn_content != null" >
+        mn_content = #{mn_content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where mn_id = #{mn_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.morsearch.model.Msg_News" >
+    update Msg_News
+    set mn_index = #{mn_index,jdbcType=INTEGER},
+    mn_title = #{mn_title,jdbcType=VARCHAR},
+    mn_headpic = #{mn_headpic,jdbcType=VARCHAR},
+    mn_headisv = #{mn_headisv,jdbcType=BIT},
+    mn_keyword = #{mn_keyword,jdbcType=VARCHAR},
+    mn_clickqty = #{mn_clickqty,jdbcType=INTEGER},
+    mn_type = #{mn_type,jdbcType=TINYINT},
+    mn_createno = #{mn_createno,jdbcType=VARCHAR},
+    mn_createdate = #{mn_createdate,jdbcType=TIMESTAMP},
+    mn_status = #{mn_status,jdbcType=TINYINT},
+    mn_content = #{mn_content,jdbcType=LONGVARCHAR}
+    where mn_id = #{mn_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Msg_News" >
+    update Msg_News
+    set mn_index = #{mn_index,jdbcType=INTEGER},
+    mn_title = #{mn_title,jdbcType=VARCHAR},
+    mn_headpic = #{mn_headpic,jdbcType=VARCHAR},
+    mn_headisv = #{mn_headisv,jdbcType=BIT},
+    mn_keyword = #{mn_keyword,jdbcType=VARCHAR},
+    mn_clickqty = #{mn_clickqty,jdbcType=INTEGER},
+    mn_type = #{mn_type,jdbcType=TINYINT},
+    mn_createno = #{mn_createno,jdbcType=VARCHAR},
+    mn_createdate = #{mn_createdate,jdbcType=TIMESTAMP},
+    mn_status = #{mn_status,jdbcType=TINYINT}
+    where mn_id = #{mn_id,jdbcType=BIGINT}
+  </update>
+
+
+
+  <!--自定义-->
+  <select id="getMsg_NewsList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select mn_id,mn_title,mn_headpic,mn_clickqty,mn_createdate  from  Msg_News where mn_type =#{mn_type}
+    ORDER BY mn_index DESC,mn_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <!--得到总数-->
+  <select id="getCountMsg_News" resultType="java.lang.Integer" parameterType="java.util.Map">
+    select count(*) from Msg_News WHERE mn_type=#{mn_type}
+  </select>
+
+  <!--查询条件-->
+  <sql id="wherelist" >
+    <if test="mn_title != null and mn_title != ''" >
+      and mn_title like concat(concat('%',#{mn_title}),'%')
+    </if>
+    <if test="mn_keyword != null and mn_keyword != ''" >
+      and mn_keyword like concat(concat('%',#{mn_keyword}),'%')
+    </if>
+    <if test="mn_type != null" >
+      and mn_type=#{mn_type}
+    </if>
+    <if test="mn_status != null" >
+      and mn_status=#{mn_status}
+    </if>
+    <if test="mn_createdate1 != null and mn_createdate2 !=null" >
+      and mn_createdate  between #{mn_createdate1} and #{mn_createdate2}
+    </if>
+  </sql>
+
+  <!-- 分页 -->
+  <select id="getBackMsg_NewsList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from Msg_News  where 1=1
+    <include refid="wherelist" />
+    ORDER BY mn_index DESC,mn_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getBackCountMsg_News" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(mn_id) from Msg_News where 1=1
+    <include refid="wherelist" />
+  </select>
+
+
+  <!--获取文档明细-->
+  <select id="getMsg_NewsDetail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <if test="type==1" >
+      *
+    </if>
+    from Msg_News
+    where mn_id = #{mn_id,jdbcType=BIGINT}
+
+  </select>
+
+
+</mapper>

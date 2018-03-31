@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Acc_RechargeMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Acc_Recharge" >
+    <id column="ar_id" property="ar_id" jdbcType="BIGINT" />
+    <result column="ar_no" property="ar_no" jdbcType="VARCHAR" />
+    <result column="ar_activityid" property="ar_activityid" jdbcType="BIGINT" />
+    <result column="ar_activityname" property="ar_activityname" jdbcType="VARCHAR" />
+    <result column="ar_typecode" property="ar_typecode" jdbcType="VARCHAR" />
+    <result column="ar_typename" property="ar_typename" jdbcType="VARCHAR" />
+    <result column="ar_priceorder" property="ar_priceorder" jdbcType="DECIMAL" />
+    <result column="ar_priceactual" property="ar_priceactual" jdbcType="DECIMAL" />
+    <result column="ar_addamount" property="ar_addamount" jdbcType="DECIMAL" />
+    <result column="ar_addintegral" property="ar_addintegral" jdbcType="DECIMAL" />
+    <result column="ar_sumamount" property="ar_sumamount" jdbcType="DECIMAL" />
+    <result column="ar_tradeway" property="ar_tradeway" jdbcType="TINYINT" />
+    <result column="ar_tradename" property="ar_tradename" jdbcType="VARCHAR" />
+    <result column="ar_tradecard" property="ar_tradecard" jdbcType="VARCHAR" />
+    <result column="ar_tradeorderno" property="ar_tradeorderno" jdbcType="VARCHAR" />
+    <result column="ar_tradeamount" property="ar_tradeamount" jdbcType="DECIMAL" />
+    <result column="ar_tradeorderdate" property="ar_tradeorderdate" jdbcType="TIMESTAMP" />
+    <result column="ar_traderefundno" property="ar_traderefundno" jdbcType="VARCHAR" />
+    <result column="ar_traderefunddate" property="ar_traderefunddate" jdbcType="TIMESTAMP" />
+    <result column="ar_traderefundamount" property="ar_traderefundamount" jdbcType="DECIMAL" />
+    <result column="ar_sourcename" property="ar_sourcename" jdbcType="VARCHAR" />
+    <result column="ar_sourceversion" property="ar_sourceversion" jdbcType="VARCHAR" />
+    <result column="ar_createid" property="ar_createid" jdbcType="BIGINT" />
+    <result column="ar_createno" property="ar_createno" jdbcType="VARCHAR" />
+    <result column="ar_createdate" property="ar_createdate" jdbcType="TIMESTAMP" />
+    <result column="ar_status" property="ar_status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ar_id, ar_no, ar_activityid, ar_activityname, ar_typecode, ar_typename, ar_priceorder,
+    ar_priceactual, ar_addamount, ar_addintegral, ar_sumamount, ar_tradeway, ar_tradename,
+    ar_tradecard, ar_tradeorderno, ar_tradeamount, ar_tradeorderdate, ar_traderefundno,
+    ar_traderefunddate, ar_traderefundamount, ar_sourcename, ar_sourceversion, ar_createid,
+    ar_createno, ar_createdate, ar_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Acc_RechargeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Acc_Recharge
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Acc_Recharge
+    where ar_id = #{ar_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Acc_Recharge
+    where ar_id = #{ar_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Acc_RechargeExample" >
+    delete from Acc_Recharge
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Acc_Recharge" >
+    insert into Acc_Recharge (ar_id, ar_no, ar_activityid,
+    ar_activityname, ar_typecode, ar_typename,
+    ar_priceorder, ar_priceactual, ar_addamount,
+    ar_addintegral, ar_sumamount, ar_tradeway,
+    ar_tradename, ar_tradecard, ar_tradeorderno,
+    ar_tradeamount, ar_tradeorderdate, ar_traderefundno,
+    ar_traderefunddate, ar_traderefundamount,
+    ar_sourcename, ar_sourceversion, ar_createid,
+    ar_createno, ar_createdate, ar_status
+    )
+    values (#{ar_id,jdbcType=BIGINT}, #{ar_no,jdbcType=VARCHAR}, #{ar_activityid,jdbcType=BIGINT},
+    #{ar_activityname,jdbcType=VARCHAR}, #{ar_typecode,jdbcType=VARCHAR}, #{ar_typename,jdbcType=VARCHAR},
+    #{ar_priceorder,jdbcType=DECIMAL}, #{ar_priceactual,jdbcType=DECIMAL}, #{ar_addamount,jdbcType=DECIMAL},
+    #{ar_addintegral,jdbcType=DECIMAL}, #{ar_sumamount,jdbcType=DECIMAL}, #{ar_tradeway,jdbcType=TINYINT},
+    #{ar_tradename,jdbcType=VARCHAR}, #{ar_tradecard,jdbcType=VARCHAR}, #{ar_tradeorderno,jdbcType=VARCHAR},
+    #{ar_tradeamount,jdbcType=DECIMAL}, #{ar_tradeorderdate,jdbcType=TIMESTAMP}, #{ar_traderefundno,jdbcType=VARCHAR},
+    #{ar_traderefunddate,jdbcType=TIMESTAMP}, #{ar_traderefundamount,jdbcType=DECIMAL},
+    #{ar_sourcename,jdbcType=VARCHAR}, #{ar_sourceversion,jdbcType=VARCHAR}, #{ar_createid,jdbcType=BIGINT},
+    #{ar_createno,jdbcType=VARCHAR}, #{ar_createdate,jdbcType=TIMESTAMP}, #{ar_status,jdbcType=TINYINT}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Acc_Recharge" >
+    insert into Acc_Recharge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ar_id != null" >
+        ar_id,
+      </if>
+      <if test="ar_no != null" >
+        ar_no,
+      </if>
+      <if test="ar_activityid != null" >
+        ar_activityid,
+      </if>
+      <if test="ar_activityname != null" >
+        ar_activityname,
+      </if>
+      <if test="ar_typecode != null" >
+        ar_typecode,
+      </if>
+      <if test="ar_typename != null" >
+        ar_typename,
+      </if>
+      <if test="ar_priceorder != null" >
+        ar_priceorder,
+      </if>
+      <if test="ar_priceactual != null" >
+        ar_priceactual,
+      </if>
+      <if test="ar_addamount != null" >
+        ar_addamount,
+      </if>
+      <if test="ar_addintegral != null" >
+        ar_addintegral,
+      </if>
+      <if test="ar_sumamount != null" >
+        ar_sumamount,
+      </if>
+      <if test="ar_tradeway != null" >
+        ar_tradeway,
+      </if>
+      <if test="ar_tradename != null" >
+        ar_tradename,
+      </if>
+      <if test="ar_tradecard != null" >
+        ar_tradecard,
+      </if>
+      <if test="ar_tradeorderno != null" >
+        ar_tradeorderno,
+      </if>
+      <if test="ar_tradeamount != null" >
+        ar_tradeamount,
+      </if>
+      <if test="ar_tradeorderdate != null" >
+        ar_tradeorderdate,
+      </if>
+      <if test="ar_traderefundno != null" >
+        ar_traderefundno,
+      </if>
+      <if test="ar_traderefunddate != null" >
+        ar_traderefunddate,
+      </if>
+      <if test="ar_traderefundamount != null" >
+        ar_traderefundamount,
+      </if>
+      <if test="ar_sourcename != null" >
+        ar_sourcename,
+      </if>
+      <if test="ar_sourceversion != null" >
+        ar_sourceversion,
+      </if>
+      <if test="ar_createid != null" >
+        ar_createid,
+      </if>
+      <if test="ar_createno != null" >
+        ar_createno,
+      </if>
+      <if test="ar_createdate != null" >
+        ar_createdate,
+      </if>
+      <if test="ar_status != null" >
+        ar_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ar_id != null" >
+        #{ar_id,jdbcType=BIGINT},
+      </if>
+      <if test="ar_no != null" >
+        #{ar_no,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_activityid != null" >
+        #{ar_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="ar_activityname != null" >
+        #{ar_activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_typecode != null" >
+        #{ar_typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_typename != null" >
+        #{ar_typename,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_priceorder != null" >
+        #{ar_priceorder,jdbcType=DECIMAL},
+      </if>
+      <if test="ar_priceactual != null" >
+        #{ar_priceactual,jdbcType=DECIMAL},
+      </if>
+      <if test="ar_addamount != null" >
+        #{ar_addamount,jdbcType=DECIMAL},
+      </if>
+      <if test="ar_addintegral != null" >
+        #{ar_addintegral,jdbcType=DECIMAL},
+      </if>
+      <if test="ar_sumamount != null" >
+        #{ar_sumamount,jdbcType=DECIMAL},
+      </if>
+      <if test="ar_tradeway != null" >
+        #{ar_tradeway,jdbcType=TINYINT},
+      </if>
+      <if test="ar_tradename != null" >
+        #{ar_tradename,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_tradecard != null" >
+        #{ar_tradecard,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_tradeorderno != null" >
+        #{ar_tradeorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_tradeamount != null" >
+        #{ar_tradeamount,jdbcType=DECIMAL},
+      </if>
+      <if test="ar_tradeorderdate != null" >
+        #{ar_tradeorderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ar_traderefundno != null" >
+        #{ar_traderefundno,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_traderefunddate != null" >
+        #{ar_traderefunddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ar_traderefundamount != null" >
+        #{ar_traderefundamount,jdbcType=DECIMAL},
+      </if>
+      <if test="ar_sourcename != null" >
+        #{ar_sourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_sourceversion != null" >
+        #{ar_sourceversion,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_createid != null" >
+        #{ar_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ar_createno != null" >
+        #{ar_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_createdate != null" >
+        #{ar_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ar_status != null" >
+        #{ar_status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Acc_RechargeExample" resultType="java.lang.Integer" >
+    select count(*) from Acc_Recharge
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Acc_Recharge
+    <set >
+      <if test="record.ar_id != null" >
+        ar_id = #{record.ar_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ar_no != null" >
+        ar_no = #{record.ar_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ar_activityid != null" >
+        ar_activityid = #{record.ar_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ar_activityname != null" >
+        ar_activityname = #{record.ar_activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ar_typecode != null" >
+        ar_typecode = #{record.ar_typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ar_typename != null" >
+        ar_typename = #{record.ar_typename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ar_priceorder != null" >
+        ar_priceorder = #{record.ar_priceorder,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ar_priceactual != null" >
+        ar_priceactual = #{record.ar_priceactual,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ar_addamount != null" >
+        ar_addamount = #{record.ar_addamount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ar_addintegral != null" >
+        ar_addintegral = #{record.ar_addintegral,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ar_sumamount != null" >
+        ar_sumamount = #{record.ar_sumamount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ar_tradeway != null" >
+        ar_tradeway = #{record.ar_tradeway,jdbcType=TINYINT},
+      </if>
+      <if test="record.ar_tradename != null" >
+        ar_tradename = #{record.ar_tradename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ar_tradecard != null" >
+        ar_tradecard = #{record.ar_tradecard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ar_tradeorderno != null" >
+        ar_tradeorderno = #{record.ar_tradeorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ar_tradeamount != null" >
+        ar_tradeamount = #{record.ar_tradeamount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ar_tradeorderdate != null" >
+        ar_tradeorderdate = #{record.ar_tradeorderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ar_traderefundno != null" >
+        ar_traderefundno = #{record.ar_traderefundno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ar_traderefunddate != null" >
+        ar_traderefunddate = #{record.ar_traderefunddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ar_traderefundamount != null" >
+        ar_traderefundamount = #{record.ar_traderefundamount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ar_sourcename != null" >
+        ar_sourcename = #{record.ar_sourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ar_sourceversion != null" >
+        ar_sourceversion = #{record.ar_sourceversion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ar_createid != null" >
+        ar_createid = #{record.ar_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ar_createno != null" >
+        ar_createno = #{record.ar_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ar_createdate != null" >
+        ar_createdate = #{record.ar_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ar_status != null" >
+        ar_status = #{record.ar_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Acc_Recharge
+    set ar_id = #{record.ar_id,jdbcType=BIGINT},
+    ar_no = #{record.ar_no,jdbcType=VARCHAR},
+    ar_activityid = #{record.ar_activityid,jdbcType=BIGINT},
+    ar_activityname = #{record.ar_activityname,jdbcType=VARCHAR},
+    ar_typecode = #{record.ar_typecode,jdbcType=VARCHAR},
+    ar_typename = #{record.ar_typename,jdbcType=VARCHAR},
+    ar_priceorder = #{record.ar_priceorder,jdbcType=DECIMAL},
+    ar_priceactual = #{record.ar_priceactual,jdbcType=DECIMAL},
+    ar_addamount = #{record.ar_addamount,jdbcType=DECIMAL},
+    ar_addintegral = #{record.ar_addintegral,jdbcType=DECIMAL},
+    ar_sumamount = #{record.ar_sumamount,jdbcType=DECIMAL},
+    ar_tradeway = #{record.ar_tradeway,jdbcType=TINYINT},
+    ar_tradename = #{record.ar_tradename,jdbcType=VARCHAR},
+    ar_tradecard = #{record.ar_tradecard,jdbcType=VARCHAR},
+    ar_tradeorderno = #{record.ar_tradeorderno,jdbcType=VARCHAR},
+    ar_tradeamount = #{record.ar_tradeamount,jdbcType=DECIMAL},
+    ar_tradeorderdate = #{record.ar_tradeorderdate,jdbcType=TIMESTAMP},
+    ar_traderefundno = #{record.ar_traderefundno,jdbcType=VARCHAR},
+    ar_traderefunddate = #{record.ar_traderefunddate,jdbcType=TIMESTAMP},
+    ar_traderefundamount = #{record.ar_traderefundamount,jdbcType=DECIMAL},
+    ar_sourcename = #{record.ar_sourcename,jdbcType=VARCHAR},
+    ar_sourceversion = #{record.ar_sourceversion,jdbcType=VARCHAR},
+    ar_createid = #{record.ar_createid,jdbcType=BIGINT},
+    ar_createno = #{record.ar_createno,jdbcType=VARCHAR},
+    ar_createdate = #{record.ar_createdate,jdbcType=TIMESTAMP},
+    ar_status = #{record.ar_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Acc_Recharge" >
+    update Acc_Recharge
+    <set >
+      <if test="ar_no != null" >
+        ar_no = #{ar_no,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_activityid != null" >
+        ar_activityid = #{ar_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="ar_activityname != null" >
+        ar_activityname = #{ar_activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_typecode != null" >
+        ar_typecode = #{ar_typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_typename != null" >
+        ar_typename = #{ar_typename,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_priceorder != null" >
+        ar_priceorder = #{ar_priceorder,jdbcType=DECIMAL},
+      </if>
+      <if test="ar_priceactual != null" >
+        ar_priceactual = #{ar_priceactual,jdbcType=DECIMAL},
+      </if>
+      <if test="ar_addamount != null" >
+        ar_addamount = #{ar_addamount,jdbcType=DECIMAL},
+      </if>
+      <if test="ar_addintegral != null" >
+        ar_addintegral = #{ar_addintegral,jdbcType=DECIMAL},
+      </if>
+      <if test="ar_sumamount != null" >
+        ar_sumamount = #{ar_sumamount,jdbcType=DECIMAL},
+      </if>
+      <if test="ar_tradeway != null" >
+        ar_tradeway = #{ar_tradeway,jdbcType=TINYINT},
+      </if>
+      <if test="ar_tradename != null" >
+        ar_tradename = #{ar_tradename,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_tradecard != null" >
+        ar_tradecard = #{ar_tradecard,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_tradeorderno != null" >
+        ar_tradeorderno = #{ar_tradeorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_tradeamount != null" >
+        ar_tradeamount = #{ar_tradeamount,jdbcType=DECIMAL},
+      </if>
+      <if test="ar_tradeorderdate != null" >
+        ar_tradeorderdate = #{ar_tradeorderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ar_traderefundno != null" >
+        ar_traderefundno = #{ar_traderefundno,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_traderefunddate != null" >
+        ar_traderefunddate = #{ar_traderefunddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ar_traderefundamount != null" >
+        ar_traderefundamount = #{ar_traderefundamount,jdbcType=DECIMAL},
+      </if>
+      <if test="ar_sourcename != null" >
+        ar_sourcename = #{ar_sourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_sourceversion != null" >
+        ar_sourceversion = #{ar_sourceversion,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_createid != null" >
+        ar_createid = #{ar_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ar_createno != null" >
+        ar_createno = #{ar_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ar_createdate != null" >
+        ar_createdate = #{ar_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ar_status != null" >
+        ar_status = #{ar_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ar_id = #{ar_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Acc_Recharge" >
+    update Acc_Recharge
+    set ar_no = #{ar_no,jdbcType=VARCHAR},
+    ar_activityid = #{ar_activityid,jdbcType=BIGINT},
+    ar_activityname = #{ar_activityname,jdbcType=VARCHAR},
+    ar_typecode = #{ar_typecode,jdbcType=VARCHAR},
+    ar_typename = #{ar_typename,jdbcType=VARCHAR},
+    ar_priceorder = #{ar_priceorder,jdbcType=DECIMAL},
+    ar_priceactual = #{ar_priceactual,jdbcType=DECIMAL},
+    ar_addamount = #{ar_addamount,jdbcType=DECIMAL},
+    ar_addintegral = #{ar_addintegral,jdbcType=DECIMAL},
+    ar_sumamount = #{ar_sumamount,jdbcType=DECIMAL},
+    ar_tradeway = #{ar_tradeway,jdbcType=TINYINT},
+    ar_tradename = #{ar_tradename,jdbcType=VARCHAR},
+    ar_tradecard = #{ar_tradecard,jdbcType=VARCHAR},
+    ar_tradeorderno = #{ar_tradeorderno,jdbcType=VARCHAR},
+    ar_tradeamount = #{ar_tradeamount,jdbcType=DECIMAL},
+    ar_tradeorderdate = #{ar_tradeorderdate,jdbcType=TIMESTAMP},
+    ar_traderefundno = #{ar_traderefundno,jdbcType=VARCHAR},
+    ar_traderefunddate = #{ar_traderefunddate,jdbcType=TIMESTAMP},
+    ar_traderefundamount = #{ar_traderefundamount,jdbcType=DECIMAL},
+    ar_sourcename = #{ar_sourcename,jdbcType=VARCHAR},
+    ar_sourceversion = #{ar_sourceversion,jdbcType=VARCHAR},
+    ar_createid = #{ar_createid,jdbcType=BIGINT},
+    ar_createno = #{ar_createno,jdbcType=VARCHAR},
+    ar_createdate = #{ar_createdate,jdbcType=TIMESTAMP},
+    ar_status = #{ar_status,jdbcType=TINYINT}
+    where ar_id = #{ar_id,jdbcType=BIGINT}
+  </update>
+
+  <!-- 条件 -->
+  <sql id="wherelist" >
+    <if test="ar_no != null and ar_no != ''" >
+      and ar_no like concat(concat('%',#{ar_no}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="ar_classcode != null and ar_classcode != ''" >
+      and ar_classcode like concat(concat('%',#{ar_classcode}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="ar_classname != null and ar_classname != ''" >
+      and ar_classname like concat(concat('%',#{ar_classname}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="ar_typename != null and ar_typename != ''" >
+      and ar_typename like concat(concat('%',#{ar_typename}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="ar_tradecard != null and ar_tradecard != ''" >
+      and ar_tradecard like concat(concat('%',#{ar_tradecard}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="ar_tradeorderno != null and ar_tradeorderno != ''" >
+      and ar_tradeorderno like concat(concat('%',#{ar_tradeorderno}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="ar_traderefundno != null and ar_traderefundno != ''" >
+      and ar_traderefundno like concat(concat('%',#{ar_traderefundno}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="ar_status != null" >
+      and ar_status=#{ar_status}
+    </if>
+    /*关于交易时间的查询*/
+    <if test="ar_tradeorderdate1 != null and ar_tradeorderdate2 !=null" >
+      and ar_tradeorderdate  between #{ar_tradeorderdate1} and #{ar_tradeorderdate2}
+    </if>
+    /*关于退款时间的查询*/
+    <if test="ar_traderefunddate1 != null and ar_traderefunddate2 !=null" >
+      and ar_traderefunddate  between #{ar_traderefunddate1} and #{ar_traderefunddate2}
+    </if>
+    /*建立时间的查询*/
+    <if test="ar_createdate1 != null and ar_createdate2 !=null" >
+      and ar_createdate  between #{ar_createdate1} and #{ar_createdate2}
+    </if>
+
+  </sql>
+
+  <!-- 分页 -->
+  <select id="getAcc_RechargeList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from Acc_Recharge ar where 1=1
+    <include refid="wherelist" />
+    ORDER BY ar_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountAcc_Recharge" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(ar_id) from Acc_Recharge where 1=1
+    <include refid="wherelist" />
+  </select>
+
+
+
+</mapper>

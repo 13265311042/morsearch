@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.SalesV_Collect_PmMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.SalesV_Collect_Pm" >
+    <result column="sm_id" property="sm_id" jdbcType="BIGINT" />
+    <result column="sm_archivesid" property="sm_archivesid" jdbcType="BIGINT" />
+    <result column="sm_createid" property="sm_createid" jdbcType="BIGINT" />
+    <result column="sm_createno" property="sm_createno" jdbcType="VARCHAR" />
+    <result column="sm_createdate" property="sm_createdate" jdbcType="TIMESTAMP" />
+    <result column="dateshort" property="dateshort" jdbcType="TIMESTAMP" />
+    <result column="pa_title" property="pa_title" jdbcType="VARCHAR" />
+    <result column="pa_userid" property="pa_userid" jdbcType="BIGINT" />
+    <result column="pa_username" property="pa_username" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sm_id, sm_archivesid, sm_createid, sm_createno, sm_createdate, dateshort, pa_title, 
+    pa_userid, pa_username
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.SalesV_Collect_PmExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SalesV_Collect_Pm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.SalesV_Collect_PmExample" >
+    delete from SalesV_Collect_Pm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.SalesV_Collect_Pm" >
+    insert into SalesV_Collect_Pm (sm_id, sm_archivesid, sm_createid, 
+      sm_createno, sm_createdate, dateshort, 
+      pa_title, pa_userid, pa_username
+      )
+    values (#{sm_id,jdbcType=BIGINT}, #{sm_archivesid,jdbcType=BIGINT}, #{sm_createid,jdbcType=BIGINT}, 
+      #{sm_createno,jdbcType=VARCHAR}, #{sm_createdate,jdbcType=TIMESTAMP}, #{dateshort,jdbcType=TIMESTAMP}, 
+      #{pa_title,jdbcType=VARCHAR}, #{pa_userid,jdbcType=BIGINT}, #{pa_username,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.SalesV_Collect_Pm" >
+    insert into SalesV_Collect_Pm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sm_id != null" >
+        sm_id,
+      </if>
+      <if test="sm_archivesid != null" >
+        sm_archivesid,
+      </if>
+      <if test="sm_createid != null" >
+        sm_createid,
+      </if>
+      <if test="sm_createno != null" >
+        sm_createno,
+      </if>
+      <if test="sm_createdate != null" >
+        sm_createdate,
+      </if>
+      <if test="dateshort != null" >
+        dateshort,
+      </if>
+      <if test="pa_title != null" >
+        pa_title,
+      </if>
+      <if test="pa_userid != null" >
+        pa_userid,
+      </if>
+      <if test="pa_username != null" >
+        pa_username,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sm_id != null" >
+        #{sm_id,jdbcType=BIGINT},
+      </if>
+      <if test="sm_archivesid != null" >
+        #{sm_archivesid,jdbcType=BIGINT},
+      </if>
+      <if test="sm_createid != null" >
+        #{sm_createid,jdbcType=BIGINT},
+      </if>
+      <if test="sm_createno != null" >
+        #{sm_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_createdate != null" >
+        #{sm_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dateshort != null" >
+        #{dateshort,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pa_title != null" >
+        #{pa_title,jdbcType=VARCHAR},
+      </if>
+      <if test="pa_userid != null" >
+        #{pa_userid,jdbcType=BIGINT},
+      </if>
+      <if test="pa_username != null" >
+        #{pa_username,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.SalesV_Collect_PmExample" resultType="java.lang.Integer" >
+    select count(*) from SalesV_Collect_Pm
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SalesV_Collect_Pm
+    <set >
+      <if test="record.sm_id != null" >
+        sm_id = #{record.sm_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sm_archivesid != null" >
+        sm_archivesid = #{record.sm_archivesid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sm_createid != null" >
+        sm_createid = #{record.sm_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sm_createno != null" >
+        sm_createno = #{record.sm_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_createdate != null" >
+        sm_createdate = #{record.sm_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dateshort != null" >
+        dateshort = #{record.dateshort,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pa_title != null" >
+        pa_title = #{record.pa_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa_userid != null" >
+        pa_userid = #{record.pa_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.pa_username != null" >
+        pa_username = #{record.pa_username,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SalesV_Collect_Pm
+    set sm_id = #{record.sm_id,jdbcType=BIGINT},
+      sm_archivesid = #{record.sm_archivesid,jdbcType=BIGINT},
+      sm_createid = #{record.sm_createid,jdbcType=BIGINT},
+      sm_createno = #{record.sm_createno,jdbcType=VARCHAR},
+      sm_createdate = #{record.sm_createdate,jdbcType=TIMESTAMP},
+      dateshort = #{record.dateshort,jdbcType=TIMESTAMP},
+      pa_title = #{record.pa_title,jdbcType=VARCHAR},
+      pa_userid = #{record.pa_userid,jdbcType=BIGINT},
+      pa_username = #{record.pa_username,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+
+
+  <!-- 条件 -->
+  <sql id="wherelist" >
+    <if test="sm_archivesid != null and sm_archivesid != ''" >
+      and sm_archivesid like concat(concat('%',#{sm_archivesid}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="sm_createid != null and sm_createid != ''" > <!-- 模糊查询 -->
+      and sm_createid = #{sm_createid,jdbcType=BIGINT}
+    </if>
+    <if test="sm_createno != null and sm_createno != ''" >
+      and sm_createno like concat(concat('%',#{sm_createno}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="pa_title != null and pa_title != ''" >
+      and pa_title like concat(concat('%',#{pa_title}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="pa_createno != null and pa_createno != ''" >
+      and pa_createno like concat(concat('%',#{pa_createno}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sm_createdate1 != null and sm_createdate2 !=null" >
+      and sm_createdate  between #{sm_createdate1} and #{sm_createdate2}
+    </if>
+  </sql>
+
+  <!-- 分页 -->
+  <select id="getSalesV_Collect_PmList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from SalesV_Collect_Pm scp where 1=1
+    <include refid="wherelist" />
+    ORDER BY sm_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountSalesV_Collect_Pm" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(sm_id) from SalesV_Collect_Pm scp where 1=1
+    <include refid="wherelist" />
+  </select>
+
+
+
+</mapper>

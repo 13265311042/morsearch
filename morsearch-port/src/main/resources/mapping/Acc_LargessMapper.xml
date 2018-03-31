@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Acc_LargessMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Acc_Largess" >
+    <id column="al_id" property="al_id" jdbcType="INTEGER" />
+    <result column="al_type" property="al_type" jdbcType="VARCHAR" />
+    <result column="al_team" property="al_team" jdbcType="VARCHAR" />
+    <result column="al_datebegin" property="al_datebegin" jdbcType="VARCHAR" />
+    <result column="al_dateend" property="al_dateend" jdbcType="VARCHAR" />
+    <result column="al_valuemin" property="al_valuemin" jdbcType="INTEGER" />
+    <result column="al_valuemax" property="al_valuemax" jdbcType="INTEGER" />
+    <result column="al_addmode" property="al_addmode" jdbcType="TINYINT" />
+    <result column="al_addbase" property="al_addbase" jdbcType="INTEGER" />
+    <result column="al_addcoinqty" property="al_addcoinqty" jdbcType="INTEGER" />
+    <result column="al_addamount" property="al_addamount" jdbcType="INTEGER" />
+    <result column="al_addintegral" property="al_addintegral" jdbcType="INTEGER" />
+    <result column="al_flagstop" property="al_flagstop" jdbcType="BIT" />
+    <result column="al_remark" property="al_remark" jdbcType="VARCHAR" />
+    <result column="ba_createid" property="ba_createid" jdbcType="BIGINT" />
+    <result column="ba_createno" property="ba_createno" jdbcType="VARCHAR" />
+    <result column="ba_createdate" property="ba_createdate" jdbcType="TIMESTAMP" />
+    <result column="ba_updateid" property="ba_updateid" jdbcType="BIGINT" />
+    <result column="ba_updateno" property="ba_updateno" jdbcType="VARCHAR" />
+    <result column="ba_updatedate" property="ba_updatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    al_id, al_type, al_team, al_datebegin, al_dateend, al_valuemin, al_valuemax, al_addmode,
+    al_addbase, al_addcoinqty, al_addamount, al_addintegral, al_flagstop, al_remark,
+    ba_createid, ba_createno, ba_createdate, ba_updateid, ba_updateno, ba_updatedate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Acc_LargessExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Acc_Largess
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from Acc_Largess
+    where al_id = #{al_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Acc_Largess
+    where al_id = #{al_id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Acc_LargessExample" >
+    delete from Acc_Largess
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Acc_Largess" >
+    insert into Acc_Largess (al_id, al_type, al_team,
+    al_datebegin, al_dateend, al_valuemin,
+    al_valuemax, al_addmode, al_addbase,
+    al_addcoinqty, al_addamount, al_addintegral,
+    al_flagstop, al_remark, ba_createid,
+    ba_createno, ba_createdate, ba_updateid,
+    ba_updateno, ba_updatedate)
+    values (#{al_id,jdbcType=INTEGER}, #{al_type,jdbcType=VARCHAR}, #{al_team,jdbcType=VARCHAR},
+    #{al_datebegin,jdbcType=VARCHAR}, #{al_dateend,jdbcType=VARCHAR}, #{al_valuemin,jdbcType=INTEGER},
+    #{al_valuemax,jdbcType=INTEGER}, #{al_addmode,jdbcType=TINYINT}, #{al_addbase,jdbcType=INTEGER},
+    #{al_addcoinqty,jdbcType=INTEGER}, #{al_addamount,jdbcType=INTEGER}, #{al_addintegral,jdbcType=INTEGER},
+    #{al_flagstop,jdbcType=BIT}, #{al_remark,jdbcType=VARCHAR}, #{ba_createid,jdbcType=BIGINT},
+    #{ba_createno,jdbcType=VARCHAR}, #{ba_createdate,jdbcType=TIMESTAMP}, #{ba_updateid,jdbcType=BIGINT},
+    #{ba_updateno,jdbcType=VARCHAR}, #{ba_updatedate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Acc_Largess" >
+    insert into Acc_Largess
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="al_id != null" >
+        al_id,
+      </if>
+      <if test="al_type != null" >
+        al_type,
+      </if>
+      <if test="al_team != null" >
+        al_team,
+      </if>
+      <if test="al_datebegin != null" >
+        al_datebegin,
+      </if>
+      <if test="al_dateend != null" >
+        al_dateend,
+      </if>
+      <if test="al_valuemin != null" >
+        al_valuemin,
+      </if>
+      <if test="al_valuemax != null" >
+        al_valuemax,
+      </if>
+      <if test="al_addmode != null" >
+        al_addmode,
+      </if>
+      <if test="al_addbase != null" >
+        al_addbase,
+      </if>
+      <if test="al_addcoinqty != null" >
+        al_addcoinqty,
+      </if>
+      <if test="al_addamount != null" >
+        al_addamount,
+      </if>
+      <if test="al_addintegral != null" >
+        al_addintegral,
+      </if>
+      <if test="al_flagstop != null" >
+        al_flagstop,
+      </if>
+      <if test="al_remark != null" >
+        al_remark,
+      </if>
+      <if test="ba_createid != null" >
+        ba_createid,
+      </if>
+      <if test="ba_createno != null" >
+        ba_createno,
+      </if>
+      <if test="ba_createdate != null" >
+        ba_createdate,
+      </if>
+      <if test="ba_updateid != null" >
+        ba_updateid,
+      </if>
+      <if test="ba_updateno != null" >
+        ba_updateno,
+      </if>
+      <if test="ba_updatedate != null" >
+        ba_updatedate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="al_id != null" >
+        #{al_id,jdbcType=INTEGER},
+      </if>
+      <if test="al_type != null" >
+        #{al_type,jdbcType=VARCHAR},
+      </if>
+      <if test="al_team != null" >
+        #{al_team,jdbcType=VARCHAR},
+      </if>
+      <if test="al_datebegin != null" >
+        #{al_datebegin,jdbcType=VARCHAR},
+      </if>
+      <if test="al_dateend != null" >
+        #{al_dateend,jdbcType=VARCHAR},
+      </if>
+      <if test="al_valuemin != null" >
+        #{al_valuemin,jdbcType=INTEGER},
+      </if>
+      <if test="al_valuemax != null" >
+        #{al_valuemax,jdbcType=INTEGER},
+      </if>
+      <if test="al_addmode != null" >
+        #{al_addmode,jdbcType=TINYINT},
+      </if>
+      <if test="al_addbase != null" >
+        #{al_addbase,jdbcType=INTEGER},
+      </if>
+      <if test="al_addcoinqty != null" >
+        #{al_addcoinqty,jdbcType=INTEGER},
+      </if>
+      <if test="al_addamount != null" >
+        #{al_addamount,jdbcType=INTEGER},
+      </if>
+      <if test="al_addintegral != null" >
+        #{al_addintegral,jdbcType=INTEGER},
+      </if>
+      <if test="al_flagstop != null" >
+        #{al_flagstop,jdbcType=BIT},
+      </if>
+      <if test="al_remark != null" >
+        #{al_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_createid != null" >
+        #{ba_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ba_createno != null" >
+        #{ba_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_createdate != null" >
+        #{ba_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ba_updateid != null" >
+        #{ba_updateid,jdbcType=BIGINT},
+      </if>
+      <if test="ba_updateno != null" >
+        #{ba_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_updatedate != null" >
+        #{ba_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Acc_LargessExample" resultType="java.lang.Integer" >
+    select count(*) from Acc_Largess
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Acc_Largess
+    <set >
+      <if test="record.al_id != null" >
+        al_id = #{record.al_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.al_type != null" >
+        al_type = #{record.al_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.al_team != null" >
+        al_team = #{record.al_team,jdbcType=VARCHAR},
+      </if>
+      <if test="record.al_datebegin != null" >
+        al_datebegin = #{record.al_datebegin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.al_dateend != null" >
+        al_dateend = #{record.al_dateend,jdbcType=VARCHAR},
+      </if>
+      <if test="record.al_valuemin != null" >
+        al_valuemin = #{record.al_valuemin,jdbcType=INTEGER},
+      </if>
+      <if test="record.al_valuemax != null" >
+        al_valuemax = #{record.al_valuemax,jdbcType=INTEGER},
+      </if>
+      <if test="record.al_addmode != null" >
+        al_addmode = #{record.al_addmode,jdbcType=TINYINT},
+      </if>
+      <if test="record.al_addbase != null" >
+        al_addbase = #{record.al_addbase,jdbcType=INTEGER},
+      </if>
+      <if test="record.al_addcoinqty != null" >
+        al_addcoinqty = #{record.al_addcoinqty,jdbcType=INTEGER},
+      </if>
+      <if test="record.al_addamount != null" >
+        al_addamount = #{record.al_addamount,jdbcType=INTEGER},
+      </if>
+      <if test="record.al_addintegral != null" >
+        al_addintegral = #{record.al_addintegral,jdbcType=INTEGER},
+      </if>
+      <if test="record.al_flagstop != null" >
+        al_flagstop = #{record.al_flagstop,jdbcType=BIT},
+      </if>
+      <if test="record.al_remark != null" >
+        al_remark = #{record.al_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_createid != null" >
+        ba_createid = #{record.ba_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ba_createno != null" >
+        ba_createno = #{record.ba_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_createdate != null" >
+        ba_createdate = #{record.ba_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ba_updateid != null" >
+        ba_updateid = #{record.ba_updateid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ba_updateno != null" >
+        ba_updateno = #{record.ba_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ba_updatedate != null" >
+        ba_updatedate = #{record.ba_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Acc_Largess
+    set al_id = #{record.al_id,jdbcType=INTEGER},
+    al_type = #{record.al_type,jdbcType=VARCHAR},
+    al_team = #{record.al_team,jdbcType=VARCHAR},
+    al_datebegin = #{record.al_datebegin,jdbcType=VARCHAR},
+    al_dateend = #{record.al_dateend,jdbcType=VARCHAR},
+    al_valuemin = #{record.al_valuemin,jdbcType=INTEGER},
+    al_valuemax = #{record.al_valuemax,jdbcType=INTEGER},
+    al_addmode = #{record.al_addmode,jdbcType=TINYINT},
+    al_addbase = #{record.al_addbase,jdbcType=INTEGER},
+    al_addcoinqty = #{record.al_addcoinqty,jdbcType=INTEGER},
+    al_addamount = #{record.al_addamount,jdbcType=INTEGER},
+    al_addintegral = #{record.al_addintegral,jdbcType=INTEGER},
+    al_flagstop = #{record.al_flagstop,jdbcType=BIT},
+    al_remark = #{record.al_remark,jdbcType=VARCHAR},
+    ba_createid = #{record.ba_createid,jdbcType=BIGINT},
+    ba_createno = #{record.ba_createno,jdbcType=VARCHAR},
+    ba_createdate = #{record.ba_createdate,jdbcType=TIMESTAMP},
+    ba_updateid = #{record.ba_updateid,jdbcType=BIGINT},
+    ba_updateno = #{record.ba_updateno,jdbcType=VARCHAR},
+    ba_updatedate = #{record.ba_updatedate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Acc_Largess" >
+    update Acc_Largess
+    <set >
+      <if test="al_type != null" >
+        al_type = #{al_type,jdbcType=VARCHAR},
+      </if>
+      <if test="al_team != null" >
+        al_team = #{al_team,jdbcType=VARCHAR},
+      </if>
+      <if test="al_datebegin != null" >
+        al_datebegin = #{al_datebegin,jdbcType=VARCHAR},
+      </if>
+      <if test="al_dateend != null" >
+        al_dateend = #{al_dateend,jdbcType=VARCHAR},
+      </if>
+      <if test="al_valuemin != null" >
+        al_valuemin = #{al_valuemin,jdbcType=INTEGER},
+      </if>
+      <if test="al_valuemax != null" >
+        al_valuemax = #{al_valuemax,jdbcType=INTEGER},
+      </if>
+      <if test="al_addmode != null" >
+        al_addmode = #{al_addmode,jdbcType=TINYINT},
+      </if>
+      <if test="al_addbase != null" >
+        al_addbase = #{al_addbase,jdbcType=INTEGER},
+      </if>
+      <if test="al_addcoinqty != null" >
+        al_addcoinqty = #{al_addcoinqty,jdbcType=INTEGER},
+      </if>
+      <if test="al_addamount != null" >
+        al_addamount = #{al_addamount,jdbcType=INTEGER},
+      </if>
+      <if test="al_addintegral != null" >
+        al_addintegral = #{al_addintegral,jdbcType=INTEGER},
+      </if>
+      <if test="al_flagstop != null" >
+        al_flagstop = #{al_flagstop,jdbcType=BIT},
+      </if>
+      <if test="al_remark != null" >
+        al_remark = #{al_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_createid != null" >
+        ba_createid = #{ba_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ba_createno != null" >
+        ba_createno = #{ba_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_createdate != null" >
+        ba_createdate = #{ba_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ba_updateid != null" >
+        ba_updateid = #{ba_updateid,jdbcType=BIGINT},
+      </if>
+      <if test="ba_updateno != null" >
+        ba_updateno = #{ba_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="ba_updatedate != null" >
+        ba_updatedate = #{ba_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where al_id = #{al_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Acc_Largess" >
+    update Acc_Largess
+    set al_type = #{al_type,jdbcType=VARCHAR},
+    al_team = #{al_team,jdbcType=VARCHAR},
+    al_datebegin = #{al_datebegin,jdbcType=VARCHAR},
+    al_dateend = #{al_dateend,jdbcType=VARCHAR},
+    al_valuemin = #{al_valuemin,jdbcType=INTEGER},
+    al_valuemax = #{al_valuemax,jdbcType=INTEGER},
+    al_addmode = #{al_addmode,jdbcType=TINYINT},
+    al_addbase = #{al_addbase,jdbcType=INTEGER},
+    al_addcoinqty = #{al_addcoinqty,jdbcType=INTEGER},
+    al_addamount = #{al_addamount,jdbcType=INTEGER},
+    al_addintegral = #{al_addintegral,jdbcType=INTEGER},
+    al_flagstop = #{al_flagstop,jdbcType=BIT},
+    al_remark = #{al_remark,jdbcType=VARCHAR},
+    ba_createid = #{ba_createid,jdbcType=BIGINT},
+    ba_createno = #{ba_createno,jdbcType=VARCHAR},
+    ba_createdate = #{ba_createdate,jdbcType=TIMESTAMP},
+    ba_updateid = #{ba_updateid,jdbcType=BIGINT},
+    ba_updateno = #{ba_updateno,jdbcType=VARCHAR},
+    ba_updatedate = #{ba_updatedate,jdbcType=TIMESTAMP}
+    where al_id = #{al_id,jdbcType=INTEGER}
+  </update>
+
+  <!--自定义-->
+  <sql id="wherelist" >
+    <if test="al_type != null and al_type != ''" >
+      and al_type like concat(concat('%',#{al_type}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="al_datebegin != null and al_datebegin != ''" >
+      and al_datebegin like concat(concat('%',#{al_datebegin}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="al_team != null and al_team != ''" >
+      and al_team like concat(concat('%',#{al_team}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="al_flagstop != null and al_flagstop != ''" >
+      and ifnull(al_flagstop,0) =#{al_flagstop}
+    </if>
+    <!-- /*关于注册时间的查询*/
+     <if test="ur_register_date1 != null and ur_register_date2 !=null" >
+       and ur_register_date  between #{ur_register_date1} and #{ur_register_date2}
+     </if>
+     /*关于登陆时间的查询*/
+     <if test="ur_login_date1 != null and ur_login_date2 !=null" >
+       and ur_login_date  between #{ur_login_date1} and #{ur_login_date2}
+     </if>-->
+  </sql>
+
+  <!-- 分页 -->
+  <select id="getAcc_LargessList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from Acc_Largess  where 1=1
+    <include refid="wherelist" />
+    ORDER BY al_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountAcc_Largess" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(*) from Acc_Largess where 1=1
+    <include refid="wherelist" />
+  </select>
+
+
+  <select id="getAcc_Largess" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select * from
+    Acc_Largess  where
+    al_id =#{id,jdbcType=BIGINT}
+  </select>
+
+  <delete id="deleteByAcc_Largess" parameterType="java.lang.Integer" >
+    delete from Acc_Largess
+    where al_id = #{id,jdbcType=INTEGER}
+  </delete>
+
+</mapper>

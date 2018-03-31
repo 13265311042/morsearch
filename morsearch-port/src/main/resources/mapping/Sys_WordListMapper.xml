@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sys_WordListMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sys_WordList" >
+    <id column="sw_type" property="sw_type" jdbcType="VARCHAR" />
+    <id column="sw_index" property="sw_index" jdbcType="INTEGER" />
+    <result column="sw_name" property="sw_name" jdbcType="VARCHAR" />
+    <result column="sw_code" property="sw_code" jdbcType="VARCHAR" />
+    <result column="sw_value" property="sw_value" jdbcType="VARCHAR" />
+    <result column="sw_include" property="sw_include" jdbcType="VARCHAR" />
+    <result column="sw_imageurl" property="sw_imageurl" jdbcType="VARCHAR" />
+    <result column="sw_stopflag" property="sw_stopflag" jdbcType="BIT" />
+    <result column="sw_selectflag" property="sw_selectflag" jdbcType="BIT" />
+    <result column="sw_remark" property="sw_remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sw_type, sw_index, sw_name, sw_code, sw_value, sw_include, sw_imageurl, sw_stopflag, 
+    sw_selectflag, sw_remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sys_WordListExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sys_WordList
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sys_WordListKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from Sys_WordList
+    where sw_type = #{sw_type,jdbcType=VARCHAR}
+      and sw_index = #{sw_index,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.morsearch.model.Sys_WordListKey" >
+    delete from Sys_WordList
+    where sw_type = #{sw_type,jdbcType=VARCHAR}
+      and sw_index = #{sw_index,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sys_WordListExample" >
+    delete from Sys_WordList
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sys_WordList" >
+    insert into Sys_WordList (sw_type, sw_index, sw_name, 
+      sw_code, sw_value, sw_include, 
+      sw_imageurl, sw_stopflag, sw_selectflag, 
+      sw_remark)
+    values (#{sw_type,jdbcType=VARCHAR}, #{sw_index,jdbcType=INTEGER}, #{sw_name,jdbcType=VARCHAR}, 
+      #{sw_code,jdbcType=VARCHAR}, #{sw_value,jdbcType=VARCHAR}, #{sw_include,jdbcType=VARCHAR}, 
+      #{sw_imageurl,jdbcType=VARCHAR}, #{sw_stopflag,jdbcType=BIT}, #{sw_selectflag,jdbcType=BIT}, 
+      #{sw_remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sys_WordList" >
+    insert into Sys_WordList
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sw_type != null" >
+        sw_type,
+      </if>
+      <if test="sw_index != null" >
+        sw_index,
+      </if>
+      <if test="sw_name != null" >
+        sw_name,
+      </if>
+      <if test="sw_code != null" >
+        sw_code,
+      </if>
+      <if test="sw_value != null" >
+        sw_value,
+      </if>
+      <if test="sw_include != null" >
+        sw_include,
+      </if>
+      <if test="sw_imageurl != null" >
+        sw_imageurl,
+      </if>
+      <if test="sw_stopflag != null" >
+        sw_stopflag,
+      </if>
+      <if test="sw_selectflag != null" >
+        sw_selectflag,
+      </if>
+      <if test="sw_remark != null" >
+        sw_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sw_type != null" >
+        #{sw_type,jdbcType=VARCHAR},
+      </if>
+      <if test="sw_index != null" >
+        #{sw_index,jdbcType=INTEGER},
+      </if>
+      <if test="sw_name != null" >
+        #{sw_name,jdbcType=VARCHAR},
+      </if>
+      <if test="sw_code != null" >
+        #{sw_code,jdbcType=VARCHAR},
+      </if>
+      <if test="sw_value != null" >
+        #{sw_value,jdbcType=VARCHAR},
+      </if>
+      <if test="sw_include != null" >
+        #{sw_include,jdbcType=VARCHAR},
+      </if>
+      <if test="sw_imageurl != null" >
+        #{sw_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sw_stopflag != null" >
+        #{sw_stopflag,jdbcType=BIT},
+      </if>
+      <if test="sw_selectflag != null" >
+        #{sw_selectflag,jdbcType=BIT},
+      </if>
+      <if test="sw_remark != null" >
+        #{sw_remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sys_WordListExample" resultType="java.lang.Integer" >
+    select count(*) from Sys_WordList
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sys_WordList
+    <set >
+      <if test="record.sw_type != null" >
+        sw_type = #{record.sw_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sw_index != null" >
+        sw_index = #{record.sw_index,jdbcType=INTEGER},
+      </if>
+      <if test="record.sw_name != null" >
+        sw_name = #{record.sw_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sw_code != null" >
+        sw_code = #{record.sw_code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sw_value != null" >
+        sw_value = #{record.sw_value,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sw_include != null" >
+        sw_include = #{record.sw_include,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sw_imageurl != null" >
+        sw_imageurl = #{record.sw_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sw_stopflag != null" >
+        sw_stopflag = #{record.sw_stopflag,jdbcType=BIT},
+      </if>
+      <if test="record.sw_selectflag != null" >
+        sw_selectflag = #{record.sw_selectflag,jdbcType=BIT},
+      </if>
+      <if test="record.sw_remark != null" >
+        sw_remark = #{record.sw_remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sys_WordList
+    set sw_type = #{record.sw_type,jdbcType=VARCHAR},
+      sw_index = #{record.sw_index,jdbcType=INTEGER},
+      sw_name = #{record.sw_name,jdbcType=VARCHAR},
+      sw_code = #{record.sw_code,jdbcType=VARCHAR},
+      sw_value = #{record.sw_value,jdbcType=VARCHAR},
+      sw_include = #{record.sw_include,jdbcType=VARCHAR},
+      sw_imageurl = #{record.sw_imageurl,jdbcType=VARCHAR},
+      sw_stopflag = #{record.sw_stopflag,jdbcType=BIT},
+      sw_selectflag = #{record.sw_selectflag,jdbcType=BIT},
+      sw_remark = #{record.sw_remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sys_WordList" >
+    update Sys_WordList
+    <set >
+      <if test="sw_name != null" >
+        sw_name = #{sw_name,jdbcType=VARCHAR},
+      </if>
+      <if test="sw_code != null" >
+        sw_code = #{sw_code,jdbcType=VARCHAR},
+      </if>
+      <if test="sw_value != null" >
+        sw_value = #{sw_value,jdbcType=VARCHAR},
+      </if>
+      <if test="sw_include != null" >
+        sw_include = #{sw_include,jdbcType=VARCHAR},
+      </if>
+      <if test="sw_imageurl != null" >
+        sw_imageurl = #{sw_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sw_stopflag != null" >
+        sw_stopflag = #{sw_stopflag,jdbcType=BIT},
+      </if>
+      <if test="sw_selectflag != null" >
+        sw_selectflag = #{sw_selectflag,jdbcType=BIT},
+      </if>
+      <if test="sw_remark != null" >
+        sw_remark = #{sw_remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sw_type = #{sw_type,jdbcType=VARCHAR}
+      and sw_index = #{sw_index,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sys_WordList" >
+    update Sys_WordList
+    set sw_name = #{sw_name,jdbcType=VARCHAR},
+      sw_code = #{sw_code,jdbcType=VARCHAR},
+      sw_value = #{sw_value,jdbcType=VARCHAR},
+      sw_include = #{sw_include,jdbcType=VARCHAR},
+      sw_imageurl = #{sw_imageurl,jdbcType=VARCHAR},
+      sw_stopflag = #{sw_stopflag,jdbcType=BIT},
+      sw_selectflag = #{sw_selectflag,jdbcType=BIT},
+      sw_remark = #{sw_remark,jdbcType=VARCHAR}
+    where sw_type = #{sw_type,jdbcType=VARCHAR}
+      and sw_index = #{sw_index,jdbcType=INTEGER}
+  </update>
+
+
+  <!-- 标签用词按类别查询   -->
+  <select id="getSysWordList"  resultMap="BaseResultMap" parameterType="String">
+    select
+    <if test="flag== null or flag==0" >
+      *
+    </if>
+    <if test="flag==1" >
+      sw_index,sw_name,sw_selectflag
+    </if>
+    <if test="flag==2" >
+      sw_name,sw_code,sw_value,sw_include,sw_imageurl
+    </if>
+    from Sys_WordList where sw_type = #{sw_type,jdbcType=VARCHAR}
+    <if test="flag!= null and flag>0" >
+      and ifnull(sw_stopflag,0)=0
+    </if>
+    order by sw_index
+  </select>
+
+
+<!--通过城市获取代码-->
+  <select id="getWordTypeCode" parameterType="String" resultType="String">
+    select  sw_code from Sys_WordList where sw_type=1001
+    AND sw_name=#{sw_name,jdbcType=VARCHAR}
+  </select>
+
+
+  <!-- 获取系统用词类型   string-->
+  <select id="getWordTypeName" parameterType="String" resultType="String">
+    select  st_name from Sys_WordType where st_type=#{type,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 通过代码获取明细   string-->
+  <select id="getSys_WordCodeDetail" parameterType="String" resultMap="BaseResultMap">
+    select  * from Sys_WordList where sw_type=#{type,jdbcType=VARCHAR} and sw_code=#{code,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 返回库存没有的种类   string-->
+  <select id="getAcc_DepositNoType" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select  * from Sys_WordList where sw_type='1002' and ifnull(sw_stopflag,0)=0
+    and not exists(select ac_typecode from Acc_Deposit where sw_code=ac_typecode and ac_userid=#{userid,jdbcType=BIGINT})
+  </select>
+
+
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:amq="http://activemq.apache.org/schema/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.8.0.xsd">
+
+    <!--&lt;!&ndash; Activemq 连接工厂 &ndash;&gt;-->
+    <!--<bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">-->
+        <!--<constructor-arg value="system1" />-->
+        <!--<constructor-arg value="manager1" />-->
+        <!--<constructor-arg value="failover:(tcp://192.168.3.250:61616)?timeout=2000" />-->
+        <!--&lt;!&ndash;生产服务器mq的ip地址&ndash;&gt;-->
+        <!--&lt;!&ndash;<constructor-arg value="failover:(tcp://192.168.10.10:61616)?timeout=2000" />&ndash;&gt;-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; ConnectionFactory Definition &ndash;&gt;-->
+    <!--<bean id="connectionFactory"-->
+          <!--class="org.springframework.jms.connection.CachingConnectionFactory">-->
+        <!--<constructor-arg ref="activeMQConnectionFactory" />-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; Default Destination Queue Definition &ndash;&gt;-->
+    <!--&lt;!&ndash; 测试配置多个Destination &ndash;&gt;-->
+    <!--<bean id="destination" class="org.apache.activemq.command.ActiveMQQueue">-->
+        <!--<constructor-arg index="0" value="test.activemq.queue" />-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; JmsTemplate Definition &ndash;&gt;-->
+    <!--<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">-->
+        <!--<property name="connectionFactory" ref="connectionFactory" />-->
+        <!--<property name="defaultDestination" ref="destination" />-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; Message Sender Definition &ndash;&gt;-->
+    <!--<bean id="messageSender" class="com.morsearch.sms.publisher.MessageSender">-->
+        <!--<constructor-arg index="0" ref="jmsTemplate" />-->
+        <!--<constructor-arg index="1" ref="destination" />-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; 消息监听器 Message Receiver Definition &ndash;&gt;-->
+    <!--<bean id="messageReceiver" class="com.morsearch.sms.consumer.MessageReceiver">-->
+    <!--</bean>-->
+    <!--<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">-->
+        <!--<property name="connectionFactory" ref="connectionFactory" />-->
+        <!--<property name="destinationName" value="test.activemq.queue" />-->
+        <!--<property name="messageListener" ref="messageReceiver" />-->
+    <!--</bean>-->
+
+</beans>

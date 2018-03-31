@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Mall_HomeMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Mall_Home" >
+    <id column="mh_id" property="mh_id" jdbcType="BIGINT" />
+    <result column="mh_type" property="mh_type" jdbcType="TINYINT" />
+    <result column="mh_goodid" property="mh_goodid" jdbcType="BIGINT" />
+    <result column="mh_index" property="mh_index" jdbcType="INTEGER" />
+    <result column="mh_remark" property="mh_remark" jdbcType="VARCHAR" />
+    <result column="mh_stopflag" property="mh_stopflag" jdbcType="BIT" />
+    <result column="mh_createno" property="mh_createno" jdbcType="VARCHAR" />
+    <result column="mh_createdate" property="mh_createdate" jdbcType="TIMESTAMP" />
+    <result column="mh_updateno" property="mh_updateno" jdbcType="VARCHAR" />
+    <result column="mh_updatedate" property="mh_updatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mh_id, mh_type, mh_goodid, mh_index, mh_remark, mh_stopflag, mh_createno, mh_createdate, 
+    mh_updateno, mh_updatedate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Mall_HomeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Mall_Home
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Mall_Home
+    where mh_id = #{mh_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Mall_Home
+    where mh_id = #{mh_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Mall_HomeExample" >
+    delete from Mall_Home
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Mall_Home" >
+
+    <selectKey keyProperty="mh_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Mall_Home (mh_id, mh_type, mh_goodid, 
+      mh_index, mh_remark, mh_stopflag, 
+      mh_createno, mh_createdate, mh_updateno, 
+      mh_updatedate)
+    values (#{mh_id,jdbcType=BIGINT}, #{mh_type,jdbcType=TINYINT}, #{mh_goodid,jdbcType=BIGINT}, 
+      #{mh_index,jdbcType=INTEGER}, #{mh_remark,jdbcType=VARCHAR}, #{mh_stopflag,jdbcType=BIT}, 
+      #{mh_createno,jdbcType=VARCHAR}, #{mh_createdate,jdbcType=TIMESTAMP}, #{mh_updateno,jdbcType=VARCHAR}, 
+      #{mh_updatedate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Mall_Home" >
+
+    <selectKey keyProperty="mh_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Mall_Home
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mh_id != null" >
+        mh_id,
+      </if>
+      <if test="mh_type != null" >
+        mh_type,
+      </if>
+      <if test="mh_goodid != null" >
+        mh_goodid,
+      </if>
+      <if test="mh_index != null" >
+        mh_index,
+      </if>
+      <if test="mh_remark != null" >
+        mh_remark,
+      </if>
+      <if test="mh_stopflag != null" >
+        mh_stopflag,
+      </if>
+      <if test="mh_createno != null" >
+        mh_createno,
+      </if>
+      <if test="mh_createdate != null" >
+        mh_createdate,
+      </if>
+      <if test="mh_updateno != null" >
+        mh_updateno,
+      </if>
+      <if test="mh_updatedate != null" >
+        mh_updatedate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mh_id != null" >
+        #{mh_id,jdbcType=BIGINT},
+      </if>
+      <if test="mh_type != null" >
+        #{mh_type,jdbcType=TINYINT},
+      </if>
+      <if test="mh_goodid != null" >
+        #{mh_goodid,jdbcType=BIGINT},
+      </if>
+      <if test="mh_index != null" >
+        #{mh_index,jdbcType=INTEGER},
+      </if>
+      <if test="mh_remark != null" >
+        #{mh_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="mh_stopflag != null" >
+        #{mh_stopflag,jdbcType=BIT},
+      </if>
+      <if test="mh_createno != null" >
+        #{mh_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="mh_createdate != null" >
+        #{mh_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mh_updateno != null" >
+        #{mh_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="mh_updatedate != null" >
+        #{mh_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Mall_HomeExample" resultType="java.lang.Integer" >
+    select count(*) from Mall_Home
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Mall_Home
+    <set >
+      <if test="record.mh_id != null" >
+        mh_id = #{record.mh_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.mh_type != null" >
+        mh_type = #{record.mh_type,jdbcType=TINYINT},
+      </if>
+      <if test="record.mh_goodid != null" >
+        mh_goodid = #{record.mh_goodid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mh_index != null" >
+        mh_index = #{record.mh_index,jdbcType=INTEGER},
+      </if>
+      <if test="record.mh_remark != null" >
+        mh_remark = #{record.mh_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mh_stopflag != null" >
+        mh_stopflag = #{record.mh_stopflag,jdbcType=BIT},
+      </if>
+      <if test="record.mh_createno != null" >
+        mh_createno = #{record.mh_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mh_createdate != null" >
+        mh_createdate = #{record.mh_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mh_updateno != null" >
+        mh_updateno = #{record.mh_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mh_updatedate != null" >
+        mh_updatedate = #{record.mh_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Mall_Home
+    set mh_id = #{record.mh_id,jdbcType=BIGINT},
+      mh_type = #{record.mh_type,jdbcType=TINYINT},
+      mh_goodid = #{record.mh_goodid,jdbcType=BIGINT},
+      mh_index = #{record.mh_index,jdbcType=INTEGER},
+      mh_remark = #{record.mh_remark,jdbcType=VARCHAR},
+      mh_stopflag = #{record.mh_stopflag,jdbcType=BIT},
+      mh_createno = #{record.mh_createno,jdbcType=VARCHAR},
+      mh_createdate = #{record.mh_createdate,jdbcType=TIMESTAMP},
+      mh_updateno = #{record.mh_updateno,jdbcType=VARCHAR},
+      mh_updatedate = #{record.mh_updatedate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Mall_Home" >
+    update Mall_Home
+    <set >
+      <if test="mh_type != null" >
+        mh_type = #{mh_type,jdbcType=TINYINT},
+      </if>
+      <if test="mh_goodid != null" >
+        mh_goodid = #{mh_goodid,jdbcType=BIGINT},
+      </if>
+      <if test="mh_index != null" >
+        mh_index = #{mh_index,jdbcType=INTEGER},
+      </if>
+      <if test="mh_remark != null" >
+        mh_remark = #{mh_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="mh_stopflag != null" >
+        mh_stopflag = #{mh_stopflag,jdbcType=BIT},
+      </if>
+      <if test="mh_createno != null" >
+        mh_createno = #{mh_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="mh_createdate != null" >
+        mh_createdate = #{mh_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mh_updateno != null" >
+        mh_updateno = #{mh_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="mh_updatedate != null" >
+        mh_updatedate = #{mh_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where mh_id = #{mh_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Mall_Home" >
+    update Mall_Home
+    set mh_type = #{mh_type,jdbcType=TINYINT},
+      mh_goodid = #{mh_goodid,jdbcType=BIGINT},
+      mh_index = #{mh_index,jdbcType=INTEGER},
+      mh_remark = #{mh_remark,jdbcType=VARCHAR},
+      mh_stopflag = #{mh_stopflag,jdbcType=BIT},
+      mh_createno = #{mh_createno,jdbcType=VARCHAR},
+      mh_createdate = #{mh_createdate,jdbcType=TIMESTAMP},
+      mh_updateno = #{mh_updateno,jdbcType=VARCHAR},
+      mh_updatedate = #{mh_updatedate,jdbcType=TIMESTAMP}
+    where mh_id = #{mh_id,jdbcType=BIGINT}
+  </update>
+
+<!--
+获取自增
+-->
+
+</mapper>

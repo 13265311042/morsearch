@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.SalesV_Order_GuestMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.SalesV_Order_Guest" >
+    <result column="of_id" property="of_id" jdbcType="BIGINT" />
+    <result column="of_no" property="of_no" jdbcType="VARCHAR" />
+    <result column="of_dateorder" property="of_dateorder" jdbcType="TIMESTAMP" />
+    <result column="of_custid" property="of_custid" jdbcType="BIGINT" />
+    <result column="of_talkhead" property="of_talkhead" jdbcType="VARCHAR" />
+    <result column="of_talksign" property="of_talksign" jdbcType="VARCHAR" />
+    <result column="of_talklastmsg" property="of_talklastmsg" jdbcType="VARCHAR" />
+    <result column="dateupdatestr" property="dateupdatestr" jdbcType="VARCHAR" />
+    <result column="sale_name" property="sale_name" jdbcType="VARCHAR" />
+    <result column="sale_imageurl" property="sale_imageurl" jdbcType="VARCHAR" />
+    <result column="sale_sex" property="sale_sex" jdbcType="VARCHAR" />
+    <result column="sale_id" property="sale_id" jdbcType="BIGINT" />
+    <result column="of_status" property="of_status" jdbcType="TINYINT" />
+    <result column="of_flagsuccess" property="of_flagsuccess" jdbcType="BIT" />
+    <result column="statusname" property="statusname" jdbcType="VARCHAR" />
+    <result column="of_dateupdate" property="of_dateupdate" jdbcType="TIMESTAMP" />
+    <result column="desig_name" property="desig_name" jdbcType="VARCHAR" />
+    <result column="desig_imageurl" property="desig_imageurl" jdbcType="VARCHAR" />
+    <result column="desig_sex" property="desig_sex" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    of_id, of_no, of_dateorder, of_custid, of_talkhead, of_talksign, of_talklastmsg,
+    dateupdatestr, sale_name, sale_imageurl, sale_sex, sale_id, of_status, of_flagsuccess,
+    statusname, of_dateupdate, desig_name, desig_imageurl, desig_sex
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.SalesV_Order_GuestExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SalesV_Order_Guest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.SalesV_Order_GuestExample" >
+    delete from SalesV_Order_Guest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.SalesV_Order_Guest" >
+    insert into SalesV_Order_Guest (of_id, of_no, of_dateorder,
+    of_custid, of_talkhead, of_talksign,
+    of_talklastmsg, dateupdatestr, sale_name,
+    sale_imageurl, sale_sex, sale_id,
+    of_status, of_flagsuccess, statusname,
+    of_dateupdate, desig_name, desig_imageurl,
+    desig_sex)
+    values (#{of_id,jdbcType=BIGINT}, #{of_no,jdbcType=VARCHAR}, #{of_dateorder,jdbcType=TIMESTAMP},
+    #{of_custid,jdbcType=BIGINT}, #{of_talkhead,jdbcType=VARCHAR}, #{of_talksign,jdbcType=VARCHAR},
+    #{of_talklastmsg,jdbcType=VARCHAR}, #{dateupdatestr,jdbcType=VARCHAR}, #{sale_name,jdbcType=VARCHAR},
+    #{sale_imageurl,jdbcType=VARCHAR}, #{sale_sex,jdbcType=VARCHAR}, #{sale_id,jdbcType=BIGINT},
+    #{of_status,jdbcType=TINYINT}, #{of_flagsuccess,jdbcType=BIT}, #{statusname,jdbcType=VARCHAR},
+    #{of_dateupdate,jdbcType=TIMESTAMP}, #{desig_name,jdbcType=VARCHAR}, #{desig_imageurl,jdbcType=VARCHAR},
+    #{desig_sex,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.SalesV_Order_Guest" >
+    insert into SalesV_Order_Guest
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="of_id != null" >
+        of_id,
+      </if>
+      <if test="of_no != null" >
+        of_no,
+      </if>
+      <if test="of_dateorder != null" >
+        of_dateorder,
+      </if>
+      <if test="of_custid != null" >
+        of_custid,
+      </if>
+      <if test="of_talkhead != null" >
+        of_talkhead,
+      </if>
+      <if test="of_talksign != null" >
+        of_talksign,
+      </if>
+      <if test="of_talklastmsg != null" >
+        of_talklastmsg,
+      </if>
+      <if test="dateupdatestr != null" >
+        dateupdatestr,
+      </if>
+      <if test="sale_name != null" >
+        sale_name,
+      </if>
+      <if test="sale_imageurl != null" >
+        sale_imageurl,
+      </if>
+      <if test="sale_sex != null" >
+        sale_sex,
+      </if>
+      <if test="sale_id != null" >
+        sale_id,
+      </if>
+      <if test="of_status != null" >
+        of_status,
+      </if>
+      <if test="of_flagsuccess != null" >
+        of_flagsuccess,
+      </if>
+      <if test="statusname != null" >
+        statusname,
+      </if>
+      <if test="of_dateupdate != null" >
+        of_dateupdate,
+      </if>
+      <if test="desig_name != null" >
+        desig_name,
+      </if>
+      <if test="desig_imageurl != null" >
+        desig_imageurl,
+      </if>
+      <if test="desig_sex != null" >
+        desig_sex,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="of_id != null" >
+        #{of_id,jdbcType=BIGINT},
+      </if>
+      <if test="of_no != null" >
+        #{of_no,jdbcType=VARCHAR},
+      </if>
+      <if test="of_dateorder != null" >
+        #{of_dateorder,jdbcType=TIMESTAMP},
+      </if>
+      <if test="of_custid != null" >
+        #{of_custid,jdbcType=BIGINT},
+      </if>
+      <if test="of_talkhead != null" >
+        #{of_talkhead,jdbcType=VARCHAR},
+      </if>
+      <if test="of_talksign != null" >
+        #{of_talksign,jdbcType=VARCHAR},
+      </if>
+      <if test="of_talklastmsg != null" >
+        #{of_talklastmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="dateupdatestr != null" >
+        #{dateupdatestr,jdbcType=VARCHAR},
+      </if>
+      <if test="sale_name != null" >
+        #{sale_name,jdbcType=VARCHAR},
+      </if>
+      <if test="sale_imageurl != null" >
+        #{sale_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sale_sex != null" >
+        #{sale_sex,jdbcType=VARCHAR},
+      </if>
+      <if test="sale_id != null" >
+        #{sale_id,jdbcType=BIGINT},
+      </if>
+      <if test="of_status != null" >
+        #{of_status,jdbcType=TINYINT},
+      </if>
+      <if test="of_flagsuccess != null" >
+        #{of_flagsuccess,jdbcType=BIT},
+      </if>
+      <if test="statusname != null" >
+        #{statusname,jdbcType=VARCHAR},
+      </if>
+      <if test="of_dateupdate != null" >
+        #{of_dateupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="desig_name != null" >
+        #{desig_name,jdbcType=VARCHAR},
+      </if>
+      <if test="desig_imageurl != null" >
+        #{desig_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="desig_sex != null" >
+        #{desig_sex,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.SalesV_Order_GuestExample" resultType="java.lang.Integer" >
+    select count(*) from SalesV_Order_Guest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SalesV_Order_Guest
+    <set >
+      <if test="record.of_id != null" >
+        of_id = #{record.of_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.of_no != null" >
+        of_no = #{record.of_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_dateorder != null" >
+        of_dateorder = #{record.of_dateorder,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.of_custid != null" >
+        of_custid = #{record.of_custid,jdbcType=BIGINT},
+      </if>
+      <if test="record.of_talkhead != null" >
+        of_talkhead = #{record.of_talkhead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_talksign != null" >
+        of_talksign = #{record.of_talksign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_talklastmsg != null" >
+        of_talklastmsg = #{record.of_talklastmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateupdatestr != null" >
+        dateupdatestr = #{record.dateupdatestr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sale_name != null" >
+        sale_name = #{record.sale_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sale_imageurl != null" >
+        sale_imageurl = #{record.sale_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sale_sex != null" >
+        sale_sex = #{record.sale_sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sale_id != null" >
+        sale_id = #{record.sale_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.of_status != null" >
+        of_status = #{record.of_status,jdbcType=TINYINT},
+      </if>
+      <if test="record.of_flagsuccess != null" >
+        of_flagsuccess = #{record.of_flagsuccess,jdbcType=BIT},
+      </if>
+      <if test="record.statusname != null" >
+        statusname = #{record.statusname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.of_dateupdate != null" >
+        of_dateupdate = #{record.of_dateupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.desig_name != null" >
+        desig_name = #{record.desig_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desig_imageurl != null" >
+        desig_imageurl = #{record.desig_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desig_sex != null" >
+        desig_sex = #{record.desig_sex,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SalesV_Order_Guest
+    set of_id = #{record.of_id,jdbcType=BIGINT},
+    of_no = #{record.of_no,jdbcType=VARCHAR},
+    of_dateorder = #{record.of_dateorder,jdbcType=TIMESTAMP},
+    of_custid = #{record.of_custid,jdbcType=BIGINT},
+    of_talkhead = #{record.of_talkhead,jdbcType=VARCHAR},
+    of_talksign = #{record.of_talksign,jdbcType=VARCHAR},
+    of_talklastmsg = #{record.of_talklastmsg,jdbcType=VARCHAR},
+    dateupdatestr = #{record.dateupdatestr,jdbcType=VARCHAR},
+    sale_name = #{record.sale_name,jdbcType=VARCHAR},
+    sale_imageurl = #{record.sale_imageurl,jdbcType=VARCHAR},
+    sale_sex = #{record.sale_sex,jdbcType=VARCHAR},
+    sale_id = #{record.sale_id,jdbcType=BIGINT},
+    of_status = #{record.of_status,jdbcType=TINYINT},
+    of_flagsuccess = #{record.of_flagsuccess,jdbcType=BIT},
+    statusname = #{record.statusname,jdbcType=VARCHAR},
+    of_dateupdate = #{record.of_dateupdate,jdbcType=TIMESTAMP},
+    desig_name = #{record.desig_name,jdbcType=VARCHAR},
+    desig_imageurl = #{record.desig_imageurl,jdbcType=VARCHAR},
+    desig_sex = #{record.desig_sex,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

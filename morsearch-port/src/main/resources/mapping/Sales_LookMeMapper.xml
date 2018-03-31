@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sales_LookMeMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sales_LookMe" >
+    <id column="sl_id" property="sl_id" jdbcType="BIGINT" />
+    <result column="sl_salesmanid" property="sl_salesmanid" jdbcType="BIGINT" />
+    <result column="sl_desginerid" property="sl_desginerid" jdbcType="BIGINT" />
+    <result column="sl_createdate" property="sl_createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sl_id, sl_salesmanid, sl_desginerid, sl_createdate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sales_LookMeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sales_LookMe
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Sales_LookMe
+    where sl_id = #{sl_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Sales_LookMe
+    where sl_id = #{sl_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sales_LookMeExample" >
+    delete from Sales_LookMe
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sales_LookMe" >
+    <selectKey keyProperty="sl_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Sales_LookMe (sl_id, sl_salesmanid, sl_desginerid, 
+      sl_createdate)
+    values (#{sl_id,jdbcType=BIGINT}, #{sl_salesmanid,jdbcType=BIGINT}, #{sl_desginerid,jdbcType=BIGINT}, 
+      #{sl_createdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sales_LookMe" >
+    <selectKey keyProperty="sl_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Sales_LookMe
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sl_id != null" >
+        sl_id,
+      </if>
+      <if test="sl_salesmanid != null" >
+        sl_salesmanid,
+      </if>
+      <if test="sl_desginerid != null" >
+        sl_desginerid,
+      </if>
+      <if test="sl_createdate != null" >
+        sl_createdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sl_id != null" >
+        #{sl_id,jdbcType=BIGINT},
+      </if>
+      <if test="sl_salesmanid != null" >
+        #{sl_salesmanid,jdbcType=BIGINT},
+      </if>
+      <if test="sl_desginerid != null" >
+        #{sl_desginerid,jdbcType=BIGINT},
+      </if>
+      <if test="sl_createdate != null" >
+        #{sl_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sales_LookMeExample" resultType="java.lang.Integer" >
+    select count(*) from Sales_LookMe
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sales_LookMe
+    <set >
+      <if test="record.sl_id != null" >
+        sl_id = #{record.sl_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sl_salesmanid != null" >
+        sl_salesmanid = #{record.sl_salesmanid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sl_desginerid != null" >
+        sl_desginerid = #{record.sl_desginerid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sl_createdate != null" >
+        sl_createdate = #{record.sl_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sales_LookMe
+    set sl_id = #{record.sl_id,jdbcType=BIGINT},
+      sl_salesmanid = #{record.sl_salesmanid,jdbcType=BIGINT},
+      sl_desginerid = #{record.sl_desginerid,jdbcType=BIGINT},
+      sl_createdate = #{record.sl_createdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sales_LookMe" >
+    update Sales_LookMe
+    <set >
+      <if test="sl_salesmanid != null" >
+        sl_salesmanid = #{sl_salesmanid,jdbcType=BIGINT},
+      </if>
+      <if test="sl_desginerid != null" >
+        sl_desginerid = #{sl_desginerid,jdbcType=BIGINT},
+      </if>
+      <if test="sl_createdate != null" >
+        sl_createdate = #{sl_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sl_id = #{sl_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sales_LookMe" >
+    update Sales_LookMe
+    set sl_salesmanid = #{sl_salesmanid,jdbcType=BIGINT},
+      sl_desginerid = #{sl_desginerid,jdbcType=BIGINT},
+      sl_createdate = #{sl_createdate,jdbcType=TIMESTAMP}
+    where sl_id = #{sl_id,jdbcType=BIGINT}
+  </update>
+</mapper>

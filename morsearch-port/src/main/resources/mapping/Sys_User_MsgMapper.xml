@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sys_User_MsgMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sys_User_Msg" >
+    <id column="um_userid" property="um_userid" jdbcType="BIGINT" />
+    <result column="um_lookmetime" property="um_lookmetime" jdbcType="INTEGER" />
+    <result column="um_lookmetitle" property="um_lookmetitle" jdbcType="VARCHAR" />
+    <result column="um_lookmedate" property="um_lookmedate" jdbcType="TIMESTAMP" />
+    <result column="um_interesttime" property="um_interesttime" jdbcType="INTEGER" />
+    <result column="um_interesttitle" property="um_interesttitle" jdbcType="VARCHAR" />
+    <result column="um_interestdate" property="um_interestdate" jdbcType="TIMESTAMP" />
+    <result column="um_ordermsgtime" property="um_ordermsgtime" jdbcType="INTEGER" />
+    <result column="um_ordermsgdate" property="um_ordermsgdate" jdbcType="TIMESTAMP" />
+    <result column="um_dsg_baitietime" property="um_dsg_baitietime" jdbcType="INTEGER" />
+    <result column="um_dsg_baitiedate" property="um_dsg_baitiedate" jdbcType="TIMESTAMP" />
+    <result column="um_dsg_audittime" property="um_dsg_audittime" jdbcType="INTEGER" />
+    <result column="um_dsg_auditdate" property="um_dsg_auditdate" jdbcType="TIMESTAMP" />
+    <result column="um_dsg_appealtime" property="um_dsg_appealtime" jdbcType="INTEGER" />
+    <result column="um_dsg_appealdate" property="um_dsg_appealdate" jdbcType="TIMESTAMP" />
+    <result column="um_msgsumtime" property="um_msgsumtime" jdbcType="INTEGER" />
+    <result column="um_countorder" property="um_countorder" jdbcType="INTEGER" />
+    <result column="um_countneed" property="um_countneed" jdbcType="INTEGER" />
+    <result column="um_evaluatesum" property="um_evaluatesum" jdbcType="INTEGER" />
+    <result column="um_evaluatecount" property="um_evaluatecount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    um_userid, um_lookmetime, um_lookmetitle, um_lookmedate, um_interesttime, um_interesttitle,
+    um_interestdate, um_ordermsgtime, um_ordermsgdate, um_dsg_baitietime, um_dsg_baitiedate,
+    um_dsg_audittime, um_dsg_auditdate, um_dsg_appealtime, um_dsg_appealdate, um_msgsumtime,
+    um_countorder, um_countneed, um_evaluatesum, um_evaluatecount
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sys_User_MsgExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sys_User_Msg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Sys_User_Msg
+    where um_userid = #{um_userid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Sys_User_Msg
+    where um_userid = #{um_userid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sys_User_MsgExample" >
+    delete from Sys_User_Msg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sys_User_Msg" >
+    insert into Sys_User_Msg (um_userid, um_lookmetime, um_lookmetitle,
+    um_lookmedate, um_interesttime, um_interesttitle,
+    um_interestdate, um_ordermsgtime, um_ordermsgdate,
+    um_dsg_baitietime, um_dsg_baitiedate,
+    um_dsg_audittime, um_dsg_auditdate, um_dsg_appealtime,
+    um_dsg_appealdate, um_msgsumtime, um_countorder,
+    um_countneed, um_evaluatesum, um_evaluatecount
+    )
+    values (#{um_userid,jdbcType=BIGINT}, #{um_lookmetime,jdbcType=INTEGER}, #{um_lookmetitle,jdbcType=VARCHAR},
+    #{um_lookmedate,jdbcType=TIMESTAMP}, #{um_interesttime,jdbcType=INTEGER}, #{um_interesttitle,jdbcType=VARCHAR},
+    #{um_interestdate,jdbcType=TIMESTAMP}, #{um_ordermsgtime,jdbcType=INTEGER}, #{um_ordermsgdate,jdbcType=TIMESTAMP},
+    #{um_dsg_baitietime,jdbcType=INTEGER}, #{um_dsg_baitiedate,jdbcType=TIMESTAMP},
+    #{um_dsg_audittime,jdbcType=INTEGER}, #{um_dsg_auditdate,jdbcType=TIMESTAMP}, #{um_dsg_appealtime,jdbcType=INTEGER},
+    #{um_dsg_appealdate,jdbcType=TIMESTAMP}, #{um_msgsumtime,jdbcType=INTEGER}, #{um_countorder,jdbcType=INTEGER},
+    #{um_countneed,jdbcType=INTEGER}, #{um_evaluatesum,jdbcType=INTEGER}, #{um_evaluatecount,jdbcType=INTEGER}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sys_User_Msg" >
+    insert into Sys_User_Msg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="um_userid != null" >
+        um_userid,
+      </if>
+      <if test="um_lookmetime != null" >
+        um_lookmetime,
+      </if>
+      <if test="um_lookmetitle != null" >
+        um_lookmetitle,
+      </if>
+      <if test="um_lookmedate != null" >
+        um_lookmedate,
+      </if>
+      <if test="um_interesttime != null" >
+        um_interesttime,
+      </if>
+      <if test="um_interesttitle != null" >
+        um_interesttitle,
+      </if>
+      <if test="um_interestdate != null" >
+        um_interestdate,
+      </if>
+      <if test="um_ordermsgtime != null" >
+        um_ordermsgtime,
+      </if>
+      <if test="um_ordermsgdate != null" >
+        um_ordermsgdate,
+      </if>
+      <if test="um_dsg_baitietime != null" >
+        um_dsg_baitietime,
+      </if>
+      <if test="um_dsg_baitiedate != null" >
+        um_dsg_baitiedate,
+      </if>
+      <if test="um_dsg_audittime != null" >
+        um_dsg_audittime,
+      </if>
+      <if test="um_dsg_auditdate != null" >
+        um_dsg_auditdate,
+      </if>
+      <if test="um_dsg_appealtime != null" >
+        um_dsg_appealtime,
+      </if>
+      <if test="um_dsg_appealdate != null" >
+        um_dsg_appealdate,
+      </if>
+      <if test="um_msgsumtime != null" >
+        um_msgsumtime,
+      </if>
+      <if test="um_countorder != null" >
+        um_countorder,
+      </if>
+      <if test="um_countneed != null" >
+        um_countneed,
+      </if>
+      <if test="um_evaluatesum != null" >
+        um_evaluatesum,
+      </if>
+      <if test="um_evaluatecount != null" >
+        um_evaluatecount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="um_userid != null" >
+        #{um_userid,jdbcType=BIGINT},
+      </if>
+      <if test="um_lookmetime != null" >
+        #{um_lookmetime,jdbcType=INTEGER},
+      </if>
+      <if test="um_lookmetitle != null" >
+        #{um_lookmetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="um_lookmedate != null" >
+        #{um_lookmedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="um_interesttime != null" >
+        #{um_interesttime,jdbcType=INTEGER},
+      </if>
+      <if test="um_interesttitle != null" >
+        #{um_interesttitle,jdbcType=VARCHAR},
+      </if>
+      <if test="um_interestdate != null" >
+        #{um_interestdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="um_ordermsgtime != null" >
+        #{um_ordermsgtime,jdbcType=INTEGER},
+      </if>
+      <if test="um_ordermsgdate != null" >
+        #{um_ordermsgdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="um_dsg_baitietime != null" >
+        #{um_dsg_baitietime,jdbcType=INTEGER},
+      </if>
+      <if test="um_dsg_baitiedate != null" >
+        #{um_dsg_baitiedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="um_dsg_audittime != null" >
+        #{um_dsg_audittime,jdbcType=INTEGER},
+      </if>
+      <if test="um_dsg_auditdate != null" >
+        #{um_dsg_auditdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="um_dsg_appealtime != null" >
+        #{um_dsg_appealtime,jdbcType=INTEGER},
+      </if>
+      <if test="um_dsg_appealdate != null" >
+        #{um_dsg_appealdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="um_msgsumtime != null" >
+        #{um_msgsumtime,jdbcType=INTEGER},
+      </if>
+      <if test="um_countorder != null" >
+        #{um_countorder,jdbcType=INTEGER},
+      </if>
+      <if test="um_countneed != null" >
+        #{um_countneed,jdbcType=INTEGER},
+      </if>
+      <if test="um_evaluatesum != null" >
+        #{um_evaluatesum,jdbcType=INTEGER},
+      </if>
+      <if test="um_evaluatecount != null" >
+        #{um_evaluatecount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sys_User_MsgExample" resultType="java.lang.Integer" >
+    select count(*) from Sys_User_Msg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sys_User_Msg
+    <set >
+      <if test="record.um_userid != null" >
+        um_userid = #{record.um_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.um_lookmetime != null" >
+        um_lookmetime = #{record.um_lookmetime,jdbcType=INTEGER},
+      </if>
+      <if test="record.um_lookmetitle != null" >
+        um_lookmetitle = #{record.um_lookmetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.um_lookmedate != null" >
+        um_lookmedate = #{record.um_lookmedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.um_interesttime != null" >
+        um_interesttime = #{record.um_interesttime,jdbcType=INTEGER},
+      </if>
+      <if test="record.um_interesttitle != null" >
+        um_interesttitle = #{record.um_interesttitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.um_interestdate != null" >
+        um_interestdate = #{record.um_interestdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.um_ordermsgtime != null" >
+        um_ordermsgtime = #{record.um_ordermsgtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.um_ordermsgdate != null" >
+        um_ordermsgdate = #{record.um_ordermsgdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.um_dsg_baitietime != null" >
+        um_dsg_baitietime = #{record.um_dsg_baitietime,jdbcType=INTEGER},
+      </if>
+      <if test="record.um_dsg_baitiedate != null" >
+        um_dsg_baitiedate = #{record.um_dsg_baitiedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.um_dsg_audittime != null" >
+        um_dsg_audittime = #{record.um_dsg_audittime,jdbcType=INTEGER},
+      </if>
+      <if test="record.um_dsg_auditdate != null" >
+        um_dsg_auditdate = #{record.um_dsg_auditdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.um_dsg_appealtime != null" >
+        um_dsg_appealtime = #{record.um_dsg_appealtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.um_dsg_appealdate != null" >
+        um_dsg_appealdate = #{record.um_dsg_appealdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.um_msgsumtime != null" >
+        um_msgsumtime = #{record.um_msgsumtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.um_countorder != null" >
+        um_countorder = #{record.um_countorder,jdbcType=INTEGER},
+      </if>
+      <if test="record.um_countneed != null" >
+        um_countneed = #{record.um_countneed,jdbcType=INTEGER},
+      </if>
+      <if test="record.um_evaluatesum != null" >
+        um_evaluatesum = #{record.um_evaluatesum,jdbcType=INTEGER},
+      </if>
+      <if test="record.um_evaluatecount != null" >
+        um_evaluatecount = #{record.um_evaluatecount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sys_User_Msg
+    set um_userid = #{record.um_userid,jdbcType=BIGINT},
+    um_lookmetime = #{record.um_lookmetime,jdbcType=INTEGER},
+    um_lookmetitle = #{record.um_lookmetitle,jdbcType=VARCHAR},
+    um_lookmedate = #{record.um_lookmedate,jdbcType=TIMESTAMP},
+    um_interesttime = #{record.um_interesttime,jdbcType=INTEGER},
+    um_interesttitle = #{record.um_interesttitle,jdbcType=VARCHAR},
+    um_interestdate = #{record.um_interestdate,jdbcType=TIMESTAMP},
+    um_ordermsgtime = #{record.um_ordermsgtime,jdbcType=INTEGER},
+    um_ordermsgdate = #{record.um_ordermsgdate,jdbcType=TIMESTAMP},
+    um_dsg_baitietime = #{record.um_dsg_baitietime,jdbcType=INTEGER},
+    um_dsg_baitiedate = #{record.um_dsg_baitiedate,jdbcType=TIMESTAMP},
+    um_dsg_audittime = #{record.um_dsg_audittime,jdbcType=INTEGER},
+    um_dsg_auditdate = #{record.um_dsg_auditdate,jdbcType=TIMESTAMP},
+    um_dsg_appealtime = #{record.um_dsg_appealtime,jdbcType=INTEGER},
+    um_dsg_appealdate = #{record.um_dsg_appealdate,jdbcType=TIMESTAMP},
+    um_msgsumtime = #{record.um_msgsumtime,jdbcType=INTEGER},
+    um_countorder = #{record.um_countorder,jdbcType=INTEGER},
+    um_countneed = #{record.um_countneed,jdbcType=INTEGER},
+    um_evaluatesum = #{record.um_evaluatesum,jdbcType=INTEGER},
+    um_evaluatecount = #{record.um_evaluatecount,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sys_User_Msg" >
+    update Sys_User_Msg
+    <set >
+      <if test="um_lookmetime != null" >
+        um_lookmetime = #{um_lookmetime,jdbcType=INTEGER},
+      </if>
+      <if test="um_lookmetitle != null" >
+        um_lookmetitle = #{um_lookmetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="um_lookmedate != null" >
+        um_lookmedate = #{um_lookmedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="um_interesttime != null" >
+        um_interesttime = #{um_interesttime,jdbcType=INTEGER},
+      </if>
+      <if test="um_interesttitle != null" >
+        um_interesttitle = #{um_interesttitle,jdbcType=VARCHAR},
+      </if>
+      <if test="um_interestdate != null" >
+        um_interestdate = #{um_interestdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="um_ordermsgtime != null" >
+        um_ordermsgtime = #{um_ordermsgtime,jdbcType=INTEGER},
+      </if>
+      <if test="um_ordermsgdate != null" >
+        um_ordermsgdate = #{um_ordermsgdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="um_dsg_baitietime != null" >
+        um_dsg_baitietime = #{um_dsg_baitietime,jdbcType=INTEGER},
+      </if>
+      <if test="um_dsg_baitiedate != null" >
+        um_dsg_baitiedate = #{um_dsg_baitiedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="um_dsg_audittime != null" >
+        um_dsg_audittime = #{um_dsg_audittime,jdbcType=INTEGER},
+      </if>
+      <if test="um_dsg_auditdate != null" >
+        um_dsg_auditdate = #{um_dsg_auditdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="um_dsg_appealtime != null" >
+        um_dsg_appealtime = #{um_dsg_appealtime,jdbcType=INTEGER},
+      </if>
+      <if test="um_dsg_appealdate != null" >
+        um_dsg_appealdate = #{um_dsg_appealdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="um_msgsumtime != null" >
+        um_msgsumtime = #{um_msgsumtime,jdbcType=INTEGER},
+      </if>
+      <if test="um_countorder != null" >
+        um_countorder = #{um_countorder,jdbcType=INTEGER},
+      </if>
+      <if test="um_countneed != null" >
+        um_countneed = #{um_countneed,jdbcType=INTEGER},
+      </if>
+      <if test="um_evaluatesum != null" >
+        um_evaluatesum = #{um_evaluatesum,jdbcType=INTEGER},
+      </if>
+      <if test="um_evaluatecount != null" >
+        um_evaluatecount = #{um_evaluatecount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where um_userid = #{um_userid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sys_User_Msg" >
+    update Sys_User_Msg
+    set um_lookmetime = #{um_lookmetime,jdbcType=INTEGER},
+    um_lookmetitle = #{um_lookmetitle,jdbcType=VARCHAR},
+    um_lookmedate = #{um_lookmedate,jdbcType=TIMESTAMP},
+    um_interesttime = #{um_interesttime,jdbcType=INTEGER},
+    um_interesttitle = #{um_interesttitle,jdbcType=VARCHAR},
+    um_interestdate = #{um_interestdate,jdbcType=TIMESTAMP},
+    um_ordermsgtime = #{um_ordermsgtime,jdbcType=INTEGER},
+    um_ordermsgdate = #{um_ordermsgdate,jdbcType=TIMESTAMP},
+    um_dsg_baitietime = #{um_dsg_baitietime,jdbcType=INTEGER},
+    um_dsg_baitiedate = #{um_dsg_baitiedate,jdbcType=TIMESTAMP},
+    um_dsg_audittime = #{um_dsg_audittime,jdbcType=INTEGER},
+    um_dsg_auditdate = #{um_dsg_auditdate,jdbcType=TIMESTAMP},
+    um_dsg_appealtime = #{um_dsg_appealtime,jdbcType=INTEGER},
+    um_dsg_appealdate = #{um_dsg_appealdate,jdbcType=TIMESTAMP},
+    um_msgsumtime = #{um_msgsumtime,jdbcType=INTEGER},
+    um_countorder = #{um_countorder,jdbcType=INTEGER},
+    um_countneed = #{um_countneed,jdbcType=INTEGER},
+    um_evaluatesum = #{um_evaluatesum,jdbcType=INTEGER},
+    um_evaluatecount = #{um_evaluatecount,jdbcType=INTEGER}
+    where um_userid = #{um_userid,jdbcType=BIGINT}
+  </update>
+
+  <!-- 获取用户信息明细 1.获取订单数量-->
+  <select id="getUserMsgDetail"   resultMap="BaseResultMap"  parameterType="java.lang.Long" >
+    select um_userid
+    <if test="type==1" >
+      ,um_ordermsgtime
+    </if>
+    from Sys_User_Msg where  um_userid=#{userid,jdbcType=BIGINT}
+
+  </select>
+
+</mapper>

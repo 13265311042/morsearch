@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sys_User_MemberMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sys_User_Member" >
+    <id column="mb_id" property="mb_id" jdbcType="INTEGER" />
+    <result column="mb_name" property="mb_name" jdbcType="VARCHAR" />
+    <result column="mb_remark" property="mb_remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mb_id, mb_name, mb_remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sys_User_MemberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sys_User_Member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Sys_User_Member
+    where mb_id = #{mb_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Sys_User_Member
+    where mb_id = #{mb_id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sys_User_MemberExample" >
+    delete from Sys_User_Member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sys_User_Member" >
+    insert into Sys_User_Member (mb_id, mb_name, mb_remark
+      )
+    values (#{mb_id,jdbcType=INTEGER}, #{mb_name,jdbcType=VARCHAR}, #{mb_remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sys_User_Member" >
+    insert into Sys_User_Member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mb_id != null" >
+        mb_id,
+      </if>
+      <if test="mb_name != null" >
+        mb_name,
+      </if>
+      <if test="mb_remark != null" >
+        mb_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mb_id != null" >
+        #{mb_id,jdbcType=INTEGER},
+      </if>
+      <if test="mb_name != null" >
+        #{mb_name,jdbcType=VARCHAR},
+      </if>
+      <if test="mb_remark != null" >
+        #{mb_remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sys_User_MemberExample" resultType="java.lang.Integer" >
+    select count(*) from Sys_User_Member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sys_User_Member
+    <set >
+      <if test="record.mb_id != null" >
+        mb_id = #{record.mb_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.mb_name != null" >
+        mb_name = #{record.mb_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mb_remark != null" >
+        mb_remark = #{record.mb_remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sys_User_Member
+    set mb_id = #{record.mb_id,jdbcType=INTEGER},
+      mb_name = #{record.mb_name,jdbcType=VARCHAR},
+      mb_remark = #{record.mb_remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sys_User_Member" >
+    update Sys_User_Member
+    <set >
+      <if test="mb_name != null" >
+        mb_name = #{mb_name,jdbcType=VARCHAR},
+      </if>
+      <if test="mb_remark != null" >
+        mb_remark = #{mb_remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mb_id = #{mb_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sys_User_Member" >
+    update Sys_User_Member
+    set mb_name = #{mb_name,jdbcType=VARCHAR},
+      mb_remark = #{mb_remark,jdbcType=VARCHAR}
+    where mb_id = #{mb_id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sales_InterestMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sales_Interest" >
+    <id column="si_id" property="si_id" jdbcType="BIGINT" />
+    <result column="si_salesmanid" property="si_salesmanid" jdbcType="BIGINT" />
+    <result column="si_pmid" property="si_pmid" jdbcType="BIGINT" />
+    <result column="si_pmtitle" property="si_pmtitle" jdbcType="VARCHAR" />
+    <result column="si_desginerid" property="si_desginerid" jdbcType="BIGINT" />
+    <result column="si_createdate" property="si_createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    si_id, si_salesmanid, si_pmid, si_pmtitle, si_desginerid, si_createdate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sales_InterestExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sales_Interest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Sales_Interest
+    where si_id = #{si_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Sales_Interest
+    where si_id = #{si_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sales_InterestExample" >
+    delete from Sales_Interest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sales_Interest" >
+    <selectKey keyProperty="si_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Sales_Interest (si_id, si_salesmanid, si_pmid, 
+      si_pmtitle, si_desginerid, si_createdate
+      )
+    values (#{si_id,jdbcType=BIGINT}, #{si_salesmanid,jdbcType=BIGINT}, #{si_pmid,jdbcType=BIGINT}, 
+      #{si_pmtitle,jdbcType=VARCHAR}, #{si_desginerid,jdbcType=BIGINT}, #{si_createdate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sales_Interest" >
+    <selectKey keyProperty="si_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Sales_Interest
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="si_id != null" >
+        si_id,
+      </if>
+      <if test="si_salesmanid != null" >
+        si_salesmanid,
+      </if>
+      <if test="si_pmid != null" >
+        si_pmid,
+      </if>
+      <if test="si_pmtitle != null" >
+        si_pmtitle,
+      </if>
+      <if test="si_desginerid != null" >
+        si_desginerid,
+      </if>
+      <if test="si_createdate != null" >
+        si_createdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="si_id != null" >
+        #{si_id,jdbcType=BIGINT},
+      </if>
+      <if test="si_salesmanid != null" >
+        #{si_salesmanid,jdbcType=BIGINT},
+      </if>
+      <if test="si_pmid != null" >
+        #{si_pmid,jdbcType=BIGINT},
+      </if>
+      <if test="si_pmtitle != null" >
+        #{si_pmtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="si_desginerid != null" >
+        #{si_desginerid,jdbcType=BIGINT},
+      </if>
+      <if test="si_createdate != null" >
+        #{si_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sales_InterestExample" resultType="java.lang.Integer" >
+    select count(*) from Sales_Interest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sales_Interest
+    <set >
+      <if test="record.si_id != null" >
+        si_id = #{record.si_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.si_salesmanid != null" >
+        si_salesmanid = #{record.si_salesmanid,jdbcType=BIGINT},
+      </if>
+      <if test="record.si_pmid != null" >
+        si_pmid = #{record.si_pmid,jdbcType=BIGINT},
+      </if>
+      <if test="record.si_pmtitle != null" >
+        si_pmtitle = #{record.si_pmtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.si_desginerid != null" >
+        si_desginerid = #{record.si_desginerid,jdbcType=BIGINT},
+      </if>
+      <if test="record.si_createdate != null" >
+        si_createdate = #{record.si_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sales_Interest
+    set si_id = #{record.si_id,jdbcType=BIGINT},
+      si_salesmanid = #{record.si_salesmanid,jdbcType=BIGINT},
+      si_pmid = #{record.si_pmid,jdbcType=BIGINT},
+      si_pmtitle = #{record.si_pmtitle,jdbcType=VARCHAR},
+      si_desginerid = #{record.si_desginerid,jdbcType=BIGINT},
+      si_createdate = #{record.si_createdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sales_Interest" >
+    update Sales_Interest
+    <set >
+      <if test="si_salesmanid != null" >
+        si_salesmanid = #{si_salesmanid,jdbcType=BIGINT},
+      </if>
+      <if test="si_pmid != null" >
+        si_pmid = #{si_pmid,jdbcType=BIGINT},
+      </if>
+      <if test="si_pmtitle != null" >
+        si_pmtitle = #{si_pmtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="si_desginerid != null" >
+        si_desginerid = #{si_desginerid,jdbcType=BIGINT},
+      </if>
+      <if test="si_createdate != null" >
+        si_createdate = #{si_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where si_id = #{si_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sales_Interest" >
+    update Sales_Interest
+    set si_salesmanid = #{si_salesmanid,jdbcType=BIGINT},
+      si_pmid = #{si_pmid,jdbcType=BIGINT},
+      si_pmtitle = #{si_pmtitle,jdbcType=VARCHAR},
+      si_desginerid = #{si_desginerid,jdbcType=BIGINT},
+      si_createdate = #{si_createdate,jdbcType=TIMESTAMP}
+    where si_id = #{si_id,jdbcType=BIGINT}
+  </update>
+</mapper>

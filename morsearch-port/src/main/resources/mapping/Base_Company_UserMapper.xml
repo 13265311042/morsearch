@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Base_Company_UserMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Base_Company_User" >
+    <id column="bcu_id" property="bcu_id" jdbcType="BIGINT" />
+    <result column="bcu_userid" property="bcu_userid" jdbcType="BIGINT" />
+    <result column="bcu_type" property="bcu_type" jdbcType="TINYINT" />
+    <result column="bcu_listuserid" property="bcu_listuserid" jdbcType="BIGINT" />
+    <result column="bcu_confirm1" property="bcu_confirm1" jdbcType="BIT" />
+    <result column="bcu_confirm2" property="bcu_confirm2" jdbcType="BIT" />
+    <result column="bcu_createdate" property="bcu_createdate" jdbcType="TIMESTAMP" />
+    <result column="bcu_updatedate" property="bcu_updatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    bcu_id, bcu_userid, bcu_type, bcu_listuserid, bcu_confirm1, bcu_confirm2, bcu_createdate,
+    bcu_updatedate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Base_Company_UserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Base_Company_User
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Base_Company_User
+    where bcu_id = #{bcu_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Base_Company_User
+    where bcu_id = #{bcu_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Base_Company_UserExample" >
+    delete from Base_Company_User
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Base_Company_User" >
+    insert into Base_Company_User (bcu_id, bcu_userid, bcu_type,
+    bcu_listuserid, bcu_confirm1, bcu_confirm2,
+    bcu_createdate, bcu_updatedate)
+    values (#{bcu_id,jdbcType=BIGINT}, #{bcu_userid,jdbcType=BIGINT}, #{bcu_type,jdbcType=TINYINT},
+    #{bcu_listuserid,jdbcType=BIGINT}, #{bcu_confirm1,jdbcType=BIT}, #{bcu_confirm2,jdbcType=BIT},
+    #{bcu_createdate,jdbcType=TIMESTAMP}, #{bcu_updatedate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Base_Company_User" >
+    insert into Base_Company_User
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bcu_id != null" >
+        bcu_id,
+      </if>
+      <if test="bcu_userid != null" >
+        bcu_userid,
+      </if>
+      <if test="bcu_type != null" >
+        bcu_type,
+      </if>
+      <if test="bcu_listuserid != null" >
+        bcu_listuserid,
+      </if>
+      <if test="bcu_confirm1 != null" >
+        bcu_confirm1,
+      </if>
+      <if test="bcu_confirm2 != null" >
+        bcu_confirm2,
+      </if>
+      <if test="bcu_createdate != null" >
+        bcu_createdate,
+      </if>
+      <if test="bcu_updatedate != null" >
+        bcu_updatedate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bcu_id != null" >
+        #{bcu_id,jdbcType=BIGINT},
+      </if>
+      <if test="bcu_userid != null" >
+        #{bcu_userid,jdbcType=BIGINT},
+      </if>
+      <if test="bcu_type != null" >
+        #{bcu_type,jdbcType=TINYINT},
+      </if>
+      <if test="bcu_listuserid != null" >
+        #{bcu_listuserid,jdbcType=BIGINT},
+      </if>
+      <if test="bcu_confirm1 != null" >
+        #{bcu_confirm1,jdbcType=BIT},
+      </if>
+      <if test="bcu_confirm2 != null" >
+        #{bcu_confirm2,jdbcType=BIT},
+      </if>
+      <if test="bcu_createdate != null" >
+        #{bcu_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bcu_updatedate != null" >
+        #{bcu_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Base_Company_UserExample" resultType="java.lang.Integer" >
+    select count(*) from Base_Company_User
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Base_Company_User
+    <set >
+      <if test="record.bcu_id != null" >
+        bcu_id = #{record.bcu_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.bcu_userid != null" >
+        bcu_userid = #{record.bcu_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.bcu_type != null" >
+        bcu_type = #{record.bcu_type,jdbcType=TINYINT},
+      </if>
+      <if test="record.bcu_listuserid != null" >
+        bcu_listuserid = #{record.bcu_listuserid,jdbcType=BIGINT},
+      </if>
+      <if test="record.bcu_confirm1 != null" >
+        bcu_confirm1 = #{record.bcu_confirm1,jdbcType=BIT},
+      </if>
+      <if test="record.bcu_confirm2 != null" >
+        bcu_confirm2 = #{record.bcu_confirm2,jdbcType=BIT},
+      </if>
+      <if test="record.bcu_createdate != null" >
+        bcu_createdate = #{record.bcu_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bcu_updatedate != null" >
+        bcu_updatedate = #{record.bcu_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Base_Company_User
+    set bcu_id = #{record.bcu_id,jdbcType=BIGINT},
+    bcu_userid = #{record.bcu_userid,jdbcType=BIGINT},
+    bcu_type = #{record.bcu_type,jdbcType=TINYINT},
+    bcu_listuserid = #{record.bcu_listuserid,jdbcType=BIGINT},
+    bcu_confirm1 = #{record.bcu_confirm1,jdbcType=BIT},
+    bcu_confirm2 = #{record.bcu_confirm2,jdbcType=BIT},
+    bcu_createdate = #{record.bcu_createdate,jdbcType=TIMESTAMP},
+    bcu_updatedate = #{record.bcu_updatedate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Base_Company_User" >
+    update Base_Company_User
+    <set >
+      <if test="bcu_userid != null" >
+        bcu_userid = #{bcu_userid,jdbcType=BIGINT},
+      </if>
+      <if test="bcu_type != null" >
+        bcu_type = #{bcu_type,jdbcType=TINYINT},
+      </if>
+      <if test="bcu_listuserid != null" >
+        bcu_listuserid = #{bcu_listuserid,jdbcType=BIGINT},
+      </if>
+      <if test="bcu_confirm1 != null" >
+        bcu_confirm1 = #{bcu_confirm1,jdbcType=BIT},
+      </if>
+      <if test="bcu_confirm2 != null" >
+        bcu_confirm2 = #{bcu_confirm2,jdbcType=BIT},
+      </if>
+      <if test="bcu_createdate != null" >
+        bcu_createdate = #{bcu_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bcu_updatedate != null" >
+        bcu_updatedate = #{bcu_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where bcu_id = #{bcu_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Base_Company_User" >
+    update Base_Company_User
+    set bcu_userid = #{bcu_userid,jdbcType=BIGINT},
+    bcu_type = #{bcu_type,jdbcType=TINYINT},
+    bcu_listuserid = #{bcu_listuserid,jdbcType=BIGINT},
+    bcu_confirm1 = #{bcu_confirm1,jdbcType=BIT},
+    bcu_confirm2 = #{bcu_confirm2,jdbcType=BIT},
+    bcu_createdate = #{bcu_createdate,jdbcType=TIMESTAMP},
+    bcu_updatedate = #{bcu_updatedate,jdbcType=TIMESTAMP}
+    where bcu_id = #{bcu_id,jdbcType=BIGINT}
+  </update>
+
+  <!--自定义-->
+
+  <select id="selectBase_Company_User" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+    select * from Base_Company_User WHERE
+    bcu_cyid =#{id,jdbcType=TINYINT}
+  </select>
+
+
+  <select id="selectByid" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+    select bcu_listuserid from Base_Company_User WHERE bcu_type=1
+    AND
+    bcu_cyid =#{id,jdbcType=TINYINT}
+  </select>
+
+</mapper>

@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Acc_BuyMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Acc_Buy" >
+    <id column="ab_id" property="ab_id" jdbcType="BIGINT" />
+    <result column="ab_no" property="ab_no" jdbcType="VARCHAR" />
+    <result column="ab_coincode" property="ab_coincode" jdbcType="VARCHAR" />
+    <result column="ab_coinname" property="ab_coinname" jdbcType="VARCHAR" />
+    <result column="ab_coinimage" property="ab_coinimage" jdbcType="VARCHAR" />
+    <result column="ab_coinprice" property="ab_coinprice" jdbcType="DECIMAL" />
+    <result column="ab_coinqty" property="ab_coinqty" jdbcType="DECIMAL" />
+    <result column="ab_activityid" property="ab_activityid" jdbcType="BIGINT" />
+    <result column="ab_activityname" property="ab_activityname" jdbcType="VARCHAR" />
+    <result column="ab_payamtorder" property="ab_payamtorder" jdbcType="DECIMAL" />
+    <result column="ab_payamtactual" property="ab_payamtactual" jdbcType="DECIMAL" />
+    <result column="ab_paybalance" property="ab_paybalance" jdbcType="DECIMAL" />
+    <result column="ab_addcoinqty" property="ab_addcoinqty" jdbcType="DECIMAL" />
+    <result column="ab_addintegral" property="ab_addintegral" jdbcType="DECIMAL" />
+    <result column="ab_sumcoinqty" property="ab_sumcoinqty" jdbcType="DECIMAL" />
+    <result column="ab_tradeway" property="ab_tradeway" jdbcType="TINYINT" />
+    <result column="ab_tradename" property="ab_tradename" jdbcType="VARCHAR" />
+    <result column="ab_tradecard" property="ab_tradecard" jdbcType="VARCHAR" />
+    <result column="ab_tradeorderno" property="ab_tradeorderno" jdbcType="VARCHAR" />
+    <result column="ab_tradeamount" property="ab_tradeamount" jdbcType="DECIMAL" />
+    <result column="ab_tradeorderdate" property="ab_tradeorderdate" jdbcType="TIMESTAMP" />
+    <result column="ab_traderefundno" property="ab_traderefundno" jdbcType="VARCHAR" />
+    <result column="ab_traderefunddate" property="ab_traderefunddate" jdbcType="TIMESTAMP" />
+    <result column="ab_traderefundamount" property="ab_traderefundamount" jdbcType="DECIMAL" />
+    <result column="ab_sourcename" property="ab_sourcename" jdbcType="VARCHAR" />
+    <result column="ab_sourceversion" property="ab_sourceversion" jdbcType="VARCHAR" />
+    <result column="ab_accountid" property="ab_accountid" jdbcType="BIGINT" />
+    <result column="ab_createid" property="ab_createid" jdbcType="BIGINT" />
+    <result column="ab_createno" property="ab_createno" jdbcType="VARCHAR" />
+    <result column="ab_createdate" property="ab_createdate" jdbcType="TIMESTAMP" />
+    <result column="ab_status" property="ab_status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ab_id, ab_no, ab_coincode, ab_coinname, ab_coinimage, ab_coinprice, ab_coinqty, ab_activityid,
+    ab_activityname, ab_payamtorder, ab_payamtactual, ab_paybalance, ab_addcoinqty, ab_addintegral,
+    ab_sumcoinqty, ab_tradeway, ab_tradename, ab_tradecard, ab_tradeorderno, ab_tradeamount,
+    ab_tradeorderdate, ab_traderefundno, ab_traderefunddate, ab_traderefundamount, ab_sourcename,
+    ab_sourceversion, ab_accountid, ab_createid, ab_createno, ab_createdate, ab_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Acc_BuyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Acc_Buy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Acc_Buy
+    where ab_id = #{ab_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Acc_Buy
+    where ab_id = #{ab_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Acc_BuyExample" >
+    delete from Acc_Buy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Acc_Buy" >
+    insert into Acc_Buy (ab_id, ab_no, ab_coincode,
+    ab_coinname, ab_coinimage, ab_coinprice,
+    ab_coinqty, ab_activityid, ab_activityname,
+    ab_payamtorder, ab_payamtactual, ab_paybalance,
+    ab_addcoinqty, ab_addintegral, ab_sumcoinqty,
+    ab_tradeway, ab_tradename, ab_tradecard,
+    ab_tradeorderno, ab_tradeamount, ab_tradeorderdate,
+    ab_traderefundno, ab_traderefunddate,
+    ab_traderefundamount, ab_sourcename, ab_sourceversion,
+    ab_accountid, ab_createid, ab_createno,
+    ab_createdate, ab_status)
+    values (#{ab_id,jdbcType=BIGINT}, #{ab_no,jdbcType=VARCHAR}, #{ab_coincode,jdbcType=VARCHAR},
+    #{ab_coinname,jdbcType=VARCHAR}, #{ab_coinimage,jdbcType=VARCHAR}, #{ab_coinprice,jdbcType=DECIMAL},
+    #{ab_coinqty,jdbcType=DECIMAL}, #{ab_activityid,jdbcType=BIGINT}, #{ab_activityname,jdbcType=VARCHAR},
+    #{ab_payamtorder,jdbcType=DECIMAL}, #{ab_payamtactual,jdbcType=DECIMAL}, #{ab_paybalance,jdbcType=DECIMAL},
+    #{ab_addcoinqty,jdbcType=DECIMAL}, #{ab_addintegral,jdbcType=DECIMAL}, #{ab_sumcoinqty,jdbcType=DECIMAL},
+    #{ab_tradeway,jdbcType=TINYINT}, #{ab_tradename,jdbcType=VARCHAR}, #{ab_tradecard,jdbcType=VARCHAR},
+    #{ab_tradeorderno,jdbcType=VARCHAR}, #{ab_tradeamount,jdbcType=DECIMAL}, #{ab_tradeorderdate,jdbcType=TIMESTAMP},
+    #{ab_traderefundno,jdbcType=VARCHAR}, #{ab_traderefunddate,jdbcType=TIMESTAMP},
+    #{ab_traderefundamount,jdbcType=DECIMAL}, #{ab_sourcename,jdbcType=VARCHAR}, #{ab_sourceversion,jdbcType=VARCHAR},
+    #{ab_accountid,jdbcType=BIGINT}, #{ab_createid,jdbcType=BIGINT}, #{ab_createno,jdbcType=VARCHAR},
+    #{ab_createdate,jdbcType=TIMESTAMP}, #{ab_status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Acc_Buy" >
+    insert into Acc_Buy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ab_id != null" >
+        ab_id,
+      </if>
+      <if test="ab_no != null" >
+        ab_no,
+      </if>
+      <if test="ab_coincode != null" >
+        ab_coincode,
+      </if>
+      <if test="ab_coinname != null" >
+        ab_coinname,
+      </if>
+      <if test="ab_coinimage != null" >
+        ab_coinimage,
+      </if>
+      <if test="ab_coinprice != null" >
+        ab_coinprice,
+      </if>
+      <if test="ab_coinqty != null" >
+        ab_coinqty,
+      </if>
+      <if test="ab_activityid != null" >
+        ab_activityid,
+      </if>
+      <if test="ab_activityname != null" >
+        ab_activityname,
+      </if>
+      <if test="ab_payamtorder != null" >
+        ab_payamtorder,
+      </if>
+      <if test="ab_payamtactual != null" >
+        ab_payamtactual,
+      </if>
+      <if test="ab_paybalance != null" >
+        ab_paybalance,
+      </if>
+      <if test="ab_addcoinqty != null" >
+        ab_addcoinqty,
+      </if>
+      <if test="ab_addintegral != null" >
+        ab_addintegral,
+      </if>
+      <if test="ab_sumcoinqty != null" >
+        ab_sumcoinqty,
+      </if>
+      <if test="ab_tradeway != null" >
+        ab_tradeway,
+      </if>
+      <if test="ab_tradename != null" >
+        ab_tradename,
+      </if>
+      <if test="ab_tradecard != null" >
+        ab_tradecard,
+      </if>
+      <if test="ab_tradeorderno != null" >
+        ab_tradeorderno,
+      </if>
+      <if test="ab_tradeamount != null" >
+        ab_tradeamount,
+      </if>
+      <if test="ab_tradeorderdate != null" >
+        ab_tradeorderdate,
+      </if>
+      <if test="ab_traderefundno != null" >
+        ab_traderefundno,
+      </if>
+      <if test="ab_traderefunddate != null" >
+        ab_traderefunddate,
+      </if>
+      <if test="ab_traderefundamount != null" >
+        ab_traderefundamount,
+      </if>
+      <if test="ab_sourcename != null" >
+        ab_sourcename,
+      </if>
+      <if test="ab_sourceversion != null" >
+        ab_sourceversion,
+      </if>
+      <if test="ab_accountid != null" >
+        ab_accountid,
+      </if>
+      <if test="ab_createid != null" >
+        ab_createid,
+      </if>
+      <if test="ab_createno != null" >
+        ab_createno,
+      </if>
+      <if test="ab_createdate != null" >
+        ab_createdate,
+      </if>
+      <if test="ab_status != null" >
+        ab_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ab_id != null" >
+        #{ab_id,jdbcType=BIGINT},
+      </if>
+      <if test="ab_no != null" >
+        #{ab_no,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_coincode != null" >
+        #{ab_coincode,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_coinname != null" >
+        #{ab_coinname,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_coinimage != null" >
+        #{ab_coinimage,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_coinprice != null" >
+        #{ab_coinprice,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_coinqty != null" >
+        #{ab_coinqty,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_activityid != null" >
+        #{ab_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="ab_activityname != null" >
+        #{ab_activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_payamtorder != null" >
+        #{ab_payamtorder,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_payamtactual != null" >
+        #{ab_payamtactual,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_paybalance != null" >
+        #{ab_paybalance,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_addcoinqty != null" >
+        #{ab_addcoinqty,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_addintegral != null" >
+        #{ab_addintegral,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_sumcoinqty != null" >
+        #{ab_sumcoinqty,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_tradeway != null" >
+        #{ab_tradeway,jdbcType=TINYINT},
+      </if>
+      <if test="ab_tradename != null" >
+        #{ab_tradename,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_tradecard != null" >
+        #{ab_tradecard,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_tradeorderno != null" >
+        #{ab_tradeorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_tradeamount != null" >
+        #{ab_tradeamount,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_tradeorderdate != null" >
+        #{ab_tradeorderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ab_traderefundno != null" >
+        #{ab_traderefundno,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_traderefunddate != null" >
+        #{ab_traderefunddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ab_traderefundamount != null" >
+        #{ab_traderefundamount,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_sourcename != null" >
+        #{ab_sourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_sourceversion != null" >
+        #{ab_sourceversion,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_accountid != null" >
+        #{ab_accountid,jdbcType=BIGINT},
+      </if>
+      <if test="ab_createid != null" >
+        #{ab_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ab_createno != null" >
+        #{ab_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_createdate != null" >
+        #{ab_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ab_status != null" >
+        #{ab_status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Acc_BuyExample" resultType="java.lang.Integer" >
+    select count(*) from Acc_Buy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Acc_Buy
+    <set >
+      <if test="record.ab_id != null" >
+        ab_id = #{record.ab_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ab_no != null" >
+        ab_no = #{record.ab_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ab_coincode != null" >
+        ab_coincode = #{record.ab_coincode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ab_coinname != null" >
+        ab_coinname = #{record.ab_coinname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ab_coinimage != null" >
+        ab_coinimage = #{record.ab_coinimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ab_coinprice != null" >
+        ab_coinprice = #{record.ab_coinprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ab_coinqty != null" >
+        ab_coinqty = #{record.ab_coinqty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ab_activityid != null" >
+        ab_activityid = #{record.ab_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ab_activityname != null" >
+        ab_activityname = #{record.ab_activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ab_payamtorder != null" >
+        ab_payamtorder = #{record.ab_payamtorder,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ab_payamtactual != null" >
+        ab_payamtactual = #{record.ab_payamtactual,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ab_paybalance != null" >
+        ab_paybalance = #{record.ab_paybalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ab_addcoinqty != null" >
+        ab_addcoinqty = #{record.ab_addcoinqty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ab_addintegral != null" >
+        ab_addintegral = #{record.ab_addintegral,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ab_sumcoinqty != null" >
+        ab_sumcoinqty = #{record.ab_sumcoinqty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ab_tradeway != null" >
+        ab_tradeway = #{record.ab_tradeway,jdbcType=TINYINT},
+      </if>
+      <if test="record.ab_tradename != null" >
+        ab_tradename = #{record.ab_tradename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ab_tradecard != null" >
+        ab_tradecard = #{record.ab_tradecard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ab_tradeorderno != null" >
+        ab_tradeorderno = #{record.ab_tradeorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ab_tradeamount != null" >
+        ab_tradeamount = #{record.ab_tradeamount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ab_tradeorderdate != null" >
+        ab_tradeorderdate = #{record.ab_tradeorderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ab_traderefundno != null" >
+        ab_traderefundno = #{record.ab_traderefundno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ab_traderefunddate != null" >
+        ab_traderefunddate = #{record.ab_traderefunddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ab_traderefundamount != null" >
+        ab_traderefundamount = #{record.ab_traderefundamount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ab_sourcename != null" >
+        ab_sourcename = #{record.ab_sourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ab_sourceversion != null" >
+        ab_sourceversion = #{record.ab_sourceversion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ab_accountid != null" >
+        ab_accountid = #{record.ab_accountid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ab_createid != null" >
+        ab_createid = #{record.ab_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ab_createno != null" >
+        ab_createno = #{record.ab_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ab_createdate != null" >
+        ab_createdate = #{record.ab_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ab_status != null" >
+        ab_status = #{record.ab_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Acc_Buy
+    set ab_id = #{record.ab_id,jdbcType=BIGINT},
+    ab_no = #{record.ab_no,jdbcType=VARCHAR},
+    ab_coincode = #{record.ab_coincode,jdbcType=VARCHAR},
+    ab_coinname = #{record.ab_coinname,jdbcType=VARCHAR},
+    ab_coinimage = #{record.ab_coinimage,jdbcType=VARCHAR},
+    ab_coinprice = #{record.ab_coinprice,jdbcType=DECIMAL},
+    ab_coinqty = #{record.ab_coinqty,jdbcType=DECIMAL},
+    ab_activityid = #{record.ab_activityid,jdbcType=BIGINT},
+    ab_activityname = #{record.ab_activityname,jdbcType=VARCHAR},
+    ab_payamtorder = #{record.ab_payamtorder,jdbcType=DECIMAL},
+    ab_payamtactual = #{record.ab_payamtactual,jdbcType=DECIMAL},
+    ab_paybalance = #{record.ab_paybalance,jdbcType=DECIMAL},
+    ab_addcoinqty = #{record.ab_addcoinqty,jdbcType=DECIMAL},
+    ab_addintegral = #{record.ab_addintegral,jdbcType=DECIMAL},
+    ab_sumcoinqty = #{record.ab_sumcoinqty,jdbcType=DECIMAL},
+    ab_tradeway = #{record.ab_tradeway,jdbcType=TINYINT},
+    ab_tradename = #{record.ab_tradename,jdbcType=VARCHAR},
+    ab_tradecard = #{record.ab_tradecard,jdbcType=VARCHAR},
+    ab_tradeorderno = #{record.ab_tradeorderno,jdbcType=VARCHAR},
+    ab_tradeamount = #{record.ab_tradeamount,jdbcType=DECIMAL},
+    ab_tradeorderdate = #{record.ab_tradeorderdate,jdbcType=TIMESTAMP},
+    ab_traderefundno = #{record.ab_traderefundno,jdbcType=VARCHAR},
+    ab_traderefunddate = #{record.ab_traderefunddate,jdbcType=TIMESTAMP},
+    ab_traderefundamount = #{record.ab_traderefundamount,jdbcType=DECIMAL},
+    ab_sourcename = #{record.ab_sourcename,jdbcType=VARCHAR},
+    ab_sourceversion = #{record.ab_sourceversion,jdbcType=VARCHAR},
+    ab_accountid = #{record.ab_accountid,jdbcType=BIGINT},
+    ab_createid = #{record.ab_createid,jdbcType=BIGINT},
+    ab_createno = #{record.ab_createno,jdbcType=VARCHAR},
+    ab_createdate = #{record.ab_createdate,jdbcType=TIMESTAMP},
+    ab_status = #{record.ab_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Acc_Buy" >
+    update Acc_Buy
+    <set >
+      <if test="ab_no != null" >
+        ab_no = #{ab_no,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_coincode != null" >
+        ab_coincode = #{ab_coincode,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_coinname != null" >
+        ab_coinname = #{ab_coinname,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_coinimage != null" >
+        ab_coinimage = #{ab_coinimage,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_coinprice != null" >
+        ab_coinprice = #{ab_coinprice,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_coinqty != null" >
+        ab_coinqty = #{ab_coinqty,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_activityid != null" >
+        ab_activityid = #{ab_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="ab_activityname != null" >
+        ab_activityname = #{ab_activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_payamtorder != null" >
+        ab_payamtorder = #{ab_payamtorder,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_payamtactual != null" >
+        ab_payamtactual = #{ab_payamtactual,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_paybalance != null" >
+        ab_paybalance = #{ab_paybalance,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_addcoinqty != null" >
+        ab_addcoinqty = #{ab_addcoinqty,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_addintegral != null" >
+        ab_addintegral = #{ab_addintegral,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_sumcoinqty != null" >
+        ab_sumcoinqty = #{ab_sumcoinqty,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_tradeway != null" >
+        ab_tradeway = #{ab_tradeway,jdbcType=TINYINT},
+      </if>
+      <if test="ab_tradename != null" >
+        ab_tradename = #{ab_tradename,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_tradecard != null" >
+        ab_tradecard = #{ab_tradecard,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_tradeorderno != null" >
+        ab_tradeorderno = #{ab_tradeorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_tradeamount != null" >
+        ab_tradeamount = #{ab_tradeamount,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_tradeorderdate != null" >
+        ab_tradeorderdate = #{ab_tradeorderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ab_traderefundno != null" >
+        ab_traderefundno = #{ab_traderefundno,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_traderefunddate != null" >
+        ab_traderefunddate = #{ab_traderefunddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ab_traderefundamount != null" >
+        ab_traderefundamount = #{ab_traderefundamount,jdbcType=DECIMAL},
+      </if>
+      <if test="ab_sourcename != null" >
+        ab_sourcename = #{ab_sourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_sourceversion != null" >
+        ab_sourceversion = #{ab_sourceversion,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_accountid != null" >
+        ab_accountid = #{ab_accountid,jdbcType=BIGINT},
+      </if>
+      <if test="ab_createid != null" >
+        ab_createid = #{ab_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ab_createno != null" >
+        ab_createno = #{ab_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ab_createdate != null" >
+        ab_createdate = #{ab_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ab_status != null" >
+        ab_status = #{ab_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ab_id = #{ab_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Acc_Buy" >
+    update Acc_Buy
+    set ab_no = #{ab_no,jdbcType=VARCHAR},
+    ab_coincode = #{ab_coincode,jdbcType=VARCHAR},
+    ab_coinname = #{ab_coinname,jdbcType=VARCHAR},
+    ab_coinimage = #{ab_coinimage,jdbcType=VARCHAR},
+    ab_coinprice = #{ab_coinprice,jdbcType=DECIMAL},
+    ab_coinqty = #{ab_coinqty,jdbcType=DECIMAL},
+    ab_activityid = #{ab_activityid,jdbcType=BIGINT},
+    ab_activityname = #{ab_activityname,jdbcType=VARCHAR},
+    ab_payamtorder = #{ab_payamtorder,jdbcType=DECIMAL},
+    ab_payamtactual = #{ab_payamtactual,jdbcType=DECIMAL},
+    ab_paybalance = #{ab_paybalance,jdbcType=DECIMAL},
+    ab_addcoinqty = #{ab_addcoinqty,jdbcType=DECIMAL},
+    ab_addintegral = #{ab_addintegral,jdbcType=DECIMAL},
+    ab_sumcoinqty = #{ab_sumcoinqty,jdbcType=DECIMAL},
+    ab_tradeway = #{ab_tradeway,jdbcType=TINYINT},
+    ab_tradename = #{ab_tradename,jdbcType=VARCHAR},
+    ab_tradecard = #{ab_tradecard,jdbcType=VARCHAR},
+    ab_tradeorderno = #{ab_tradeorderno,jdbcType=VARCHAR},
+    ab_tradeamount = #{ab_tradeamount,jdbcType=DECIMAL},
+    ab_tradeorderdate = #{ab_tradeorderdate,jdbcType=TIMESTAMP},
+    ab_traderefundno = #{ab_traderefundno,jdbcType=VARCHAR},
+    ab_traderefunddate = #{ab_traderefunddate,jdbcType=TIMESTAMP},
+    ab_traderefundamount = #{ab_traderefundamount,jdbcType=DECIMAL},
+    ab_sourcename = #{ab_sourcename,jdbcType=VARCHAR},
+    ab_sourceversion = #{ab_sourceversion,jdbcType=VARCHAR},
+    ab_accountid = #{ab_accountid,jdbcType=BIGINT},
+    ab_createid = #{ab_createid,jdbcType=BIGINT},
+    ab_createno = #{ab_createno,jdbcType=VARCHAR},
+    ab_createdate = #{ab_createdate,jdbcType=TIMESTAMP},
+    ab_status = #{ab_status,jdbcType=TINYINT}
+    where ab_id = #{ab_id,jdbcType=BIGINT}
+  </update>
+
+
+  <!-- 根据订单号获取明细 -->
+  <select id="selectByNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select * from Acc_Buy  where ab_no = #{ab_no,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 条件 -->
+  <sql id="wherelist" >
+    <if test="ab_no != null and ab_no != ''" >
+      and ab_no like concat(concat('%',#{ab_no}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="ab_coinname != null and ab_coinname != ''" >
+      and ab_coinname like concat(concat('%',#{ab_coinname}),'%')<!-- 模糊查询 -->
+    </if>
+
+    <if test="ab_coincode != null and ab_coincode != ''" >
+      and ab_coincode like concat(concat('%',#{ab_coincode}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="ab_tradename != null and ab_tradename != ''" >
+      and ab_tradename like concat(concat('%',#{ab_tradename}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="ab_tradecard != null and ab_tradecard != ''" >
+      and ab_tradecard like concat(concat('%',#{ab_tradecard}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="ab_tradeorderno != null and ab_tradeorderno != ''" >
+      and ab_tradeorderno like concat(concat('%',#{ab_tradeorderno}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="ab_traderefundno != null and ab_traderefundno != ''" >
+      and ab_traderefundno like concat(concat('%',#{ab_traderefundno}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="ab_status != null" >
+      and ab_status=#{ab_status}
+    </if>
+    /*关于交易时间的查询*/
+    <if test="ab_tradeorderdate1 != null and ab_tradeorderdate2 !=null" >
+      and ab_tradeorderdate  between #{ab_tradeorderdate1} and #{ab_tradeorderdate2}
+    </if>
+    /*关于退款时间的查询*/
+    <if test="ab_traderefunddate1 != null and ab_traderefunddate2 !=null" >
+      and ab_traderefunddate  between #{ab_traderefunddate1} and #{ab_traderefunddate2}
+    </if>
+    /*建立时间的查询*/
+    <if test="ab_createdate1 != null and ab_createdate2 !=null" >
+      and ab_createdate  between #{ab_createdate1} and #{ab_createdate2}
+    </if>
+
+  </sql>
+
+  <!-- 分页 -->
+  <select id="getAcc_BuyList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from Acc_Buy ar where 1=1
+    <include refid="wherelist" />
+    ORDER BY ab_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountAcc_Buy" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(ab_id) from Acc_Buy where 1=1
+    <include refid="wherelist" />
+  </select>
+
+
+
+
+</mapper>

@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.MallV_OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.MallV_Order" >
+    <result column="mo_id" property="mo_id" jdbcType="BIGINT" />
+    <result column="mo_no" property="mo_no" jdbcType="VARCHAR" />
+    <result column="mo_dateorder" property="mo_dateorder" jdbcType="TIMESTAMP" />
+    <result column="mo_datepay" property="mo_datepay" jdbcType="TIMESTAMP" />
+    <result column="mo_datesend" property="mo_datesend" jdbcType="TIMESTAMP" />
+    <result column="mo_datedelivery" property="mo_datedelivery" jdbcType="TIMESTAMP" />
+    <result column="mo_dateappraise" property="mo_dateappraise" jdbcType="TIMESTAMP" />
+    <result column="mo_datereturn" property="mo_datereturn" jdbcType="TIMESTAMP" />
+    <result column="mo_datefinish" property="mo_datefinish" jdbcType="TIMESTAMP" />
+    <result column="mo_userid" property="mo_userid" jdbcType="BIGINT" />
+    <result column="mo_usernick" property="mo_usernick" jdbcType="VARCHAR" />
+    <result column="mo_userimage" property="mo_userimage" jdbcType="VARCHAR" />
+    <result column="mo_river" property="mo_river" jdbcType="VARCHAR" />
+    <result column="mo_rivphone" property="mo_rivphone" jdbcType="VARCHAR" />
+    <result column="mo_rivaddress" property="mo_rivaddress" jdbcType="VARCHAR" />
+    <result column="mo_sumqty" property="mo_sumqty" jdbcType="INTEGER" />
+    <result column="mo_payamtgoods" property="mo_payamtgoods" jdbcType="DECIMAL" />
+    <result column="mo_payamtfreight" property="mo_payamtfreight" jdbcType="DECIMAL" />
+    <result column="mo_payamtorder" property="mo_payamtorder" jdbcType="DECIMAL" />
+    <result column="mo_payamtactual" property="mo_payamtactual" jdbcType="DECIMAL" />
+    <result column="mo_paybalance" property="mo_paybalance" jdbcType="DECIMAL" />
+    <result column="mo_tradeway" property="mo_tradeway" jdbcType="TINYINT" />
+    <result column="mo_tradename" property="mo_tradename" jdbcType="VARCHAR" />
+    <result column="mo_tradecard" property="mo_tradecard" jdbcType="VARCHAR" />
+    <result column="mo_tradeorderno" property="mo_tradeorderno" jdbcType="VARCHAR" />
+    <result column="mo_tradeamount" property="mo_tradeamount" jdbcType="DECIMAL" />
+    <result column="mo_tradeorderdate" property="mo_tradeorderdate" jdbcType="TIMESTAMP" />
+    <result column="mo_traderefundno" property="mo_traderefundno" jdbcType="VARCHAR" />
+    <result column="mo_traderefundamount" property="mo_traderefundamount" jdbcType="DECIMAL" />
+    <result column="mo_traderefunddate" property="mo_traderefunddate" jdbcType="TIMESTAMP" />
+    <result column="mo_traderefundway" property="mo_traderefundway" jdbcType="VARCHAR" />
+    <result column="mo_logisticscode" property="mo_logisticscode" jdbcType="VARCHAR" />
+    <result column="mo_logisticsname" property="mo_logisticsname" jdbcType="VARCHAR" />
+    <result column="mo_logisticstickets" property="mo_logisticstickets" jdbcType="VARCHAR" />
+    <result column="mo_logisticsmsg" property="mo_logisticsmsg" jdbcType="VARCHAR" />
+    <result column="mo_flagappraise" property="mo_flagappraise" jdbcType="BIT" />
+    <result column="mo_flagsuccess" property="mo_flagsuccess" jdbcType="BIT" />
+    <result column="mo_flagfinish" property="mo_flagfinish" jdbcType="BIT" />
+    <result column="mo_sourcename" property="mo_sourcename" jdbcType="VARCHAR" />
+    <result column="mo_sourceversion" property="mo_sourceversion" jdbcType="VARCHAR" />
+    <result column="mo_createid" property="mo_createid" jdbcType="BIGINT" />
+    <result column="mo_createno" property="mo_createno" jdbcType="VARCHAR" />
+    <result column="mo_createdate" property="mo_createdate" jdbcType="TIMESTAMP" />
+    <result column="mo_status" property="mo_status" jdbcType="TINYINT" />
+    <result column="statusname" property="statusname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mo_id, mo_no, mo_dateorder, mo_datepay, mo_datesend, mo_datedelivery, mo_dateappraise, 
+    mo_datereturn, mo_datefinish, mo_userid, mo_usernick, mo_userimage, mo_river, mo_rivphone, 
+    mo_rivaddress, mo_sumqty, mo_payamtgoods, mo_payamtfreight, mo_payamtorder, mo_payamtactual, 
+    mo_paybalance, mo_tradeway, mo_tradename, mo_tradecard, mo_tradeorderno, mo_tradeamount, 
+    mo_tradeorderdate, mo_traderefundno, mo_traderefundamount, mo_traderefunddate, mo_traderefundway, 
+    mo_logisticscode, mo_logisticsname, mo_logisticstickets, mo_logisticsmsg, mo_flagappraise, 
+    mo_flagsuccess, mo_flagfinish, mo_sourcename, mo_sourceversion, mo_createid, mo_createno, 
+    mo_createdate, mo_status, statusname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.MallV_OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MallV_Order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.MallV_OrderExample" >
+    delete from MallV_Order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.MallV_Order" >
+    insert into MallV_Order (mo_id, mo_no, mo_dateorder, 
+      mo_datepay, mo_datesend, mo_datedelivery, 
+      mo_dateappraise, mo_datereturn, mo_datefinish, 
+      mo_userid, mo_usernick, mo_userimage, 
+      mo_river, mo_rivphone, mo_rivaddress, 
+      mo_sumqty, mo_payamtgoods, mo_payamtfreight, 
+      mo_payamtorder, mo_payamtactual, mo_paybalance, 
+      mo_tradeway, mo_tradename, mo_tradecard, 
+      mo_tradeorderno, mo_tradeamount, mo_tradeorderdate, 
+      mo_traderefundno, mo_traderefundamount, 
+      mo_traderefunddate, mo_traderefundway, 
+      mo_logisticscode, mo_logisticsname, mo_logisticstickets, 
+      mo_logisticsmsg, mo_flagappraise, mo_flagsuccess, 
+      mo_flagfinish, mo_sourcename, mo_sourceversion, 
+      mo_createid, mo_createno, mo_createdate, 
+      mo_status, statusname)
+    values (#{mo_id,jdbcType=BIGINT}, #{mo_no,jdbcType=VARCHAR}, #{mo_dateorder,jdbcType=TIMESTAMP}, 
+      #{mo_datepay,jdbcType=TIMESTAMP}, #{mo_datesend,jdbcType=TIMESTAMP}, #{mo_datedelivery,jdbcType=TIMESTAMP}, 
+      #{mo_dateappraise,jdbcType=TIMESTAMP}, #{mo_datereturn,jdbcType=TIMESTAMP}, #{mo_datefinish,jdbcType=TIMESTAMP}, 
+      #{mo_userid,jdbcType=BIGINT}, #{mo_usernick,jdbcType=VARCHAR}, #{mo_userimage,jdbcType=VARCHAR}, 
+      #{mo_river,jdbcType=VARCHAR}, #{mo_rivphone,jdbcType=VARCHAR}, #{mo_rivaddress,jdbcType=VARCHAR}, 
+      #{mo_sumqty,jdbcType=INTEGER}, #{mo_payamtgoods,jdbcType=DECIMAL}, #{mo_payamtfreight,jdbcType=DECIMAL}, 
+      #{mo_payamtorder,jdbcType=DECIMAL}, #{mo_payamtactual,jdbcType=DECIMAL}, #{mo_paybalance,jdbcType=DECIMAL}, 
+      #{mo_tradeway,jdbcType=TINYINT}, #{mo_tradename,jdbcType=VARCHAR}, #{mo_tradecard,jdbcType=VARCHAR}, 
+      #{mo_tradeorderno,jdbcType=VARCHAR}, #{mo_tradeamount,jdbcType=DECIMAL}, #{mo_tradeorderdate,jdbcType=TIMESTAMP}, 
+      #{mo_traderefundno,jdbcType=VARCHAR}, #{mo_traderefundamount,jdbcType=DECIMAL}, 
+      #{mo_traderefunddate,jdbcType=TIMESTAMP}, #{mo_traderefundway,jdbcType=VARCHAR}, 
+      #{mo_logisticscode,jdbcType=VARCHAR}, #{mo_logisticsname,jdbcType=VARCHAR}, #{mo_logisticstickets,jdbcType=VARCHAR}, 
+      #{mo_logisticsmsg,jdbcType=VARCHAR}, #{mo_flagappraise,jdbcType=BIT}, #{mo_flagsuccess,jdbcType=BIT}, 
+      #{mo_flagfinish,jdbcType=BIT}, #{mo_sourcename,jdbcType=VARCHAR}, #{mo_sourceversion,jdbcType=VARCHAR}, 
+      #{mo_createid,jdbcType=BIGINT}, #{mo_createno,jdbcType=VARCHAR}, #{mo_createdate,jdbcType=TIMESTAMP}, 
+      #{mo_status,jdbcType=TINYINT}, #{statusname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.MallV_Order" >
+    insert into MallV_Order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mo_id != null" >
+        mo_id,
+      </if>
+      <if test="mo_no != null" >
+        mo_no,
+      </if>
+      <if test="mo_dateorder != null" >
+        mo_dateorder,
+      </if>
+      <if test="mo_datepay != null" >
+        mo_datepay,
+      </if>
+      <if test="mo_datesend != null" >
+        mo_datesend,
+      </if>
+      <if test="mo_datedelivery != null" >
+        mo_datedelivery,
+      </if>
+      <if test="mo_dateappraise != null" >
+        mo_dateappraise,
+      </if>
+      <if test="mo_datereturn != null" >
+        mo_datereturn,
+      </if>
+      <if test="mo_datefinish != null" >
+        mo_datefinish,
+      </if>
+      <if test="mo_userid != null" >
+        mo_userid,
+      </if>
+      <if test="mo_usernick != null" >
+        mo_usernick,
+      </if>
+      <if test="mo_userimage != null" >
+        mo_userimage,
+      </if>
+      <if test="mo_river != null" >
+        mo_river,
+      </if>
+      <if test="mo_rivphone != null" >
+        mo_rivphone,
+      </if>
+      <if test="mo_rivaddress != null" >
+        mo_rivaddress,
+      </if>
+      <if test="mo_sumqty != null" >
+        mo_sumqty,
+      </if>
+      <if test="mo_payamtgoods != null" >
+        mo_payamtgoods,
+      </if>
+      <if test="mo_payamtfreight != null" >
+        mo_payamtfreight,
+      </if>
+      <if test="mo_payamtorder != null" >
+        mo_payamtorder,
+      </if>
+      <if test="mo_payamtactual != null" >
+        mo_payamtactual,
+      </if>
+      <if test="mo_paybalance != null" >
+        mo_paybalance,
+      </if>
+      <if test="mo_tradeway != null" >
+        mo_tradeway,
+      </if>
+      <if test="mo_tradename != null" >
+        mo_tradename,
+      </if>
+      <if test="mo_tradecard != null" >
+        mo_tradecard,
+      </if>
+      <if test="mo_tradeorderno != null" >
+        mo_tradeorderno,
+      </if>
+      <if test="mo_tradeamount != null" >
+        mo_tradeamount,
+      </if>
+      <if test="mo_tradeorderdate != null" >
+        mo_tradeorderdate,
+      </if>
+      <if test="mo_traderefundno != null" >
+        mo_traderefundno,
+      </if>
+      <if test="mo_traderefundamount != null" >
+        mo_traderefundamount,
+      </if>
+      <if test="mo_traderefunddate != null" >
+        mo_traderefunddate,
+      </if>
+      <if test="mo_traderefundway != null" >
+        mo_traderefundway,
+      </if>
+      <if test="mo_logisticscode != null" >
+        mo_logisticscode,
+      </if>
+      <if test="mo_logisticsname != null" >
+        mo_logisticsname,
+      </if>
+      <if test="mo_logisticstickets != null" >
+        mo_logisticstickets,
+      </if>
+      <if test="mo_logisticsmsg != null" >
+        mo_logisticsmsg,
+      </if>
+      <if test="mo_flagappraise != null" >
+        mo_flagappraise,
+      </if>
+      <if test="mo_flagsuccess != null" >
+        mo_flagsuccess,
+      </if>
+      <if test="mo_flagfinish != null" >
+        mo_flagfinish,
+      </if>
+      <if test="mo_sourcename != null" >
+        mo_sourcename,
+      </if>
+      <if test="mo_sourceversion != null" >
+        mo_sourceversion,
+      </if>
+      <if test="mo_createid != null" >
+        mo_createid,
+      </if>
+      <if test="mo_createno != null" >
+        mo_createno,
+      </if>
+      <if test="mo_createdate != null" >
+        mo_createdate,
+      </if>
+      <if test="mo_status != null" >
+        mo_status,
+      </if>
+      <if test="statusname != null" >
+        statusname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mo_id != null" >
+        #{mo_id,jdbcType=BIGINT},
+      </if>
+      <if test="mo_no != null" >
+        #{mo_no,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_dateorder != null" >
+        #{mo_dateorder,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mo_datepay != null" >
+        #{mo_datepay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mo_datesend != null" >
+        #{mo_datesend,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mo_datedelivery != null" >
+        #{mo_datedelivery,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mo_dateappraise != null" >
+        #{mo_dateappraise,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mo_datereturn != null" >
+        #{mo_datereturn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mo_datefinish != null" >
+        #{mo_datefinish,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mo_userid != null" >
+        #{mo_userid,jdbcType=BIGINT},
+      </if>
+      <if test="mo_usernick != null" >
+        #{mo_usernick,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_userimage != null" >
+        #{mo_userimage,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_river != null" >
+        #{mo_river,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_rivphone != null" >
+        #{mo_rivphone,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_rivaddress != null" >
+        #{mo_rivaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_sumqty != null" >
+        #{mo_sumqty,jdbcType=INTEGER},
+      </if>
+      <if test="mo_payamtgoods != null" >
+        #{mo_payamtgoods,jdbcType=DECIMAL},
+      </if>
+      <if test="mo_payamtfreight != null" >
+        #{mo_payamtfreight,jdbcType=DECIMAL},
+      </if>
+      <if test="mo_payamtorder != null" >
+        #{mo_payamtorder,jdbcType=DECIMAL},
+      </if>
+      <if test="mo_payamtactual != null" >
+        #{mo_payamtactual,jdbcType=DECIMAL},
+      </if>
+      <if test="mo_paybalance != null" >
+        #{mo_paybalance,jdbcType=DECIMAL},
+      </if>
+      <if test="mo_tradeway != null" >
+        #{mo_tradeway,jdbcType=TINYINT},
+      </if>
+      <if test="mo_tradename != null" >
+        #{mo_tradename,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_tradecard != null" >
+        #{mo_tradecard,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_tradeorderno != null" >
+        #{mo_tradeorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_tradeamount != null" >
+        #{mo_tradeamount,jdbcType=DECIMAL},
+      </if>
+      <if test="mo_tradeorderdate != null" >
+        #{mo_tradeorderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mo_traderefundno != null" >
+        #{mo_traderefundno,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_traderefundamount != null" >
+        #{mo_traderefundamount,jdbcType=DECIMAL},
+      </if>
+      <if test="mo_traderefunddate != null" >
+        #{mo_traderefunddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mo_traderefundway != null" >
+        #{mo_traderefundway,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_logisticscode != null" >
+        #{mo_logisticscode,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_logisticsname != null" >
+        #{mo_logisticsname,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_logisticstickets != null" >
+        #{mo_logisticstickets,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_logisticsmsg != null" >
+        #{mo_logisticsmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_flagappraise != null" >
+        #{mo_flagappraise,jdbcType=BIT},
+      </if>
+      <if test="mo_flagsuccess != null" >
+        #{mo_flagsuccess,jdbcType=BIT},
+      </if>
+      <if test="mo_flagfinish != null" >
+        #{mo_flagfinish,jdbcType=BIT},
+      </if>
+      <if test="mo_sourcename != null" >
+        #{mo_sourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_sourceversion != null" >
+        #{mo_sourceversion,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_createid != null" >
+        #{mo_createid,jdbcType=BIGINT},
+      </if>
+      <if test="mo_createno != null" >
+        #{mo_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_createdate != null" >
+        #{mo_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mo_status != null" >
+        #{mo_status,jdbcType=TINYINT},
+      </if>
+      <if test="statusname != null" >
+        #{statusname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.MallV_OrderExample" resultType="java.lang.Integer" >
+    select count(*) from MallV_Order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update MallV_Order
+    <set >
+      <if test="record.mo_id != null" >
+        mo_id = #{record.mo_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.mo_no != null" >
+        mo_no = #{record.mo_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_dateorder != null" >
+        mo_dateorder = #{record.mo_dateorder,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mo_datepay != null" >
+        mo_datepay = #{record.mo_datepay,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mo_datesend != null" >
+        mo_datesend = #{record.mo_datesend,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mo_datedelivery != null" >
+        mo_datedelivery = #{record.mo_datedelivery,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mo_dateappraise != null" >
+        mo_dateappraise = #{record.mo_dateappraise,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mo_datereturn != null" >
+        mo_datereturn = #{record.mo_datereturn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mo_datefinish != null" >
+        mo_datefinish = #{record.mo_datefinish,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mo_userid != null" >
+        mo_userid = #{record.mo_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mo_usernick != null" >
+        mo_usernick = #{record.mo_usernick,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_userimage != null" >
+        mo_userimage = #{record.mo_userimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_river != null" >
+        mo_river = #{record.mo_river,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_rivphone != null" >
+        mo_rivphone = #{record.mo_rivphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_rivaddress != null" >
+        mo_rivaddress = #{record.mo_rivaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_sumqty != null" >
+        mo_sumqty = #{record.mo_sumqty,jdbcType=INTEGER},
+      </if>
+      <if test="record.mo_payamtgoods != null" >
+        mo_payamtgoods = #{record.mo_payamtgoods,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mo_payamtfreight != null" >
+        mo_payamtfreight = #{record.mo_payamtfreight,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mo_payamtorder != null" >
+        mo_payamtorder = #{record.mo_payamtorder,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mo_payamtactual != null" >
+        mo_payamtactual = #{record.mo_payamtactual,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mo_paybalance != null" >
+        mo_paybalance = #{record.mo_paybalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mo_tradeway != null" >
+        mo_tradeway = #{record.mo_tradeway,jdbcType=TINYINT},
+      </if>
+      <if test="record.mo_tradename != null" >
+        mo_tradename = #{record.mo_tradename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_tradecard != null" >
+        mo_tradecard = #{record.mo_tradecard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_tradeorderno != null" >
+        mo_tradeorderno = #{record.mo_tradeorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_tradeamount != null" >
+        mo_tradeamount = #{record.mo_tradeamount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mo_tradeorderdate != null" >
+        mo_tradeorderdate = #{record.mo_tradeorderdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mo_traderefundno != null" >
+        mo_traderefundno = #{record.mo_traderefundno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_traderefundamount != null" >
+        mo_traderefundamount = #{record.mo_traderefundamount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mo_traderefunddate != null" >
+        mo_traderefunddate = #{record.mo_traderefunddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mo_traderefundway != null" >
+        mo_traderefundway = #{record.mo_traderefundway,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_logisticscode != null" >
+        mo_logisticscode = #{record.mo_logisticscode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_logisticsname != null" >
+        mo_logisticsname = #{record.mo_logisticsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_logisticstickets != null" >
+        mo_logisticstickets = #{record.mo_logisticstickets,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_logisticsmsg != null" >
+        mo_logisticsmsg = #{record.mo_logisticsmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_flagappraise != null" >
+        mo_flagappraise = #{record.mo_flagappraise,jdbcType=BIT},
+      </if>
+      <if test="record.mo_flagsuccess != null" >
+        mo_flagsuccess = #{record.mo_flagsuccess,jdbcType=BIT},
+      </if>
+      <if test="record.mo_flagfinish != null" >
+        mo_flagfinish = #{record.mo_flagfinish,jdbcType=BIT},
+      </if>
+      <if test="record.mo_sourcename != null" >
+        mo_sourcename = #{record.mo_sourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_sourceversion != null" >
+        mo_sourceversion = #{record.mo_sourceversion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_createid != null" >
+        mo_createid = #{record.mo_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mo_createno != null" >
+        mo_createno = #{record.mo_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_createdate != null" >
+        mo_createdate = #{record.mo_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mo_status != null" >
+        mo_status = #{record.mo_status,jdbcType=TINYINT},
+      </if>
+      <if test="record.statusname != null" >
+        statusname = #{record.statusname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update MallV_Order
+    set mo_id = #{record.mo_id,jdbcType=BIGINT},
+      mo_no = #{record.mo_no,jdbcType=VARCHAR},
+      mo_dateorder = #{record.mo_dateorder,jdbcType=TIMESTAMP},
+      mo_datepay = #{record.mo_datepay,jdbcType=TIMESTAMP},
+      mo_datesend = #{record.mo_datesend,jdbcType=TIMESTAMP},
+      mo_datedelivery = #{record.mo_datedelivery,jdbcType=TIMESTAMP},
+      mo_dateappraise = #{record.mo_dateappraise,jdbcType=TIMESTAMP},
+      mo_datereturn = #{record.mo_datereturn,jdbcType=TIMESTAMP},
+      mo_datefinish = #{record.mo_datefinish,jdbcType=TIMESTAMP},
+      mo_userid = #{record.mo_userid,jdbcType=BIGINT},
+      mo_usernick = #{record.mo_usernick,jdbcType=VARCHAR},
+      mo_userimage = #{record.mo_userimage,jdbcType=VARCHAR},
+      mo_river = #{record.mo_river,jdbcType=VARCHAR},
+      mo_rivphone = #{record.mo_rivphone,jdbcType=VARCHAR},
+      mo_rivaddress = #{record.mo_rivaddress,jdbcType=VARCHAR},
+      mo_sumqty = #{record.mo_sumqty,jdbcType=INTEGER},
+      mo_payamtgoods = #{record.mo_payamtgoods,jdbcType=DECIMAL},
+      mo_payamtfreight = #{record.mo_payamtfreight,jdbcType=DECIMAL},
+      mo_payamtorder = #{record.mo_payamtorder,jdbcType=DECIMAL},
+      mo_payamtactual = #{record.mo_payamtactual,jdbcType=DECIMAL},
+      mo_paybalance = #{record.mo_paybalance,jdbcType=DECIMAL},
+      mo_tradeway = #{record.mo_tradeway,jdbcType=TINYINT},
+      mo_tradename = #{record.mo_tradename,jdbcType=VARCHAR},
+      mo_tradecard = #{record.mo_tradecard,jdbcType=VARCHAR},
+      mo_tradeorderno = #{record.mo_tradeorderno,jdbcType=VARCHAR},
+      mo_tradeamount = #{record.mo_tradeamount,jdbcType=DECIMAL},
+      mo_tradeorderdate = #{record.mo_tradeorderdate,jdbcType=TIMESTAMP},
+      mo_traderefundno = #{record.mo_traderefundno,jdbcType=VARCHAR},
+      mo_traderefundamount = #{record.mo_traderefundamount,jdbcType=DECIMAL},
+      mo_traderefunddate = #{record.mo_traderefunddate,jdbcType=TIMESTAMP},
+      mo_traderefundway = #{record.mo_traderefundway,jdbcType=VARCHAR},
+      mo_logisticscode = #{record.mo_logisticscode,jdbcType=VARCHAR},
+      mo_logisticsname = #{record.mo_logisticsname,jdbcType=VARCHAR},
+      mo_logisticstickets = #{record.mo_logisticstickets,jdbcType=VARCHAR},
+      mo_logisticsmsg = #{record.mo_logisticsmsg,jdbcType=VARCHAR},
+      mo_flagappraise = #{record.mo_flagappraise,jdbcType=BIT},
+      mo_flagsuccess = #{record.mo_flagsuccess,jdbcType=BIT},
+      mo_flagfinish = #{record.mo_flagfinish,jdbcType=BIT},
+      mo_sourcename = #{record.mo_sourcename,jdbcType=VARCHAR},
+      mo_sourceversion = #{record.mo_sourceversion,jdbcType=VARCHAR},
+      mo_createid = #{record.mo_createid,jdbcType=BIGINT},
+      mo_createno = #{record.mo_createno,jdbcType=VARCHAR},
+      mo_createdate = #{record.mo_createdate,jdbcType=TIMESTAMP},
+      mo_status = #{record.mo_status,jdbcType=TINYINT},
+      statusname = #{record.statusname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sys_MenuRolePowerMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sys_MenuRolePower" >
+    <id column="rp_roleid" property="rp_roleid" jdbcType="INTEGER" />
+    <id column="rp_menuno" property="rp_menuno" jdbcType="VARCHAR" />
+    <result column="rp_allowflag" property="rp_allowflag" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rp_roleid, rp_menuno, rp_allowflag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sys_MenuRolePowerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sys_MenuRolePower
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sys_MenuRolePowerKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from Sys_MenuRolePower
+    where rp_roleid = #{rp_roleid,jdbcType=INTEGER}
+      and rp_menuno = #{rp_menuno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.morsearch.model.Sys_MenuRolePowerKey" >
+    delete from Sys_MenuRolePower
+    where rp_roleid = #{rp_roleid,jdbcType=INTEGER}
+      and rp_menuno = #{rp_menuno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sys_MenuRolePowerExample" >
+    delete from Sys_MenuRolePower
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sys_MenuRolePower" >
+    insert into Sys_MenuRolePower (rp_roleid, rp_menuno, rp_allowflag
+      )
+    values (#{rp_roleid,jdbcType=INTEGER}, #{rp_menuno,jdbcType=VARCHAR}, #{rp_allowflag,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sys_MenuRolePower" >
+    insert into Sys_MenuRolePower
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rp_roleid != null" >
+        rp_roleid,
+      </if>
+      <if test="rp_menuno != null" >
+        rp_menuno,
+      </if>
+      <if test="rp_allowflag != null" >
+        rp_allowflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rp_roleid != null" >
+        #{rp_roleid,jdbcType=INTEGER},
+      </if>
+      <if test="rp_menuno != null" >
+        #{rp_menuno,jdbcType=VARCHAR},
+      </if>
+      <if test="rp_allowflag != null" >
+        #{rp_allowflag,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sys_MenuRolePowerExample" resultType="java.lang.Integer" >
+    select count(*) from Sys_MenuRolePower
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sys_MenuRolePower
+    <set >
+      <if test="record.rp_roleid != null" >
+        rp_roleid = #{record.rp_roleid,jdbcType=INTEGER},
+      </if>
+      <if test="record.rp_menuno != null" >
+        rp_menuno = #{record.rp_menuno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rp_allowflag != null" >
+        rp_allowflag = #{record.rp_allowflag,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sys_MenuRolePower
+    set rp_roleid = #{record.rp_roleid,jdbcType=INTEGER},
+      rp_menuno = #{record.rp_menuno,jdbcType=VARCHAR},
+      rp_allowflag = #{record.rp_allowflag,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sys_MenuRolePower" >
+    update Sys_MenuRolePower
+    <set >
+      <if test="rp_allowflag != null" >
+        rp_allowflag = #{rp_allowflag,jdbcType=BIT},
+      </if>
+    </set>
+    where rp_roleid = #{rp_roleid,jdbcType=INTEGER}
+      and rp_menuno = #{rp_menuno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sys_MenuRolePower" >
+    update Sys_MenuRolePower
+    set rp_allowflag = #{rp_allowflag,jdbcType=BIT}
+    where rp_roleid = #{rp_roleid,jdbcType=INTEGER}
+      and rp_menuno = #{rp_menuno,jdbcType=VARCHAR}
+  </update>
+
+  <!-- 分页 -->
+
+  <select id="getRolePowerList" resultMap="BaseResultMap" >
+    select * from Sys_MenuRolePower
+    WHERE rp_roleid = #{rp_roleid,jdbcType=INTEGER}
+    ORDER BY rp_powerno DESC
+    limit #{pageindex},#{pagesize}
+  </select>
+
+
+  <select id="getRolePowerListCount" resultType="java.lang.Integer" >
+    select count(rp_powerno) from Sys_MenuRolePower
+    WHERE rp_roleid = #{rp_roleid,jdbcType=INTEGER}
+  </select>
+
+</mapper>

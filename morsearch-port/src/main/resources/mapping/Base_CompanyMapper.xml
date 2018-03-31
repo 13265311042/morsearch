@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Base_CompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Base_Company" >
+    <id column="cy_userid" property="cy_userid" jdbcType="BIGINT" />
+    <result column="cy_trade" property="cy_trade" jdbcType="VARCHAR" />
+    <result column="cy_tagproduct" property="cy_tagproduct" jdbcType="VARCHAR" />
+    <result column="cy_remark" property="cy_remark" jdbcType="VARCHAR" />
+    <result column="cy_userid1" property="cy_userid1" jdbcType="BIGINT" />
+    <result column="cy_createdate" property="cy_createdate" jdbcType="TIMESTAMP" />
+    <result column="cy_updatedate" property="cy_updatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cy_userid, cy_trade, cy_tagproduct, cy_remark, cy_userid1, cy_createdate, cy_updatedate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Base_CompanyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Base_Company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Base_Company
+    where cy_userid = #{cy_userid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Base_Company
+    where cy_userid = #{cy_userid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Base_CompanyExample" >
+    delete from Base_Company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Base_Company" >
+    insert into Base_Company (cy_userid, cy_trade, cy_tagproduct,
+    cy_remark, cy_userid1, cy_createdate,
+    cy_updatedate)
+    values (#{cy_userid,jdbcType=BIGINT}, #{cy_trade,jdbcType=VARCHAR}, #{cy_tagproduct,jdbcType=VARCHAR},
+    #{cy_remark,jdbcType=VARCHAR}, #{cy_userid1,jdbcType=BIGINT}, #{cy_createdate,jdbcType=TIMESTAMP},
+    #{cy_updatedate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Base_Company" >
+    insert into Base_Company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cy_userid != null" >
+        cy_userid,
+      </if>
+      <if test="cy_trade != null" >
+        cy_trade,
+      </if>
+      <if test="cy_tagproduct != null" >
+        cy_tagproduct,
+      </if>
+      <if test="cy_remark != null" >
+        cy_remark,
+      </if>
+      <if test="cy_userid1 != null" >
+        cy_userid1,
+      </if>
+      <if test="cy_createdate != null" >
+        cy_createdate,
+      </if>
+      <if test="cy_updatedate != null" >
+        cy_updatedate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cy_userid != null" >
+        #{cy_userid,jdbcType=BIGINT},
+      </if>
+      <if test="cy_trade != null" >
+        #{cy_trade,jdbcType=VARCHAR},
+      </if>
+      <if test="cy_tagproduct != null" >
+        #{cy_tagproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="cy_remark != null" >
+        #{cy_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="cy_userid1 != null" >
+        #{cy_userid1,jdbcType=BIGINT},
+      </if>
+      <if test="cy_createdate != null" >
+        #{cy_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cy_updatedate != null" >
+        #{cy_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Base_CompanyExample" resultType="java.lang.Integer" >
+    select count(*) from Base_Company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Base_Company
+    <set >
+      <if test="record.cy_userid != null" >
+        cy_userid = #{record.cy_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.cy_trade != null" >
+        cy_trade = #{record.cy_trade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cy_tagproduct != null" >
+        cy_tagproduct = #{record.cy_tagproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cy_remark != null" >
+        cy_remark = #{record.cy_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cy_userid1 != null" >
+        cy_userid1 = #{record.cy_userid1,jdbcType=BIGINT},
+      </if>
+      <if test="record.cy_createdate != null" >
+        cy_createdate = #{record.cy_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cy_updatedate != null" >
+        cy_updatedate = #{record.cy_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Base_Company
+    set cy_userid = #{record.cy_userid,jdbcType=BIGINT},
+    cy_trade = #{record.cy_trade,jdbcType=VARCHAR},
+    cy_tagproduct = #{record.cy_tagproduct,jdbcType=VARCHAR},
+    cy_remark = #{record.cy_remark,jdbcType=VARCHAR},
+    cy_userid1 = #{record.cy_userid1,jdbcType=BIGINT},
+    cy_createdate = #{record.cy_createdate,jdbcType=TIMESTAMP},
+    cy_updatedate = #{record.cy_updatedate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Base_Company" >
+    update Base_Company
+    <set >
+      <if test="cy_trade != null" >
+        cy_trade = #{cy_trade,jdbcType=VARCHAR},
+      </if>
+      <if test="cy_tagproduct != null" >
+        cy_tagproduct = #{cy_tagproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="cy_remark != null" >
+        cy_remark = #{cy_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="cy_userid1 != null" >
+        cy_userid1 = #{cy_userid1,jdbcType=BIGINT},
+      </if>
+      <if test="cy_createdate != null" >
+        cy_createdate = #{cy_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cy_updatedate != null" >
+        cy_updatedate = #{cy_updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cy_userid = #{cy_userid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Base_Company" >
+    update Base_Company
+    set cy_trade = #{cy_trade,jdbcType=VARCHAR},
+    cy_tagproduct = #{cy_tagproduct,jdbcType=VARCHAR},
+    cy_remark = #{cy_remark,jdbcType=VARCHAR},
+    cy_userid1 = #{cy_userid1,jdbcType=BIGINT},
+    cy_createdate = #{cy_createdate,jdbcType=TIMESTAMP},
+    cy_updatedate = #{cy_updatedate,jdbcType=TIMESTAMP}
+    where cy_userid = #{cy_userid,jdbcType=BIGINT}
+  </update>
+
+
+  <!--
+  自定义
+  -->
+  <sql id="wherelist" >
+    <if test="cy_name != null and cy_name != ''" >
+      and cy_name like concat(concat('%',#{cy_name}),'%')
+    </if>
+    <if test="cy_no != null and cy_no != ''" >
+      and cy_no like concat(concat('%',#{cy_no}),'%')
+    </if>
+  </sql>
+
+  <select id="getBase_CompanyList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select *
+    from  Base_Company where 1=1
+    <include refid="wherelist" />
+    ORDER BY cy_createdate DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+
+  <select id="getCountBase_Company" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(*) from Base_Company WHERE 1=1
+    <include refid="wherelist" />
+  </select>
+
+  <select id="getBase_Company" parameterType="java.lang.Long" resultMap="BaseResultMap" >
+    select * from Base_Company WHERE
+    cy_id =#{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectBase_Company" parameterType="java.lang.Long" resultType="java.util.Map" >
+    select ur_id,ur_no,ue_companyname,ue_companytype,ue_companybrand,ur_register_date from Sys_User
+    left join Sys_User_Ext on ur_id=ue_userid
+    left join Base_Company m on cy_userid=ue_userid
+    WHERE ur_id =#{id,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="getBaseCompanyID" resultType="java.util.Map" parameterType="java.lang.String" >
+    select ur_id,ur_namenick,ur_phone from Sys_User_Ext,Sys_User
+    where ur_id=ue_userid and ifnull(ur_stopflag,0)=0 and ur_usertype=2
+    and not exists(select bcu_id FROM Base_Company_User
+    where ur_id=bcu_listuserid ) and ue_companyname=#{cy_name,jdbcType=VARCHAR}
+  </select>
+
+
+</mapper>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.MallV_Goods_ListMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.MallV_Goods_List" >
+    <result column="mg_id" property="mg_id" jdbcType="BIGINT" />
+    <result column="mg_title" property="mg_title" jdbcType="VARCHAR" />
+    <result column="mg_subhead" property="mg_subhead" jdbcType="VARCHAR" />
+    <result column="mg_img1" property="mg_img1" jdbcType="VARCHAR" />
+    <result column="mg_price" property="mg_price" jdbcType="DECIMAL" />
+    <result column="mg_stockqty" property="mg_stockqty" jdbcType="DECIMAL" />
+    <result column="mg_createid" property="mg_createid" jdbcType="BIGINT" />
+    <result column="mg_createdate" property="mg_createdate" jdbcType="TIMESTAMP" />
+    <result column="mg_updatedate" property="mg_updatedate" jdbcType="TIMESTAMP" />
+    <result column="mg_status" property="mg_status" jdbcType="TINYINT" />
+    <result column="statusname" property="statusname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mg_id, mg_title, mg_subhead, mg_img1, mg_price, mg_stockqty, mg_createid, mg_createdate, 
+    mg_updatedate, mg_status, statusname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.MallV_Goods_ListExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MallV_Goods_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.MallV_Goods_ListExample" >
+    delete from MallV_Goods_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.MallV_Goods_List" >
+    insert into MallV_Goods_List (mg_id, mg_title, mg_subhead, 
+      mg_img1, mg_price, mg_stockqty, 
+      mg_createid, mg_createdate, mg_updatedate, 
+      mg_status, statusname)
+    values (#{mg_id,jdbcType=BIGINT}, #{mg_title,jdbcType=VARCHAR}, #{mg_subhead,jdbcType=VARCHAR}, 
+      #{mg_img1,jdbcType=VARCHAR}, #{mg_price,jdbcType=DECIMAL}, #{mg_stockqty,jdbcType=DECIMAL}, 
+      #{mg_createid,jdbcType=BIGINT}, #{mg_createdate,jdbcType=TIMESTAMP}, #{mg_updatedate,jdbcType=TIMESTAMP}, 
+      #{mg_status,jdbcType=TINYINT}, #{statusname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.MallV_Goods_List" >
+    insert into MallV_Goods_List
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mg_id != null" >
+        mg_id,
+      </if>
+      <if test="mg_title != null" >
+        mg_title,
+      </if>
+      <if test="mg_subhead != null" >
+        mg_subhead,
+      </if>
+      <if test="mg_img1 != null" >
+        mg_img1,
+      </if>
+      <if test="mg_price != null" >
+        mg_price,
+      </if>
+      <if test="mg_stockqty != null" >
+        mg_stockqty,
+      </if>
+      <if test="mg_createid != null" >
+        mg_createid,
+      </if>
+      <if test="mg_createdate != null" >
+        mg_createdate,
+      </if>
+      <if test="mg_updatedate != null" >
+        mg_updatedate,
+      </if>
+      <if test="mg_status != null" >
+        mg_status,
+      </if>
+      <if test="statusname != null" >
+        statusname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mg_id != null" >
+        #{mg_id,jdbcType=BIGINT},
+      </if>
+      <if test="mg_title != null" >
+        #{mg_title,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_subhead != null" >
+        #{mg_subhead,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_img1 != null" >
+        #{mg_img1,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_price != null" >
+        #{mg_price,jdbcType=DECIMAL},
+      </if>
+      <if test="mg_stockqty != null" >
+        #{mg_stockqty,jdbcType=DECIMAL},
+      </if>
+      <if test="mg_createid != null" >
+        #{mg_createid,jdbcType=BIGINT},
+      </if>
+      <if test="mg_createdate != null" >
+        #{mg_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mg_updatedate != null" >
+        #{mg_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mg_status != null" >
+        #{mg_status,jdbcType=TINYINT},
+      </if>
+      <if test="statusname != null" >
+        #{statusname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.MallV_Goods_ListExample" resultType="java.lang.Integer" >
+    select count(*) from MallV_Goods_List
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update MallV_Goods_List
+    <set >
+      <if test="record.mg_id != null" >
+        mg_id = #{record.mg_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.mg_title != null" >
+        mg_title = #{record.mg_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_subhead != null" >
+        mg_subhead = #{record.mg_subhead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_img1 != null" >
+        mg_img1 = #{record.mg_img1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_price != null" >
+        mg_price = #{record.mg_price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mg_stockqty != null" >
+        mg_stockqty = #{record.mg_stockqty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mg_createid != null" >
+        mg_createid = #{record.mg_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mg_createdate != null" >
+        mg_createdate = #{record.mg_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mg_updatedate != null" >
+        mg_updatedate = #{record.mg_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mg_status != null" >
+        mg_status = #{record.mg_status,jdbcType=TINYINT},
+      </if>
+      <if test="record.statusname != null" >
+        statusname = #{record.statusname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update MallV_Goods_List
+    set mg_id = #{record.mg_id,jdbcType=BIGINT},
+      mg_title = #{record.mg_title,jdbcType=VARCHAR},
+      mg_subhead = #{record.mg_subhead,jdbcType=VARCHAR},
+      mg_img1 = #{record.mg_img1,jdbcType=VARCHAR},
+      mg_price = #{record.mg_price,jdbcType=DECIMAL},
+      mg_stockqty = #{record.mg_stockqty,jdbcType=DECIMAL},
+      mg_createid = #{record.mg_createid,jdbcType=BIGINT},
+      mg_createdate = #{record.mg_createdate,jdbcType=TIMESTAMP},
+      mg_updatedate = #{record.mg_updatedate,jdbcType=TIMESTAMP},
+      mg_status = #{record.mg_status,jdbcType=TINYINT},
+      statusname = #{record.statusname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+
+
+  <!-- 条件 -->
+  <sql id="wherelist" >
+    <if test="mg_status != null ">
+      and mg_status=#{mg_status}
+    </if>
+    <if test="mg_title != null and mg_title != ''" >
+      and mg_title like concat(concat('%',#{mg_title}),'%')/*商品名称的模糊查询*/
+    </if>
+  </sql>
+
+  <!-- 分页 -->
+  <select id="getMallV_Goods_ListList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from MallV_Goods_List ar where 1=1
+    <include refid="wherelist" />
+    ORDER BY mg_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+
+  <select id="getCountMallV_Goods_List" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(mg_id) from MallV_Goods_List where 1=1
+    <include refid="wherelist" />
+  </select>
+
+</mapper>

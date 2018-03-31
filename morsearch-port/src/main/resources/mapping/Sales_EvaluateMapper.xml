@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sales_EvaluateMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sales_Evaluate" >
+    <id column="se_id" property="se_id" jdbcType="BIGINT" />
+    <result column="se_orderno" property="se_orderno" jdbcType="VARCHAR" />
+    <result column="se_salesmanid" property="se_salesmanid" jdbcType="BIGINT" />
+    <result column="se_appraiser" property="se_appraiser" jdbcType="VARCHAR" />
+    <result column="se_appraiseimage" property="se_appraiseimage" jdbcType="VARCHAR" />
+    <result column="se_anonymity" property="se_anonymity" jdbcType="BIT" />
+    <result column="se_contentgroup" property="se_contentgroup" jdbcType="VARCHAR" />
+    <result column="se_contentgrade" property="se_contentgrade" jdbcType="VARCHAR" />
+    <result column="se_contentvalue" property="se_contentvalue" jdbcType="VARCHAR" />
+    <result column="se_createid" property="se_createid" jdbcType="BIGINT" />
+    <result column="se_createno" property="se_createno" jdbcType="VARCHAR" />
+    <result column="se_createdate" property="se_createdate" jdbcType="TIMESTAMP" />
+    <result column="se_confirmid" property="se_confirmid" jdbcType="BIGINT" />
+    <result column="se_confirmno" property="se_confirmno" jdbcType="VARCHAR" />
+    <result column="se_confirmdate" property="se_confirmdate" jdbcType="TIMESTAMP" />
+    <result column="se_status" property="se_status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    se_id, se_orderno, se_salesmanid, se_appraiser, se_appraiseimage, se_anonymity, se_contentgroup,
+    se_contentgrade, se_contentvalue, se_createid, se_createno, se_createdate, se_confirmid,
+    se_confirmno, se_confirmdate, se_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sales_EvaluateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sales_Evaluate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Sales_Evaluate
+    where se_id = #{se_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Sales_Evaluate
+    where se_id = #{se_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sales_EvaluateExample" >
+    delete from Sales_Evaluate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sales_Evaluate" >
+    insert into Sales_Evaluate (se_id, se_orderno, se_salesmanid,
+    se_appraiser, se_appraiseimage, se_anonymity,
+    se_contentgroup, se_contentgrade, se_contentvalue,
+    se_createid, se_createno, se_createdate,
+    se_confirmid, se_confirmno, se_confirmdate,
+    se_status)
+    values (#{se_id,jdbcType=BIGINT}, #{se_orderno,jdbcType=VARCHAR}, #{se_salesmanid,jdbcType=BIGINT},
+    #{se_appraiser,jdbcType=VARCHAR}, #{se_appraiseimage,jdbcType=VARCHAR}, #{se_anonymity,jdbcType=BIT},
+    #{se_contentgroup,jdbcType=VARCHAR}, #{se_contentgrade,jdbcType=VARCHAR}, #{se_contentvalue,jdbcType=VARCHAR},
+    #{se_createid,jdbcType=BIGINT}, #{se_createno,jdbcType=VARCHAR}, #{se_createdate,jdbcType=TIMESTAMP},
+    #{se_confirmid,jdbcType=BIGINT}, #{se_confirmno,jdbcType=VARCHAR}, #{se_confirmdate,jdbcType=TIMESTAMP},
+    #{se_status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sales_Evaluate" >
+    insert into Sales_Evaluate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="se_id != null" >
+        se_id,
+      </if>
+      <if test="se_orderno != null" >
+        se_orderno,
+      </if>
+      <if test="se_salesmanid != null" >
+        se_salesmanid,
+      </if>
+      <if test="se_appraiser != null" >
+        se_appraiser,
+      </if>
+      <if test="se_appraiseimage != null" >
+        se_appraiseimage,
+      </if>
+      <if test="se_anonymity != null" >
+        se_anonymity,
+      </if>
+      <if test="se_contentgroup != null" >
+        se_contentgroup,
+      </if>
+      <if test="se_contentgrade != null" >
+        se_contentgrade,
+      </if>
+      <if test="se_contentvalue != null" >
+        se_contentvalue,
+      </if>
+      <if test="se_createid != null" >
+        se_createid,
+      </if>
+      <if test="se_createno != null" >
+        se_createno,
+      </if>
+      <if test="se_createdate != null" >
+        se_createdate,
+      </if>
+      <if test="se_confirmid != null" >
+        se_confirmid,
+      </if>
+      <if test="se_confirmno != null" >
+        se_confirmno,
+      </if>
+      <if test="se_confirmdate != null" >
+        se_confirmdate,
+      </if>
+      <if test="se_status != null" >
+        se_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="se_id != null" >
+        #{se_id,jdbcType=BIGINT},
+      </if>
+      <if test="se_orderno != null" >
+        #{se_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="se_salesmanid != null" >
+        #{se_salesmanid,jdbcType=BIGINT},
+      </if>
+      <if test="se_appraiser != null" >
+        #{se_appraiser,jdbcType=VARCHAR},
+      </if>
+      <if test="se_appraiseimage != null" >
+        #{se_appraiseimage,jdbcType=VARCHAR},
+      </if>
+      <if test="se_anonymity != null" >
+        #{se_anonymity,jdbcType=BIT},
+      </if>
+      <if test="se_contentgroup != null" >
+        #{se_contentgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="se_contentgrade != null" >
+        #{se_contentgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="se_contentvalue != null" >
+        #{se_contentvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="se_createid != null" >
+        #{se_createid,jdbcType=BIGINT},
+      </if>
+      <if test="se_createno != null" >
+        #{se_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="se_createdate != null" >
+        #{se_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="se_confirmid != null" >
+        #{se_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="se_confirmno != null" >
+        #{se_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="se_confirmdate != null" >
+        #{se_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="se_status != null" >
+        #{se_status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sales_EvaluateExample" resultType="java.lang.Integer" >
+    select count(*) from Sales_Evaluate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sales_Evaluate
+    <set >
+      <if test="record.se_id != null" >
+        se_id = #{record.se_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.se_orderno != null" >
+        se_orderno = #{record.se_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_salesmanid != null" >
+        se_salesmanid = #{record.se_salesmanid,jdbcType=BIGINT},
+      </if>
+      <if test="record.se_appraiser != null" >
+        se_appraiser = #{record.se_appraiser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_appraiseimage != null" >
+        se_appraiseimage = #{record.se_appraiseimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_anonymity != null" >
+        se_anonymity = #{record.se_anonymity,jdbcType=BIT},
+      </if>
+      <if test="record.se_contentgroup != null" >
+        se_contentgroup = #{record.se_contentgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_contentgrade != null" >
+        se_contentgrade = #{record.se_contentgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_contentvalue != null" >
+        se_contentvalue = #{record.se_contentvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_createid != null" >
+        se_createid = #{record.se_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.se_createno != null" >
+        se_createno = #{record.se_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_createdate != null" >
+        se_createdate = #{record.se_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.se_confirmid != null" >
+        se_confirmid = #{record.se_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="record.se_confirmno != null" >
+        se_confirmno = #{record.se_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_confirmdate != null" >
+        se_confirmdate = #{record.se_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.se_status != null" >
+        se_status = #{record.se_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sales_Evaluate
+    set se_id = #{record.se_id,jdbcType=BIGINT},
+    se_orderno = #{record.se_orderno,jdbcType=VARCHAR},
+    se_salesmanid = #{record.se_salesmanid,jdbcType=BIGINT},
+    se_appraiser = #{record.se_appraiser,jdbcType=VARCHAR},
+    se_appraiseimage = #{record.se_appraiseimage,jdbcType=VARCHAR},
+    se_anonymity = #{record.se_anonymity,jdbcType=BIT},
+    se_contentgroup = #{record.se_contentgroup,jdbcType=VARCHAR},
+    se_contentgrade = #{record.se_contentgrade,jdbcType=VARCHAR},
+    se_contentvalue = #{record.se_contentvalue,jdbcType=VARCHAR},
+    se_createid = #{record.se_createid,jdbcType=BIGINT},
+    se_createno = #{record.se_createno,jdbcType=VARCHAR},
+    se_createdate = #{record.se_createdate,jdbcType=TIMESTAMP},
+    se_confirmid = #{record.se_confirmid,jdbcType=BIGINT},
+    se_confirmno = #{record.se_confirmno,jdbcType=VARCHAR},
+    se_confirmdate = #{record.se_confirmdate,jdbcType=TIMESTAMP},
+    se_status = #{record.se_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sales_Evaluate" >
+    update Sales_Evaluate
+    <set >
+      <if test="se_orderno != null" >
+        se_orderno = #{se_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="se_salesmanid != null" >
+        se_salesmanid = #{se_salesmanid,jdbcType=BIGINT},
+      </if>
+      <if test="se_appraiser != null" >
+        se_appraiser = #{se_appraiser,jdbcType=VARCHAR},
+      </if>
+      <if test="se_appraiseimage != null" >
+        se_appraiseimage = #{se_appraiseimage,jdbcType=VARCHAR},
+      </if>
+      <if test="se_anonymity != null" >
+        se_anonymity = #{se_anonymity,jdbcType=BIT},
+      </if>
+      <if test="se_contentgroup != null" >
+        se_contentgroup = #{se_contentgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="se_contentgrade != null" >
+        se_contentgrade = #{se_contentgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="se_contentvalue != null" >
+        se_contentvalue = #{se_contentvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="se_createid != null" >
+        se_createid = #{se_createid,jdbcType=BIGINT},
+      </if>
+      <if test="se_createno != null" >
+        se_createno = #{se_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="se_createdate != null" >
+        se_createdate = #{se_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="se_confirmid != null" >
+        se_confirmid = #{se_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="se_confirmno != null" >
+        se_confirmno = #{se_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="se_confirmdate != null" >
+        se_confirmdate = #{se_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="se_status != null" >
+        se_status = #{se_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where se_id = #{se_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sales_Evaluate" >
+    update Sales_Evaluate
+    set se_orderno = #{se_orderno,jdbcType=VARCHAR},
+      se_salesmanid = #{se_salesmanid,jdbcType=BIGINT},
+      se_appraiser = #{se_appraiser,jdbcType=VARCHAR},
+      se_appraiseimage = #{se_appraiseimage,jdbcType=VARCHAR},
+      se_anonymity = #{se_anonymity,jdbcType=BIT},
+      se_contentgroup = #{se_contentgroup,jdbcType=VARCHAR},
+      se_contentgrade = #{se_contentgrade,jdbcType=VARCHAR},
+      se_contentvalue = #{se_contentvalue,jdbcType=VARCHAR},
+      se_createid = #{se_createid,jdbcType=BIGINT},
+      se_createno = #{se_createno,jdbcType=VARCHAR},
+      se_createdate = #{se_createdate,jdbcType=TIMESTAMP},
+      se_confirmid = #{se_confirmid,jdbcType=BIGINT},
+      se_confirmno = #{se_confirmno,jdbcType=VARCHAR},
+      se_confirmdate = #{se_confirmdate,jdbcType=TIMESTAMP},
+      se_status = #{se_status,jdbcType=TINYINT}
+    where se_id = #{se_id,jdbcType=BIGINT}
+  </update>
+
+  <sql id="wherelist" >
+    <if test="se_orderno != null and se_orderno != ''" >
+      and se_orderno like concat(concat('%',#{se_orderno}),'%')
+    </if>
+    <if test="se_createno != null and se_createno != ''" >
+      and se_createno like concat(concat('%',#{se_createno}),'%')
+    </if>
+    <if test="se_confirmeno != null and se_confirmeno != ''" >
+      and se_confirmeno like concat(concat('%',#{se_confirmeno}),'%')
+    </if>
+    /*关于制表日期的查询*/
+
+    <if test="se_createdate1 != null and se_createdate2 !=null" >
+      and se_createdate  between #{se_createdate1} and #{se_createdate2}
+    </if>
+
+    /*关于审核日期的查询*/
+    <if test="se_confirmdate1 != null and se_confirmdate2 !=null" >
+      and se_confirmdate  between #{se_confirmdate1} and #{se_confirmdate2}
+    </if>
+  </sql>
+<!--自定义-->
+
+
+  <!--分页查询begin-->
+  <!--评价者列表-->
+  <select id="getsales_evaluatelist" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    *
+    from Sales_Evaluate se where 1=1
+   AND
+   se_salesmanid =#{se_salesmanid,jdbcType=BIGINT}
+    ORDER BY se_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <!--评价者总数-->
+  <select id="getCountsales_evaluate" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(se_id) from Sales_Evaluate se WHERE  se_salesmanid =#{se_salesmanid,jdbcType=BIGINT}
+  </select>
+
+
+
+</mapper>

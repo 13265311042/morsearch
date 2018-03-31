@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Pm_AttachMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Pm_Attach" >
+    <id column="aa_id" property="aa_id" jdbcType="BIGINT" />
+    <result column="aa_archivesid" property="aa_archivesid" jdbcType="BIGINT" />
+    <result column="aa_filetitle" property="aa_filetitle" jdbcType="VARCHAR" />
+    <result column="aa_filename" property="aa_filename" jdbcType="VARCHAR" />
+    <result column="aa_filetype" property="aa_filetype" jdbcType="VARCHAR" />
+    <result column="aa_pagecount" property="aa_pagecount" jdbcType="INTEGER" />
+    <result column="aa_createdate" property="aa_createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    aa_id, aa_archivesid, aa_filetitle, aa_filename, aa_filetype, aa_pagecount, aa_createdate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Pm_AttachExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Pm_Attach
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Pm_Attach
+    where aa_id = #{aa_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Pm_Attach
+    where aa_id = #{aa_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Pm_AttachExample" >
+    delete from Pm_Attach
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Pm_Attach" >
+    <selectKey keyProperty="aa_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+
+    insert into Pm_Attach (aa_id, aa_archivesid, aa_filetitle,
+    aa_filename, aa_filetype, aa_pagecount,
+    aa_createdate)
+    values (#{aa_id,jdbcType=BIGINT}, #{aa_archivesid,jdbcType=BIGINT}, #{aa_filetitle,jdbcType=VARCHAR},
+    #{aa_filename,jdbcType=VARCHAR}, #{aa_filetype,jdbcType=VARCHAR}, #{aa_pagecount,jdbcType=INTEGER},
+    #{aa_createdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Pm_Attach" >
+    <selectKey keyProperty="aa_id" order="AFTER" resultType="java.lang.Long">
+      select last_insert_id();
+    </selectKey>
+
+    insert into Pm_Attach
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aa_id != null" >
+        aa_id,
+      </if>
+      <if test="aa_archivesid != null" >
+        aa_archivesid,
+      </if>
+      <if test="aa_filetitle != null" >
+        aa_filetitle,
+      </if>
+      <if test="aa_filename != null" >
+        aa_filename,
+      </if>
+      <if test="aa_filetype != null" >
+        aa_filetype,
+      </if>
+      <if test="aa_pagecount != null" >
+        aa_pagecount,
+      </if>
+      <if test="aa_createdate != null" >
+        aa_createdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aa_id != null" >
+        #{aa_id,jdbcType=BIGINT},
+      </if>
+      <if test="aa_archivesid != null" >
+        #{aa_archivesid,jdbcType=BIGINT},
+      </if>
+      <if test="aa_filetitle != null" >
+        #{aa_filetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_filename != null" >
+        #{aa_filename,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_filetype != null" >
+        #{aa_filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_pagecount != null" >
+        #{aa_pagecount,jdbcType=INTEGER},
+      </if>
+      <if test="aa_createdate != null" >
+        #{aa_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Pm_AttachExample" resultType="java.lang.Integer" >
+    select count(*) from Pm_Attach
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Pm_Attach
+    <set >
+      <if test="record.aa_id != null" >
+        aa_id = #{record.aa_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.aa_archivesid != null" >
+        aa_archivesid = #{record.aa_archivesid,jdbcType=BIGINT},
+      </if>
+      <if test="record.aa_filetitle != null" >
+        aa_filetitle = #{record.aa_filetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aa_filename != null" >
+        aa_filename = #{record.aa_filename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aa_filetype != null" >
+        aa_filetype = #{record.aa_filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aa_pagecount != null" >
+        aa_pagecount = #{record.aa_pagecount,jdbcType=INTEGER},
+      </if>
+      <if test="record.aa_createdate != null" >
+        aa_createdate = #{record.aa_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Pm_Attach
+    set aa_id = #{record.aa_id,jdbcType=BIGINT},
+    aa_archivesid = #{record.aa_archivesid,jdbcType=BIGINT},
+    aa_filetitle = #{record.aa_filetitle,jdbcType=VARCHAR},
+    aa_filename = #{record.aa_filename,jdbcType=VARCHAR},
+    aa_filetype = #{record.aa_filetype,jdbcType=VARCHAR},
+    aa_pagecount = #{record.aa_pagecount,jdbcType=INTEGER},
+    aa_createdate = #{record.aa_createdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Pm_Attach" >
+    update Pm_Attach
+    <set >
+      <if test="aa_archivesid != null" >
+        aa_archivesid = #{aa_archivesid,jdbcType=BIGINT},
+      </if>
+      <if test="aa_filetitle != null" >
+        aa_filetitle = #{aa_filetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_filename != null" >
+        aa_filename = #{aa_filename,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_filetype != null" >
+        aa_filetype = #{aa_filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="aa_pagecount != null" >
+        aa_pagecount = #{aa_pagecount,jdbcType=INTEGER},
+      </if>
+      <if test="aa_createdate != null" >
+        aa_createdate = #{aa_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where aa_id = #{aa_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Pm_Attach" >
+    update Pm_Attach
+    set aa_archivesid = #{aa_archivesid,jdbcType=BIGINT},
+    aa_filetitle = #{aa_filetitle,jdbcType=VARCHAR},
+    aa_filename = #{aa_filename,jdbcType=VARCHAR},
+    aa_filetype = #{aa_filetype,jdbcType=VARCHAR},
+    aa_pagecount = #{aa_pagecount,jdbcType=INTEGER},
+    aa_createdate = #{aa_createdate,jdbcType=TIMESTAMP}
+    where aa_id = #{aa_id,jdbcType=BIGINT}
+  </update>
+
+  <!--自定义-->
+  <select id="selectByPrimaryname" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    *
+    from Pm_Attach
+    where aa_archivesid = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByPid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    *
+    from Pm_Attach
+    where aa_filetitle = #{aa_filetitle,jdbcType=VARCHAR}
+  </select>
+
+  <select id="deleteByPid" resultMap="BaseResultMap" parameterType="String">
+    SELECT
+    *
+    from Pm_Attach
+    where  aa_filetitle = #{aa_filetitle,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteBy" parameterType="java.lang.Long" >
+    delete from Pm_Attach
+    where aa_id = #{aa_id,jdbcType=BIGINT}
+  </delete>
+
+  <select id="selectByname" resultMap="BaseResultMap" parameterType="String">
+    SELECT
+    *
+    from Pm_Attach
+    where  aa_filetitle = #{aa_filetitle,jdbcType=VARCHAR}
+    AND
+    aa_archivesid = #{aa_archivesid,jdbcType=VARCHAR}
+  </select>
+</mapper>

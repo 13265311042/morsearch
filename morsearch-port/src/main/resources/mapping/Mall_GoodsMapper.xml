@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Mall_GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Mall_Goods" >
+    <id column="mg_id" property="mg_id" jdbcType="BIGINT" />
+    <result column="mg_title" property="mg_title" jdbcType="VARCHAR" />
+    <result column="mg_subhead" property="mg_subhead" jdbcType="VARCHAR" />
+    <result column="mg_img1" property="mg_img1" jdbcType="VARCHAR" />
+    <result column="mg_img2" property="mg_img2" jdbcType="VARCHAR" />
+    <result column="mg_img3" property="mg_img3" jdbcType="VARCHAR" />
+    <result column="mg_img4" property="mg_img4" jdbcType="VARCHAR" />
+    <result column="mg_img5" property="mg_img5" jdbcType="VARCHAR" />
+    <result column="mg_color" property="mg_color" jdbcType="VARCHAR" />
+    <result column="mg_model" property="mg_model" jdbcType="VARCHAR" />
+    <result column="mg_price" property="mg_price" jdbcType="DECIMAL" />
+    <result column="mg_stockqty" property="mg_stockqty" jdbcType="DECIMAL" />
+    <result column="mg_period" property="mg_period" jdbcType="INTEGER" />
+    <result column="mg_logistics" property="mg_logistics" jdbcType="VARCHAR" />
+    <result column="mg_createid" property="mg_createid" jdbcType="BIGINT" />
+    <result column="mg_createno" property="mg_createno" jdbcType="VARCHAR" />
+    <result column="mg_createdate" property="mg_createdate" jdbcType="TIMESTAMP" />
+    <result column="mg_updateid" property="mg_updateid" jdbcType="BIGINT" />
+    <result column="mg_updateno" property="mg_updateno" jdbcType="VARCHAR" />
+    <result column="mg_updatedate" property="mg_updatedate" jdbcType="TIMESTAMP" />
+    <result column="mg_disposeremark" property="mg_disposeremark" jdbcType="VARCHAR" />
+    <result column="mg_disposeid" property="mg_disposeid" jdbcType="BIGINT" />
+    <result column="mg_status" property="mg_status" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.morsearch.model.Mall_Goods" extends="BaseResultMap" >
+    <result column="mg_content" property="mg_content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mg_id, mg_title, mg_subhead, mg_img1, mg_img2, mg_img3, mg_img4, mg_img5, mg_color,
+    mg_model, mg_price, mg_stockqty, mg_period, mg_logistics, mg_createid, mg_createno,
+    mg_createdate, mg_updateid, mg_updateno, mg_updatedate, mg_disposeremark, mg_disposeid,
+    mg_status
+  </sql>
+  <sql id="Blob_Column_List" >
+    mg_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.morsearch.model.Mall_GoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Mall_Goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Mall_GoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Mall_Goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Mall_Goods
+    where mg_id = #{mg_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Mall_Goods
+    where mg_id = #{mg_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Mall_GoodsExample" >
+    delete from Mall_Goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Mall_Goods" >
+    insert into Mall_Goods (mg_id, mg_title, mg_subhead,
+    mg_img1, mg_img2, mg_img3,
+    mg_img4, mg_img5, mg_color,
+    mg_model, mg_price, mg_stockqty,
+    mg_period, mg_logistics, mg_createid,
+    mg_createno, mg_createdate, mg_updateid,
+    mg_updateno, mg_updatedate, mg_disposeremark,
+    mg_disposeid, mg_status, mg_content
+    )
+    values (#{mg_id,jdbcType=BIGINT}, #{mg_title,jdbcType=VARCHAR}, #{mg_subhead,jdbcType=VARCHAR},
+    #{mg_img1,jdbcType=VARCHAR}, #{mg_img2,jdbcType=VARCHAR}, #{mg_img3,jdbcType=VARCHAR},
+    #{mg_img4,jdbcType=VARCHAR}, #{mg_img5,jdbcType=VARCHAR}, #{mg_color,jdbcType=VARCHAR},
+    #{mg_model,jdbcType=VARCHAR}, #{mg_price,jdbcType=DECIMAL}, #{mg_stockqty,jdbcType=DECIMAL},
+    #{mg_period,jdbcType=INTEGER}, #{mg_logistics,jdbcType=VARCHAR}, #{mg_createid,jdbcType=BIGINT},
+    #{mg_createno,jdbcType=VARCHAR}, #{mg_createdate,jdbcType=TIMESTAMP}, #{mg_updateid,jdbcType=BIGINT},
+    #{mg_updateno,jdbcType=VARCHAR}, #{mg_updatedate,jdbcType=TIMESTAMP}, #{mg_disposeremark,jdbcType=VARCHAR},
+    #{mg_disposeid,jdbcType=BIGINT}, #{mg_status,jdbcType=TINYINT}, #{mg_content,jdbcType=LONGVARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Mall_Goods" >
+    insert into Mall_Goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mg_id != null" >
+        mg_id,
+      </if>
+      <if test="mg_title != null" >
+        mg_title,
+      </if>
+      <if test="mg_subhead != null" >
+        mg_subhead,
+      </if>
+      <if test="mg_img1 != null" >
+        mg_img1,
+      </if>
+      <if test="mg_img2 != null" >
+        mg_img2,
+      </if>
+      <if test="mg_img3 != null" >
+        mg_img3,
+      </if>
+      <if test="mg_img4 != null" >
+        mg_img4,
+      </if>
+      <if test="mg_img5 != null" >
+        mg_img5,
+      </if>
+      <if test="mg_color != null" >
+        mg_color,
+      </if>
+      <if test="mg_model != null" >
+        mg_model,
+      </if>
+      <if test="mg_price != null" >
+        mg_price,
+      </if>
+      <if test="mg_stockqty != null" >
+        mg_stockqty,
+      </if>
+      <if test="mg_period != null" >
+        mg_period,
+      </if>
+      <if test="mg_logistics != null" >
+        mg_logistics,
+      </if>
+      <if test="mg_createid != null" >
+        mg_createid,
+      </if>
+      <if test="mg_createno != null" >
+        mg_createno,
+      </if>
+      <if test="mg_createdate != null" >
+        mg_createdate,
+      </if>
+      <if test="mg_updateid != null" >
+        mg_updateid,
+      </if>
+      <if test="mg_updateno != null" >
+        mg_updateno,
+      </if>
+      <if test="mg_updatedate != null" >
+        mg_updatedate,
+      </if>
+      <if test="mg_disposeremark != null" >
+        mg_disposeremark,
+      </if>
+      <if test="mg_disposeid != null" >
+        mg_disposeid,
+      </if>
+      <if test="mg_status != null" >
+        mg_status,
+      </if>
+      <if test="mg_content != null" >
+        mg_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mg_id != null" >
+        #{mg_id,jdbcType=BIGINT},
+      </if>
+      <if test="mg_title != null" >
+        #{mg_title,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_subhead != null" >
+        #{mg_subhead,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_img1 != null" >
+        #{mg_img1,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_img2 != null" >
+        #{mg_img2,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_img3 != null" >
+        #{mg_img3,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_img4 != null" >
+        #{mg_img4,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_img5 != null" >
+        #{mg_img5,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_color != null" >
+        #{mg_color,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_model != null" >
+        #{mg_model,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_price != null" >
+        #{mg_price,jdbcType=DECIMAL},
+      </if>
+      <if test="mg_stockqty != null" >
+        #{mg_stockqty,jdbcType=DECIMAL},
+      </if>
+      <if test="mg_period != null" >
+        #{mg_period,jdbcType=INTEGER},
+      </if>
+      <if test="mg_logistics != null" >
+        #{mg_logistics,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_createid != null" >
+        #{mg_createid,jdbcType=BIGINT},
+      </if>
+      <if test="mg_createno != null" >
+        #{mg_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_createdate != null" >
+        #{mg_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mg_updateid != null" >
+        #{mg_updateid,jdbcType=BIGINT},
+      </if>
+      <if test="mg_updateno != null" >
+        #{mg_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_updatedate != null" >
+        #{mg_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mg_disposeremark != null" >
+        #{mg_disposeremark,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_disposeid != null" >
+        #{mg_disposeid,jdbcType=BIGINT},
+      </if>
+      <if test="mg_status != null" >
+        #{mg_status,jdbcType=TINYINT},
+      </if>
+      <if test="mg_content != null" >
+        #{mg_content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Mall_GoodsExample" resultType="java.lang.Integer" >
+    select count(*) from Mall_Goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Mall_Goods
+    <set >
+      <if test="record.mg_id != null" >
+        mg_id = #{record.mg_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.mg_title != null" >
+        mg_title = #{record.mg_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_subhead != null" >
+        mg_subhead = #{record.mg_subhead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_img1 != null" >
+        mg_img1 = #{record.mg_img1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_img2 != null" >
+        mg_img2 = #{record.mg_img2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_img3 != null" >
+        mg_img3 = #{record.mg_img3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_img4 != null" >
+        mg_img4 = #{record.mg_img4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_img5 != null" >
+        mg_img5 = #{record.mg_img5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_color != null" >
+        mg_color = #{record.mg_color,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_model != null" >
+        mg_model = #{record.mg_model,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_price != null" >
+        mg_price = #{record.mg_price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mg_stockqty != null" >
+        mg_stockqty = #{record.mg_stockqty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mg_period != null" >
+        mg_period = #{record.mg_period,jdbcType=INTEGER},
+      </if>
+      <if test="record.mg_logistics != null" >
+        mg_logistics = #{record.mg_logistics,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_createid != null" >
+        mg_createid = #{record.mg_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mg_createno != null" >
+        mg_createno = #{record.mg_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_createdate != null" >
+        mg_createdate = #{record.mg_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mg_updateid != null" >
+        mg_updateid = #{record.mg_updateid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mg_updateno != null" >
+        mg_updateno = #{record.mg_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_updatedate != null" >
+        mg_updatedate = #{record.mg_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mg_disposeremark != null" >
+        mg_disposeremark = #{record.mg_disposeremark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_disposeid != null" >
+        mg_disposeid = #{record.mg_disposeid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mg_status != null" >
+        mg_status = #{record.mg_status,jdbcType=TINYINT},
+      </if>
+      <if test="record.mg_content != null" >
+        mg_content = #{record.mg_content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update Mall_Goods
+    set mg_id = #{record.mg_id,jdbcType=BIGINT},
+    mg_title = #{record.mg_title,jdbcType=VARCHAR},
+    mg_subhead = #{record.mg_subhead,jdbcType=VARCHAR},
+    mg_img1 = #{record.mg_img1,jdbcType=VARCHAR},
+    mg_img2 = #{record.mg_img2,jdbcType=VARCHAR},
+    mg_img3 = #{record.mg_img3,jdbcType=VARCHAR},
+    mg_img4 = #{record.mg_img4,jdbcType=VARCHAR},
+    mg_img5 = #{record.mg_img5,jdbcType=VARCHAR},
+    mg_color = #{record.mg_color,jdbcType=VARCHAR},
+    mg_model = #{record.mg_model,jdbcType=VARCHAR},
+    mg_price = #{record.mg_price,jdbcType=DECIMAL},
+    mg_stockqty = #{record.mg_stockqty,jdbcType=DECIMAL},
+    mg_period = #{record.mg_period,jdbcType=INTEGER},
+    mg_logistics = #{record.mg_logistics,jdbcType=VARCHAR},
+    mg_createid = #{record.mg_createid,jdbcType=BIGINT},
+    mg_createno = #{record.mg_createno,jdbcType=VARCHAR},
+    mg_createdate = #{record.mg_createdate,jdbcType=TIMESTAMP},
+    mg_updateid = #{record.mg_updateid,jdbcType=BIGINT},
+    mg_updateno = #{record.mg_updateno,jdbcType=VARCHAR},
+    mg_updatedate = #{record.mg_updatedate,jdbcType=TIMESTAMP},
+    mg_disposeremark = #{record.mg_disposeremark,jdbcType=VARCHAR},
+    mg_disposeid = #{record.mg_disposeid,jdbcType=BIGINT},
+    mg_status = #{record.mg_status,jdbcType=TINYINT},
+    mg_content = #{record.mg_content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Mall_Goods
+    set mg_id = #{record.mg_id,jdbcType=BIGINT},
+    mg_title = #{record.mg_title,jdbcType=VARCHAR},
+    mg_subhead = #{record.mg_subhead,jdbcType=VARCHAR},
+    mg_img1 = #{record.mg_img1,jdbcType=VARCHAR},
+    mg_img2 = #{record.mg_img2,jdbcType=VARCHAR},
+    mg_img3 = #{record.mg_img3,jdbcType=VARCHAR},
+    mg_img4 = #{record.mg_img4,jdbcType=VARCHAR},
+    mg_img5 = #{record.mg_img5,jdbcType=VARCHAR},
+    mg_color = #{record.mg_color,jdbcType=VARCHAR},
+    mg_model = #{record.mg_model,jdbcType=VARCHAR},
+    mg_price = #{record.mg_price,jdbcType=DECIMAL},
+    mg_stockqty = #{record.mg_stockqty,jdbcType=DECIMAL},
+    mg_period = #{record.mg_period,jdbcType=INTEGER},
+    mg_logistics = #{record.mg_logistics,jdbcType=VARCHAR},
+    mg_createid = #{record.mg_createid,jdbcType=BIGINT},
+    mg_createno = #{record.mg_createno,jdbcType=VARCHAR},
+    mg_createdate = #{record.mg_createdate,jdbcType=TIMESTAMP},
+    mg_updateid = #{record.mg_updateid,jdbcType=BIGINT},
+    mg_updateno = #{record.mg_updateno,jdbcType=VARCHAR},
+    mg_updatedate = #{record.mg_updatedate,jdbcType=TIMESTAMP},
+    mg_disposeremark = #{record.mg_disposeremark,jdbcType=VARCHAR},
+    mg_disposeid = #{record.mg_disposeid,jdbcType=BIGINT},
+    mg_status = #{record.mg_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Mall_Goods" >
+    update Mall_Goods
+    <set >
+      <if test="mg_title != null" >
+        mg_title = #{mg_title,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_subhead != null" >
+        mg_subhead = #{mg_subhead,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_img1 != null" >
+        mg_img1 = #{mg_img1,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_img2 != null" >
+        mg_img2 = #{mg_img2,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_img3 != null" >
+        mg_img3 = #{mg_img3,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_img4 != null" >
+        mg_img4 = #{mg_img4,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_img5 != null" >
+        mg_img5 = #{mg_img5,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_color != null" >
+        mg_color = #{mg_color,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_model != null" >
+        mg_model = #{mg_model,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_price != null" >
+        mg_price = #{mg_price,jdbcType=DECIMAL},
+      </if>
+      <if test="mg_stockqty != null" >
+        mg_stockqty = #{mg_stockqty,jdbcType=DECIMAL},
+      </if>
+      <if test="mg_period != null" >
+        mg_period = #{mg_period,jdbcType=INTEGER},
+      </if>
+      <if test="mg_logistics != null" >
+        mg_logistics = #{mg_logistics,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_createid != null" >
+        mg_createid = #{mg_createid,jdbcType=BIGINT},
+      </if>
+      <if test="mg_createno != null" >
+        mg_createno = #{mg_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_createdate != null" >
+        mg_createdate = #{mg_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mg_updateid != null" >
+        mg_updateid = #{mg_updateid,jdbcType=BIGINT},
+      </if>
+      <if test="mg_updateno != null" >
+        mg_updateno = #{mg_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_updatedate != null" >
+        mg_updatedate = #{mg_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mg_disposeremark != null" >
+        mg_disposeremark = #{mg_disposeremark,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_disposeid != null" >
+        mg_disposeid = #{mg_disposeid,jdbcType=BIGINT},
+      </if>
+      <if test="mg_status != null" >
+        mg_status = #{mg_status,jdbcType=TINYINT},
+      </if>
+      <if test="mg_content != null" >
+        mg_content = #{mg_content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where mg_id = #{mg_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.morsearch.model.Mall_Goods" >
+    update Mall_Goods
+    set mg_title = #{mg_title,jdbcType=VARCHAR},
+    mg_subhead = #{mg_subhead,jdbcType=VARCHAR},
+    mg_img1 = #{mg_img1,jdbcType=VARCHAR},
+    mg_img2 = #{mg_img2,jdbcType=VARCHAR},
+    mg_img3 = #{mg_img3,jdbcType=VARCHAR},
+    mg_img4 = #{mg_img4,jdbcType=VARCHAR},
+    mg_img5 = #{mg_img5,jdbcType=VARCHAR},
+    mg_color = #{mg_color,jdbcType=VARCHAR},
+    mg_model = #{mg_model,jdbcType=VARCHAR},
+    mg_price = #{mg_price,jdbcType=DECIMAL},
+    mg_stockqty = #{mg_stockqty,jdbcType=DECIMAL},
+    mg_period = #{mg_period,jdbcType=INTEGER},
+    mg_logistics = #{mg_logistics,jdbcType=VARCHAR},
+    mg_createid = #{mg_createid,jdbcType=BIGINT},
+    mg_createno = #{mg_createno,jdbcType=VARCHAR},
+    mg_createdate = #{mg_createdate,jdbcType=TIMESTAMP},
+    mg_updateid = #{mg_updateid,jdbcType=BIGINT},
+    mg_updateno = #{mg_updateno,jdbcType=VARCHAR},
+    mg_updatedate = #{mg_updatedate,jdbcType=TIMESTAMP},
+    mg_disposeremark = #{mg_disposeremark,jdbcType=VARCHAR},
+    mg_disposeid = #{mg_disposeid,jdbcType=BIGINT},
+    mg_status = #{mg_status,jdbcType=TINYINT},
+    mg_content = #{mg_content,jdbcType=LONGVARCHAR}
+    where mg_id = #{mg_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Mall_Goods" >
+    update Mall_Goods
+    set mg_title = #{mg_title,jdbcType=VARCHAR},
+    mg_subhead = #{mg_subhead,jdbcType=VARCHAR},
+    mg_img1 = #{mg_img1,jdbcType=VARCHAR},
+    mg_img2 = #{mg_img2,jdbcType=VARCHAR},
+    mg_img3 = #{mg_img3,jdbcType=VARCHAR},
+    mg_img4 = #{mg_img4,jdbcType=VARCHAR},
+    mg_img5 = #{mg_img5,jdbcType=VARCHAR},
+    mg_color = #{mg_color,jdbcType=VARCHAR},
+    mg_model = #{mg_model,jdbcType=VARCHAR},
+    mg_price = #{mg_price,jdbcType=DECIMAL},
+    mg_stockqty = #{mg_stockqty,jdbcType=DECIMAL},
+    mg_period = #{mg_period,jdbcType=INTEGER},
+    mg_logistics = #{mg_logistics,jdbcType=VARCHAR},
+    mg_createid = #{mg_createid,jdbcType=BIGINT},
+    mg_createno = #{mg_createno,jdbcType=VARCHAR},
+    mg_createdate = #{mg_createdate,jdbcType=TIMESTAMP},
+    mg_updateid = #{mg_updateid,jdbcType=BIGINT},
+    mg_updateno = #{mg_updateno,jdbcType=VARCHAR},
+    mg_updatedate = #{mg_updatedate,jdbcType=TIMESTAMP},
+    mg_disposeremark = #{mg_disposeremark,jdbcType=VARCHAR},
+    mg_disposeid = #{mg_disposeid,jdbcType=BIGINT},
+    mg_status = #{mg_status,jdbcType=TINYINT}
+    where mg_id = #{mg_id,jdbcType=BIGINT}
+  </update>
+
+  <!-- 根据订单号查相关状态-->
+  <select id="getGoodsMemo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select mg_id,mg_createid
+    <if test="type==0" >
+
+    </if>
+    from Mall_Goods  where mg_id = #{mg_id,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 根据商品id查询商品信息-->
+  <select id="getMall_Goodsdetail" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    SELECT
+    <if test="type==1" >/*查询有用的信息*/
+      mg_id, mg_title, mg_subhead, mg_img1, mg_img2, mg_img3, mg_img4, mg_img5, mg_color,
+      mg_model, mg_price, mg_stockqty, mg_content,mg_status
+    </if>
+    <if test="type==2" >
+    *
+    </if>
+    from Mall_Goods
+    where mg_id = #{mg_id,jdbcType=BIGINT}
+  </select>
+
+
+  <!-- 分页 -->
+  <select id="getMall_GoodsListid1" resultMap="BaseResultMap" parameterType="java.util.Map" >
+     SELECT * FROM Mall_Goods WHERE NOT EXISTS ( SELECT mh_goodid FROM Mall_Home WHERE Mall_Home.mh_type=1 AND Mall_Home.mh_goodid = Mall_Goods.mg_id )
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountMall_Goodsid1" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(mg_id) from Mall_Goods WHERE NOT EXISTS ( SELECT mh_goodid FROM Mall_Home WHERE Mall_Home.mh_type=1 AND Mall_Home.mh_goodid = Mall_Goods.mg_id )
+  </select>
+
+
+  <!-- 分页 -->
+  <select id="getMall_GoodsListid2" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT * FROM Mall_Goods WHERE NOT EXISTS ( SELECT mh_goodid FROM Mall_Home WHERE Mall_Home.mh_type=2 AND Mall_Home.mh_goodid = Mall_Goods.mg_id )
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountMall_Goodsid2" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(mg_id) from Mall_Goods WHERE NOT EXISTS ( SELECT mh_goodid FROM Mall_Home WHERE Mall_Home.mh_type=2 AND Mall_Home.mh_goodid = Mall_Goods.mg_id )
+  </select>
+
+
+
+</mapper>

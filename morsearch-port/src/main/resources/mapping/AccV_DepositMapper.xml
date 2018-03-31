@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.AccV_DepositMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.AccV_Deposit" >
+    <result column="ac_userid" property="ac_userid" jdbcType="BIGINT" />
+    <result column="ac_typecode" property="ac_typecode" jdbcType="VARCHAR" />
+    <result column="ac_deposit" property="ac_deposit" jdbcType="DECIMAL" />
+    <result column="ac_occupied" property="ac_occupied" jdbcType="DECIMAL" />
+    <result column="ac_receiveqty" property="ac_receiveqty" jdbcType="DECIMAL" />
+    <result column="ac_typename" property="ac_typename" jdbcType="VARCHAR" />
+    <result column="ac_typeimage" property="ac_typeimage" jdbcType="VARCHAR" />
+    <result column="ac_typeprice" property="ac_typeprice" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ac_userid, ac_typecode, ac_deposit, ac_occupied, ac_receiveqty, ac_typename, ac_typeimage,
+    ac_typeprice
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.AccV_DepositExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from AccV_Deposit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.AccV_DepositExample" >
+    delete from AccV_Deposit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.AccV_Deposit" >
+    insert into AccV_Deposit (ac_userid, ac_typecode, ac_deposit,
+    ac_occupied, ac_receiveqty, ac_typename,
+    ac_typeimage, ac_typeprice)
+    values (#{ac_userid,jdbcType=BIGINT}, #{ac_typecode,jdbcType=VARCHAR}, #{ac_deposit,jdbcType=DECIMAL},
+    #{ac_occupied,jdbcType=DECIMAL}, #{ac_receiveqty,jdbcType=DECIMAL}, #{ac_typename,jdbcType=VARCHAR},
+    #{ac_typeimage,jdbcType=VARCHAR}, #{ac_typeprice,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.AccV_Deposit" >
+    insert into AccV_Deposit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ac_userid != null" >
+        ac_userid,
+      </if>
+      <if test="ac_typecode != null" >
+        ac_typecode,
+      </if>
+      <if test="ac_deposit != null" >
+        ac_deposit,
+      </if>
+      <if test="ac_occupied != null" >
+        ac_occupied,
+      </if>
+      <if test="ac_receiveqty != null" >
+        ac_receiveqty,
+      </if>
+      <if test="ac_typename != null" >
+        ac_typename,
+      </if>
+      <if test="ac_typeimage != null" >
+        ac_typeimage,
+      </if>
+      <if test="ac_typeprice != null" >
+        ac_typeprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ac_userid != null" >
+        #{ac_userid,jdbcType=BIGINT},
+      </if>
+      <if test="ac_typecode != null" >
+        #{ac_typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="ac_deposit != null" >
+        #{ac_deposit,jdbcType=DECIMAL},
+      </if>
+      <if test="ac_occupied != null" >
+        #{ac_occupied,jdbcType=DECIMAL},
+      </if>
+      <if test="ac_receiveqty != null" >
+        #{ac_receiveqty,jdbcType=DECIMAL},
+      </if>
+      <if test="ac_typename != null" >
+        #{ac_typename,jdbcType=VARCHAR},
+      </if>
+      <if test="ac_typeimage != null" >
+        #{ac_typeimage,jdbcType=VARCHAR},
+      </if>
+      <if test="ac_typeprice != null" >
+        #{ac_typeprice,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.AccV_DepositExample" resultType="java.lang.Integer" >
+    select count(*) from AccV_Deposit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update AccV_Deposit
+    <set >
+      <if test="record.ac_userid != null" >
+        ac_userid = #{record.ac_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ac_typecode != null" >
+        ac_typecode = #{record.ac_typecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ac_deposit != null" >
+        ac_deposit = #{record.ac_deposit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ac_occupied != null" >
+        ac_occupied = #{record.ac_occupied,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ac_receiveqty != null" >
+        ac_receiveqty = #{record.ac_receiveqty,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ac_typename != null" >
+        ac_typename = #{record.ac_typename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ac_typeimage != null" >
+        ac_typeimage = #{record.ac_typeimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ac_typeprice != null" >
+        ac_typeprice = #{record.ac_typeprice,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update AccV_Deposit
+    set ac_userid = #{record.ac_userid,jdbcType=BIGINT},
+    ac_typecode = #{record.ac_typecode,jdbcType=VARCHAR},
+    ac_deposit = #{record.ac_deposit,jdbcType=DECIMAL},
+    ac_occupied = #{record.ac_occupied,jdbcType=DECIMAL},
+    ac_receiveqty = #{record.ac_receiveqty,jdbcType=DECIMAL},
+    ac_typename = #{record.ac_typename,jdbcType=VARCHAR},
+    ac_typeimage = #{record.ac_typeimage,jdbcType=VARCHAR},
+    ac_typeprice = #{record.ac_typeprice,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

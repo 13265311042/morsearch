@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+<!--
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:JobTask.xml</param-value>
+  </context-param>
+
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+-->
+
+  <servlet>
+    <description></description>
+    <display-name>imagesapi</display-name>
+    <servlet-name>imagesapi</servlet-name>
+    <servlet-class>com.morsearch.api.imagesapi</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>imagesapi</servlet-name>
+    <url-pattern>/imagesapi</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <description></description>
+    <display-name>archivesapi</display-name>
+    <servlet-name>archivesapi</servlet-name>
+    <servlet-class>com.morsearch.api.archivesapi</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>archivesapi</servlet-name>
+    <url-pattern>/archivesapi</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>readpmapi</display-name>
+    <servlet-name>readpmapi</servlet-name>
+    <servlet-class>com.morsearch.api.readpmapi</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>readpmapi</servlet-name>
+    <url-pattern>/readpmapi</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <description></description>
+    <display-name>pdfview</display-name>
+    <servlet-name>pdfview</servlet-name>
+    <servlet-class>com.morsearch.api.pdfview</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>pdfview</servlet-name>
+    <url-pattern>/pdfview</url-pattern>
+  </servlet-mapping>
+
+
+<!--
+  <mime-mapping>
+    <extension>pdf</extension>
+    <mime-type>application/pdf</mime-type>
+  </mime-mapping>
+-->
+
+
+</web-app>

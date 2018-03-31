@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.MallV_EvaluateMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.MallV_Evaluate" >
+    <result column="se_id" property="se_id" jdbcType="BIGINT" />
+    <result column="se_orderno" property="se_orderno" jdbcType="VARCHAR" />
+    <result column="se_goodid" property="se_goodid" jdbcType="BIGINT" />
+    <result column="se_appraiser" property="se_appraiser" jdbcType="VARCHAR" />
+    <result column="se_appraiseimage" property="se_appraiseimage" jdbcType="VARCHAR" />
+    <result column="se_anonymity" property="se_anonymity" jdbcType="BIT" />
+    <result column="se_contentgroup" property="se_contentgroup" jdbcType="VARCHAR" />
+    <result column="se_contentgrade" property="se_contentgrade" jdbcType="VARCHAR" />
+    <result column="se_contentvalue" property="se_contentvalue" jdbcType="VARCHAR" />
+    <result column="se_image1" property="se_image1" jdbcType="VARCHAR" />
+    <result column="se_image2" property="se_image2" jdbcType="VARCHAR" />
+    <result column="se_image3" property="se_image3" jdbcType="VARCHAR" />
+    <result column="se_image4" property="se_image4" jdbcType="VARCHAR" />
+    <result column="se_createid" property="se_createid" jdbcType="BIGINT" />
+    <result column="se_createno" property="se_createno" jdbcType="VARCHAR" />
+    <result column="se_createdate" property="se_createdate" jdbcType="TIMESTAMP" />
+    <result column="se_confirmid" property="se_confirmid" jdbcType="BIGINT" />
+    <result column="se_confirmno" property="se_confirmno" jdbcType="VARCHAR" />
+    <result column="se_confirmdate" property="se_confirmdate" jdbcType="TIMESTAMP" />
+    <result column="se_status" property="se_status" jdbcType="TINYINT" />
+    <result column="mg_title" property="mg_title" jdbcType="VARCHAR" />
+    <result column="statusname" property="statusname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    se_id, se_orderno, se_goodid, se_appraiser, se_appraiseimage, se_anonymity, se_contentgroup, 
+    se_contentgrade, se_contentvalue, se_image1, se_image2, se_image3, se_image4, se_createid, 
+    se_createno, se_createdate, se_confirmid, se_confirmno, se_confirmdate, se_status, 
+    mg_title, statusname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.MallV_EvaluateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MallV_Evaluate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.MallV_EvaluateExample" >
+    delete from MallV_Evaluate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.MallV_Evaluate" >
+    insert into MallV_Evaluate (se_id, se_orderno, se_goodid, 
+      se_appraiser, se_appraiseimage, se_anonymity, 
+      se_contentgroup, se_contentgrade, se_contentvalue, 
+      se_image1, se_image2, se_image3, 
+      se_image4, se_createid, se_createno, 
+      se_createdate, se_confirmid, se_confirmno, 
+      se_confirmdate, se_status, mg_title, 
+      statusname)
+    values (#{se_id,jdbcType=BIGINT}, #{se_orderno,jdbcType=VARCHAR}, #{se_goodid,jdbcType=BIGINT}, 
+      #{se_appraiser,jdbcType=VARCHAR}, #{se_appraiseimage,jdbcType=VARCHAR}, #{se_anonymity,jdbcType=BIT}, 
+      #{se_contentgroup,jdbcType=VARCHAR}, #{se_contentgrade,jdbcType=VARCHAR}, #{se_contentvalue,jdbcType=VARCHAR}, 
+      #{se_image1,jdbcType=VARCHAR}, #{se_image2,jdbcType=VARCHAR}, #{se_image3,jdbcType=VARCHAR}, 
+      #{se_image4,jdbcType=VARCHAR}, #{se_createid,jdbcType=BIGINT}, #{se_createno,jdbcType=VARCHAR}, 
+      #{se_createdate,jdbcType=TIMESTAMP}, #{se_confirmid,jdbcType=BIGINT}, #{se_confirmno,jdbcType=VARCHAR}, 
+      #{se_confirmdate,jdbcType=TIMESTAMP}, #{se_status,jdbcType=TINYINT}, #{mg_title,jdbcType=VARCHAR}, 
+      #{statusname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.MallV_Evaluate" >
+    insert into MallV_Evaluate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="se_id != null" >
+        se_id,
+      </if>
+      <if test="se_orderno != null" >
+        se_orderno,
+      </if>
+      <if test="se_goodid != null" >
+        se_goodid,
+      </if>
+      <if test="se_appraiser != null" >
+        se_appraiser,
+      </if>
+      <if test="se_appraiseimage != null" >
+        se_appraiseimage,
+      </if>
+      <if test="se_anonymity != null" >
+        se_anonymity,
+      </if>
+      <if test="se_contentgroup != null" >
+        se_contentgroup,
+      </if>
+      <if test="se_contentgrade != null" >
+        se_contentgrade,
+      </if>
+      <if test="se_contentvalue != null" >
+        se_contentvalue,
+      </if>
+      <if test="se_image1 != null" >
+        se_image1,
+      </if>
+      <if test="se_image2 != null" >
+        se_image2,
+      </if>
+      <if test="se_image3 != null" >
+        se_image3,
+      </if>
+      <if test="se_image4 != null" >
+        se_image4,
+      </if>
+      <if test="se_createid != null" >
+        se_createid,
+      </if>
+      <if test="se_createno != null" >
+        se_createno,
+      </if>
+      <if test="se_createdate != null" >
+        se_createdate,
+      </if>
+      <if test="se_confirmid != null" >
+        se_confirmid,
+      </if>
+      <if test="se_confirmno != null" >
+        se_confirmno,
+      </if>
+      <if test="se_confirmdate != null" >
+        se_confirmdate,
+      </if>
+      <if test="se_status != null" >
+        se_status,
+      </if>
+      <if test="mg_title != null" >
+        mg_title,
+      </if>
+      <if test="statusname != null" >
+        statusname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="se_id != null" >
+        #{se_id,jdbcType=BIGINT},
+      </if>
+      <if test="se_orderno != null" >
+        #{se_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="se_goodid != null" >
+        #{se_goodid,jdbcType=BIGINT},
+      </if>
+      <if test="se_appraiser != null" >
+        #{se_appraiser,jdbcType=VARCHAR},
+      </if>
+      <if test="se_appraiseimage != null" >
+        #{se_appraiseimage,jdbcType=VARCHAR},
+      </if>
+      <if test="se_anonymity != null" >
+        #{se_anonymity,jdbcType=BIT},
+      </if>
+      <if test="se_contentgroup != null" >
+        #{se_contentgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="se_contentgrade != null" >
+        #{se_contentgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="se_contentvalue != null" >
+        #{se_contentvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="se_image1 != null" >
+        #{se_image1,jdbcType=VARCHAR},
+      </if>
+      <if test="se_image2 != null" >
+        #{se_image2,jdbcType=VARCHAR},
+      </if>
+      <if test="se_image3 != null" >
+        #{se_image3,jdbcType=VARCHAR},
+      </if>
+      <if test="se_image4 != null" >
+        #{se_image4,jdbcType=VARCHAR},
+      </if>
+      <if test="se_createid != null" >
+        #{se_createid,jdbcType=BIGINT},
+      </if>
+      <if test="se_createno != null" >
+        #{se_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="se_createdate != null" >
+        #{se_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="se_confirmid != null" >
+        #{se_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="se_confirmno != null" >
+        #{se_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="se_confirmdate != null" >
+        #{se_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="se_status != null" >
+        #{se_status,jdbcType=TINYINT},
+      </if>
+      <if test="mg_title != null" >
+        #{mg_title,jdbcType=VARCHAR},
+      </if>
+      <if test="statusname != null" >
+        #{statusname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.MallV_EvaluateExample" resultType="java.lang.Integer" >
+    select count(*) from MallV_Evaluate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update MallV_Evaluate
+    <set >
+      <if test="record.se_id != null" >
+        se_id = #{record.se_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.se_orderno != null" >
+        se_orderno = #{record.se_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_goodid != null" >
+        se_goodid = #{record.se_goodid,jdbcType=BIGINT},
+      </if>
+      <if test="record.se_appraiser != null" >
+        se_appraiser = #{record.se_appraiser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_appraiseimage != null" >
+        se_appraiseimage = #{record.se_appraiseimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_anonymity != null" >
+        se_anonymity = #{record.se_anonymity,jdbcType=BIT},
+      </if>
+      <if test="record.se_contentgroup != null" >
+        se_contentgroup = #{record.se_contentgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_contentgrade != null" >
+        se_contentgrade = #{record.se_contentgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_contentvalue != null" >
+        se_contentvalue = #{record.se_contentvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_image1 != null" >
+        se_image1 = #{record.se_image1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_image2 != null" >
+        se_image2 = #{record.se_image2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_image3 != null" >
+        se_image3 = #{record.se_image3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_image4 != null" >
+        se_image4 = #{record.se_image4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_createid != null" >
+        se_createid = #{record.se_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.se_createno != null" >
+        se_createno = #{record.se_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_createdate != null" >
+        se_createdate = #{record.se_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.se_confirmid != null" >
+        se_confirmid = #{record.se_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="record.se_confirmno != null" >
+        se_confirmno = #{record.se_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.se_confirmdate != null" >
+        se_confirmdate = #{record.se_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.se_status != null" >
+        se_status = #{record.se_status,jdbcType=TINYINT},
+      </if>
+      <if test="record.mg_title != null" >
+        mg_title = #{record.mg_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statusname != null" >
+        statusname = #{record.statusname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update MallV_Evaluate
+    set se_id = #{record.se_id,jdbcType=BIGINT},
+      se_orderno = #{record.se_orderno,jdbcType=VARCHAR},
+      se_goodid = #{record.se_goodid,jdbcType=BIGINT},
+      se_appraiser = #{record.se_appraiser,jdbcType=VARCHAR},
+      se_appraiseimage = #{record.se_appraiseimage,jdbcType=VARCHAR},
+      se_anonymity = #{record.se_anonymity,jdbcType=BIT},
+      se_contentgroup = #{record.se_contentgroup,jdbcType=VARCHAR},
+      se_contentgrade = #{record.se_contentgrade,jdbcType=VARCHAR},
+      se_contentvalue = #{record.se_contentvalue,jdbcType=VARCHAR},
+      se_image1 = #{record.se_image1,jdbcType=VARCHAR},
+      se_image2 = #{record.se_image2,jdbcType=VARCHAR},
+      se_image3 = #{record.se_image3,jdbcType=VARCHAR},
+      se_image4 = #{record.se_image4,jdbcType=VARCHAR},
+      se_createid = #{record.se_createid,jdbcType=BIGINT},
+      se_createno = #{record.se_createno,jdbcType=VARCHAR},
+      se_createdate = #{record.se_createdate,jdbcType=TIMESTAMP},
+      se_confirmid = #{record.se_confirmid,jdbcType=BIGINT},
+      se_confirmno = #{record.se_confirmno,jdbcType=VARCHAR},
+      se_confirmdate = #{record.se_confirmdate,jdbcType=TIMESTAMP},
+      se_status = #{record.se_status,jdbcType=TINYINT},
+      mg_title = #{record.mg_title,jdbcType=VARCHAR},
+      statusname = #{record.statusname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <sql id="wherelist" >
+    <if test="se_orderno != null and se_orderno != ''" >
+      and se_orderno like concat(concat('%',#{se_orderno}),'%')
+    </if>
+    <if test="se_appraiser != null and se_appraiser != ''" >
+      and se_appraiser like concat(concat('%',#{se_appraiser}),'%')
+    </if>
+    <if test="se_status != null" ><!-- 状态查询 -->
+      and se_status=#{se_status}
+    </if>
+    <if test="statusname != null" ><!-- 状态查询 -->
+      and statusname=#{statusname}
+    </if>
+    /*关于制表日期的查询*/
+    <if test="se_createdate1 != null and se_createdate2 !=null" >
+      and se_createdate  between #{se_createdate1} and #{se_createdate2}
+    </if>
+    /*关于审核日期的查询*/
+    <if test="se_confirmdate1 != null and se_confirmdate2 !=null" >
+      and se_confirmdate  between #{se_confirmdate1} and #{se_confirmdate2}
+    </if>
+  </sql>
+  <!--分页查询begin-->
+  <!--评价者列表-->
+  <select id="getMallV_EvaluateList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    *
+    from MallV_Evaluate se where 1=1
+    <include refid="wherelist" />
+    ORDER BY se_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <!--评价者总数-->
+  <select id="getCountMallV_Evaluate" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(se_id) from MallV_Evaluate se WHERE 1=1
+    <include refid="wherelist" />
+  </select>
+</mapper>

@@ -1,0 +1,1370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.SysV_UserFullMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.SysV_UserFull" >
+    <result column="ur_id" property="ur_id" jdbcType="BIGINT" />
+    <result column="ur_no" property="ur_no" jdbcType="VARCHAR" />
+    <result column="ur_phone" property="ur_phone" jdbcType="VARCHAR" />
+    <result column="ur_email" property="ur_email" jdbcType="VARCHAR" />
+    <result column="ur_token" property="ur_token" jdbcType="VARCHAR" />
+    <result column="ur_password" property="ur_password" jdbcType="VARCHAR" />
+    <result column="ur_namenick" property="ur_namenick" jdbcType="VARCHAR" />
+    <result column="ur_namefull" property="ur_namefull" jdbcType="VARCHAR" />
+    <result column="ur_namefirst" property="ur_namefirst" jdbcType="VARCHAR" />
+    <result column="ur_namesnd" property="ur_namesnd" jdbcType="VARCHAR" />
+    <result column="ur_pwdpay" property="ur_pwdpay" jdbcType="VARCHAR" />
+    <result column="ur_birthday" property="ur_birthday" jdbcType="TIMESTAMP" />
+    <result column="ur_sex" property="ur_sex" jdbcType="VARCHAR" />
+    <result column="ur_imageurl" property="ur_imageurl" jdbcType="VARCHAR" />
+    <result column="ur_personcode" property="ur_personcode" jdbcType="VARCHAR" />
+    <result column="ur_invitecode" property="ur_invitecode" jdbcType="VARCHAR" />
+    <result column="ur_provinceid" property="ur_provinceid" jdbcType="INTEGER" />
+    <result column="ur_provincename" property="ur_provincename" jdbcType="VARCHAR" />
+    <result column="ur_citycode" property="ur_citycode" jdbcType="VARCHAR" />
+    <result column="ur_cityname" property="ur_cityname" jdbcType="VARCHAR" />
+    <result column="ur_pos_longitude" property="ur_pos_longitude" jdbcType="VARCHAR" />
+    <result column="ur_pos_latitude" property="ur_pos_latitude" jdbcType="VARCHAR" />
+    <result column="ur_pos_address" property="ur_pos_address" jdbcType="VARCHAR" />
+    <result column="ur_pos_location" property="ur_pos_location" jdbcType="VARCHAR" />
+    <result column="ur_pos_detailed" property="ur_pos_detailed" jdbcType="VARCHAR" />
+    <result column="ur_pos_autoflag" property="ur_pos_autoflag" jdbcType="BIT" />
+    <result column="ur_pos_zipcode" property="ur_pos_zipcode" jdbcType="VARCHAR" />
+    <result column="ur_openid_wx" property="ur_openid_wx" jdbcType="VARCHAR" />
+    <result column="ur_openid_mini" property="ur_openid_mini" jdbcType="VARCHAR" />
+    <result column="ur_openid_qq" property="ur_openid_qq" jdbcType="VARCHAR" />
+    <result column="ur_register_date" property="ur_register_date" jdbcType="TIMESTAMP" />
+    <result column="ur_register_ip" property="ur_register_ip" jdbcType="VARCHAR" />
+    <result column="ur_register_port" property="ur_register_port" jdbcType="VARCHAR" />
+    <result column="ur_register_ver" property="ur_register_ver" jdbcType="VARCHAR" />
+    <result column="ur_register_imei" property="ur_register_imei" jdbcType="VARCHAR" />
+    <result column="ur_login_date" property="ur_login_date" jdbcType="TIMESTAMP" />
+    <result column="ur_login_ip" property="ur_login_ip" jdbcType="VARCHAR" />
+    <result column="ur_login_online" property="ur_login_online" jdbcType="BIT" />
+    <result column="ur_login_port" property="ur_login_port" jdbcType="VARCHAR" />
+    <result column="ur_login_ver" property="ur_login_ver" jdbcType="VARCHAR" />
+    <result column="ur_login_imei" property="ur_login_imei" jdbcType="VARCHAR" />
+    <result column="ur_dateupdate" property="ur_dateupdate" jdbcType="TIMESTAMP" />
+    <result column="ur_usertype" property="ur_usertype" jdbcType="TINYINT" />
+    <result column="ur_leveltype" property="ur_leveltype" jdbcType="TINYINT" />
+    <result column="ur_msgflag1" property="ur_msgflag1" jdbcType="BIT" />
+    <result column="ur_msgflag2" property="ur_msgflag2" jdbcType="BIT" />
+    <result column="ur_msgflag3" property="ur_msgflag3" jdbcType="BIT" />
+    <result column="ur_stopflag" property="ur_stopflag" jdbcType="BIT" />
+    <result column="ur_stopdate" property="ur_stopdate" jdbcType="TIMESTAMP" />
+    <result column="ue_userid" property="ue_userid" jdbcType="BIGINT" />
+    <result column="ue_forbidreason" property="ue_forbidreason" jdbcType="VARCHAR" />
+    <result column="ue_message" property="ue_message" jdbcType="VARCHAR" />
+    <result column="ue_companyid" property="ue_companyid" jdbcType="INTEGER" />
+    <result column="ue_companyname" property="ue_companyname" jdbcType="VARCHAR" />
+    <result column="ue_companyunit" property="ue_companyunit" jdbcType="VARCHAR" />
+    <result column="ue_companyaddr" property="ue_companyaddr" jdbcType="VARCHAR" />
+    <result column="ue_companyaddrlocation" property="ue_companyaddrlocation" jdbcType="VARCHAR" />
+    <result column="ue_companyaddrdetailed" property="ue_companyaddrdetailed" jdbcType="VARCHAR" />
+    <result column="ue_companylongitude" property="ue_companylongitude" jdbcType="VARCHAR" />
+    <result column="ue_companylatitude" property="ue_companylatitude" jdbcType="VARCHAR" />
+    <result column="ue_companytype" property="ue_companytype" jdbcType="VARCHAR" />
+    <result column="ue_companybrand" property="ue_companybrand" jdbcType="VARCHAR" />
+    <result column="ue_teamlongitude" property="ue_teamlongitude" jdbcType="VARCHAR" />
+    <result column="ue_teamlatitude" property="ue_teamlatitude" jdbcType="VARCHAR" />
+    <result column="ue_personmajor" property="ue_personmajor" jdbcType="VARCHAR" />
+    <result column="ue_personjob" property="ue_personjob" jdbcType="VARCHAR" />
+    <result column="ue_personlevel" property="ue_personlevel" jdbcType="VARCHAR" />
+    <result column="ue_personworkage" property="ue_personworkage" jdbcType="VARCHAR" />
+    <result column="ue_willcity" property="ue_willcity" jdbcType="VARCHAR" />
+    <result column="ue_willtype" property="ue_willtype" jdbcType="VARCHAR" />
+    <result column="ue_willmajor" property="ue_willmajor" jdbcType="VARCHAR" />
+    <result column="ue_willjob" property="ue_willjob" jdbcType="VARCHAR" />
+    <result column="ue_willlevel" property="ue_willlevel" jdbcType="VARCHAR" />
+    <result column="ue_tagproduct" property="ue_tagproduct" jdbcType="VARCHAR" />
+    <result column="ue_tagcustomer" property="ue_tagcustomer" jdbcType="VARCHAR" />
+    <result column="ue_dynamiccode" property="ue_dynamiccode" jdbcType="VARCHAR" />
+    <result column="ue_needqty" property="ue_needqty" jdbcType="INTEGER" />
+    <result column="ue_flagallow" property="ue_flagallow" jdbcType="TINYINT" />
+    <result column="ue_remark" property="ue_remark" jdbcType="VARCHAR" />
+    <result column="wl_userid" property="wl_userid" jdbcType="BIGINT" />
+    <result column="wl_account" property="wl_account" jdbcType="DECIMAL" />
+    <result column="wl_integral" property="wl_integral" jdbcType="DECIMAL" />
+    <result column="wl_deposit" property="wl_deposit" jdbcType="DECIMAL" />
+    <result column="wl_occupied" property="wl_occupied" jdbcType="DECIMAL" />
+    <result column="wl_countbuy" property="wl_countbuy" jdbcType="INTEGER" />
+    <result column="wl_countrecharge" property="wl_countrecharge" jdbcType="INTEGER" />
+    <result column="wl_createdate" property="wl_createdate" jdbcType="TIMESTAMP" />
+    <result column="wl_updatedate" property="wl_updatedate" jdbcType="TIMESTAMP" />
+    <result column="um_msgsumtime" property="um_msgsumtime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ur_id, ur_no, ur_phone, ur_email, ur_token, ur_password, ur_namenick, ur_namefull,
+    ur_namefirst, ur_namesnd, ur_pwdpay, ur_birthday, ur_sex, ur_imageurl, ur_personcode,
+    ur_invitecode, ur_provinceid, ur_provincename, ur_citycode, ur_cityname, ur_pos_longitude,
+    ur_pos_latitude, ur_pos_address, ur_pos_location, ur_pos_detailed, ur_pos_autoflag,
+    ur_pos_zipcode, ur_openid_wx, ur_openid_mini, ur_openid_qq, ur_register_date, ur_register_ip,
+    ur_register_port, ur_register_ver, ur_register_imei, ur_login_date, ur_login_ip,
+    ur_login_online, ur_login_port, ur_login_ver, ur_login_imei, ur_dateupdate, ur_usertype,
+    ur_leveltype, ur_msgflag1, ur_msgflag2, ur_msgflag3, ur_stopflag, ur_stopdate, ue_userid,
+    ue_forbidreason, ue_message, ue_companyid, ue_companyname, ue_companyunit, ue_companyaddr,
+    ue_companyaddrlocation, ue_companyaddrdetailed, ue_companylongitude, ue_companylatitude,
+    ue_companytype, ue_companybrand, ue_teamlongitude, ue_teamlatitude, ue_personmajor,
+    ue_personjob, ue_personlevel, ue_personworkage, ue_willcity, ue_willtype, ue_willmajor,
+    ue_willjob, ue_willlevel, ue_tagproduct, ue_tagcustomer, ue_dynamiccode, ue_needqty,
+    ue_flagallow, ue_remark, wl_userid, wl_account, wl_integral, wl_deposit, wl_occupied,
+    wl_countbuy, wl_countrecharge, wl_createdate, wl_updatedate, um_msgsumtime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.SysV_UserFullExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SysV_UserFull
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.SysV_UserFullExample" >
+    delete from SysV_UserFull
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.SysV_UserFull" >
+    insert into SysV_UserFull (ur_id, ur_no, ur_phone,
+    ur_email, ur_token, ur_password,
+    ur_namenick, ur_namefull, ur_namefirst,
+    ur_namesnd, ur_pwdpay, ur_birthday,
+    ur_sex, ur_imageurl, ur_personcode,
+    ur_invitecode, ur_provinceid, ur_provincename,
+    ur_citycode, ur_cityname, ur_pos_longitude,
+    ur_pos_latitude, ur_pos_address, ur_pos_location,
+    ur_pos_detailed, ur_pos_autoflag, ur_pos_zipcode,
+    ur_openid_wx, ur_openid_mini, ur_openid_qq,
+    ur_register_date, ur_register_ip, ur_register_port,
+    ur_register_ver, ur_register_imei, ur_login_date,
+    ur_login_ip, ur_login_online, ur_login_port,
+    ur_login_ver, ur_login_imei, ur_dateupdate,
+    ur_usertype, ur_leveltype, ur_msgflag1,
+    ur_msgflag2, ur_msgflag3, ur_stopflag,
+    ur_stopdate, ue_userid, ue_forbidreason,
+    ue_message, ue_companyid, ue_companyname,
+    ue_companyunit, ue_companyaddr, ue_companyaddrlocation,
+    ue_companyaddrdetailed, ue_companylongitude,
+    ue_companylatitude, ue_companytype, ue_companybrand,
+    ue_teamlongitude, ue_teamlatitude, ue_personmajor,
+    ue_personjob, ue_personlevel, ue_personworkage,
+    ue_willcity, ue_willtype, ue_willmajor,
+    ue_willjob, ue_willlevel, ue_tagproduct,
+    ue_tagcustomer, ue_dynamiccode, ue_needqty,
+    ue_flagallow, ue_remark, wl_userid,
+    wl_account, wl_integral, wl_deposit,
+    wl_occupied, wl_countbuy, wl_countrecharge,
+    wl_createdate, wl_updatedate, um_msgsumtime
+    )
+    values (#{ur_id,jdbcType=BIGINT}, #{ur_no,jdbcType=VARCHAR}, #{ur_phone,jdbcType=VARCHAR},
+    #{ur_email,jdbcType=VARCHAR}, #{ur_token,jdbcType=VARCHAR}, #{ur_password,jdbcType=VARCHAR},
+    #{ur_namenick,jdbcType=VARCHAR}, #{ur_namefull,jdbcType=VARCHAR}, #{ur_namefirst,jdbcType=VARCHAR},
+    #{ur_namesnd,jdbcType=VARCHAR}, #{ur_pwdpay,jdbcType=VARCHAR}, #{ur_birthday,jdbcType=TIMESTAMP},
+    #{ur_sex,jdbcType=VARCHAR}, #{ur_imageurl,jdbcType=VARCHAR}, #{ur_personcode,jdbcType=VARCHAR},
+    #{ur_invitecode,jdbcType=VARCHAR}, #{ur_provinceid,jdbcType=INTEGER}, #{ur_provincename,jdbcType=VARCHAR},
+    #{ur_citycode,jdbcType=VARCHAR}, #{ur_cityname,jdbcType=VARCHAR}, #{ur_pos_longitude,jdbcType=VARCHAR},
+    #{ur_pos_latitude,jdbcType=VARCHAR}, #{ur_pos_address,jdbcType=VARCHAR}, #{ur_pos_location,jdbcType=VARCHAR},
+    #{ur_pos_detailed,jdbcType=VARCHAR}, #{ur_pos_autoflag,jdbcType=BIT}, #{ur_pos_zipcode,jdbcType=VARCHAR},
+    #{ur_openid_wx,jdbcType=VARCHAR}, #{ur_openid_mini,jdbcType=VARCHAR}, #{ur_openid_qq,jdbcType=VARCHAR},
+    #{ur_register_date,jdbcType=TIMESTAMP}, #{ur_register_ip,jdbcType=VARCHAR}, #{ur_register_port,jdbcType=VARCHAR},
+    #{ur_register_ver,jdbcType=VARCHAR}, #{ur_register_imei,jdbcType=VARCHAR}, #{ur_login_date,jdbcType=TIMESTAMP},
+    #{ur_login_ip,jdbcType=VARCHAR}, #{ur_login_online,jdbcType=BIT}, #{ur_login_port,jdbcType=VARCHAR},
+    #{ur_login_ver,jdbcType=VARCHAR}, #{ur_login_imei,jdbcType=VARCHAR}, #{ur_dateupdate,jdbcType=TIMESTAMP},
+    #{ur_usertype,jdbcType=TINYINT}, #{ur_leveltype,jdbcType=TINYINT}, #{ur_msgflag1,jdbcType=BIT},
+    #{ur_msgflag2,jdbcType=BIT}, #{ur_msgflag3,jdbcType=BIT}, #{ur_stopflag,jdbcType=BIT},
+    #{ur_stopdate,jdbcType=TIMESTAMP}, #{ue_userid,jdbcType=BIGINT}, #{ue_forbidreason,jdbcType=VARCHAR},
+    #{ue_message,jdbcType=VARCHAR}, #{ue_companyid,jdbcType=INTEGER}, #{ue_companyname,jdbcType=VARCHAR},
+    #{ue_companyunit,jdbcType=VARCHAR}, #{ue_companyaddr,jdbcType=VARCHAR}, #{ue_companyaddrlocation,jdbcType=VARCHAR},
+    #{ue_companyaddrdetailed,jdbcType=VARCHAR}, #{ue_companylongitude,jdbcType=VARCHAR},
+    #{ue_companylatitude,jdbcType=VARCHAR}, #{ue_companytype,jdbcType=VARCHAR}, #{ue_companybrand,jdbcType=VARCHAR},
+    #{ue_teamlongitude,jdbcType=VARCHAR}, #{ue_teamlatitude,jdbcType=VARCHAR}, #{ue_personmajor,jdbcType=VARCHAR},
+    #{ue_personjob,jdbcType=VARCHAR}, #{ue_personlevel,jdbcType=VARCHAR}, #{ue_personworkage,jdbcType=VARCHAR},
+    #{ue_willcity,jdbcType=VARCHAR}, #{ue_willtype,jdbcType=VARCHAR}, #{ue_willmajor,jdbcType=VARCHAR},
+    #{ue_willjob,jdbcType=VARCHAR}, #{ue_willlevel,jdbcType=VARCHAR}, #{ue_tagproduct,jdbcType=VARCHAR},
+    #{ue_tagcustomer,jdbcType=VARCHAR}, #{ue_dynamiccode,jdbcType=VARCHAR}, #{ue_needqty,jdbcType=INTEGER},
+    #{ue_flagallow,jdbcType=TINYINT}, #{ue_remark,jdbcType=VARCHAR}, #{wl_userid,jdbcType=BIGINT},
+    #{wl_account,jdbcType=DECIMAL}, #{wl_integral,jdbcType=DECIMAL}, #{wl_deposit,jdbcType=DECIMAL},
+    #{wl_occupied,jdbcType=DECIMAL}, #{wl_countbuy,jdbcType=INTEGER}, #{wl_countrecharge,jdbcType=INTEGER},
+    #{wl_createdate,jdbcType=TIMESTAMP}, #{wl_updatedate,jdbcType=TIMESTAMP}, #{um_msgsumtime,jdbcType=INTEGER}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.SysV_UserFull" >
+    insert into SysV_UserFull
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ur_id != null" >
+        ur_id,
+      </if>
+      <if test="ur_no != null" >
+        ur_no,
+      </if>
+      <if test="ur_phone != null" >
+        ur_phone,
+      </if>
+      <if test="ur_email != null" >
+        ur_email,
+      </if>
+      <if test="ur_token != null" >
+        ur_token,
+      </if>
+      <if test="ur_password != null" >
+        ur_password,
+      </if>
+      <if test="ur_namenick != null" >
+        ur_namenick,
+      </if>
+      <if test="ur_namefull != null" >
+        ur_namefull,
+      </if>
+      <if test="ur_namefirst != null" >
+        ur_namefirst,
+      </if>
+      <if test="ur_namesnd != null" >
+        ur_namesnd,
+      </if>
+      <if test="ur_pwdpay != null" >
+        ur_pwdpay,
+      </if>
+      <if test="ur_birthday != null" >
+        ur_birthday,
+      </if>
+      <if test="ur_sex != null" >
+        ur_sex,
+      </if>
+      <if test="ur_imageurl != null" >
+        ur_imageurl,
+      </if>
+      <if test="ur_personcode != null" >
+        ur_personcode,
+      </if>
+      <if test="ur_invitecode != null" >
+        ur_invitecode,
+      </if>
+      <if test="ur_provinceid != null" >
+        ur_provinceid,
+      </if>
+      <if test="ur_provincename != null" >
+        ur_provincename,
+      </if>
+      <if test="ur_citycode != null" >
+        ur_citycode,
+      </if>
+      <if test="ur_cityname != null" >
+        ur_cityname,
+      </if>
+      <if test="ur_pos_longitude != null" >
+        ur_pos_longitude,
+      </if>
+      <if test="ur_pos_latitude != null" >
+        ur_pos_latitude,
+      </if>
+      <if test="ur_pos_address != null" >
+        ur_pos_address,
+      </if>
+      <if test="ur_pos_location != null" >
+        ur_pos_location,
+      </if>
+      <if test="ur_pos_detailed != null" >
+        ur_pos_detailed,
+      </if>
+      <if test="ur_pos_autoflag != null" >
+        ur_pos_autoflag,
+      </if>
+      <if test="ur_pos_zipcode != null" >
+        ur_pos_zipcode,
+      </if>
+      <if test="ur_openid_wx != null" >
+        ur_openid_wx,
+      </if>
+      <if test="ur_openid_mini != null" >
+        ur_openid_mini,
+      </if>
+      <if test="ur_openid_qq != null" >
+        ur_openid_qq,
+      </if>
+      <if test="ur_register_date != null" >
+        ur_register_date,
+      </if>
+      <if test="ur_register_ip != null" >
+        ur_register_ip,
+      </if>
+      <if test="ur_register_port != null" >
+        ur_register_port,
+      </if>
+      <if test="ur_register_ver != null" >
+        ur_register_ver,
+      </if>
+      <if test="ur_register_imei != null" >
+        ur_register_imei,
+      </if>
+      <if test="ur_login_date != null" >
+        ur_login_date,
+      </if>
+      <if test="ur_login_ip != null" >
+        ur_login_ip,
+      </if>
+      <if test="ur_login_online != null" >
+        ur_login_online,
+      </if>
+      <if test="ur_login_port != null" >
+        ur_login_port,
+      </if>
+      <if test="ur_login_ver != null" >
+        ur_login_ver,
+      </if>
+      <if test="ur_login_imei != null" >
+        ur_login_imei,
+      </if>
+      <if test="ur_dateupdate != null" >
+        ur_dateupdate,
+      </if>
+      <if test="ur_usertype != null" >
+        ur_usertype,
+      </if>
+      <if test="ur_leveltype != null" >
+        ur_leveltype,
+      </if>
+      <if test="ur_msgflag1 != null" >
+        ur_msgflag1,
+      </if>
+      <if test="ur_msgflag2 != null" >
+        ur_msgflag2,
+      </if>
+      <if test="ur_msgflag3 != null" >
+        ur_msgflag3,
+      </if>
+      <if test="ur_stopflag != null" >
+        ur_stopflag,
+      </if>
+      <if test="ur_stopdate != null" >
+        ur_stopdate,
+      </if>
+      <if test="ue_userid != null" >
+        ue_userid,
+      </if>
+      <if test="ue_forbidreason != null" >
+        ue_forbidreason,
+      </if>
+      <if test="ue_message != null" >
+        ue_message,
+      </if>
+      <if test="ue_companyid != null" >
+        ue_companyid,
+      </if>
+      <if test="ue_companyname != null" >
+        ue_companyname,
+      </if>
+      <if test="ue_companyunit != null" >
+        ue_companyunit,
+      </if>
+      <if test="ue_companyaddr != null" >
+        ue_companyaddr,
+      </if>
+      <if test="ue_companyaddrlocation != null" >
+        ue_companyaddrlocation,
+      </if>
+      <if test="ue_companyaddrdetailed != null" >
+        ue_companyaddrdetailed,
+      </if>
+      <if test="ue_companylongitude != null" >
+        ue_companylongitude,
+      </if>
+      <if test="ue_companylatitude != null" >
+        ue_companylatitude,
+      </if>
+      <if test="ue_companytype != null" >
+        ue_companytype,
+      </if>
+      <if test="ue_companybrand != null" >
+        ue_companybrand,
+      </if>
+      <if test="ue_teamlongitude != null" >
+        ue_teamlongitude,
+      </if>
+      <if test="ue_teamlatitude != null" >
+        ue_teamlatitude,
+      </if>
+      <if test="ue_personmajor != null" >
+        ue_personmajor,
+      </if>
+      <if test="ue_personjob != null" >
+        ue_personjob,
+      </if>
+      <if test="ue_personlevel != null" >
+        ue_personlevel,
+      </if>
+      <if test="ue_personworkage != null" >
+        ue_personworkage,
+      </if>
+      <if test="ue_willcity != null" >
+        ue_willcity,
+      </if>
+      <if test="ue_willtype != null" >
+        ue_willtype,
+      </if>
+      <if test="ue_willmajor != null" >
+        ue_willmajor,
+      </if>
+      <if test="ue_willjob != null" >
+        ue_willjob,
+      </if>
+      <if test="ue_willlevel != null" >
+        ue_willlevel,
+      </if>
+      <if test="ue_tagproduct != null" >
+        ue_tagproduct,
+      </if>
+      <if test="ue_tagcustomer != null" >
+        ue_tagcustomer,
+      </if>
+      <if test="ue_dynamiccode != null" >
+        ue_dynamiccode,
+      </if>
+      <if test="ue_needqty != null" >
+        ue_needqty,
+      </if>
+      <if test="ue_flagallow != null" >
+        ue_flagallow,
+      </if>
+      <if test="ue_remark != null" >
+        ue_remark,
+      </if>
+      <if test="wl_userid != null" >
+        wl_userid,
+      </if>
+      <if test="wl_account != null" >
+        wl_account,
+      </if>
+      <if test="wl_integral != null" >
+        wl_integral,
+      </if>
+      <if test="wl_deposit != null" >
+        wl_deposit,
+      </if>
+      <if test="wl_occupied != null" >
+        wl_occupied,
+      </if>
+      <if test="wl_countbuy != null" >
+        wl_countbuy,
+      </if>
+      <if test="wl_countrecharge != null" >
+        wl_countrecharge,
+      </if>
+      <if test="wl_createdate != null" >
+        wl_createdate,
+      </if>
+      <if test="wl_updatedate != null" >
+        wl_updatedate,
+      </if>
+      <if test="um_msgsumtime != null" >
+        um_msgsumtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ur_id != null" >
+        #{ur_id,jdbcType=BIGINT},
+      </if>
+      <if test="ur_no != null" >
+        #{ur_no,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_phone != null" >
+        #{ur_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_email != null" >
+        #{ur_email,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_token != null" >
+        #{ur_token,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_password != null" >
+        #{ur_password,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_namenick != null" >
+        #{ur_namenick,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_namefull != null" >
+        #{ur_namefull,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_namefirst != null" >
+        #{ur_namefirst,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_namesnd != null" >
+        #{ur_namesnd,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_pwdpay != null" >
+        #{ur_pwdpay,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_birthday != null" >
+        #{ur_birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ur_sex != null" >
+        #{ur_sex,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_imageurl != null" >
+        #{ur_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_personcode != null" >
+        #{ur_personcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_invitecode != null" >
+        #{ur_invitecode,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_provinceid != null" >
+        #{ur_provinceid,jdbcType=INTEGER},
+      </if>
+      <if test="ur_provincename != null" >
+        #{ur_provincename,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_citycode != null" >
+        #{ur_citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_cityname != null" >
+        #{ur_cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_pos_longitude != null" >
+        #{ur_pos_longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_pos_latitude != null" >
+        #{ur_pos_latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_pos_address != null" >
+        #{ur_pos_address,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_pos_location != null" >
+        #{ur_pos_location,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_pos_detailed != null" >
+        #{ur_pos_detailed,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_pos_autoflag != null" >
+        #{ur_pos_autoflag,jdbcType=BIT},
+      </if>
+      <if test="ur_pos_zipcode != null" >
+        #{ur_pos_zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_openid_wx != null" >
+        #{ur_openid_wx,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_openid_mini != null" >
+        #{ur_openid_mini,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_openid_qq != null" >
+        #{ur_openid_qq,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_register_date != null" >
+        #{ur_register_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ur_register_ip != null" >
+        #{ur_register_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_register_port != null" >
+        #{ur_register_port,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_register_ver != null" >
+        #{ur_register_ver,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_register_imei != null" >
+        #{ur_register_imei,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_login_date != null" >
+        #{ur_login_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ur_login_ip != null" >
+        #{ur_login_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_login_online != null" >
+        #{ur_login_online,jdbcType=BIT},
+      </if>
+      <if test="ur_login_port != null" >
+        #{ur_login_port,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_login_ver != null" >
+        #{ur_login_ver,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_login_imei != null" >
+        #{ur_login_imei,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_dateupdate != null" >
+        #{ur_dateupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ur_usertype != null" >
+        #{ur_usertype,jdbcType=TINYINT},
+      </if>
+      <if test="ur_leveltype != null" >
+        #{ur_leveltype,jdbcType=TINYINT},
+      </if>
+      <if test="ur_msgflag1 != null" >
+        #{ur_msgflag1,jdbcType=BIT},
+      </if>
+      <if test="ur_msgflag2 != null" >
+        #{ur_msgflag2,jdbcType=BIT},
+      </if>
+      <if test="ur_msgflag3 != null" >
+        #{ur_msgflag3,jdbcType=BIT},
+      </if>
+      <if test="ur_stopflag != null" >
+        #{ur_stopflag,jdbcType=BIT},
+      </if>
+      <if test="ur_stopdate != null" >
+        #{ur_stopdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ue_userid != null" >
+        #{ue_userid,jdbcType=BIGINT},
+      </if>
+      <if test="ue_forbidreason != null" >
+        #{ue_forbidreason,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_message != null" >
+        #{ue_message,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyid != null" >
+        #{ue_companyid,jdbcType=INTEGER},
+      </if>
+      <if test="ue_companyname != null" >
+        #{ue_companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyunit != null" >
+        #{ue_companyunit,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyaddr != null" >
+        #{ue_companyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyaddrlocation != null" >
+        #{ue_companyaddrlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyaddrdetailed != null" >
+        #{ue_companyaddrdetailed,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companylongitude != null" >
+        #{ue_companylongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companylatitude != null" >
+        #{ue_companylatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companytype != null" >
+        #{ue_companytype,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companybrand != null" >
+        #{ue_companybrand,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_teamlongitude != null" >
+        #{ue_teamlongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_teamlatitude != null" >
+        #{ue_teamlatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personmajor != null" >
+        #{ue_personmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personjob != null" >
+        #{ue_personjob,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personlevel != null" >
+        #{ue_personlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personworkage != null" >
+        #{ue_personworkage,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willcity != null" >
+        #{ue_willcity,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willtype != null" >
+        #{ue_willtype,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willmajor != null" >
+        #{ue_willmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willjob != null" >
+        #{ue_willjob,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willlevel != null" >
+        #{ue_willlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_tagproduct != null" >
+        #{ue_tagproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_tagcustomer != null" >
+        #{ue_tagcustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_dynamiccode != null" >
+        #{ue_dynamiccode,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_needqty != null" >
+        #{ue_needqty,jdbcType=INTEGER},
+      </if>
+      <if test="ue_flagallow != null" >
+        #{ue_flagallow,jdbcType=TINYINT},
+      </if>
+      <if test="ue_remark != null" >
+        #{ue_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="wl_userid != null" >
+        #{wl_userid,jdbcType=BIGINT},
+      </if>
+      <if test="wl_account != null" >
+        #{wl_account,jdbcType=DECIMAL},
+      </if>
+      <if test="wl_integral != null" >
+        #{wl_integral,jdbcType=DECIMAL},
+      </if>
+      <if test="wl_deposit != null" >
+        #{wl_deposit,jdbcType=DECIMAL},
+      </if>
+      <if test="wl_occupied != null" >
+        #{wl_occupied,jdbcType=DECIMAL},
+      </if>
+      <if test="wl_countbuy != null" >
+        #{wl_countbuy,jdbcType=INTEGER},
+      </if>
+      <if test="wl_countrecharge != null" >
+        #{wl_countrecharge,jdbcType=INTEGER},
+      </if>
+      <if test="wl_createdate != null" >
+        #{wl_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wl_updatedate != null" >
+        #{wl_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="um_msgsumtime != null" >
+        #{um_msgsumtime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.SysV_UserFullExample" resultType="java.lang.Integer" >
+    select count(*) from SysV_UserFull
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SysV_UserFull
+    <set >
+      <if test="record.ur_id != null" >
+        ur_id = #{record.ur_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ur_no != null" >
+        ur_no = #{record.ur_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_phone != null" >
+        ur_phone = #{record.ur_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_email != null" >
+        ur_email = #{record.ur_email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_token != null" >
+        ur_token = #{record.ur_token,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_password != null" >
+        ur_password = #{record.ur_password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_namenick != null" >
+        ur_namenick = #{record.ur_namenick,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_namefull != null" >
+        ur_namefull = #{record.ur_namefull,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_namefirst != null" >
+        ur_namefirst = #{record.ur_namefirst,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_namesnd != null" >
+        ur_namesnd = #{record.ur_namesnd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_pwdpay != null" >
+        ur_pwdpay = #{record.ur_pwdpay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_birthday != null" >
+        ur_birthday = #{record.ur_birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ur_sex != null" >
+        ur_sex = #{record.ur_sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_imageurl != null" >
+        ur_imageurl = #{record.ur_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_personcode != null" >
+        ur_personcode = #{record.ur_personcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_invitecode != null" >
+        ur_invitecode = #{record.ur_invitecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_provinceid != null" >
+        ur_provinceid = #{record.ur_provinceid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ur_provincename != null" >
+        ur_provincename = #{record.ur_provincename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_citycode != null" >
+        ur_citycode = #{record.ur_citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_cityname != null" >
+        ur_cityname = #{record.ur_cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_pos_longitude != null" >
+        ur_pos_longitude = #{record.ur_pos_longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_pos_latitude != null" >
+        ur_pos_latitude = #{record.ur_pos_latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_pos_address != null" >
+        ur_pos_address = #{record.ur_pos_address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_pos_location != null" >
+        ur_pos_location = #{record.ur_pos_location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_pos_detailed != null" >
+        ur_pos_detailed = #{record.ur_pos_detailed,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_pos_autoflag != null" >
+        ur_pos_autoflag = #{record.ur_pos_autoflag,jdbcType=BIT},
+      </if>
+      <if test="record.ur_pos_zipcode != null" >
+        ur_pos_zipcode = #{record.ur_pos_zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_openid_wx != null" >
+        ur_openid_wx = #{record.ur_openid_wx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_openid_mini != null" >
+        ur_openid_mini = #{record.ur_openid_mini,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_openid_qq != null" >
+        ur_openid_qq = #{record.ur_openid_qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_register_date != null" >
+        ur_register_date = #{record.ur_register_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ur_register_ip != null" >
+        ur_register_ip = #{record.ur_register_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_register_port != null" >
+        ur_register_port = #{record.ur_register_port,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_register_ver != null" >
+        ur_register_ver = #{record.ur_register_ver,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_register_imei != null" >
+        ur_register_imei = #{record.ur_register_imei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_login_date != null" >
+        ur_login_date = #{record.ur_login_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ur_login_ip != null" >
+        ur_login_ip = #{record.ur_login_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_login_online != null" >
+        ur_login_online = #{record.ur_login_online,jdbcType=BIT},
+      </if>
+      <if test="record.ur_login_port != null" >
+        ur_login_port = #{record.ur_login_port,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_login_ver != null" >
+        ur_login_ver = #{record.ur_login_ver,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_login_imei != null" >
+        ur_login_imei = #{record.ur_login_imei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_dateupdate != null" >
+        ur_dateupdate = #{record.ur_dateupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ur_usertype != null" >
+        ur_usertype = #{record.ur_usertype,jdbcType=TINYINT},
+      </if>
+      <if test="record.ur_leveltype != null" >
+        ur_leveltype = #{record.ur_leveltype,jdbcType=TINYINT},
+      </if>
+      <if test="record.ur_msgflag1 != null" >
+        ur_msgflag1 = #{record.ur_msgflag1,jdbcType=BIT},
+      </if>
+      <if test="record.ur_msgflag2 != null" >
+        ur_msgflag2 = #{record.ur_msgflag2,jdbcType=BIT},
+      </if>
+      <if test="record.ur_msgflag3 != null" >
+        ur_msgflag3 = #{record.ur_msgflag3,jdbcType=BIT},
+      </if>
+      <if test="record.ur_stopflag != null" >
+        ur_stopflag = #{record.ur_stopflag,jdbcType=BIT},
+      </if>
+      <if test="record.ur_stopdate != null" >
+        ur_stopdate = #{record.ur_stopdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ue_userid != null" >
+        ue_userid = #{record.ue_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ue_forbidreason != null" >
+        ue_forbidreason = #{record.ue_forbidreason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_message != null" >
+        ue_message = #{record.ue_message,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companyid != null" >
+        ue_companyid = #{record.ue_companyid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ue_companyname != null" >
+        ue_companyname = #{record.ue_companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companyunit != null" >
+        ue_companyunit = #{record.ue_companyunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companyaddr != null" >
+        ue_companyaddr = #{record.ue_companyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companyaddrlocation != null" >
+        ue_companyaddrlocation = #{record.ue_companyaddrlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companyaddrdetailed != null" >
+        ue_companyaddrdetailed = #{record.ue_companyaddrdetailed,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companylongitude != null" >
+        ue_companylongitude = #{record.ue_companylongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companylatitude != null" >
+        ue_companylatitude = #{record.ue_companylatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companytype != null" >
+        ue_companytype = #{record.ue_companytype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companybrand != null" >
+        ue_companybrand = #{record.ue_companybrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_teamlongitude != null" >
+        ue_teamlongitude = #{record.ue_teamlongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_teamlatitude != null" >
+        ue_teamlatitude = #{record.ue_teamlatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_personmajor != null" >
+        ue_personmajor = #{record.ue_personmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_personjob != null" >
+        ue_personjob = #{record.ue_personjob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_personlevel != null" >
+        ue_personlevel = #{record.ue_personlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_personworkage != null" >
+        ue_personworkage = #{record.ue_personworkage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_willcity != null" >
+        ue_willcity = #{record.ue_willcity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_willtype != null" >
+        ue_willtype = #{record.ue_willtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_willmajor != null" >
+        ue_willmajor = #{record.ue_willmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_willjob != null" >
+        ue_willjob = #{record.ue_willjob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_willlevel != null" >
+        ue_willlevel = #{record.ue_willlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_tagproduct != null" >
+        ue_tagproduct = #{record.ue_tagproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_tagcustomer != null" >
+        ue_tagcustomer = #{record.ue_tagcustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_dynamiccode != null" >
+        ue_dynamiccode = #{record.ue_dynamiccode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_needqty != null" >
+        ue_needqty = #{record.ue_needqty,jdbcType=INTEGER},
+      </if>
+      <if test="record.ue_flagallow != null" >
+        ue_flagallow = #{record.ue_flagallow,jdbcType=TINYINT},
+      </if>
+      <if test="record.ue_remark != null" >
+        ue_remark = #{record.ue_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wl_userid != null" >
+        wl_userid = #{record.wl_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.wl_account != null" >
+        wl_account = #{record.wl_account,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wl_integral != null" >
+        wl_integral = #{record.wl_integral,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wl_deposit != null" >
+        wl_deposit = #{record.wl_deposit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wl_occupied != null" >
+        wl_occupied = #{record.wl_occupied,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wl_countbuy != null" >
+        wl_countbuy = #{record.wl_countbuy,jdbcType=INTEGER},
+      </if>
+      <if test="record.wl_countrecharge != null" >
+        wl_countrecharge = #{record.wl_countrecharge,jdbcType=INTEGER},
+      </if>
+      <if test="record.wl_createdate != null" >
+        wl_createdate = #{record.wl_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.wl_updatedate != null" >
+        wl_updatedate = #{record.wl_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.um_msgsumtime != null" >
+        um_msgsumtime = #{record.um_msgsumtime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SysV_UserFull
+    set ur_id = #{record.ur_id,jdbcType=BIGINT},
+    ur_no = #{record.ur_no,jdbcType=VARCHAR},
+    ur_phone = #{record.ur_phone,jdbcType=VARCHAR},
+    ur_email = #{record.ur_email,jdbcType=VARCHAR},
+    ur_token = #{record.ur_token,jdbcType=VARCHAR},
+    ur_password = #{record.ur_password,jdbcType=VARCHAR},
+    ur_namenick = #{record.ur_namenick,jdbcType=VARCHAR},
+    ur_namefull = #{record.ur_namefull,jdbcType=VARCHAR},
+    ur_namefirst = #{record.ur_namefirst,jdbcType=VARCHAR},
+    ur_namesnd = #{record.ur_namesnd,jdbcType=VARCHAR},
+    ur_pwdpay = #{record.ur_pwdpay,jdbcType=VARCHAR},
+    ur_birthday = #{record.ur_birthday,jdbcType=TIMESTAMP},
+    ur_sex = #{record.ur_sex,jdbcType=VARCHAR},
+    ur_imageurl = #{record.ur_imageurl,jdbcType=VARCHAR},
+    ur_personcode = #{record.ur_personcode,jdbcType=VARCHAR},
+    ur_invitecode = #{record.ur_invitecode,jdbcType=VARCHAR},
+    ur_provinceid = #{record.ur_provinceid,jdbcType=INTEGER},
+    ur_provincename = #{record.ur_provincename,jdbcType=VARCHAR},
+    ur_citycode = #{record.ur_citycode,jdbcType=VARCHAR},
+    ur_cityname = #{record.ur_cityname,jdbcType=VARCHAR},
+    ur_pos_longitude = #{record.ur_pos_longitude,jdbcType=VARCHAR},
+    ur_pos_latitude = #{record.ur_pos_latitude,jdbcType=VARCHAR},
+    ur_pos_address = #{record.ur_pos_address,jdbcType=VARCHAR},
+    ur_pos_location = #{record.ur_pos_location,jdbcType=VARCHAR},
+    ur_pos_detailed = #{record.ur_pos_detailed,jdbcType=VARCHAR},
+    ur_pos_autoflag = #{record.ur_pos_autoflag,jdbcType=BIT},
+    ur_pos_zipcode = #{record.ur_pos_zipcode,jdbcType=VARCHAR},
+    ur_openid_wx = #{record.ur_openid_wx,jdbcType=VARCHAR},
+    ur_openid_mini = #{record.ur_openid_mini,jdbcType=VARCHAR},
+    ur_openid_qq = #{record.ur_openid_qq,jdbcType=VARCHAR},
+    ur_register_date = #{record.ur_register_date,jdbcType=TIMESTAMP},
+    ur_register_ip = #{record.ur_register_ip,jdbcType=VARCHAR},
+    ur_register_port = #{record.ur_register_port,jdbcType=VARCHAR},
+    ur_register_ver = #{record.ur_register_ver,jdbcType=VARCHAR},
+    ur_register_imei = #{record.ur_register_imei,jdbcType=VARCHAR},
+    ur_login_date = #{record.ur_login_date,jdbcType=TIMESTAMP},
+    ur_login_ip = #{record.ur_login_ip,jdbcType=VARCHAR},
+    ur_login_online = #{record.ur_login_online,jdbcType=BIT},
+    ur_login_port = #{record.ur_login_port,jdbcType=VARCHAR},
+    ur_login_ver = #{record.ur_login_ver,jdbcType=VARCHAR},
+    ur_login_imei = #{record.ur_login_imei,jdbcType=VARCHAR},
+    ur_dateupdate = #{record.ur_dateupdate,jdbcType=TIMESTAMP},
+    ur_usertype = #{record.ur_usertype,jdbcType=TINYINT},
+    ur_leveltype = #{record.ur_leveltype,jdbcType=TINYINT},
+    ur_msgflag1 = #{record.ur_msgflag1,jdbcType=BIT},
+    ur_msgflag2 = #{record.ur_msgflag2,jdbcType=BIT},
+    ur_msgflag3 = #{record.ur_msgflag3,jdbcType=BIT},
+    ur_stopflag = #{record.ur_stopflag,jdbcType=BIT},
+    ur_stopdate = #{record.ur_stopdate,jdbcType=TIMESTAMP},
+    ue_userid = #{record.ue_userid,jdbcType=BIGINT},
+    ue_forbidreason = #{record.ue_forbidreason,jdbcType=VARCHAR},
+    ue_message = #{record.ue_message,jdbcType=VARCHAR},
+    ue_companyid = #{record.ue_companyid,jdbcType=INTEGER},
+    ue_companyname = #{record.ue_companyname,jdbcType=VARCHAR},
+    ue_companyunit = #{record.ue_companyunit,jdbcType=VARCHAR},
+    ue_companyaddr = #{record.ue_companyaddr,jdbcType=VARCHAR},
+    ue_companyaddrlocation = #{record.ue_companyaddrlocation,jdbcType=VARCHAR},
+    ue_companyaddrdetailed = #{record.ue_companyaddrdetailed,jdbcType=VARCHAR},
+    ue_companylongitude = #{record.ue_companylongitude,jdbcType=VARCHAR},
+    ue_companylatitude = #{record.ue_companylatitude,jdbcType=VARCHAR},
+    ue_companytype = #{record.ue_companytype,jdbcType=VARCHAR},
+    ue_companybrand = #{record.ue_companybrand,jdbcType=VARCHAR},
+    ue_teamlongitude = #{record.ue_teamlongitude,jdbcType=VARCHAR},
+    ue_teamlatitude = #{record.ue_teamlatitude,jdbcType=VARCHAR},
+    ue_personmajor = #{record.ue_personmajor,jdbcType=VARCHAR},
+    ue_personjob = #{record.ue_personjob,jdbcType=VARCHAR},
+    ue_personlevel = #{record.ue_personlevel,jdbcType=VARCHAR},
+    ue_personworkage = #{record.ue_personworkage,jdbcType=VARCHAR},
+    ue_willcity = #{record.ue_willcity,jdbcType=VARCHAR},
+    ue_willtype = #{record.ue_willtype,jdbcType=VARCHAR},
+    ue_willmajor = #{record.ue_willmajor,jdbcType=VARCHAR},
+    ue_willjob = #{record.ue_willjob,jdbcType=VARCHAR},
+    ue_willlevel = #{record.ue_willlevel,jdbcType=VARCHAR},
+    ue_tagproduct = #{record.ue_tagproduct,jdbcType=VARCHAR},
+    ue_tagcustomer = #{record.ue_tagcustomer,jdbcType=VARCHAR},
+    ue_dynamiccode = #{record.ue_dynamiccode,jdbcType=VARCHAR},
+    ue_needqty = #{record.ue_needqty,jdbcType=INTEGER},
+    ue_flagallow = #{record.ue_flagallow,jdbcType=TINYINT},
+    ue_remark = #{record.ue_remark,jdbcType=VARCHAR},
+    wl_userid = #{record.wl_userid,jdbcType=BIGINT},
+    wl_account = #{record.wl_account,jdbcType=DECIMAL},
+    wl_integral = #{record.wl_integral,jdbcType=DECIMAL},
+    wl_deposit = #{record.wl_deposit,jdbcType=DECIMAL},
+    wl_occupied = #{record.wl_occupied,jdbcType=DECIMAL},
+    wl_countbuy = #{record.wl_countbuy,jdbcType=INTEGER},
+    wl_countrecharge = #{record.wl_countrecharge,jdbcType=INTEGER},
+    wl_createdate = #{record.wl_createdate,jdbcType=TIMESTAMP},
+    wl_updatedate = #{record.wl_updatedate,jdbcType=TIMESTAMP},
+    um_msgsumtime = #{record.um_msgsumtime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+
+
+  <!-- 登录 获取登录资料 1为帐号，2为手机，3为邮箱，4为token ,返回账户和密码-->
+  <select id="selectLogin" resultMap="BaseResultMap" >
+    select ur_id,ur_no,ur_token,ur_namenick,ur_namefull,ur_phone,ur_email,ur_imageurl,ur_sex,ur_stopflag,ur_usertype
+    ,wl_account,wl_integral,wl_deposit,ur_msgflag1,ur_msgflag2,ur_msgflag3,ur_token,ue_companyid,ue_companyname
+    ,ue_personmajor,ur_leveltype,um_msgsumtime,ue_personjob
+    <if test="mode==4 || mode==5 || mode==6|| mode==7|| mode==8|| mode==9" >
+      ,ur_password
+    </if>
+    from SysV_UserFull
+    where ifnull(ur_stopflag,0)=0
+    and  ur_usertype=#{usertype,jdbcType=TINYINT}
+    <if test="mode==1" >
+      and  ur_no=#{account,jdbcType=VARCHAR}
+      and  ur_password=#{password,jdbcType=VARCHAR}
+      and not ISNULL(ur_password)
+    </if>
+    <if test="mode==2" >
+      and  ur_phone=#{account,jdbcType=VARCHAR}
+      and  ur_password=#{password,jdbcType=VARCHAR}
+      and not ISNULL(ur_password)
+    </if>
+    <if test="mode==3" >
+      and  email=#{account,jdbcType=VARCHAR}
+      and  ur_password=#{password,jdbcType=VARCHAR}
+      and not ISNULL(ur_password)
+    </if>
+    <if test="mode==4" >
+      and  ur_token=#{account,jdbcType=VARCHAR}
+      and not ISNULL(ur_token)
+    </if>
+    <if test="mode==5" >
+      and  ur_openid_wx=#{account,jdbcType=VARCHAR}
+      and not ISNULL(ur_openid_wx)
+    </if>
+    <if test="mode==6" >
+      and  ur_openid_qq=#{account,jdbcType=VARCHAR}
+      and not ISNULL(ur_openid_qq)
+    </if>
+    <if test="mode==7" >
+      and  ur_openid_mini=#{account,jdbcType=VARCHAR}
+      and not ISNULL(ur_openid_mini)
+    </if>
+    <if test="mode==8" >
+      and  ur_phone=#{account,jdbcType=VARCHAR}
+      and not ISNULL(ur_phone)
+    </if>
+    <if test="mode==9" >
+      and  ur_token=#{account,jdbcType=VARCHAR}
+      and  ur_login_imei=#{password,jdbcType=VARCHAR}
+      and not ISNULL(ur_token)
+    </if>
+    limit 1
+  </select>
+
+  <!-- 获取明细，按类别 -->
+  <!-- 0.默认全部 --> <!-- 1.默密码 --> <!-- 2.默认客户意向,3.完善用户 -->
+
+  <select id="getUserDetail" resultMap="BaseResultMap" >
+    select
+    <if test="type==0" >
+      *
+    </if>
+    <if test="type==1" >
+      ur_id,ur_password,ur_stopflag
+    </if>
+    <if test="type==2" >
+      ur_id,ue_willcity,ue_willtype,ue_willmajor,ue_willjob,ue_willlevel
+    </if>
+    <if test="type==3" >
+      ur_id ,ur_cityname,ue_companyname,ue_companytype,ue_personmajor,ue_personjob,ue_personworkage,ue_companybrand,ur_namenick,ur_sex,ur_imageurl
+    </if>
+    <if test="type==4">
+      ur_id,ur_imageurl,ur_namesnd,ue_personjob,ue_personmajor,ue_companyname,ue_companyaddr,ue_companyaddrlocation
+    </if>
+    <if test="type==5">
+      ur_id,ur_imageurl,ur_namenick,ur_sex,ur_msgflag2
+    </if>
+    <if test="type==6">
+      ur_id,ur_imageurl
+    </if>
+    <if test="type==7">
+      ur_id,ur_imageurl,ur_namenick,ue_personjob
+    </if>
+    <if test="type==8">
+      ur_id,ur_imageurl,ue_companyname,ur_namenick,ue_personjob
+    </if>
+    <if test="type==9">
+      ur_id,ur_namefirst,ue_companytype,ur_sex,ur_namesnd,ue_companyaddr,ue_companylongitude,ue_companylatitude,ue_personworkage,ue_personjob,ue_personlevel,ue_companyunit,ue_companybrand,ue_companyname,ue_personmajor,ue_companyaddrdetailed,ue_companyaddrlocation
+    </if>
+    <if test="type==10">
+      ur_id,ur_namenick,ur_imageurl,ue_personjob,ue_personlevel,ue_companyname,ue_personmajor,ue_companybrand,ur_sex
+    </if>
+    <if test="type==11">
+      ur_id,ue_companyaddr,ue_companyname
+    </if>
+    <if test="type==12">
+      ur_id,Ur_leveltype
+    </if>
+    <if test="type==13">
+      ur_id,ur_namenick,ur_imageurl,ue_personmajor,ue_companyname,ue_companyunit,ue_companyaddr,ue_personworkage,ue_personlevel,ue_companybrand,ue_personjob,ur_phone
+    </if>
+    <if test="type==14">
+      ur_id,ue_companyname
+    </if>
+    <if test="type==15">
+      ur_id,ur_register_date
+    </if>
+    <if test="type==16">
+      ur_id,ue_companyname,ur_no
+    </if>
+    from SysV_UserFull
+    where  ur_id = #{ur_id,jdbcType=BIGINT}
+  </select>
+
+  <!-- 获取用户列表 -->
+  <!-- 1.意向用户 -->
+
+  <select id="getUsertypeList" resultMap="BaseResultMap" >
+    select
+    ur_id
+    <if test="type==1" >
+      ,ue_willmajor
+    </if>
+    from SysV_UserFull
+    where ifnull(ur_stopflag,0)=0
+    <if test="usertype!=0" >
+      and ur_usertype = #{usertype,jdbcType=INTEGER}
+    </if>
+  </select>
+
+  <select id="getSysV_UserFullList" resultMap="BaseResultMap" >
+    select
+    ur_id,ur_no,ue_companyname,ue_companybrand,ue_tagproduct,ue_remark,ur_register_date,ur_namenick,wl_integral
+    from SysV_UserFull
+    where ur_usertype = 3
+    ORDER BY ur_register_date DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountSysV_UserFull" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(*) from SysV_UserFull where ur_usertype = 3
+  </select>
+
+
+  <!-- 条件 -->
+  <sql id="wherelist" >
+    <if test="ur_no != null and ur_no != ''" >
+      and ur_no like concat(concat('%',#{ur_no}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="ur_phone != null and ur_phone != ''" >
+      and ur_phone like concat(concat('%',#{ur_phone}),'%')<!-- 模糊查询 -->
+    </if>
+
+    <if test="ur_usertype != null and ur_usertype != ''" >
+      and ur_usertype=#{ur_usertype}
+    </if>
+
+    <if test="ur_email != null and ur_email != ''" >
+      and ur_email like concat(concat('%',#{ur_email}),'%')<!-- 模糊查询 -->
+    </if>
+
+    <if test="ur_namefirst != null and ur_namefirst != ''" >
+      and ur_namefirst like concat(concat('%',#{ur_namefirst}),'%')<!-- 姓氏 -->
+    </if>
+
+    <if test="ur_msgflag2 != null and ur_msgflag2 != ''" >
+      and ifnull(ur_msgflag2,0) =#{ur_msgflag2}
+    </if>
+
+    <if test="ur_stopflag != null and ur_stopflag != ''" >
+      and ifnull(ur_stopflag,0) =#{ur_stopflag}
+    </if>
+    /*关于注册时间的查询*/
+    <if test="ur_register_date1 != null and ur_register_date2 !=null" >
+      and ur_register_date  between #{ur_register_date1} and #{ur_register_date2}
+    </if>
+    /*关于登陆时间的查询*/
+    <if test="ur_login_date1 != null and ur_login_date2 !=null" >
+      and ur_login_date  between #{ur_login_date1} and #{ur_login_date2}
+    </if>
+  </sql>
+
+
+  <!-- 分页 -->
+  <select id="getuserfullList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from SysV_UserFull sm where ur_usertype in (1,2,4)
+    <include refid="wherelist" />
+    ORDER BY ur_usertype asc ,ur_id desc
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountUserfull" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(ur_id) from SysV_UserFull where ur_usertype in (1,2,4)
+    <include refid="wherelist" />
+  </select>
+
+</mapper>

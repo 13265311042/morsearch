@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.MallV_HomeMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.MallV_Home" >
+    <result column="mh_id" property="mh_id" jdbcType="BIGINT" />
+    <result column="mh_type" property="mh_type" jdbcType="TINYINT" />
+    <result column="mh_goodid" property="mh_goodid" jdbcType="BIGINT" />
+    <result column="mh_index" property="mh_index" jdbcType="INTEGER" />
+    <result column="mh_remark" property="mh_remark" jdbcType="VARCHAR" />
+    <result column="mh_stopflag" property="mh_stopflag" jdbcType="BIT" />
+    <result column="mh_createno" property="mh_createno" jdbcType="VARCHAR" />
+    <result column="mh_createdate" property="mh_createdate" jdbcType="TIMESTAMP" />
+    <result column="mh_updateno" property="mh_updateno" jdbcType="VARCHAR" />
+    <result column="mh_updatedate" property="mh_updatedate" jdbcType="TIMESTAMP" />
+    <result column="mg_title" property="mg_title" jdbcType="VARCHAR" />
+    <result column="mg_subhead" property="mg_subhead" jdbcType="VARCHAR" />
+    <result column="mg_img1" property="mg_img1" jdbcType="VARCHAR" />
+    <result column="mg_price" property="mg_price" jdbcType="DECIMAL" />
+    <result column="mg_status" property="mg_status" jdbcType="TINYINT" />
+    <result column="mg_statusname" property="mg_statusname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mh_id, mh_type, mh_goodid, mh_index, mh_remark, mh_stopflag, mh_createno, mh_createdate,
+    mh_updateno, mh_updatedate, mg_title, mg_subhead, mg_img1, mg_price, mg_status, mg_statusname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.MallV_HomeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from MallV_Home
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.MallV_HomeExample" >
+    delete from MallV_Home
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.MallV_Home" >
+    insert into MallV_Home (mh_id, mh_type, mh_goodid,
+    mh_index, mh_remark, mh_stopflag,
+    mh_createno, mh_createdate, mh_updateno,
+    mh_updatedate, mg_title, mg_subhead,
+    mg_img1, mg_price, mg_status,
+    mg_statusname)
+    values (#{mh_id,jdbcType=BIGINT}, #{mh_type,jdbcType=TINYINT}, #{mh_goodid,jdbcType=BIGINT},
+    #{mh_index,jdbcType=INTEGER}, #{mh_remark,jdbcType=VARCHAR}, #{mh_stopflag,jdbcType=BIT},
+    #{mh_createno,jdbcType=VARCHAR}, #{mh_createdate,jdbcType=TIMESTAMP}, #{mh_updateno,jdbcType=VARCHAR},
+    #{mh_updatedate,jdbcType=TIMESTAMP}, #{mg_title,jdbcType=VARCHAR}, #{mg_subhead,jdbcType=VARCHAR},
+    #{mg_img1,jdbcType=VARCHAR}, #{mg_price,jdbcType=DECIMAL}, #{mg_status,jdbcType=TINYINT},
+    #{mg_statusname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.MallV_Home" >
+    insert into MallV_Home
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mh_id != null" >
+        mh_id,
+      </if>
+      <if test="mh_type != null" >
+        mh_type,
+      </if>
+      <if test="mh_goodid != null" >
+        mh_goodid,
+      </if>
+      <if test="mh_index != null" >
+        mh_index,
+      </if>
+      <if test="mh_remark != null" >
+        mh_remark,
+      </if>
+      <if test="mh_stopflag != null" >
+        mh_stopflag,
+      </if>
+      <if test="mh_createno != null" >
+        mh_createno,
+      </if>
+      <if test="mh_createdate != null" >
+        mh_createdate,
+      </if>
+      <if test="mh_updateno != null" >
+        mh_updateno,
+      </if>
+      <if test="mh_updatedate != null" >
+        mh_updatedate,
+      </if>
+      <if test="mg_title != null" >
+        mg_title,
+      </if>
+      <if test="mg_subhead != null" >
+        mg_subhead,
+      </if>
+      <if test="mg_img1 != null" >
+        mg_img1,
+      </if>
+      <if test="mg_price != null" >
+        mg_price,
+      </if>
+      <if test="mg_status != null" >
+        mg_status,
+      </if>
+      <if test="mg_statusname != null" >
+        mg_statusname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mh_id != null" >
+        #{mh_id,jdbcType=BIGINT},
+      </if>
+      <if test="mh_type != null" >
+        #{mh_type,jdbcType=TINYINT},
+      </if>
+      <if test="mh_goodid != null" >
+        #{mh_goodid,jdbcType=BIGINT},
+      </if>
+      <if test="mh_index != null" >
+        #{mh_index,jdbcType=INTEGER},
+      </if>
+      <if test="mh_remark != null" >
+        #{mh_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="mh_stopflag != null" >
+        #{mh_stopflag,jdbcType=BIT},
+      </if>
+      <if test="mh_createno != null" >
+        #{mh_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="mh_createdate != null" >
+        #{mh_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mh_updateno != null" >
+        #{mh_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="mh_updatedate != null" >
+        #{mh_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mg_title != null" >
+        #{mg_title,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_subhead != null" >
+        #{mg_subhead,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_img1 != null" >
+        #{mg_img1,jdbcType=VARCHAR},
+      </if>
+      <if test="mg_price != null" >
+        #{mg_price,jdbcType=DECIMAL},
+      </if>
+      <if test="mg_status != null" >
+        #{mg_status,jdbcType=TINYINT},
+      </if>
+      <if test="mg_statusname != null" >
+        #{mg_statusname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.MallV_HomeExample" resultType="java.lang.Integer" >
+    select count(*) from MallV_Home
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update MallV_Home
+    <set >
+      <if test="record.mh_id != null" >
+        mh_id = #{record.mh_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.mh_type != null" >
+        mh_type = #{record.mh_type,jdbcType=TINYINT},
+      </if>
+      <if test="record.mh_goodid != null" >
+        mh_goodid = #{record.mh_goodid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mh_index != null" >
+        mh_index = #{record.mh_index,jdbcType=INTEGER},
+      </if>
+      <if test="record.mh_remark != null" >
+        mh_remark = #{record.mh_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mh_stopflag != null" >
+        mh_stopflag = #{record.mh_stopflag,jdbcType=BIT},
+      </if>
+      <if test="record.mh_createno != null" >
+        mh_createno = #{record.mh_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mh_createdate != null" >
+        mh_createdate = #{record.mh_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mh_updateno != null" >
+        mh_updateno = #{record.mh_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mh_updatedate != null" >
+        mh_updatedate = #{record.mh_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mg_title != null" >
+        mg_title = #{record.mg_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_subhead != null" >
+        mg_subhead = #{record.mg_subhead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_img1 != null" >
+        mg_img1 = #{record.mg_img1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mg_price != null" >
+        mg_price = #{record.mg_price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mg_status != null" >
+        mg_status = #{record.mg_status,jdbcType=TINYINT},
+      </if>
+      <if test="record.mg_statusname != null" >
+        mg_statusname = #{record.mg_statusname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update MallV_Home
+    set mh_id = #{record.mh_id,jdbcType=BIGINT},
+    mh_type = #{record.mh_type,jdbcType=TINYINT},
+    mh_goodid = #{record.mh_goodid,jdbcType=BIGINT},
+    mh_index = #{record.mh_index,jdbcType=INTEGER},
+    mh_remark = #{record.mh_remark,jdbcType=VARCHAR},
+    mh_stopflag = #{record.mh_stopflag,jdbcType=BIT},
+    mh_createno = #{record.mh_createno,jdbcType=VARCHAR},
+    mh_createdate = #{record.mh_createdate,jdbcType=TIMESTAMP},
+    mh_updateno = #{record.mh_updateno,jdbcType=VARCHAR},
+    mh_updatedate = #{record.mh_updatedate,jdbcType=TIMESTAMP},
+    mg_title = #{record.mg_title,jdbcType=VARCHAR},
+    mg_subhead = #{record.mg_subhead,jdbcType=VARCHAR},
+    mg_img1 = #{record.mg_img1,jdbcType=VARCHAR},
+    mg_price = #{record.mg_price,jdbcType=DECIMAL},
+    mg_status = #{record.mg_status,jdbcType=TINYINT},
+    mg_statusname = #{record.mg_statusname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <!--
+  条件
+  -->
+
+  <sql id="wherelist" >
+    <if test="mh_stopflag != null and mh_stopflag != ''" >
+      and ifnull(mh_stopflag,0) =#{mh_stopflag}
+    </if>
+    <if test="mh_type != null" >
+      and mh_type=#{mh_type}
+    </if>
+    <if test="mg_title != null and mg_title != ''" >
+      and mg_title like concat(concat('%',#{mg_title}),'%')
+    </if>
+    <if test="mg_subhead != null and mg_subhead != ''" >
+      and mg_subhead like concat(concat('%',#{mg_subhead}),'%')
+    </if>
+
+    <if test="mg_statusname != null and mg_statusname != ''" >
+      and mg_statusname like concat(concat('%',#{mg_statusname}),'%')
+    </if>
+    /*关于建表日期时间的查询*/
+    <if test="mh_createdate1 != null and mh_createdate2 !=null" >
+      and mh_createdate  between #{mh_createdate1} and #{mh_createdate2}
+    </if>
+    /*关于修改日期时间的查询*/
+    <if test="mh_updatedate1 != null and mh_updatedate2 !=null" >
+      and mh_updatedate  between #{mh_updatedate1} and #{mh_updatedate2}
+    </if>
+
+  </sql>
+
+  <!-- 分页 -->
+  <select id="getMallV_HomeList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from MallV_Home ar where 1=1
+    <include refid="wherelist" />
+    ORDER BY mh_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountMallV_Home" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(mh_id) from MallV_Home where 1=1
+    <include refid="wherelist" />
+  </select>
+
+  <!--
+  商品列表
+  1.商城首页
+  -->
+
+  <select id="getMallV_Home_show" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select m.mh_id
+    <if test="type==1" >
+      ,mh_type,mh_goodid,mh_index,mg_title,mg_subhead,mg_img1,mg_price,mg_statusname
+    </if>
+    from MallV_Home m where (ifnull(`m`.`mh_stopflag`,0) = 0)
+    and ifnull(mg_status,0)=1
+    <if test="mhid!=null" >
+      and mh_id= #{mhid,jdbcType=BIGINT}
+    </if>
+    ORDER  by mh_type,mh_index
+  </select>
+
+
+</mapper>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Msg_OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Msg_Order" >
+    <id column="mo_id" property="mo_id" jdbcType="BIGINT" />
+    <result column="mo_orderno" property="mo_orderno" jdbcType="VARCHAR" />
+    <result column="mo_orderstatus" property="mo_orderstatus" jdbcType="TINYINT" />
+    <result column="mo_talkcontent" property="mo_talkcontent" jdbcType="VARCHAR" />
+    <result column="mo_title" property="mo_title" jdbcType="VARCHAR" />
+    <result column="mo_flagread" property="mo_flagread" jdbcType="BIT" />
+    <result column="mo_desigid" property="mo_desigid" jdbcType="BIGINT" />
+    <result column="mo_salerid" property="mo_salerid" jdbcType="BIGINT" />
+    <result column="mo_createdate" property="mo_createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mo_id, mo_orderno, mo_orderstatus, mo_talkcontent, mo_title, mo_flagread, mo_desigid, 
+    mo_salerid, mo_createdate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Msg_OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Msg_Order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Msg_Order
+    where mo_id = #{mo_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Msg_Order
+    where mo_id = #{mo_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Msg_OrderExample" >
+    delete from Msg_Order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Msg_Order" >
+    insert into Msg_Order (mo_id, mo_orderno, mo_orderstatus, 
+      mo_talkcontent, mo_title, mo_flagread, 
+      mo_desigid, mo_salerid, mo_createdate
+      )
+    values (#{mo_id,jdbcType=BIGINT}, #{mo_orderno,jdbcType=VARCHAR}, #{mo_orderstatus,jdbcType=TINYINT}, 
+      #{mo_talkcontent,jdbcType=VARCHAR}, #{mo_title,jdbcType=VARCHAR}, #{mo_flagread,jdbcType=BIT}, 
+      #{mo_desigid,jdbcType=BIGINT}, #{mo_salerid,jdbcType=BIGINT}, #{mo_createdate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Msg_Order" >
+    insert into Msg_Order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mo_id != null" >
+        mo_id,
+      </if>
+      <if test="mo_orderno != null" >
+        mo_orderno,
+      </if>
+      <if test="mo_orderstatus != null" >
+        mo_orderstatus,
+      </if>
+      <if test="mo_talkcontent != null" >
+        mo_talkcontent,
+      </if>
+      <if test="mo_title != null" >
+        mo_title,
+      </if>
+      <if test="mo_flagread != null" >
+        mo_flagread,
+      </if>
+      <if test="mo_desigid != null" >
+        mo_desigid,
+      </if>
+      <if test="mo_salerid != null" >
+        mo_salerid,
+      </if>
+      <if test="mo_createdate != null" >
+        mo_createdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mo_id != null" >
+        #{mo_id,jdbcType=BIGINT},
+      </if>
+      <if test="mo_orderno != null" >
+        #{mo_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_orderstatus != null" >
+        #{mo_orderstatus,jdbcType=TINYINT},
+      </if>
+      <if test="mo_talkcontent != null" >
+        #{mo_talkcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_title != null" >
+        #{mo_title,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_flagread != null" >
+        #{mo_flagread,jdbcType=BIT},
+      </if>
+      <if test="mo_desigid != null" >
+        #{mo_desigid,jdbcType=BIGINT},
+      </if>
+      <if test="mo_salerid != null" >
+        #{mo_salerid,jdbcType=BIGINT},
+      </if>
+      <if test="mo_createdate != null" >
+        #{mo_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Msg_OrderExample" resultType="java.lang.Integer" >
+    select count(*) from Msg_Order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Msg_Order
+    <set >
+      <if test="record.mo_id != null" >
+        mo_id = #{record.mo_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.mo_orderno != null" >
+        mo_orderno = #{record.mo_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_orderstatus != null" >
+        mo_orderstatus = #{record.mo_orderstatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.mo_talkcontent != null" >
+        mo_talkcontent = #{record.mo_talkcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_title != null" >
+        mo_title = #{record.mo_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mo_flagread != null" >
+        mo_flagread = #{record.mo_flagread,jdbcType=BIT},
+      </if>
+      <if test="record.mo_desigid != null" >
+        mo_desigid = #{record.mo_desigid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mo_salerid != null" >
+        mo_salerid = #{record.mo_salerid,jdbcType=BIGINT},
+      </if>
+      <if test="record.mo_createdate != null" >
+        mo_createdate = #{record.mo_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Msg_Order
+    set mo_id = #{record.mo_id,jdbcType=BIGINT},
+      mo_orderno = #{record.mo_orderno,jdbcType=VARCHAR},
+      mo_orderstatus = #{record.mo_orderstatus,jdbcType=TINYINT},
+      mo_talkcontent = #{record.mo_talkcontent,jdbcType=VARCHAR},
+      mo_title = #{record.mo_title,jdbcType=VARCHAR},
+      mo_flagread = #{record.mo_flagread,jdbcType=BIT},
+      mo_desigid = #{record.mo_desigid,jdbcType=BIGINT},
+      mo_salerid = #{record.mo_salerid,jdbcType=BIGINT},
+      mo_createdate = #{record.mo_createdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Msg_Order" >
+    update Msg_Order
+    <set >
+      <if test="mo_orderno != null" >
+        mo_orderno = #{mo_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_orderstatus != null" >
+        mo_orderstatus = #{mo_orderstatus,jdbcType=TINYINT},
+      </if>
+      <if test="mo_talkcontent != null" >
+        mo_talkcontent = #{mo_talkcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_title != null" >
+        mo_title = #{mo_title,jdbcType=VARCHAR},
+      </if>
+      <if test="mo_flagread != null" >
+        mo_flagread = #{mo_flagread,jdbcType=BIT},
+      </if>
+      <if test="mo_desigid != null" >
+        mo_desigid = #{mo_desigid,jdbcType=BIGINT},
+      </if>
+      <if test="mo_salerid != null" >
+        mo_salerid = #{mo_salerid,jdbcType=BIGINT},
+      </if>
+      <if test="mo_createdate != null" >
+        mo_createdate = #{mo_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where mo_id = #{mo_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Msg_Order" >
+    update Msg_Order
+    set mo_orderno = #{mo_orderno,jdbcType=VARCHAR},
+      mo_orderstatus = #{mo_orderstatus,jdbcType=TINYINT},
+      mo_talkcontent = #{mo_talkcontent,jdbcType=VARCHAR},
+      mo_title = #{mo_title,jdbcType=VARCHAR},
+      mo_flagread = #{mo_flagread,jdbcType=BIT},
+      mo_desigid = #{mo_desigid,jdbcType=BIGINT},
+      mo_salerid = #{mo_salerid,jdbcType=BIGINT},
+      mo_createdate = #{mo_createdate,jdbcType=TIMESTAMP}
+    where mo_id = #{mo_id,jdbcType=BIGINT}
+  </update>
+</mapper>

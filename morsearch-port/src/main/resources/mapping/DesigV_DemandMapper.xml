@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.DesigV_DemandMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.DesigV_Demand" >
+    <result column="dd_id" property="dd_id" jdbcType="BIGINT" />
+    <result column="dd_no" property="dd_no" jdbcType="VARCHAR" />
+    <result column="dd_citycode" property="dd_citycode" jdbcType="VARCHAR" />
+    <result column="dd_cityname" property="dd_cityname" jdbcType="VARCHAR" />
+    <result column="dd_signcode" property="dd_signcode" jdbcType="TINYINT" />
+    <result column="dd_signname" property="dd_signname" jdbcType="VARCHAR" />
+    <result column="dd_title" property="dd_title" jdbcType="VARCHAR" />
+    <result column="dd_major" property="dd_major" jdbcType="VARCHAR" />
+    <result column="dd_style" property="dd_style" jdbcType="VARCHAR" />
+    <result column="dd_features" property="dd_features" jdbcType="VARCHAR" />
+    <result column="dd_count_collect" property="dd_count_collect" jdbcType="INTEGER" />
+    <result column="dd_count_browse" property="dd_count_browse" jdbcType="INTEGER" />
+    <result column="dd_flag_auditread" property="dd_flag_auditread" jdbcType="BIT" />
+    <result column="dd_flag_adminread" property="dd_flag_adminread" jdbcType="BIT" />
+    <result column="dd_adminremark" property="dd_adminremark" jdbcType="VARCHAR" />
+    <result column="dd_createid" property="dd_createid" jdbcType="BIGINT" />
+    <result column="dd_createno" property="dd_createno" jdbcType="VARCHAR" />
+    <result column="dd_createdate" property="dd_createdate" jdbcType="TIMESTAMP" />
+    <result column="dd_confirmid" property="dd_confirmid" jdbcType="BIGINT" />
+    <result column="dd_confirmno" property="dd_confirmno" jdbcType="VARCHAR" />
+    <result column="dd_confirmdate" property="dd_confirmdate" jdbcType="TIMESTAMP" />
+    <result column="dd_status" property="dd_status" jdbcType="TINYINT" />
+    <result column="statusname" property="statusname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dd_id, dd_no, dd_citycode, dd_cityname, dd_signcode, dd_signname, dd_title, dd_major, 
+    dd_style, dd_features, dd_count_collect, dd_count_browse, dd_flag_auditread, dd_flag_adminread, 
+    dd_adminremark, dd_createid, dd_createno, dd_createdate, dd_confirmid, dd_confirmno, 
+    dd_confirmdate, dd_status, statusname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.DesigV_DemandExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from DesigV_Demand
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.DesigV_DemandExample" >
+    delete from DesigV_Demand
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.DesigV_Demand" >
+    insert into DesigV_Demand (dd_id, dd_no, dd_citycode, 
+      dd_cityname, dd_signcode, dd_signname, 
+      dd_title, dd_major, dd_style, 
+      dd_features, dd_count_collect, dd_count_browse, 
+      dd_flag_auditread, dd_flag_adminread, dd_adminremark, 
+      dd_createid, dd_createno, dd_createdate, 
+      dd_confirmid, dd_confirmno, dd_confirmdate, 
+      dd_status, statusname)
+    values (#{dd_id,jdbcType=BIGINT}, #{dd_no,jdbcType=VARCHAR}, #{dd_citycode,jdbcType=VARCHAR}, 
+      #{dd_cityname,jdbcType=VARCHAR}, #{dd_signcode,jdbcType=TINYINT}, #{dd_signname,jdbcType=VARCHAR}, 
+      #{dd_title,jdbcType=VARCHAR}, #{dd_major,jdbcType=VARCHAR}, #{dd_style,jdbcType=VARCHAR}, 
+      #{dd_features,jdbcType=VARCHAR}, #{dd_count_collect,jdbcType=INTEGER}, #{dd_count_browse,jdbcType=INTEGER}, 
+      #{dd_flag_auditread,jdbcType=BIT}, #{dd_flag_adminread,jdbcType=BIT}, #{dd_adminremark,jdbcType=VARCHAR}, 
+      #{dd_createid,jdbcType=BIGINT}, #{dd_createno,jdbcType=VARCHAR}, #{dd_createdate,jdbcType=TIMESTAMP}, 
+      #{dd_confirmid,jdbcType=BIGINT}, #{dd_confirmno,jdbcType=VARCHAR}, #{dd_confirmdate,jdbcType=TIMESTAMP}, 
+      #{dd_status,jdbcType=TINYINT}, #{statusname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.DesigV_Demand" >
+    insert into DesigV_Demand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dd_id != null" >
+        dd_id,
+      </if>
+      <if test="dd_no != null" >
+        dd_no,
+      </if>
+      <if test="dd_citycode != null" >
+        dd_citycode,
+      </if>
+      <if test="dd_cityname != null" >
+        dd_cityname,
+      </if>
+      <if test="dd_signcode != null" >
+        dd_signcode,
+      </if>
+      <if test="dd_signname != null" >
+        dd_signname,
+      </if>
+      <if test="dd_title != null" >
+        dd_title,
+      </if>
+      <if test="dd_major != null" >
+        dd_major,
+      </if>
+      <if test="dd_style != null" >
+        dd_style,
+      </if>
+      <if test="dd_features != null" >
+        dd_features,
+      </if>
+      <if test="dd_count_collect != null" >
+        dd_count_collect,
+      </if>
+      <if test="dd_count_browse != null" >
+        dd_count_browse,
+      </if>
+      <if test="dd_flag_auditread != null" >
+        dd_flag_auditread,
+      </if>
+      <if test="dd_flag_adminread != null" >
+        dd_flag_adminread,
+      </if>
+      <if test="dd_adminremark != null" >
+        dd_adminremark,
+      </if>
+      <if test="dd_createid != null" >
+        dd_createid,
+      </if>
+      <if test="dd_createno != null" >
+        dd_createno,
+      </if>
+      <if test="dd_createdate != null" >
+        dd_createdate,
+      </if>
+      <if test="dd_confirmid != null" >
+        dd_confirmid,
+      </if>
+      <if test="dd_confirmno != null" >
+        dd_confirmno,
+      </if>
+      <if test="dd_confirmdate != null" >
+        dd_confirmdate,
+      </if>
+      <if test="dd_status != null" >
+        dd_status,
+      </if>
+      <if test="statusname != null" >
+        statusname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dd_id != null" >
+        #{dd_id,jdbcType=BIGINT},
+      </if>
+      <if test="dd_no != null" >
+        #{dd_no,jdbcType=VARCHAR},
+      </if>
+      <if test="dd_citycode != null" >
+        #{dd_citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="dd_cityname != null" >
+        #{dd_cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="dd_signcode != null" >
+        #{dd_signcode,jdbcType=TINYINT},
+      </if>
+      <if test="dd_signname != null" >
+        #{dd_signname,jdbcType=VARCHAR},
+      </if>
+      <if test="dd_title != null" >
+        #{dd_title,jdbcType=VARCHAR},
+      </if>
+      <if test="dd_major != null" >
+        #{dd_major,jdbcType=VARCHAR},
+      </if>
+      <if test="dd_style != null" >
+        #{dd_style,jdbcType=VARCHAR},
+      </if>
+      <if test="dd_features != null" >
+        #{dd_features,jdbcType=VARCHAR},
+      </if>
+      <if test="dd_count_collect != null" >
+        #{dd_count_collect,jdbcType=INTEGER},
+      </if>
+      <if test="dd_count_browse != null" >
+        #{dd_count_browse,jdbcType=INTEGER},
+      </if>
+      <if test="dd_flag_auditread != null" >
+        #{dd_flag_auditread,jdbcType=BIT},
+      </if>
+      <if test="dd_flag_adminread != null" >
+        #{dd_flag_adminread,jdbcType=BIT},
+      </if>
+      <if test="dd_adminremark != null" >
+        #{dd_adminremark,jdbcType=VARCHAR},
+      </if>
+      <if test="dd_createid != null" >
+        #{dd_createid,jdbcType=BIGINT},
+      </if>
+      <if test="dd_createno != null" >
+        #{dd_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="dd_createdate != null" >
+        #{dd_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dd_confirmid != null" >
+        #{dd_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="dd_confirmno != null" >
+        #{dd_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="dd_confirmdate != null" >
+        #{dd_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dd_status != null" >
+        #{dd_status,jdbcType=TINYINT},
+      </if>
+      <if test="statusname != null" >
+        #{statusname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.DesigV_DemandExample" resultType="java.lang.Integer" >
+    select count(*) from DesigV_Demand
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update DesigV_Demand
+    <set >
+      <if test="record.dd_id != null" >
+        dd_id = #{record.dd_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.dd_no != null" >
+        dd_no = #{record.dd_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dd_citycode != null" >
+        dd_citycode = #{record.dd_citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dd_cityname != null" >
+        dd_cityname = #{record.dd_cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dd_signcode != null" >
+        dd_signcode = #{record.dd_signcode,jdbcType=TINYINT},
+      </if>
+      <if test="record.dd_signname != null" >
+        dd_signname = #{record.dd_signname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dd_title != null" >
+        dd_title = #{record.dd_title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dd_major != null" >
+        dd_major = #{record.dd_major,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dd_style != null" >
+        dd_style = #{record.dd_style,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dd_features != null" >
+        dd_features = #{record.dd_features,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dd_count_collect != null" >
+        dd_count_collect = #{record.dd_count_collect,jdbcType=INTEGER},
+      </if>
+      <if test="record.dd_count_browse != null" >
+        dd_count_browse = #{record.dd_count_browse,jdbcType=INTEGER},
+      </if>
+      <if test="record.dd_flag_auditread != null" >
+        dd_flag_auditread = #{record.dd_flag_auditread,jdbcType=BIT},
+      </if>
+      <if test="record.dd_flag_adminread != null" >
+        dd_flag_adminread = #{record.dd_flag_adminread,jdbcType=BIT},
+      </if>
+      <if test="record.dd_adminremark != null" >
+        dd_adminremark = #{record.dd_adminremark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dd_createid != null" >
+        dd_createid = #{record.dd_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dd_createno != null" >
+        dd_createno = #{record.dd_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dd_createdate != null" >
+        dd_createdate = #{record.dd_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dd_confirmid != null" >
+        dd_confirmid = #{record.dd_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dd_confirmno != null" >
+        dd_confirmno = #{record.dd_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dd_confirmdate != null" >
+        dd_confirmdate = #{record.dd_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dd_status != null" >
+        dd_status = #{record.dd_status,jdbcType=TINYINT},
+      </if>
+      <if test="record.statusname != null" >
+        statusname = #{record.statusname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update DesigV_Demand
+    set dd_id = #{record.dd_id,jdbcType=BIGINT},
+      dd_no = #{record.dd_no,jdbcType=VARCHAR},
+      dd_citycode = #{record.dd_citycode,jdbcType=VARCHAR},
+      dd_cityname = #{record.dd_cityname,jdbcType=VARCHAR},
+      dd_signcode = #{record.dd_signcode,jdbcType=TINYINT},
+      dd_signname = #{record.dd_signname,jdbcType=VARCHAR},
+      dd_title = #{record.dd_title,jdbcType=VARCHAR},
+      dd_major = #{record.dd_major,jdbcType=VARCHAR},
+      dd_style = #{record.dd_style,jdbcType=VARCHAR},
+      dd_features = #{record.dd_features,jdbcType=VARCHAR},
+      dd_count_collect = #{record.dd_count_collect,jdbcType=INTEGER},
+      dd_count_browse = #{record.dd_count_browse,jdbcType=INTEGER},
+      dd_flag_auditread = #{record.dd_flag_auditread,jdbcType=BIT},
+      dd_flag_adminread = #{record.dd_flag_adminread,jdbcType=BIT},
+      dd_adminremark = #{record.dd_adminremark,jdbcType=VARCHAR},
+      dd_createid = #{record.dd_createid,jdbcType=BIGINT},
+      dd_createno = #{record.dd_createno,jdbcType=VARCHAR},
+      dd_createdate = #{record.dd_createdate,jdbcType=TIMESTAMP},
+      dd_confirmid = #{record.dd_confirmid,jdbcType=BIGINT},
+      dd_confirmno = #{record.dd_confirmno,jdbcType=VARCHAR},
+      dd_confirmdate = #{record.dd_confirmdate,jdbcType=TIMESTAMP},
+      dd_status = #{record.dd_status,jdbcType=TINYINT},
+      statusname = #{record.statusname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <!--后台查询设计师需求专用-->
+  <!-- 分页查询 -->
+  <select id="getDesigV_DemandList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from DesigV_Demand dd where 1=1
+    <include refid="wherelistback" />
+    ORDER BY dd_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <!--查询订单的数量-->
+  <select id="getCountDesigV_Demand" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(dd_id) from DesigV_Demand where 1=1
+    <include refid="wherelistback" />
+  </select>
+
+  <!-- 条件 -->
+  <sql id="wherelistback" >
+    <if test="dd_id != null and dd_id != ''" >
+      and dd_id=#{dd_id} <!-- id 一样-->
+    </if>
+
+    <if test="dd_title != null and dd_title != ''" >
+      and dd_title like concat(concat('%',#{dd_title}),'%') <!-- 项目名称-->
+    </if>
+    <if test="dd_cityname != null and dd_cityname != ''" >
+      and dd_cityname like concat(concat('%',#{dd_cityname}),'%')<!-- 城市名称 -->
+    </if>
+    <if test="dd_createno != null and dd_createno != ''" >
+      and dd_createno like concat(concat('%',#{dd_createno}),'%')<!-- 提交人 -->
+    </if>
+    <if test="dd_signcode != null" ><!-- 项目状态,也就是活动状态 -->
+      and dd_signcode=#{dd_signcode}
+    </if>
+    <if test="dd_status != null" ><!-- 审核状态 -->
+      and dd_status=#{dd_status}
+    </if>
+    /*关于建立日期时间的查询*/
+    <if test="dd_createdate1 != null and dd_createdate2 !=null" >
+      and dd_createdate  between #{dd_createdate1} and #{dd_createdate2}
+    </if>
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from DesigV_Demand
+    where dd_id = #{dd_id,jdbcType=BIGINT}
+  </select>
+</mapper>

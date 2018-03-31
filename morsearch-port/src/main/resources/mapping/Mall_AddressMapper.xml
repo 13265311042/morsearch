@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Mall_AddressMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Mall_Address" >
+    <id column="ma_id" property="ma_id" jdbcType="BIGINT" />
+    <result column="ma_userid" property="ma_userid" jdbcType="BIGINT" />
+    <result column="ma_receiver" property="ma_receiver" jdbcType="VARCHAR" />
+    <result column="ma_phone" property="ma_phone" jdbcType="VARCHAR" />
+    <result column="ma_addarea" property="ma_addarea" jdbcType="VARCHAR" />
+    <result column="ma_adddetailed" property="ma_adddetailed" jdbcType="VARCHAR" />
+    <result column="ma_default" property="ma_default" jdbcType="BIT" />
+    <result column="ma_createid" property="ma_createid" jdbcType="BIGINT" />
+    <result column="ma_createno" property="ma_createno" jdbcType="VARCHAR" />
+    <result column="ma_createdate" property="ma_createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ma_id, ma_userid, ma_receiver, ma_phone, ma_addarea, ma_adddetailed, ma_default, 
+    ma_createid, ma_createno, ma_createdate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Mall_AddressExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Mall_Address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Mall_Address
+    where ma_id = #{ma_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Mall_Address
+    where ma_id = #{ma_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Mall_AddressExample" >
+    delete from Mall_Address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Mall_Address" >
+    insert into Mall_Address (ma_id, ma_userid, ma_receiver, 
+      ma_phone, ma_addarea, ma_adddetailed, 
+      ma_default, ma_createid, ma_createno, 
+      ma_createdate)
+    values (#{ma_id,jdbcType=BIGINT}, #{ma_userid,jdbcType=BIGINT}, #{ma_receiver,jdbcType=VARCHAR}, 
+      #{ma_phone,jdbcType=VARCHAR}, #{ma_addarea,jdbcType=VARCHAR}, #{ma_adddetailed,jdbcType=VARCHAR}, 
+      #{ma_default,jdbcType=BIT}, #{ma_createid,jdbcType=BIGINT}, #{ma_createno,jdbcType=VARCHAR}, 
+      #{ma_createdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Mall_Address" >
+    insert into Mall_Address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ma_id != null" >
+        ma_id,
+      </if>
+      <if test="ma_userid != null" >
+        ma_userid,
+      </if>
+      <if test="ma_receiver != null" >
+        ma_receiver,
+      </if>
+      <if test="ma_phone != null" >
+        ma_phone,
+      </if>
+      <if test="ma_addarea != null" >
+        ma_addarea,
+      </if>
+      <if test="ma_adddetailed != null" >
+        ma_adddetailed,
+      </if>
+      <if test="ma_default != null" >
+        ma_default,
+      </if>
+      <if test="ma_createid != null" >
+        ma_createid,
+      </if>
+      <if test="ma_createno != null" >
+        ma_createno,
+      </if>
+      <if test="ma_createdate != null" >
+        ma_createdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ma_id != null" >
+        #{ma_id,jdbcType=BIGINT},
+      </if>
+      <if test="ma_userid != null" >
+        #{ma_userid,jdbcType=BIGINT},
+      </if>
+      <if test="ma_receiver != null" >
+        #{ma_receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="ma_phone != null" >
+        #{ma_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="ma_addarea != null" >
+        #{ma_addarea,jdbcType=VARCHAR},
+      </if>
+      <if test="ma_adddetailed != null" >
+        #{ma_adddetailed,jdbcType=VARCHAR},
+      </if>
+      <if test="ma_default != null" >
+        #{ma_default,jdbcType=BIT},
+      </if>
+      <if test="ma_createid != null" >
+        #{ma_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ma_createno != null" >
+        #{ma_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ma_createdate != null" >
+        #{ma_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Mall_AddressExample" resultType="java.lang.Integer" >
+    select count(*) from Mall_Address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Mall_Address
+    <set >
+      <if test="record.ma_id != null" >
+        ma_id = #{record.ma_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ma_userid != null" >
+        ma_userid = #{record.ma_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ma_receiver != null" >
+        ma_receiver = #{record.ma_receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ma_phone != null" >
+        ma_phone = #{record.ma_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ma_addarea != null" >
+        ma_addarea = #{record.ma_addarea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ma_adddetailed != null" >
+        ma_adddetailed = #{record.ma_adddetailed,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ma_default != null" >
+        ma_default = #{record.ma_default,jdbcType=BIT},
+      </if>
+      <if test="record.ma_createid != null" >
+        ma_createid = #{record.ma_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ma_createno != null" >
+        ma_createno = #{record.ma_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ma_createdate != null" >
+        ma_createdate = #{record.ma_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Mall_Address
+    set ma_id = #{record.ma_id,jdbcType=BIGINT},
+      ma_userid = #{record.ma_userid,jdbcType=BIGINT},
+      ma_receiver = #{record.ma_receiver,jdbcType=VARCHAR},
+      ma_phone = #{record.ma_phone,jdbcType=VARCHAR},
+      ma_addarea = #{record.ma_addarea,jdbcType=VARCHAR},
+      ma_adddetailed = #{record.ma_adddetailed,jdbcType=VARCHAR},
+      ma_default = #{record.ma_default,jdbcType=BIT},
+      ma_createid = #{record.ma_createid,jdbcType=BIGINT},
+      ma_createno = #{record.ma_createno,jdbcType=VARCHAR},
+      ma_createdate = #{record.ma_createdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Mall_Address" >
+    update Mall_Address
+    <set >
+      <if test="ma_userid != null" >
+        ma_userid = #{ma_userid,jdbcType=BIGINT},
+      </if>
+      <if test="ma_receiver != null" >
+        ma_receiver = #{ma_receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="ma_phone != null" >
+        ma_phone = #{ma_phone,jdbcType=VARCHAR},
+      </if>
+      <if test="ma_addarea != null" >
+        ma_addarea = #{ma_addarea,jdbcType=VARCHAR},
+      </if>
+      <if test="ma_adddetailed != null" >
+        ma_adddetailed = #{ma_adddetailed,jdbcType=VARCHAR},
+      </if>
+      <if test="ma_default != null" >
+        ma_default = #{ma_default,jdbcType=BIT},
+      </if>
+      <if test="ma_createid != null" >
+        ma_createid = #{ma_createid,jdbcType=BIGINT},
+      </if>
+      <if test="ma_createno != null" >
+        ma_createno = #{ma_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="ma_createdate != null" >
+        ma_createdate = #{ma_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ma_id = #{ma_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Mall_Address" >
+    update Mall_Address
+    set ma_userid = #{ma_userid,jdbcType=BIGINT},
+      ma_receiver = #{ma_receiver,jdbcType=VARCHAR},
+      ma_phone = #{ma_phone,jdbcType=VARCHAR},
+      ma_addarea = #{ma_addarea,jdbcType=VARCHAR},
+      ma_adddetailed = #{ma_adddetailed,jdbcType=VARCHAR},
+      ma_default = #{ma_default,jdbcType=BIT},
+      ma_createid = #{ma_createid,jdbcType=BIGINT},
+      ma_createno = #{ma_createno,jdbcType=VARCHAR},
+      ma_createdate = #{ma_createdate,jdbcType=TIMESTAMP}
+    where ma_id = #{ma_id,jdbcType=BIGINT}
+  </update>
+
+  <!--自定义-->
+  <sql id="wherelist" >
+    <if test="ma_userid != null and ma_userid != ''" >
+      and ma_userid like concat(concat('%',#{ma_userid}),'%')
+    </if>
+    <if test="ma_phone != null and ma_phone != ''" >
+      and ma_phone like concat(concat('%',#{ma_phone}),'%')
+    </if>
+  </sql>
+
+  <select id="getMall_AddressList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    *
+    from  Mall_Address where
+    ma_userid = #{ma_userid,jdbcType=BIGINT}
+    ORDER BY ma_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+
+  <select id="getCountMall_Address" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(ma_id) from Mall_Address WHERE 1=1
+    <include refid="wherelist" />
+  </select>
+
+  <select id="selectMall_Address" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select * from Mall_Address WHERE
+    ma_id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+</mapper>

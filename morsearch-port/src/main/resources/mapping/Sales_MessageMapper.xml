@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sales_MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sales_Message" >
+    <id column="sm_id" property="sm_id" jdbcType="BIGINT" />
+    <result column="sm_orderno" property="sm_orderno" jdbcType="VARCHAR" />
+    <result column="sm_content" property="sm_content" jdbcType="VARCHAR" />
+    <result column="sm_salerid" property="sm_salerid" jdbcType="BIGINT" />
+    <result column="sm_salername" property="sm_salername" jdbcType="VARCHAR" />
+    <result column="sm_salerimage" property="sm_salerimage" jdbcType="VARCHAR" />
+    <result column="sm_salerisread" property="sm_salerisread" jdbcType="BIT" />
+    <result column="sm_designerid" property="sm_designerid" jdbcType="BIGINT" />
+    <result column="sm_designername" property="sm_designername" jdbcType="VARCHAR" />
+    <result column="sm_designerimage" property="sm_designerimage" jdbcType="VARCHAR" />
+    <result column="sm_designerisread" property="sm_designerisread" jdbcType="BIT" />
+    <result column="sm_type" property="sm_type" jdbcType="TINYINT" />
+    <result column="sm_createdate" property="sm_createdate" jdbcType="TIMESTAMP" />
+    <result column="sm_flagstop" property="sm_flagstop" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sm_id, sm_orderno, sm_content, sm_salerid, sm_salername, sm_salerimage, sm_salerisread,
+    sm_designerid, sm_designername, sm_designerimage, sm_designerisread, sm_type, sm_createdate,
+    sm_flagstop
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sales_MessageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sales_Message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Sales_Message
+    where sm_id = #{sm_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Sales_Message
+    where sm_id = #{sm_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sales_MessageExample" >
+    delete from Sales_Message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sales_Message" >
+    insert into Sales_Message (sm_id, sm_orderno, sm_content,
+    sm_salerid, sm_salername, sm_salerimage,
+    sm_salerisread, sm_designerid, sm_designername,
+    sm_designerimage, sm_designerisread, sm_type,
+    sm_createdate, sm_flagstop)
+    values (#{sm_id,jdbcType=BIGINT}, #{sm_orderno,jdbcType=VARCHAR}, #{sm_content,jdbcType=VARCHAR},
+    #{sm_salerid,jdbcType=BIGINT}, #{sm_salername,jdbcType=VARCHAR}, #{sm_salerimage,jdbcType=VARCHAR},
+    #{sm_salerisread,jdbcType=BIT}, #{sm_designerid,jdbcType=BIGINT}, #{sm_designername,jdbcType=VARCHAR},
+    #{sm_designerimage,jdbcType=VARCHAR}, #{sm_designerisread,jdbcType=BIT}, #{sm_type,jdbcType=TINYINT},
+    #{sm_createdate,jdbcType=TIMESTAMP}, #{sm_flagstop,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sales_Message" >
+    insert into Sales_Message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sm_id != null" >
+        sm_id,
+      </if>
+      <if test="sm_orderno != null" >
+        sm_orderno,
+      </if>
+      <if test="sm_content != null" >
+        sm_content,
+      </if>
+      <if test="sm_salerid != null" >
+        sm_salerid,
+      </if>
+      <if test="sm_salername != null" >
+        sm_salername,
+      </if>
+      <if test="sm_salerimage != null" >
+        sm_salerimage,
+      </if>
+      <if test="sm_salerisread != null" >
+        sm_salerisread,
+      </if>
+      <if test="sm_designerid != null" >
+        sm_designerid,
+      </if>
+      <if test="sm_designername != null" >
+        sm_designername,
+      </if>
+      <if test="sm_designerimage != null" >
+        sm_designerimage,
+      </if>
+      <if test="sm_designerisread != null" >
+        sm_designerisread,
+      </if>
+      <if test="sm_type != null" >
+        sm_type,
+      </if>
+      <if test="sm_createdate != null" >
+        sm_createdate,
+      </if>
+      <if test="sm_flagstop != null" >
+        sm_flagstop,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sm_id != null" >
+        #{sm_id,jdbcType=BIGINT},
+      </if>
+      <if test="sm_orderno != null" >
+        #{sm_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_content != null" >
+        #{sm_content,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_salerid != null" >
+        #{sm_salerid,jdbcType=BIGINT},
+      </if>
+      <if test="sm_salername != null" >
+        #{sm_salername,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_salerimage != null" >
+        #{sm_salerimage,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_salerisread != null" >
+        #{sm_salerisread,jdbcType=BIT},
+      </if>
+      <if test="sm_designerid != null" >
+        #{sm_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="sm_designername != null" >
+        #{sm_designername,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_designerimage != null" >
+        #{sm_designerimage,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_designerisread != null" >
+        #{sm_designerisread,jdbcType=BIT},
+      </if>
+      <if test="sm_type != null" >
+        #{sm_type,jdbcType=TINYINT},
+      </if>
+      <if test="sm_createdate != null" >
+        #{sm_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sm_flagstop != null" >
+        #{sm_flagstop,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sales_MessageExample" resultType="java.lang.Integer" >
+    select count(*) from Sales_Message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sales_Message
+    <set >
+      <if test="record.sm_id != null" >
+        sm_id = #{record.sm_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sm_orderno != null" >
+        sm_orderno = #{record.sm_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_content != null" >
+        sm_content = #{record.sm_content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_salerid != null" >
+        sm_salerid = #{record.sm_salerid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sm_salername != null" >
+        sm_salername = #{record.sm_salername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_salerimage != null" >
+        sm_salerimage = #{record.sm_salerimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_salerisread != null" >
+        sm_salerisread = #{record.sm_salerisread,jdbcType=BIT},
+      </if>
+      <if test="record.sm_designerid != null" >
+        sm_designerid = #{record.sm_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sm_designername != null" >
+        sm_designername = #{record.sm_designername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_designerimage != null" >
+        sm_designerimage = #{record.sm_designerimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sm_designerisread != null" >
+        sm_designerisread = #{record.sm_designerisread,jdbcType=BIT},
+      </if>
+      <if test="record.sm_type != null" >
+        sm_type = #{record.sm_type,jdbcType=TINYINT},
+      </if>
+      <if test="record.sm_createdate != null" >
+        sm_createdate = #{record.sm_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sm_flagstop != null" >
+        sm_flagstop = #{record.sm_flagstop,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sales_Message
+    set sm_id = #{record.sm_id,jdbcType=BIGINT},
+    sm_orderno = #{record.sm_orderno,jdbcType=VARCHAR},
+    sm_content = #{record.sm_content,jdbcType=VARCHAR},
+    sm_salerid = #{record.sm_salerid,jdbcType=BIGINT},
+    sm_salername = #{record.sm_salername,jdbcType=VARCHAR},
+    sm_salerimage = #{record.sm_salerimage,jdbcType=VARCHAR},
+    sm_salerisread = #{record.sm_salerisread,jdbcType=BIT},
+    sm_designerid = #{record.sm_designerid,jdbcType=BIGINT},
+    sm_designername = #{record.sm_designername,jdbcType=VARCHAR},
+    sm_designerimage = #{record.sm_designerimage,jdbcType=VARCHAR},
+    sm_designerisread = #{record.sm_designerisread,jdbcType=BIT},
+    sm_type = #{record.sm_type,jdbcType=TINYINT},
+    sm_createdate = #{record.sm_createdate,jdbcType=TIMESTAMP},
+    sm_flagstop = #{record.sm_flagstop,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sales_Message" >
+    update Sales_Message
+    <set >
+      <if test="sm_orderno != null" >
+        sm_orderno = #{sm_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_content != null" >
+        sm_content = #{sm_content,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_salerid != null" >
+        sm_salerid = #{sm_salerid,jdbcType=BIGINT},
+      </if>
+      <if test="sm_salername != null" >
+        sm_salername = #{sm_salername,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_salerimage != null" >
+        sm_salerimage = #{sm_salerimage,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_salerisread != null" >
+        sm_salerisread = #{sm_salerisread,jdbcType=BIT},
+      </if>
+      <if test="sm_designerid != null" >
+        sm_designerid = #{sm_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="sm_designername != null" >
+        sm_designername = #{sm_designername,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_designerimage != null" >
+        sm_designerimage = #{sm_designerimage,jdbcType=VARCHAR},
+      </if>
+      <if test="sm_designerisread != null" >
+        sm_designerisread = #{sm_designerisread,jdbcType=BIT},
+      </if>
+      <if test="sm_type != null" >
+        sm_type = #{sm_type,jdbcType=TINYINT},
+      </if>
+      <if test="sm_createdate != null" >
+        sm_createdate = #{sm_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sm_flagstop != null" >
+        sm_flagstop = #{sm_flagstop,jdbcType=BIT},
+      </if>
+    </set>
+    where sm_id = #{sm_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sales_Message" >
+    update Sales_Message
+    set sm_orderno = #{sm_orderno,jdbcType=VARCHAR},
+    sm_content = #{sm_content,jdbcType=VARCHAR},
+    sm_salerid = #{sm_salerid,jdbcType=BIGINT},
+    sm_salername = #{sm_salername,jdbcType=VARCHAR},
+    sm_salerimage = #{sm_salerimage,jdbcType=VARCHAR},
+    sm_salerisread = #{sm_salerisread,jdbcType=BIT},
+    sm_designerid = #{sm_designerid,jdbcType=BIGINT},
+    sm_designername = #{sm_designername,jdbcType=VARCHAR},
+    sm_designerimage = #{sm_designerimage,jdbcType=VARCHAR},
+    sm_designerisread = #{sm_designerisread,jdbcType=BIT},
+    sm_type = #{sm_type,jdbcType=TINYINT},
+    sm_createdate = #{sm_createdate,jdbcType=TIMESTAMP},
+    sm_flagstop = #{sm_flagstop,jdbcType=BIT}
+    where sm_id = #{sm_id,jdbcType=BIGINT}
+  </update>
+
+
+  <!-- 订单对话消息列表-->
+  <select id="getOrderMsg_list" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select * from Sales_Message
+    where sm_orderno=#{orderno,jdbcType=VARCHAR}
+    order by sm_id ASC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getOrderMsg_count" parameterType="java.util.Map" resultType="java.lang.Integer" >
+    select count(*) from Sales_Message where sm_orderno=#{orderno,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 批量更新订单消息已读type-2业务员，1为设计师-->
+  <select id="updateSales_Message_Read" parameterType="String"  >
+    UPDATE Sales_Message set
+    <if test="type==1">
+      sm_designerisread=1
+    </if>
+    <if test="type==2">
+      sm_salerisread=1
+    </if>
+    where sm_orderno=#{orderno,jdbcType=VARCHAR}
+    <if test="type==1">
+      and ifnull(sm_designerisread,0)=0
+    </if>
+    <if test="type==2">
+      and ifnull(sm_salerisread,0)=0
+    </if>
+  </select>
+
+  <!--订单对话消息列表-->
+  <select id="getSalesMessageList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from Sales_Message sm where 1=1
+    <include refid="wherelist" />
+    ORDER BY sm_id ASC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <!--订单对话消息总数-->
+  <select id="getSalesMessageCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(sm_id) from Sales_Message sm WHERE 1=1
+    <include refid="wherelist" />
+  </select>
+
+  <sql id="wherelist" >
+    <if test="sm_orderno != null and sm_orderno != ''" >
+      and sm_orderno like concat(concat('%',#{sm_orderno}),'%')
+    </if>
+    <if test="sm_content != null and sm_content != ''" >
+      and sm_content like concat(concat('%',#{sm_content}),'%')
+    </if>
+    <if test="sm_salername != null and sm_salername != ''" >
+      and sm_salername like concat(concat('%',#{sm_salername}),'%')
+    </if>
+
+    <if test="sm_designername != null and sm_designername != ''" >
+      and sm_designername like concat(concat('%',#{sm_designername}),'%')
+    </if>
+    /*关于制表日期的查询*/
+
+    <if test="sm_createdate1 != null and sm_createdate2 !=null" >
+      and sm_createdate  between #{sm_createdate1} and #{sm_createdate2}
+    </if>
+
+    <if test="sm_flagstop != null and sm_flagstop != ''" >
+      and ifnull(sm_flagstop,0) =#{sm_flagstop}
+    </if>
+
+  </sql>
+
+</mapper>

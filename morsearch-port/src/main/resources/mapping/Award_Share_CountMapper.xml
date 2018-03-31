@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Award_Share_CountMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Award_Share_Count" >
+    <id column="sc_id" property="sc_id" jdbcType="BIGINT" />
+    <result column="sc_activityid" property="sc_activityid" jdbcType="BIGINT" />
+    <result column="sc_share_userid" property="sc_share_userid" jdbcType="BIGINT" />
+    <result column="sc_share_award" property="sc_share_award" jdbcType="INTEGER" />
+    <result column="sc_receive_userid" property="sc_receive_userid" jdbcType="BIGINT" />
+    <result column="sc_receive_award" property="sc_receive_award" jdbcType="INTEGER" />
+    <result column="sc_createdate" property="sc_createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sc_id, sc_activityid, sc_share_userid, sc_share_award, sc_receive_userid, sc_receive_award, 
+    sc_createdate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Award_Share_CountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Award_Share_Count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Award_Share_Count
+    where sc_id = #{sc_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Award_Share_Count
+    where sc_id = #{sc_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Award_Share_CountExample" >
+    delete from Award_Share_Count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Award_Share_Count" >
+    insert into Award_Share_Count (sc_id, sc_activityid, sc_share_userid, 
+      sc_share_award, sc_receive_userid, sc_receive_award, 
+      sc_createdate)
+    values (#{sc_id,jdbcType=BIGINT}, #{sc_activityid,jdbcType=BIGINT}, #{sc_share_userid,jdbcType=BIGINT}, 
+      #{sc_share_award,jdbcType=INTEGER}, #{sc_receive_userid,jdbcType=BIGINT}, #{sc_receive_award,jdbcType=INTEGER}, 
+      #{sc_createdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Award_Share_Count" >
+    insert into Award_Share_Count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sc_id != null" >
+        sc_id,
+      </if>
+      <if test="sc_activityid != null" >
+        sc_activityid,
+      </if>
+      <if test="sc_share_userid != null" >
+        sc_share_userid,
+      </if>
+      <if test="sc_share_award != null" >
+        sc_share_award,
+      </if>
+      <if test="sc_receive_userid != null" >
+        sc_receive_userid,
+      </if>
+      <if test="sc_receive_award != null" >
+        sc_receive_award,
+      </if>
+      <if test="sc_createdate != null" >
+        sc_createdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sc_id != null" >
+        #{sc_id,jdbcType=BIGINT},
+      </if>
+      <if test="sc_activityid != null" >
+        #{sc_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_share_userid != null" >
+        #{sc_share_userid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_share_award != null" >
+        #{sc_share_award,jdbcType=INTEGER},
+      </if>
+      <if test="sc_receive_userid != null" >
+        #{sc_receive_userid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_receive_award != null" >
+        #{sc_receive_award,jdbcType=INTEGER},
+      </if>
+      <if test="sc_createdate != null" >
+        #{sc_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Award_Share_CountExample" resultType="java.lang.Integer" >
+    select count(*) from Award_Share_Count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Award_Share_Count
+    <set >
+      <if test="record.sc_id != null" >
+        sc_id = #{record.sc_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sc_activityid != null" >
+        sc_activityid = #{record.sc_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sc_share_userid != null" >
+        sc_share_userid = #{record.sc_share_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sc_share_award != null" >
+        sc_share_award = #{record.sc_share_award,jdbcType=INTEGER},
+      </if>
+      <if test="record.sc_receive_userid != null" >
+        sc_receive_userid = #{record.sc_receive_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sc_receive_award != null" >
+        sc_receive_award = #{record.sc_receive_award,jdbcType=INTEGER},
+      </if>
+      <if test="record.sc_createdate != null" >
+        sc_createdate = #{record.sc_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Award_Share_Count
+    set sc_id = #{record.sc_id,jdbcType=BIGINT},
+      sc_activityid = #{record.sc_activityid,jdbcType=BIGINT},
+      sc_share_userid = #{record.sc_share_userid,jdbcType=BIGINT},
+      sc_share_award = #{record.sc_share_award,jdbcType=INTEGER},
+      sc_receive_userid = #{record.sc_receive_userid,jdbcType=BIGINT},
+      sc_receive_award = #{record.sc_receive_award,jdbcType=INTEGER},
+      sc_createdate = #{record.sc_createdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Award_Share_Count" >
+    update Award_Share_Count
+    <set >
+      <if test="sc_activityid != null" >
+        sc_activityid = #{sc_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_share_userid != null" >
+        sc_share_userid = #{sc_share_userid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_share_award != null" >
+        sc_share_award = #{sc_share_award,jdbcType=INTEGER},
+      </if>
+      <if test="sc_receive_userid != null" >
+        sc_receive_userid = #{sc_receive_userid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_receive_award != null" >
+        sc_receive_award = #{sc_receive_award,jdbcType=INTEGER},
+      </if>
+      <if test="sc_createdate != null" >
+        sc_createdate = #{sc_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sc_id = #{sc_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Award_Share_Count" >
+    update Award_Share_Count
+    set sc_activityid = #{sc_activityid,jdbcType=BIGINT},
+      sc_share_userid = #{sc_share_userid,jdbcType=BIGINT},
+      sc_share_award = #{sc_share_award,jdbcType=INTEGER},
+      sc_receive_userid = #{sc_receive_userid,jdbcType=BIGINT},
+      sc_receive_award = #{sc_receive_award,jdbcType=INTEGER},
+      sc_createdate = #{sc_createdate,jdbcType=TIMESTAMP}
+    where sc_id = #{sc_id,jdbcType=BIGINT}
+  </update>
+</mapper>

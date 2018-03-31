@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sys_WordTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sys_WordType" >
+    <id column="st_type" property="st_type" jdbcType="VARCHAR" />
+    <result column="st_name" property="st_name" jdbcType="VARCHAR" />
+    <result column="st_index" property="st_index" jdbcType="INTEGER" />
+    <result column="st_stopflag" property="st_stopflag" jdbcType="BIT" />
+    <result column="st_remark" property="st_remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    st_type, st_name, st_index, st_stopflag, st_remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sys_WordTypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sys_WordType
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Sys_WordType
+    where st_type = #{st_type,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Sys_WordType
+    where st_type = #{st_type,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sys_WordTypeExample" >
+    delete from Sys_WordType
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sys_WordType" >
+    insert into Sys_WordType (st_type, st_name, st_index, 
+      st_stopflag, st_remark)
+    values (#{st_type,jdbcType=VARCHAR}, #{st_name,jdbcType=VARCHAR}, #{st_index,jdbcType=INTEGER}, 
+      #{st_stopflag,jdbcType=BIT}, #{st_remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sys_WordType" >
+    insert into Sys_WordType
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="st_type != null" >
+        st_type,
+      </if>
+      <if test="st_name != null" >
+        st_name,
+      </if>
+      <if test="st_index != null" >
+        st_index,
+      </if>
+      <if test="st_stopflag != null" >
+        st_stopflag,
+      </if>
+      <if test="st_remark != null" >
+        st_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="st_type != null" >
+        #{st_type,jdbcType=VARCHAR},
+      </if>
+      <if test="st_name != null" >
+        #{st_name,jdbcType=VARCHAR},
+      </if>
+      <if test="st_index != null" >
+        #{st_index,jdbcType=INTEGER},
+      </if>
+      <if test="st_stopflag != null" >
+        #{st_stopflag,jdbcType=BIT},
+      </if>
+      <if test="st_remark != null" >
+        #{st_remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sys_WordTypeExample" resultType="java.lang.Integer" >
+    select count(*) from Sys_WordType
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sys_WordType
+    <set >
+      <if test="record.st_type != null" >
+        st_type = #{record.st_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.st_name != null" >
+        st_name = #{record.st_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.st_index != null" >
+        st_index = #{record.st_index,jdbcType=INTEGER},
+      </if>
+      <if test="record.st_stopflag != null" >
+        st_stopflag = #{record.st_stopflag,jdbcType=BIT},
+      </if>
+      <if test="record.st_remark != null" >
+        st_remark = #{record.st_remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sys_WordType
+    set st_type = #{record.st_type,jdbcType=VARCHAR},
+      st_name = #{record.st_name,jdbcType=VARCHAR},
+      st_index = #{record.st_index,jdbcType=INTEGER},
+      st_stopflag = #{record.st_stopflag,jdbcType=BIT},
+      st_remark = #{record.st_remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sys_WordType" >
+    update Sys_WordType
+    <set >
+      <if test="st_name != null" >
+        st_name = #{st_name,jdbcType=VARCHAR},
+      </if>
+      <if test="st_index != null" >
+        st_index = #{st_index,jdbcType=INTEGER},
+      </if>
+      <if test="st_stopflag != null" >
+        st_stopflag = #{st_stopflag,jdbcType=BIT},
+      </if>
+      <if test="st_remark != null" >
+        st_remark = #{st_remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where st_type = #{st_type,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sys_WordType" >
+    update Sys_WordType
+    set st_name = #{st_name,jdbcType=VARCHAR},
+      st_index = #{st_index,jdbcType=INTEGER},
+      st_stopflag = #{st_stopflag,jdbcType=BIT},
+      st_remark = #{st_remark,jdbcType=VARCHAR}
+    where st_type = #{st_type,jdbcType=VARCHAR}
+  </update>
+</mapper>

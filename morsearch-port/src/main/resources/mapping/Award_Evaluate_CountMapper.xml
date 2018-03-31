@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Award_Evaluate_CountMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Award_Evaluate_Count" >
+    <id column="sc_id" property="sc_id" jdbcType="BIGINT" />
+    <result column="sc_activityid" property="sc_activityid" jdbcType="BIGINT" />
+    <result column="sc_orderno" property="sc_orderno" jdbcType="VARCHAR" />
+    <result column="sc_appraiseid" property="sc_appraiseid" jdbcType="BIGINT" />
+    <result column="sc_addintegral" property="sc_addintegral" jdbcType="DECIMAL" />
+    <result column="sc_isfirst" property="sc_isfirst" jdbcType="BIT" />
+    <result column="sc_userid" property="sc_userid" jdbcType="BIGINT" />
+    <result column="sc_createdate" property="sc_createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sc_id, sc_activityid, sc_orderno, sc_appraiseid, sc_addintegral, sc_isfirst, sc_userid, 
+    sc_createdate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Award_Evaluate_CountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Award_Evaluate_Count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from Award_Evaluate_Count
+    where sc_id = #{sc_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Award_Evaluate_Count
+    where sc_id = #{sc_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Award_Evaluate_CountExample" >
+    delete from Award_Evaluate_Count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Award_Evaluate_Count" >
+    insert into Award_Evaluate_Count (sc_id, sc_activityid, sc_orderno, 
+      sc_appraiseid, sc_addintegral, sc_isfirst, 
+      sc_userid, sc_createdate)
+    values (#{sc_id,jdbcType=BIGINT}, #{sc_activityid,jdbcType=BIGINT}, #{sc_orderno,jdbcType=VARCHAR}, 
+      #{sc_appraiseid,jdbcType=BIGINT}, #{sc_addintegral,jdbcType=DECIMAL}, #{sc_isfirst,jdbcType=BIT}, 
+      #{sc_userid,jdbcType=BIGINT}, #{sc_createdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Award_Evaluate_Count" >
+    insert into Award_Evaluate_Count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sc_id != null" >
+        sc_id,
+      </if>
+      <if test="sc_activityid != null" >
+        sc_activityid,
+      </if>
+      <if test="sc_orderno != null" >
+        sc_orderno,
+      </if>
+      <if test="sc_appraiseid != null" >
+        sc_appraiseid,
+      </if>
+      <if test="sc_addintegral != null" >
+        sc_addintegral,
+      </if>
+      <if test="sc_isfirst != null" >
+        sc_isfirst,
+      </if>
+      <if test="sc_userid != null" >
+        sc_userid,
+      </if>
+      <if test="sc_createdate != null" >
+        sc_createdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sc_id != null" >
+        #{sc_id,jdbcType=BIGINT},
+      </if>
+      <if test="sc_activityid != null" >
+        #{sc_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_orderno != null" >
+        #{sc_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="sc_appraiseid != null" >
+        #{sc_appraiseid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_addintegral != null" >
+        #{sc_addintegral,jdbcType=DECIMAL},
+      </if>
+      <if test="sc_isfirst != null" >
+        #{sc_isfirst,jdbcType=BIT},
+      </if>
+      <if test="sc_userid != null" >
+        #{sc_userid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_createdate != null" >
+        #{sc_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Award_Evaluate_CountExample" resultType="java.lang.Integer" >
+    select count(*) from Award_Evaluate_Count
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Award_Evaluate_Count
+    <set >
+      <if test="record.sc_id != null" >
+        sc_id = #{record.sc_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sc_activityid != null" >
+        sc_activityid = #{record.sc_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sc_orderno != null" >
+        sc_orderno = #{record.sc_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sc_appraiseid != null" >
+        sc_appraiseid = #{record.sc_appraiseid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sc_addintegral != null" >
+        sc_addintegral = #{record.sc_addintegral,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sc_isfirst != null" >
+        sc_isfirst = #{record.sc_isfirst,jdbcType=BIT},
+      </if>
+      <if test="record.sc_userid != null" >
+        sc_userid = #{record.sc_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sc_createdate != null" >
+        sc_createdate = #{record.sc_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Award_Evaluate_Count
+    set sc_id = #{record.sc_id,jdbcType=BIGINT},
+      sc_activityid = #{record.sc_activityid,jdbcType=BIGINT},
+      sc_orderno = #{record.sc_orderno,jdbcType=VARCHAR},
+      sc_appraiseid = #{record.sc_appraiseid,jdbcType=BIGINT},
+      sc_addintegral = #{record.sc_addintegral,jdbcType=DECIMAL},
+      sc_isfirst = #{record.sc_isfirst,jdbcType=BIT},
+      sc_userid = #{record.sc_userid,jdbcType=BIGINT},
+      sc_createdate = #{record.sc_createdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Award_Evaluate_Count" >
+    update Award_Evaluate_Count
+    <set >
+      <if test="sc_activityid != null" >
+        sc_activityid = #{sc_activityid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_orderno != null" >
+        sc_orderno = #{sc_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="sc_appraiseid != null" >
+        sc_appraiseid = #{sc_appraiseid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_addintegral != null" >
+        sc_addintegral = #{sc_addintegral,jdbcType=DECIMAL},
+      </if>
+      <if test="sc_isfirst != null" >
+        sc_isfirst = #{sc_isfirst,jdbcType=BIT},
+      </if>
+      <if test="sc_userid != null" >
+        sc_userid = #{sc_userid,jdbcType=BIGINT},
+      </if>
+      <if test="sc_createdate != null" >
+        sc_createdate = #{sc_createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sc_id = #{sc_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Award_Evaluate_Count" >
+    update Award_Evaluate_Count
+    set sc_activityid = #{sc_activityid,jdbcType=BIGINT},
+      sc_orderno = #{sc_orderno,jdbcType=VARCHAR},
+      sc_appraiseid = #{sc_appraiseid,jdbcType=BIGINT},
+      sc_addintegral = #{sc_addintegral,jdbcType=DECIMAL},
+      sc_isfirst = #{sc_isfirst,jdbcType=BIT},
+      sc_userid = #{sc_userid,jdbcType=BIGINT},
+      sc_createdate = #{sc_createdate,jdbcType=TIMESTAMP}
+    where sc_id = #{sc_id,jdbcType=BIGINT}
+  </update>
+</mapper>

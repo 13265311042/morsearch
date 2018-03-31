@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.DesigV_Home_SalesMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.DesigV_Home_Sales" >
+    <result column="dh_id" property="dh_id" jdbcType="BIGINT" />
+    <result column="dh_type" property="dh_type" jdbcType="VARCHAR" />
+    <result column="dh_dyid" property="dh_dyid" jdbcType="BIGINT" />
+    <result column="dh_index" property="dh_index" jdbcType="INTEGER" />
+    <result column="dh_remark" property="dh_remark" jdbcType="VARCHAR" />
+    <result column="dh_stopflag" property="dh_stopflag" jdbcType="BIT" />
+    <result column="dh_createno" property="dh_createno" jdbcType="VARCHAR" />
+    <result column="dh_createdate" property="dh_createdate" jdbcType="TIMESTAMP" />
+    <result column="dh_updateno" property="dh_updateno" jdbcType="VARCHAR" />
+    <result column="dh_updatedate" property="dh_updatedate" jdbcType="TIMESTAMP" />
+    <result column="ur_namenick" property="ur_namenick" jdbcType="VARCHAR" />
+    <result column="ur_imageurl" property="ur_imageurl" jdbcType="VARCHAR" />
+    <result column="ue_personjob" property="ue_personjob" jdbcType="VARCHAR" />
+    <result column="ue_personmajor" property="ue_personmajor" jdbcType="VARCHAR" />
+    <result column="ue_companybrand" property="ue_companybrand" jdbcType="VARCHAR" />
+    <result column="um_evaluatesum" property="um_evaluatesum" jdbcType="INTEGER" />
+    <result column="um_evaluatecount" property="um_evaluatecount" jdbcType="INTEGER" />
+    <result column="um_evaluaterate" property="um_evaluaterate" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dh_id, dh_type, dh_dyid, dh_index, dh_remark, dh_stopflag, dh_createno, dh_createdate, 
+    dh_updateno, dh_updatedate, ur_namenick, ur_imageurl, ue_personjob, ue_personmajor, 
+    ue_companybrand, um_evaluatesum, um_evaluatecount, um_evaluaterate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.DesigV_Home_SalesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from DesigV_Home_Sales
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.DesigV_Home_SalesExample" >
+    delete from DesigV_Home_Sales
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.DesigV_Home_Sales" >
+    insert into DesigV_Home_Sales (dh_id, dh_type, dh_dyid, 
+      dh_index, dh_remark, dh_stopflag, 
+      dh_createno, dh_createdate, dh_updateno, 
+      dh_updatedate, ur_namenick, ur_imageurl, 
+      ue_personjob, ue_personmajor, ue_companybrand, 
+      um_evaluatesum, um_evaluatecount, um_evaluaterate
+      )
+    values (#{dh_id,jdbcType=BIGINT}, #{dh_type,jdbcType=VARCHAR}, #{dh_dyid,jdbcType=BIGINT}, 
+      #{dh_index,jdbcType=INTEGER}, #{dh_remark,jdbcType=VARCHAR}, #{dh_stopflag,jdbcType=BIT}, 
+      #{dh_createno,jdbcType=VARCHAR}, #{dh_createdate,jdbcType=TIMESTAMP}, #{dh_updateno,jdbcType=VARCHAR}, 
+      #{dh_updatedate,jdbcType=TIMESTAMP}, #{ur_namenick,jdbcType=VARCHAR}, #{ur_imageurl,jdbcType=VARCHAR}, 
+      #{ue_personjob,jdbcType=VARCHAR}, #{ue_personmajor,jdbcType=VARCHAR}, #{ue_companybrand,jdbcType=VARCHAR}, 
+      #{um_evaluatesum,jdbcType=INTEGER}, #{um_evaluatecount,jdbcType=INTEGER}, #{um_evaluaterate,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.DesigV_Home_Sales" >
+    insert into DesigV_Home_Sales
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dh_id != null" >
+        dh_id,
+      </if>
+      <if test="dh_type != null" >
+        dh_type,
+      </if>
+      <if test="dh_dyid != null" >
+        dh_dyid,
+      </if>
+      <if test="dh_index != null" >
+        dh_index,
+      </if>
+      <if test="dh_remark != null" >
+        dh_remark,
+      </if>
+      <if test="dh_stopflag != null" >
+        dh_stopflag,
+      </if>
+      <if test="dh_createno != null" >
+        dh_createno,
+      </if>
+      <if test="dh_createdate != null" >
+        dh_createdate,
+      </if>
+      <if test="dh_updateno != null" >
+        dh_updateno,
+      </if>
+      <if test="dh_updatedate != null" >
+        dh_updatedate,
+      </if>
+      <if test="ur_namenick != null" >
+        ur_namenick,
+      </if>
+      <if test="ur_imageurl != null" >
+        ur_imageurl,
+      </if>
+      <if test="ue_personjob != null" >
+        ue_personjob,
+      </if>
+      <if test="ue_personmajor != null" >
+        ue_personmajor,
+      </if>
+      <if test="ue_companybrand != null" >
+        ue_companybrand,
+      </if>
+      <if test="um_evaluatesum != null" >
+        um_evaluatesum,
+      </if>
+      <if test="um_evaluatecount != null" >
+        um_evaluatecount,
+      </if>
+      <if test="um_evaluaterate != null" >
+        um_evaluaterate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dh_id != null" >
+        #{dh_id,jdbcType=BIGINT},
+      </if>
+      <if test="dh_type != null" >
+        #{dh_type,jdbcType=VARCHAR},
+      </if>
+      <if test="dh_dyid != null" >
+        #{dh_dyid,jdbcType=BIGINT},
+      </if>
+      <if test="dh_index != null" >
+        #{dh_index,jdbcType=INTEGER},
+      </if>
+      <if test="dh_remark != null" >
+        #{dh_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="dh_stopflag != null" >
+        #{dh_stopflag,jdbcType=BIT},
+      </if>
+      <if test="dh_createno != null" >
+        #{dh_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="dh_createdate != null" >
+        #{dh_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dh_updateno != null" >
+        #{dh_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="dh_updatedate != null" >
+        #{dh_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ur_namenick != null" >
+        #{ur_namenick,jdbcType=VARCHAR},
+      </if>
+      <if test="ur_imageurl != null" >
+        #{ur_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personjob != null" >
+        #{ue_personjob,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personmajor != null" >
+        #{ue_personmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companybrand != null" >
+        #{ue_companybrand,jdbcType=VARCHAR},
+      </if>
+      <if test="um_evaluatesum != null" >
+        #{um_evaluatesum,jdbcType=INTEGER},
+      </if>
+      <if test="um_evaluatecount != null" >
+        #{um_evaluatecount,jdbcType=INTEGER},
+      </if>
+      <if test="um_evaluaterate != null" >
+        #{um_evaluaterate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.DesigV_Home_SalesExample" resultType="java.lang.Integer" >
+    select count(*) from DesigV_Home_Sales
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update DesigV_Home_Sales
+    <set >
+      <if test="record.dh_id != null" >
+        dh_id = #{record.dh_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.dh_type != null" >
+        dh_type = #{record.dh_type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dh_dyid != null" >
+        dh_dyid = #{record.dh_dyid,jdbcType=BIGINT},
+      </if>
+      <if test="record.dh_index != null" >
+        dh_index = #{record.dh_index,jdbcType=INTEGER},
+      </if>
+      <if test="record.dh_remark != null" >
+        dh_remark = #{record.dh_remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dh_stopflag != null" >
+        dh_stopflag = #{record.dh_stopflag,jdbcType=BIT},
+      </if>
+      <if test="record.dh_createno != null" >
+        dh_createno = #{record.dh_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dh_createdate != null" >
+        dh_createdate = #{record.dh_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dh_updateno != null" >
+        dh_updateno = #{record.dh_updateno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dh_updatedate != null" >
+        dh_updatedate = #{record.dh_updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ur_namenick != null" >
+        ur_namenick = #{record.ur_namenick,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ur_imageurl != null" >
+        ur_imageurl = #{record.ur_imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_personjob != null" >
+        ue_personjob = #{record.ue_personjob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_personmajor != null" >
+        ue_personmajor = #{record.ue_personmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companybrand != null" >
+        ue_companybrand = #{record.ue_companybrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.um_evaluatesum != null" >
+        um_evaluatesum = #{record.um_evaluatesum,jdbcType=INTEGER},
+      </if>
+      <if test="record.um_evaluatecount != null" >
+        um_evaluatecount = #{record.um_evaluatecount,jdbcType=INTEGER},
+      </if>
+      <if test="record.um_evaluaterate != null" >
+        um_evaluaterate = #{record.um_evaluaterate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update DesigV_Home_Sales
+    set dh_id = #{record.dh_id,jdbcType=BIGINT},
+      dh_type = #{record.dh_type,jdbcType=VARCHAR},
+      dh_dyid = #{record.dh_dyid,jdbcType=BIGINT},
+      dh_index = #{record.dh_index,jdbcType=INTEGER},
+      dh_remark = #{record.dh_remark,jdbcType=VARCHAR},
+      dh_stopflag = #{record.dh_stopflag,jdbcType=BIT},
+      dh_createno = #{record.dh_createno,jdbcType=VARCHAR},
+      dh_createdate = #{record.dh_createdate,jdbcType=TIMESTAMP},
+      dh_updateno = #{record.dh_updateno,jdbcType=VARCHAR},
+      dh_updatedate = #{record.dh_updatedate,jdbcType=TIMESTAMP},
+      ur_namenick = #{record.ur_namenick,jdbcType=VARCHAR},
+      ur_imageurl = #{record.ur_imageurl,jdbcType=VARCHAR},
+      ue_personjob = #{record.ue_personjob,jdbcType=VARCHAR},
+      ue_personmajor = #{record.ue_personmajor,jdbcType=VARCHAR},
+      ue_companybrand = #{record.ue_companybrand,jdbcType=VARCHAR},
+      um_evaluatesum = #{record.um_evaluatesum,jdbcType=INTEGER},
+      um_evaluatecount = #{record.um_evaluatecount,jdbcType=INTEGER},
+      um_evaluaterate = #{record.um_evaluaterate,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <!--查询条件-->
+  <sql id="wherelist" >
+    <if test="ue_personjob != null and ue_personjob != ''" >
+      and ue_personjob like concat(concat('%',#{ue_personjob}),'%')
+    </if>
+    <if test="ue_personmajor != null and ue_personmajor != ''" >
+      and ue_personmajor like concat(concat('%',#{ue_personmajor}),'%')
+    </if>
+    <if test="dh_stopflag != null and dh_stopflag != ''" >
+      and ifnull(dh_stopflag,0) =#{dh_stopflag}
+    </if>
+    /*关于建表日期时间的查询*/
+    <if test="dh_createdate1 != null and dh_createdate2 !=null" >
+      and dh_createdate  between #{dh_createdate1} and #{dh_createdate2}
+    </if>
+    /*关于修改日期时间的查询*/
+    <if test="dh_updatedate1 != null and dh_updatedate2 !=null" >
+      and dh_updatedate  between #{dh_updatedate1} and #{dh_updatedate2}
+    </if>
+
+  </sql>
+  <!-- 分页 -->
+  <select id="getDesigV_Home_SalesList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from DesigV_Home_Sales dhs where 1=1
+    <include refid="wherelist" />
+     ORDER BY dh_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getDesigV_Home_SalesListCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(dh_id) from DesigV_Home_Sales where 1=1
+    <include refid="wherelist" />
+  </select>
+
+</mapper>

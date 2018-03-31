@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sys_User_ExtMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sys_User_Ext" >
+    <id column="ue_userid" property="ue_userid" jdbcType="BIGINT" />
+    <result column="ue_forbidreason" property="ue_forbidreason" jdbcType="VARCHAR" />
+    <result column="ue_message" property="ue_message" jdbcType="VARCHAR" />
+    <result column="ue_companyid" property="ue_companyid" jdbcType="INTEGER" />
+    <result column="ue_companyname" property="ue_companyname" jdbcType="VARCHAR" />
+    <result column="ue_companyunit" property="ue_companyunit" jdbcType="VARCHAR" />
+    <result column="ue_companyaddr" property="ue_companyaddr" jdbcType="VARCHAR" />
+    <result column="ue_companyaddrlocation" property="ue_companyaddrlocation" jdbcType="VARCHAR" />
+    <result column="ue_companyaddrdetailed" property="ue_companyaddrdetailed" jdbcType="VARCHAR" />
+    <result column="ue_companylongitude" property="ue_companylongitude" jdbcType="VARCHAR" />
+    <result column="ue_companylatitude" property="ue_companylatitude" jdbcType="VARCHAR" />
+    <result column="ue_companytype" property="ue_companytype" jdbcType="VARCHAR" />
+    <result column="ue_companybrand" property="ue_companybrand" jdbcType="VARCHAR" />
+    <result column="ue_teamlongitude" property="ue_teamlongitude" jdbcType="VARCHAR" />
+    <result column="ue_teamlatitude" property="ue_teamlatitude" jdbcType="VARCHAR" />
+    <result column="ue_personmajor" property="ue_personmajor" jdbcType="VARCHAR" />
+    <result column="ue_personjob" property="ue_personjob" jdbcType="VARCHAR" />
+    <result column="ue_personlevel" property="ue_personlevel" jdbcType="VARCHAR" />
+    <result column="ue_personworkage" property="ue_personworkage" jdbcType="VARCHAR" />
+    <result column="ue_willcity" property="ue_willcity" jdbcType="VARCHAR" />
+    <result column="ue_willtype" property="ue_willtype" jdbcType="VARCHAR" />
+    <result column="ue_willmajor" property="ue_willmajor" jdbcType="VARCHAR" />
+    <result column="ue_willjob" property="ue_willjob" jdbcType="VARCHAR" />
+    <result column="ue_willlevel" property="ue_willlevel" jdbcType="VARCHAR" />
+    <result column="ue_tagproduct" property="ue_tagproduct" jdbcType="VARCHAR" />
+    <result column="ue_tagcustomer" property="ue_tagcustomer" jdbcType="VARCHAR" />
+    <result column="ue_dynamiccode" property="ue_dynamiccode" jdbcType="VARCHAR" />
+    <result column="ue_needqty" property="ue_needqty" jdbcType="INTEGER" />
+    <result column="ue_flagallow" property="ue_flagallow" jdbcType="TINYINT" />
+    <result column="ue_remark" property="ue_remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ue_userid, ue_forbidreason, ue_message, ue_companyid, ue_companyname, ue_companyunit,
+    ue_companyaddr, ue_companyaddrlocation, ue_companyaddrdetailed, ue_companylongitude,
+    ue_companylatitude, ue_companytype, ue_companybrand, ue_teamlongitude, ue_teamlatitude,
+    ue_personmajor, ue_personjob, ue_personlevel, ue_personworkage, ue_willcity, ue_willtype,
+    ue_willmajor, ue_willjob, ue_willlevel, ue_tagproduct, ue_tagcustomer, ue_dynamiccode,
+    ue_needqty, ue_flagallow, ue_remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sys_User_ExtExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sys_User_Ext
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Sys_User_Ext
+    where ue_userid = #{ue_userid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Sys_User_Ext
+    where ue_userid = #{ue_userid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sys_User_ExtExample" >
+    delete from Sys_User_Ext
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sys_User_Ext" >
+    insert into Sys_User_Ext (ue_userid, ue_forbidreason, ue_message,
+    ue_companyid, ue_companyname, ue_companyunit,
+    ue_companyaddr, ue_companyaddrlocation,
+    ue_companyaddrdetailed, ue_companylongitude,
+    ue_companylatitude, ue_companytype, ue_companybrand,
+    ue_teamlongitude, ue_teamlatitude, ue_personmajor,
+    ue_personjob, ue_personlevel, ue_personworkage,
+    ue_willcity, ue_willtype, ue_willmajor,
+    ue_willjob, ue_willlevel, ue_tagproduct,
+    ue_tagcustomer, ue_dynamiccode, ue_needqty,
+    ue_flagallow, ue_remark)
+    values (#{ue_userid,jdbcType=BIGINT}, #{ue_forbidreason,jdbcType=VARCHAR}, #{ue_message,jdbcType=VARCHAR},
+    #{ue_companyid,jdbcType=INTEGER}, #{ue_companyname,jdbcType=VARCHAR}, #{ue_companyunit,jdbcType=VARCHAR},
+    #{ue_companyaddr,jdbcType=VARCHAR}, #{ue_companyaddrlocation,jdbcType=VARCHAR},
+    #{ue_companyaddrdetailed,jdbcType=VARCHAR}, #{ue_companylongitude,jdbcType=VARCHAR},
+    #{ue_companylatitude,jdbcType=VARCHAR}, #{ue_companytype,jdbcType=VARCHAR}, #{ue_companybrand,jdbcType=VARCHAR},
+    #{ue_teamlongitude,jdbcType=VARCHAR}, #{ue_teamlatitude,jdbcType=VARCHAR}, #{ue_personmajor,jdbcType=VARCHAR},
+    #{ue_personjob,jdbcType=VARCHAR}, #{ue_personlevel,jdbcType=VARCHAR}, #{ue_personworkage,jdbcType=VARCHAR},
+    #{ue_willcity,jdbcType=VARCHAR}, #{ue_willtype,jdbcType=VARCHAR}, #{ue_willmajor,jdbcType=VARCHAR},
+    #{ue_willjob,jdbcType=VARCHAR}, #{ue_willlevel,jdbcType=VARCHAR}, #{ue_tagproduct,jdbcType=VARCHAR},
+    #{ue_tagcustomer,jdbcType=VARCHAR}, #{ue_dynamiccode,jdbcType=VARCHAR}, #{ue_needqty,jdbcType=INTEGER},
+    #{ue_flagallow,jdbcType=TINYINT}, #{ue_remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sys_User_Ext" >
+    insert into Sys_User_Ext
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ue_userid != null" >
+        ue_userid,
+      </if>
+      <if test="ue_forbidreason != null" >
+        ue_forbidreason,
+      </if>
+      <if test="ue_message != null" >
+        ue_message,
+      </if>
+      <if test="ue_companyid != null" >
+        ue_companyid,
+      </if>
+      <if test="ue_companyname != null" >
+        ue_companyname,
+      </if>
+      <if test="ue_companyunit != null" >
+        ue_companyunit,
+      </if>
+      <if test="ue_companyaddr != null" >
+        ue_companyaddr,
+      </if>
+      <if test="ue_companyaddrlocation != null" >
+        ue_companyaddrlocation,
+      </if>
+      <if test="ue_companyaddrdetailed != null" >
+        ue_companyaddrdetailed,
+      </if>
+      <if test="ue_companylongitude != null" >
+        ue_companylongitude,
+      </if>
+      <if test="ue_companylatitude != null" >
+        ue_companylatitude,
+      </if>
+      <if test="ue_companytype != null" >
+        ue_companytype,
+      </if>
+      <if test="ue_companybrand != null" >
+        ue_companybrand,
+      </if>
+      <if test="ue_teamlongitude != null" >
+        ue_teamlongitude,
+      </if>
+      <if test="ue_teamlatitude != null" >
+        ue_teamlatitude,
+      </if>
+      <if test="ue_personmajor != null" >
+        ue_personmajor,
+      </if>
+      <if test="ue_personjob != null" >
+        ue_personjob,
+      </if>
+      <if test="ue_personlevel != null" >
+        ue_personlevel,
+      </if>
+      <if test="ue_personworkage != null" >
+        ue_personworkage,
+      </if>
+      <if test="ue_willcity != null" >
+        ue_willcity,
+      </if>
+      <if test="ue_willtype != null" >
+        ue_willtype,
+      </if>
+      <if test="ue_willmajor != null" >
+        ue_willmajor,
+      </if>
+      <if test="ue_willjob != null" >
+        ue_willjob,
+      </if>
+      <if test="ue_willlevel != null" >
+        ue_willlevel,
+      </if>
+      <if test="ue_tagproduct != null" >
+        ue_tagproduct,
+      </if>
+      <if test="ue_tagcustomer != null" >
+        ue_tagcustomer,
+      </if>
+      <if test="ue_dynamiccode != null" >
+        ue_dynamiccode,
+      </if>
+      <if test="ue_needqty != null" >
+        ue_needqty,
+      </if>
+      <if test="ue_flagallow != null" >
+        ue_flagallow,
+      </if>
+      <if test="ue_remark != null" >
+        ue_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ue_userid != null" >
+        #{ue_userid,jdbcType=BIGINT},
+      </if>
+      <if test="ue_forbidreason != null" >
+        #{ue_forbidreason,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_message != null" >
+        #{ue_message,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyid != null" >
+        #{ue_companyid,jdbcType=INTEGER},
+      </if>
+      <if test="ue_companyname != null" >
+        #{ue_companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyunit != null" >
+        #{ue_companyunit,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyaddr != null" >
+        #{ue_companyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyaddrlocation != null" >
+        #{ue_companyaddrlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyaddrdetailed != null" >
+        #{ue_companyaddrdetailed,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companylongitude != null" >
+        #{ue_companylongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companylatitude != null" >
+        #{ue_companylatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companytype != null" >
+        #{ue_companytype,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companybrand != null" >
+        #{ue_companybrand,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_teamlongitude != null" >
+        #{ue_teamlongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_teamlatitude != null" >
+        #{ue_teamlatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personmajor != null" >
+        #{ue_personmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personjob != null" >
+        #{ue_personjob,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personlevel != null" >
+        #{ue_personlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personworkage != null" >
+        #{ue_personworkage,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willcity != null" >
+        #{ue_willcity,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willtype != null" >
+        #{ue_willtype,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willmajor != null" >
+        #{ue_willmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willjob != null" >
+        #{ue_willjob,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willlevel != null" >
+        #{ue_willlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_tagproduct != null" >
+        #{ue_tagproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_tagcustomer != null" >
+        #{ue_tagcustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_dynamiccode != null" >
+        #{ue_dynamiccode,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_needqty != null" >
+        #{ue_needqty,jdbcType=INTEGER},
+      </if>
+      <if test="ue_flagallow != null" >
+        #{ue_flagallow,jdbcType=TINYINT},
+      </if>
+      <if test="ue_remark != null" >
+        #{ue_remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sys_User_ExtExample" resultType="java.lang.Integer" >
+    select count(*) from Sys_User_Ext
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sys_User_Ext
+    <set >
+      <if test="record.ue_userid != null" >
+        ue_userid = #{record.ue_userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ue_forbidreason != null" >
+        ue_forbidreason = #{record.ue_forbidreason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_message != null" >
+        ue_message = #{record.ue_message,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companyid != null" >
+        ue_companyid = #{record.ue_companyid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ue_companyname != null" >
+        ue_companyname = #{record.ue_companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companyunit != null" >
+        ue_companyunit = #{record.ue_companyunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companyaddr != null" >
+        ue_companyaddr = #{record.ue_companyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companyaddrlocation != null" >
+        ue_companyaddrlocation = #{record.ue_companyaddrlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companyaddrdetailed != null" >
+        ue_companyaddrdetailed = #{record.ue_companyaddrdetailed,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companylongitude != null" >
+        ue_companylongitude = #{record.ue_companylongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companylatitude != null" >
+        ue_companylatitude = #{record.ue_companylatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companytype != null" >
+        ue_companytype = #{record.ue_companytype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_companybrand != null" >
+        ue_companybrand = #{record.ue_companybrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_teamlongitude != null" >
+        ue_teamlongitude = #{record.ue_teamlongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_teamlatitude != null" >
+        ue_teamlatitude = #{record.ue_teamlatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_personmajor != null" >
+        ue_personmajor = #{record.ue_personmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_personjob != null" >
+        ue_personjob = #{record.ue_personjob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_personlevel != null" >
+        ue_personlevel = #{record.ue_personlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_personworkage != null" >
+        ue_personworkage = #{record.ue_personworkage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_willcity != null" >
+        ue_willcity = #{record.ue_willcity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_willtype != null" >
+        ue_willtype = #{record.ue_willtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_willmajor != null" >
+        ue_willmajor = #{record.ue_willmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_willjob != null" >
+        ue_willjob = #{record.ue_willjob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_willlevel != null" >
+        ue_willlevel = #{record.ue_willlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_tagproduct != null" >
+        ue_tagproduct = #{record.ue_tagproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_tagcustomer != null" >
+        ue_tagcustomer = #{record.ue_tagcustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_dynamiccode != null" >
+        ue_dynamiccode = #{record.ue_dynamiccode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ue_needqty != null" >
+        ue_needqty = #{record.ue_needqty,jdbcType=INTEGER},
+      </if>
+      <if test="record.ue_flagallow != null" >
+        ue_flagallow = #{record.ue_flagallow,jdbcType=TINYINT},
+      </if>
+      <if test="record.ue_remark != null" >
+        ue_remark = #{record.ue_remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sys_User_Ext
+    set ue_userid = #{record.ue_userid,jdbcType=BIGINT},
+    ue_forbidreason = #{record.ue_forbidreason,jdbcType=VARCHAR},
+    ue_message = #{record.ue_message,jdbcType=VARCHAR},
+    ue_companyid = #{record.ue_companyid,jdbcType=INTEGER},
+    ue_companyname = #{record.ue_companyname,jdbcType=VARCHAR},
+    ue_companyunit = #{record.ue_companyunit,jdbcType=VARCHAR},
+    ue_companyaddr = #{record.ue_companyaddr,jdbcType=VARCHAR},
+    ue_companyaddrlocation = #{record.ue_companyaddrlocation,jdbcType=VARCHAR},
+    ue_companyaddrdetailed = #{record.ue_companyaddrdetailed,jdbcType=VARCHAR},
+    ue_companylongitude = #{record.ue_companylongitude,jdbcType=VARCHAR},
+    ue_companylatitude = #{record.ue_companylatitude,jdbcType=VARCHAR},
+    ue_companytype = #{record.ue_companytype,jdbcType=VARCHAR},
+    ue_companybrand = #{record.ue_companybrand,jdbcType=VARCHAR},
+    ue_teamlongitude = #{record.ue_teamlongitude,jdbcType=VARCHAR},
+    ue_teamlatitude = #{record.ue_teamlatitude,jdbcType=VARCHAR},
+    ue_personmajor = #{record.ue_personmajor,jdbcType=VARCHAR},
+    ue_personjob = #{record.ue_personjob,jdbcType=VARCHAR},
+    ue_personlevel = #{record.ue_personlevel,jdbcType=VARCHAR},
+    ue_personworkage = #{record.ue_personworkage,jdbcType=VARCHAR},
+    ue_willcity = #{record.ue_willcity,jdbcType=VARCHAR},
+    ue_willtype = #{record.ue_willtype,jdbcType=VARCHAR},
+    ue_willmajor = #{record.ue_willmajor,jdbcType=VARCHAR},
+    ue_willjob = #{record.ue_willjob,jdbcType=VARCHAR},
+    ue_willlevel = #{record.ue_willlevel,jdbcType=VARCHAR},
+    ue_tagproduct = #{record.ue_tagproduct,jdbcType=VARCHAR},
+    ue_tagcustomer = #{record.ue_tagcustomer,jdbcType=VARCHAR},
+    ue_dynamiccode = #{record.ue_dynamiccode,jdbcType=VARCHAR},
+    ue_needqty = #{record.ue_needqty,jdbcType=INTEGER},
+    ue_flagallow = #{record.ue_flagallow,jdbcType=TINYINT},
+    ue_remark = #{record.ue_remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sys_User_Ext" >
+    update Sys_User_Ext
+    <set >
+      <if test="ue_forbidreason != null" >
+        ue_forbidreason = #{ue_forbidreason,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_message != null" >
+        ue_message = #{ue_message,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyid != null" >
+        ue_companyid = #{ue_companyid,jdbcType=INTEGER},
+      </if>
+      <if test="ue_companyname != null" >
+        ue_companyname = #{ue_companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyunit != null" >
+        ue_companyunit = #{ue_companyunit,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyaddr != null" >
+        ue_companyaddr = #{ue_companyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyaddrlocation != null" >
+        ue_companyaddrlocation = #{ue_companyaddrlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companyaddrdetailed != null" >
+        ue_companyaddrdetailed = #{ue_companyaddrdetailed,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companylongitude != null" >
+        ue_companylongitude = #{ue_companylongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companylatitude != null" >
+        ue_companylatitude = #{ue_companylatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companytype != null" >
+        ue_companytype = #{ue_companytype,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_companybrand != null" >
+        ue_companybrand = #{ue_companybrand,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_teamlongitude != null" >
+        ue_teamlongitude = #{ue_teamlongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_teamlatitude != null" >
+        ue_teamlatitude = #{ue_teamlatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personmajor != null" >
+        ue_personmajor = #{ue_personmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personjob != null" >
+        ue_personjob = #{ue_personjob,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personlevel != null" >
+        ue_personlevel = #{ue_personlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_personworkage != null" >
+        ue_personworkage = #{ue_personworkage,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willcity != null" >
+        ue_willcity = #{ue_willcity,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willtype != null" >
+        ue_willtype = #{ue_willtype,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willmajor != null" >
+        ue_willmajor = #{ue_willmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willjob != null" >
+        ue_willjob = #{ue_willjob,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_willlevel != null" >
+        ue_willlevel = #{ue_willlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_tagproduct != null" >
+        ue_tagproduct = #{ue_tagproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_tagcustomer != null" >
+        ue_tagcustomer = #{ue_tagcustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_dynamiccode != null" >
+        ue_dynamiccode = #{ue_dynamiccode,jdbcType=VARCHAR},
+      </if>
+      <if test="ue_needqty != null" >
+        ue_needqty = #{ue_needqty,jdbcType=INTEGER},
+      </if>
+      <if test="ue_flagallow != null" >
+        ue_flagallow = #{ue_flagallow,jdbcType=TINYINT},
+      </if>
+      <if test="ue_remark != null" >
+        ue_remark = #{ue_remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ue_userid = #{ue_userid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sys_User_Ext" >
+    update Sys_User_Ext
+    set ue_forbidreason = #{ue_forbidreason,jdbcType=VARCHAR},
+    ue_message = #{ue_message,jdbcType=VARCHAR},
+    ue_companyid = #{ue_companyid,jdbcType=INTEGER},
+    ue_companyname = #{ue_companyname,jdbcType=VARCHAR},
+    ue_companyunit = #{ue_companyunit,jdbcType=VARCHAR},
+    ue_companyaddr = #{ue_companyaddr,jdbcType=VARCHAR},
+    ue_companyaddrlocation = #{ue_companyaddrlocation,jdbcType=VARCHAR},
+    ue_companyaddrdetailed = #{ue_companyaddrdetailed,jdbcType=VARCHAR},
+    ue_companylongitude = #{ue_companylongitude,jdbcType=VARCHAR},
+    ue_companylatitude = #{ue_companylatitude,jdbcType=VARCHAR},
+    ue_companytype = #{ue_companytype,jdbcType=VARCHAR},
+    ue_companybrand = #{ue_companybrand,jdbcType=VARCHAR},
+    ue_teamlongitude = #{ue_teamlongitude,jdbcType=VARCHAR},
+    ue_teamlatitude = #{ue_teamlatitude,jdbcType=VARCHAR},
+    ue_personmajor = #{ue_personmajor,jdbcType=VARCHAR},
+    ue_personjob = #{ue_personjob,jdbcType=VARCHAR},
+    ue_personlevel = #{ue_personlevel,jdbcType=VARCHAR},
+    ue_personworkage = #{ue_personworkage,jdbcType=VARCHAR},
+    ue_willcity = #{ue_willcity,jdbcType=VARCHAR},
+    ue_willtype = #{ue_willtype,jdbcType=VARCHAR},
+    ue_willmajor = #{ue_willmajor,jdbcType=VARCHAR},
+    ue_willjob = #{ue_willjob,jdbcType=VARCHAR},
+    ue_willlevel = #{ue_willlevel,jdbcType=VARCHAR},
+    ue_tagproduct = #{ue_tagproduct,jdbcType=VARCHAR},
+    ue_tagcustomer = #{ue_tagcustomer,jdbcType=VARCHAR},
+    ue_dynamiccode = #{ue_dynamiccode,jdbcType=VARCHAR},
+    ue_needqty = #{ue_needqty,jdbcType=INTEGER},
+    ue_flagallow = #{ue_flagallow,jdbcType=TINYINT},
+    ue_remark = #{ue_remark,jdbcType=VARCHAR}
+    where ue_userid = #{ue_userid,jdbcType=BIGINT}
+  </update>
+
+  <!--
+  自定义
+  -->
+
+  <select id="getUserID" parameterType="java.lang.String" resultMap="BaseResultMap" >
+    select ue_userid from Sys_User_Ext
+    WHERE
+    ue_companyname =#{name,jdbcType=VARCHAR}
+  </select>
+
+
+</mapper>

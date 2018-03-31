@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!-- 引入配置文件 -->  
+    <properties resource="jdbc.properties"/> 
+ 
+    <classPathEntry location="${classPath}" />
+    <context id="context1" targetRuntime="MyBatis3">
+        <commentGenerator> 
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 --> 
+            <property name="suppressAllComments" value="true" /> 
+        </commentGenerator> 
+        
+        <jdbcConnection driverClass="${jdbc_driver}" connectionURL="${jdbc_url}" 
+                        userId="${jdbc_user}" password="${jdbc_password}" />
+
+        <javaModelGenerator targetPackage="com.morsearch.model"   targetProject="d:\buildxml\src/main/java" />
+
+        <sqlMapGenerator targetPackage="com.morsearch.mapping" targetProject="d:\buildxml\src/main/java" />
+
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.morsearch.dao" targetProject="d:\buildxml\src/main/java">
+        </javaClientGenerator>
+
+
+<!--
+
+        <table tableName="Sys_Power" domainObjectName="Sys_Power">
+            <property name="useActualColumnNames" value="true" />
+        </table>
+-->
+
+        <table tableName="Sys_Role" domainObjectName="Sys_Role">
+            <property name="useActualColumnNames" value="true"/> </table>
+
+        <table tableName="Sys_RolePower" domainObjectName="Sys_RolePower">
+            <property name="useActualColumnNames" value="true"/> </table>
+
+        <table tableName="Sys_Member" domainObjectName="Sys_Member">
+            <property name="useActualColumnNames" value="true"/> </table>
+
+        <table tableName="Sys_User" domainObjectName="Sys_User">
+            <property name="useActualColumnNames" value="true"/> </table>
+
+        <table tableName="Sys_User_Ext" domainObjectName="Sys_User_Ext">
+            <property name="useActualColumnNames" value="true"/> </table>
+
+        <table tableName="Sys_User_forbid" domainObjectName="Sys_User_forbid">
+            <property name="useActualColumnNames" value="true"/> </table>
+
+        <table tableName="Base_City" domainObjectName="Base_City">
+            <property name="useActualColumnNames" value="true"/> </table>
+
+        <table tableName="Sys_Member" domainObjectName="Sys_Member">
+            <property name="useActualColumnNames" value="true"/> </table>
+
+        <table tableName="Sys_SmsMessage" domainObjectName="Sys_SmsMessage">
+            <property name="useActualColumnNames" value="true"/> </table>
+
+        <table tableName="Sys_SmsReply" domainObjectName="Sys_SmsReply">
+            <property name="useActualColumnNames" value="true"/> </table>
+
+        <table tableName="Sys_SmsTemplate" domainObjectName="Sys_SmsTemplate">
+            <property name="useActualColumnNames" value="true"/> </table>
+
+        <table tableName="Sys_SmsVerify" domainObjectName="Sys_SmsVerify">
+            <property name="useActualColumnNames" value="true"/> </table>
+
+
+
+    </context>
+   
+</generatorConfiguration>

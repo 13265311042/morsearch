@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morsearch.dao.Sales_AppealMapper" >
+  <resultMap id="BaseResultMap" type="com.morsearch.model.Sales_Appeal" >
+    <id column="sp_id" property="sp_id" jdbcType="BIGINT" />
+    <result column="sp_no" property="sp_no" jdbcType="VARCHAR" />
+    <result column="sp_orderno" property="sp_orderno" jdbcType="VARCHAR" />
+    <result column="sp_designerid" property="sp_designerid" jdbcType="BIGINT" />
+    <result column="sp_contentgroup" property="sp_contentgroup" jdbcType="VARCHAR" />
+    <result column="sp_contentvalue" property="sp_contentvalue" jdbcType="VARCHAR" />
+    <result column="sp_disposevalue" property="sp_disposevalue" jdbcType="VARCHAR" />
+    <result column="sp_disposemode" property="sp_disposemode" jdbcType="BIT" />
+    <result column="sp_flagdesread" property="sp_flagdesread" jdbcType="BIT" />
+    <result column="sp_flagsaleread" property="sp_flagsaleread" jdbcType="BIT" />
+    <result column="sp_createid" property="sp_createid" jdbcType="BIGINT" />
+    <result column="sp_createno" property="sp_createno" jdbcType="VARCHAR" />
+    <result column="sp_createdate" property="sp_createdate" jdbcType="TIMESTAMP" />
+    <result column="se_confirmid" property="se_confirmid" jdbcType="BIGINT" />
+    <result column="sp_confirmno" property="sp_confirmno" jdbcType="VARCHAR" />
+    <result column="sp_confirmdate" property="sp_confirmdate" jdbcType="TIMESTAMP" />
+    <result column="sp_disposeid" property="sp_disposeid" jdbcType="BIGINT" />
+    <result column="sp_disposeno" property="sp_disposeno" jdbcType="VARCHAR" />
+    <result column="sp_disposedate" property="sp_disposedate" jdbcType="TIMESTAMP" />
+    <result column="sp_status" property="sp_status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sp_id, sp_no, sp_orderno, sp_designerid, sp_contentgroup, sp_contentvalue, sp_disposevalue,
+    sp_disposemode, sp_flagdesread, sp_flagsaleread, sp_createid, sp_createno, sp_createdate,
+    se_confirmid, sp_confirmno, sp_confirmdate, sp_disposeid, sp_disposeno, sp_disposedate,
+    sp_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.morsearch.model.Sales_AppealExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from Sales_Appeal
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from Sales_Appeal
+    where sp_id = #{sp_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from Sales_Appeal
+    where sp_id = #{sp_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.morsearch.model.Sales_AppealExample" >
+    delete from Sales_Appeal
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.morsearch.model.Sales_Appeal" >
+    insert into Sales_Appeal (sp_id, sp_no, sp_orderno,
+    sp_designerid, sp_contentgroup, sp_contentvalue,
+    sp_disposevalue, sp_disposemode, sp_flagdesread,
+    sp_flagsaleread, sp_createid, sp_createno,
+    sp_createdate, se_confirmid, sp_confirmno,
+    sp_confirmdate, sp_disposeid, sp_disposeno,
+    sp_disposedate, sp_status)
+    values (#{sp_id,jdbcType=BIGINT}, #{sp_no,jdbcType=VARCHAR}, #{sp_orderno,jdbcType=VARCHAR},
+    #{sp_designerid,jdbcType=BIGINT}, #{sp_contentgroup,jdbcType=VARCHAR}, #{sp_contentvalue,jdbcType=VARCHAR},
+    #{sp_disposevalue,jdbcType=VARCHAR}, #{sp_disposemode,jdbcType=BIT}, #{sp_flagdesread,jdbcType=BIT},
+    #{sp_flagsaleread,jdbcType=BIT}, #{sp_createid,jdbcType=BIGINT}, #{sp_createno,jdbcType=VARCHAR},
+    #{sp_createdate,jdbcType=TIMESTAMP}, #{se_confirmid,jdbcType=BIGINT}, #{sp_confirmno,jdbcType=VARCHAR},
+    #{sp_confirmdate,jdbcType=TIMESTAMP}, #{sp_disposeid,jdbcType=BIGINT}, #{sp_disposeno,jdbcType=VARCHAR},
+    #{sp_disposedate,jdbcType=TIMESTAMP}, #{sp_status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morsearch.model.Sales_Appeal" >
+    insert into Sales_Appeal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sp_id != null" >
+        sp_id,
+      </if>
+      <if test="sp_no != null" >
+        sp_no,
+      </if>
+      <if test="sp_orderno != null" >
+        sp_orderno,
+      </if>
+      <if test="sp_designerid != null" >
+        sp_designerid,
+      </if>
+      <if test="sp_contentgroup != null" >
+        sp_contentgroup,
+      </if>
+      <if test="sp_contentvalue != null" >
+        sp_contentvalue,
+      </if>
+      <if test="sp_disposevalue != null" >
+        sp_disposevalue,
+      </if>
+      <if test="sp_disposemode != null" >
+        sp_disposemode,
+      </if>
+      <if test="sp_flagdesread != null" >
+        sp_flagdesread,
+      </if>
+      <if test="sp_flagsaleread != null" >
+        sp_flagsaleread,
+      </if>
+      <if test="sp_createid != null" >
+        sp_createid,
+      </if>
+      <if test="sp_createno != null" >
+        sp_createno,
+      </if>
+      <if test="sp_createdate != null" >
+        sp_createdate,
+      </if>
+      <if test="se_confirmid != null" >
+        se_confirmid,
+      </if>
+      <if test="sp_confirmno != null" >
+        sp_confirmno,
+      </if>
+      <if test="sp_confirmdate != null" >
+        sp_confirmdate,
+      </if>
+      <if test="sp_disposeid != null" >
+        sp_disposeid,
+      </if>
+      <if test="sp_disposeno != null" >
+        sp_disposeno,
+      </if>
+      <if test="sp_disposedate != null" >
+        sp_disposedate,
+      </if>
+      <if test="sp_status != null" >
+        sp_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sp_id != null" >
+        #{sp_id,jdbcType=BIGINT},
+      </if>
+      <if test="sp_no != null" >
+        #{sp_no,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_orderno != null" >
+        #{sp_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_designerid != null" >
+        #{sp_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="sp_contentgroup != null" >
+        #{sp_contentgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_contentvalue != null" >
+        #{sp_contentvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_disposevalue != null" >
+        #{sp_disposevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_disposemode != null" >
+        #{sp_disposemode,jdbcType=BIT},
+      </if>
+      <if test="sp_flagdesread != null" >
+        #{sp_flagdesread,jdbcType=BIT},
+      </if>
+      <if test="sp_flagsaleread != null" >
+        #{sp_flagsaleread,jdbcType=BIT},
+      </if>
+      <if test="sp_createid != null" >
+        #{sp_createid,jdbcType=BIGINT},
+      </if>
+      <if test="sp_createno != null" >
+        #{sp_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_createdate != null" >
+        #{sp_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="se_confirmid != null" >
+        #{se_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="sp_confirmno != null" >
+        #{sp_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_confirmdate != null" >
+        #{sp_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sp_disposeid != null" >
+        #{sp_disposeid,jdbcType=BIGINT},
+      </if>
+      <if test="sp_disposeno != null" >
+        #{sp_disposeno,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_disposedate != null" >
+        #{sp_disposedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sp_status != null" >
+        #{sp_status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.morsearch.model.Sales_AppealExample" resultType="java.lang.Integer" >
+    select count(*) from Sales_Appeal
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Sales_Appeal
+    <set >
+      <if test="record.sp_id != null" >
+        sp_id = #{record.sp_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sp_no != null" >
+        sp_no = #{record.sp_no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_orderno != null" >
+        sp_orderno = #{record.sp_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_designerid != null" >
+        sp_designerid = #{record.sp_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sp_contentgroup != null" >
+        sp_contentgroup = #{record.sp_contentgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_contentvalue != null" >
+        sp_contentvalue = #{record.sp_contentvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_disposevalue != null" >
+        sp_disposevalue = #{record.sp_disposevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_disposemode != null" >
+        sp_disposemode = #{record.sp_disposemode,jdbcType=BIT},
+      </if>
+      <if test="record.sp_flagdesread != null" >
+        sp_flagdesread = #{record.sp_flagdesread,jdbcType=BIT},
+      </if>
+      <if test="record.sp_flagsaleread != null" >
+        sp_flagsaleread = #{record.sp_flagsaleread,jdbcType=BIT},
+      </if>
+      <if test="record.sp_createid != null" >
+        sp_createid = #{record.sp_createid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sp_createno != null" >
+        sp_createno = #{record.sp_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_createdate != null" >
+        sp_createdate = #{record.sp_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.se_confirmid != null" >
+        se_confirmid = #{record.se_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sp_confirmno != null" >
+        sp_confirmno = #{record.sp_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_confirmdate != null" >
+        sp_confirmdate = #{record.sp_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sp_disposeid != null" >
+        sp_disposeid = #{record.sp_disposeid,jdbcType=BIGINT},
+      </if>
+      <if test="record.sp_disposeno != null" >
+        sp_disposeno = #{record.sp_disposeno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sp_disposedate != null" >
+        sp_disposedate = #{record.sp_disposedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sp_status != null" >
+        sp_status = #{record.sp_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Sales_Appeal
+    set sp_id = #{record.sp_id,jdbcType=BIGINT},
+    sp_no = #{record.sp_no,jdbcType=VARCHAR},
+    sp_orderno = #{record.sp_orderno,jdbcType=VARCHAR},
+    sp_designerid = #{record.sp_designerid,jdbcType=BIGINT},
+    sp_contentgroup = #{record.sp_contentgroup,jdbcType=VARCHAR},
+    sp_contentvalue = #{record.sp_contentvalue,jdbcType=VARCHAR},
+    sp_disposevalue = #{record.sp_disposevalue,jdbcType=VARCHAR},
+    sp_disposemode = #{record.sp_disposemode,jdbcType=BIT},
+    sp_flagdesread = #{record.sp_flagdesread,jdbcType=BIT},
+    sp_flagsaleread = #{record.sp_flagsaleread,jdbcType=BIT},
+    sp_createid = #{record.sp_createid,jdbcType=BIGINT},
+    sp_createno = #{record.sp_createno,jdbcType=VARCHAR},
+    sp_createdate = #{record.sp_createdate,jdbcType=TIMESTAMP},
+    se_confirmid = #{record.se_confirmid,jdbcType=BIGINT},
+    sp_confirmno = #{record.sp_confirmno,jdbcType=VARCHAR},
+    sp_confirmdate = #{record.sp_confirmdate,jdbcType=TIMESTAMP},
+    sp_disposeid = #{record.sp_disposeid,jdbcType=BIGINT},
+    sp_disposeno = #{record.sp_disposeno,jdbcType=VARCHAR},
+    sp_disposedate = #{record.sp_disposedate,jdbcType=TIMESTAMP},
+    sp_status = #{record.sp_status,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morsearch.model.Sales_Appeal" >
+    update Sales_Appeal
+    <set >
+      <if test="sp_no != null" >
+        sp_no = #{sp_no,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_orderno != null" >
+        sp_orderno = #{sp_orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_designerid != null" >
+        sp_designerid = #{sp_designerid,jdbcType=BIGINT},
+      </if>
+      <if test="sp_contentgroup != null" >
+        sp_contentgroup = #{sp_contentgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_contentvalue != null" >
+        sp_contentvalue = #{sp_contentvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_disposevalue != null" >
+        sp_disposevalue = #{sp_disposevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_disposemode != null" >
+        sp_disposemode = #{sp_disposemode,jdbcType=BIT},
+      </if>
+      <if test="sp_flagdesread != null" >
+        sp_flagdesread = #{sp_flagdesread,jdbcType=BIT},
+      </if>
+      <if test="sp_flagsaleread != null" >
+        sp_flagsaleread = #{sp_flagsaleread,jdbcType=BIT},
+      </if>
+      <if test="sp_createid != null" >
+        sp_createid = #{sp_createid,jdbcType=BIGINT},
+      </if>
+      <if test="sp_createno != null" >
+        sp_createno = #{sp_createno,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_createdate != null" >
+        sp_createdate = #{sp_createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="se_confirmid != null" >
+        se_confirmid = #{se_confirmid,jdbcType=BIGINT},
+      </if>
+      <if test="sp_confirmno != null" >
+        sp_confirmno = #{sp_confirmno,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_confirmdate != null" >
+        sp_confirmdate = #{sp_confirmdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sp_disposeid != null" >
+        sp_disposeid = #{sp_disposeid,jdbcType=BIGINT},
+      </if>
+      <if test="sp_disposeno != null" >
+        sp_disposeno = #{sp_disposeno,jdbcType=VARCHAR},
+      </if>
+      <if test="sp_disposedate != null" >
+        sp_disposedate = #{sp_disposedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sp_status != null" >
+        sp_status = #{sp_status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where sp_id = #{sp_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morsearch.model.Sales_Appeal" >
+    update Sales_Appeal
+    set sp_no = #{sp_no,jdbcType=VARCHAR},
+    sp_orderno = #{sp_orderno,jdbcType=VARCHAR},
+    sp_designerid = #{sp_designerid,jdbcType=BIGINT},
+    sp_contentgroup = #{sp_contentgroup,jdbcType=VARCHAR},
+    sp_contentvalue = #{sp_contentvalue,jdbcType=VARCHAR},
+    sp_disposevalue = #{sp_disposevalue,jdbcType=VARCHAR},
+    sp_disposemode = #{sp_disposemode,jdbcType=BIT},
+    sp_flagdesread = #{sp_flagdesread,jdbcType=BIT},
+    sp_flagsaleread = #{sp_flagsaleread,jdbcType=BIT},
+    sp_createid = #{sp_createid,jdbcType=BIGINT},
+    sp_createno = #{sp_createno,jdbcType=VARCHAR},
+    sp_createdate = #{sp_createdate,jdbcType=TIMESTAMP},
+    se_confirmid = #{se_confirmid,jdbcType=BIGINT},
+    sp_confirmno = #{sp_confirmno,jdbcType=VARCHAR},
+    sp_confirmdate = #{sp_confirmdate,jdbcType=TIMESTAMP},
+    sp_disposeid = #{sp_disposeid,jdbcType=BIGINT},
+    sp_disposeno = #{sp_disposeno,jdbcType=VARCHAR},
+    sp_disposedate = #{sp_disposedate,jdbcType=TIMESTAMP},
+    sp_status = #{sp_status,jdbcType=TINYINT}
+    where sp_id = #{sp_id,jdbcType=BIGINT}
+  </update>
+
+
+  <!--自定义-->
+  <select id="selectByPrimaryNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    *
+    from Sales_Appeal
+    where sp_orderno = #{orderno,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 条件 -->
+  <sql id="wherelist" >
+    <if test="sp_orderno != null and sp_orderno != ''" >
+      and sp_orderno like concat(concat('%',#{sp_orderno}),'%') <!-- 模糊查询 -->
+    </if>
+    <if test="sp_designerid != null and sp_designerid != ''" >
+      and sp_designerid like concat(concat('%',#{sp_designerid}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sp_contentgroup != null and sp_contentgroup != ''" >
+      and sp_contentgroup like concat(concat('%',#{sp_contentgroup}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sp_contentvalue != null and sp_contentvalue != ''" >
+      and sp_contentvalue like concat(concat('%',#{sp_contentvalue}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sp_disposevalue != null and sp_disposevalue != ''" >
+      and sp_disposevalue like concat(concat('%',#{sp_disposevalue}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sp_disposevalue != null and sp_disposevalue != ''" >
+      and sp_disposevalue like concat(concat('%',#{sp_disposevalue}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sp_status != null" >
+      and sp_status=#{sp_status}
+    </if>
+    /*状态*/
+    <if test="sp_disposemode != null" >
+      and sp_disposemode=#{sp_disposemode}
+    </if>
+    <if test="sp_createno != null and sp_createno != ''" >
+      and sp_createno like concat(concat('%',#{sp_createno}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sp_confirmno != null and sp_confirmno != ''" >
+      and sp_confirmno like concat(concat('%',#{sp_confirmno}),'%')<!-- 模糊查询 -->
+    </if>
+    <if test="sp_disposeno != null and sp_disposeno != ''" >
+      and sp_disposeno like concat(concat('%',#{sp_disposeno}),'%')<!-- 模糊查询 -->
+    </if>
+    /*关于制表时间的查询*/
+    <if test="sp_createdate1 != null and sp_createdate2 !=null" >
+      and sp_createdate  between #{sp_createdate1} and #{sp_createdate2}
+    </if>
+    /*关于审核时间的查询*/
+    <if test="sp_confirmdate1 != null and sp_confirmdate2 !=null" >
+      and sp_confirmdate  between #{sp_confirmdate1} and #{sp_confirmdate2}
+    </if>
+    /*关于处理时间的查询*/
+    <if test="sp_disposedate1 != null and sp_disposedate2 !=null" >
+      and sp_disposedate  between #{sp_disposedate1} and #{sp_disposedate2}
+    </if>
+
+  </sql>
+
+  <!-- 分页 -->
+  <select id="getSales_AppealList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select * from Sales_Appeal ar where 1=1
+    <include refid="wherelist" />
+    ORDER BY sp_id DESC
+    limit #{pagestart},#{pagesize}
+  </select>
+
+  <select id="getCountSales_Appeal" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select count(sp_id) from Sales_Appeal where 1=1
+    <include refid="wherelist" />
+  </select>
+
+
+</mapper>
